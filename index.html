@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>-> Coding Inspire Modular</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <style>
+        /* 通用样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        /* 顶部导航栏样式 */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .menu-icon {
+            display: none;
+        }
+
+        /* 轮播图样式 */
+       .slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+       .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+       .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+       .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+       .prev,
+       .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+       .prev {
+            left: 10px;
+        }
+
+       .next {
+            right: 10px;
+        }
+
+        /* 特色产品部分样式 */
+       .featured-products {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+       .product-item {
+            text-align: left;
+            position: relative;
+        }
+
+       .product-image-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            background-color: #f4f4f4;
+        }
+
+       .product-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+       .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+       .product-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+       .product-code {
+            font-size: 12px;
+            color: #999;
+        }
+
+       .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #777;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+
+        /* Cookie提示条样式 */
+       .cookie-notice {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+       .cookie-notice p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+       .cookie-notice a {
+            color: #0099ff;
+            text-decoration: none;
+        }
+
+       .close-cookie {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <nav>
+        <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
+        <div class="nav-links">
+            <a href="#">Eurorack</a>
+            <a href="#">Instrument</a>
+            <a href="#">Library</a>
+            <div class="menu-icon">
+                <svg xmlns="codinginspire.jpg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 轮播图 -->
+    <div class="slider">
+        <div class="slides" id="slides">
+            <div class="slide">
+                <img src="eurorack.jpg" alt="轮播图 1">
+            </div>
+            <div class="slide">
+                <img src="eurorack.jpg" alt="轮播图 2">
+            </div>
+            <div class="slide">
+                <img src="eurorack.jpg" alt="轮播图 3">
+            </div>
+        </div>
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+    </div>
+
+    <!-- 特色产品展示 -->
+    <section class="featured-products">
+        <div class="product-item">
+            <div class="product-image-container">
+                <img src="product (1).png" alt="产品图片 1">
+            </div>
+            <h3 class="product-title">Mixer / Stereo Mix Black</h3>
+            <p class="product-desc">Analog Circuit</p>
+            <span class="new-badge">NEW!</span>
+        </div>
+        <div class="product-item">
+            <div class="product-image-container">
+                <img src="product (2).png" alt="产品图片 2">
+            </div>
+            <h3 class="product-title">MIDI2CV / MIDI Convert</h3>
+            <p class="product-desc">Digital Circuit</p>
+            <span class="new-badge">NEW!</span>
+        </div>
+        <div class="product-item">
+            <div class="product-image-container">
+                <img src="product (3).png" alt="产品图片 3">
+            </div>
+            <h3 class="product-title">ADSR / Envlope</h3>
+            <p class="product-desc">Analog Circuit</p>
+            <span class="new-badge">NEW!</span>
+        </div>
+        <div class="product-item">
+            <div class="product-image-container">
+                <img src="product (4).png" alt="产品图片 3">
+            </div>
+            <h3 class="product-title">MIDI2GATE </h3>
+            <p class="product-desc">Digital Circuit</p>
+            <span class="new-badge">NEW!</span>
+        </div>
+        <div class="product-item">
+            <div class="product-image-container">
+                <img src="product (5).png" alt="产品图片 3">
+            </div>
+            <h3 class="product-title">Knit (Mini Plaits)</h3>
+            <p class="product-desc">Digital Circuit</p>
+            <span class="new-badge">NEW!</span>
+        </div>
+        <div class="product-item">
+            <div class="product-image-container">
+                <img src="product (6).png" alt="产品图片 3">
+            </div>
+            <h3 class="product-title">Buffer Mult</h3>
+            <p class="product-desc">Analog Circuit</p>
+            <span class="new-badge">NEW!</span>
+        </div>
+        <!-- 可按需添加更多产品项 -->
+    </section>
+
+    <!-- Cookie提示条 -->
+    <div class="cookie-notice">
+        <p>We use cookies to improve your experience on our site. By continuing to use our site you consent to use our
+            cookies. Find out more <a href="#">here</a>.</p>
+        <button class="close-cookie">×</button>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
+    
