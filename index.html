@@ -13,7 +13,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fff;
+            background-color: #fafafa;
         }
 
         /* 顶部导航栏样式 */
@@ -37,7 +37,7 @@
         .nav-links a {
             text-decoration: none;
             color: #333;
-            font-weight: 600;
+            font-weight: 350;
         }
 
         .menu-icon {
@@ -174,6 +174,11 @@
             cursor: pointer;
             font-size: 18px;
         }
+
+        /* 新增空白区域样式 */
+       .blank-area {
+            height: 240px;
+        }
     </style>
 </head>
 
@@ -184,9 +189,9 @@
         <div class="nav-links">
             <a href="#">Eurorack</a>
             <a href="#">Instrument</a>
-            <a href="#">Library</a>
+            <a href="#">Support</a>
             <div class="menu-icon">
-                <svg xmlns="codinginspire.jpg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 6h16M4 12h16M4 18h16" />
@@ -265,6 +270,9 @@
         <!-- 可按需添加更多产品项 -->
     </section>
 
+    <!-- 新增空白区域 -->
+    <div class="blank-area"></div>
+
     <!-- Cookie提示条 -->
     <div class="cookie-notice">
         <p>We use cookies to improve your experience on our site. By continuing to use our site you consent to use our
@@ -294,6 +302,13 @@
             }
             slides[slideIndex - 1].style.display = "block";
         }
+
+        const closeButton = document.querySelector('.close-cookie');
+        const cookieNotice = document.querySelector('.cookie-notice');
+
+        closeButton.addEventListener('click', function () {
+            cookieNotice.style.display = 'none';
+        });
     </script>
 </body>
 
