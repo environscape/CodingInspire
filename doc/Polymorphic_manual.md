@@ -1,6 +1,6 @@
 
-![产品效果图](POSC_Appearance.png)
-![屏幕主界面](POSC_UI.png)
+<img src="POSC_Appearance.png" alt="产品效果图" width="120" height="420">
+<img src="POSC_UI.png" alt="屏幕主界面" width="630" height="420">
 
 ## Polymorphic数字振荡器操作说明书
 
@@ -206,6 +206,28 @@
 
 #### 您可以随时通过两次连续按下编码器来进入调谐与量化设置，在这里您可以通过以下文档对振荡器做全局调整，同时该菜单设置下，您还可以查阅更多振荡器的相关信息。
 
-### 1.调谐
+### 1.Tune Scale 调谐 
+
+可以用于校准音调
+
+### 2.Tune Offset 调谐偏移
+
+可以用于平移音调
+
+### 3.ScaleQuantizer 量化音阶
+
+选择量化的音阶模式
+
+### 4.Root Note 量化主音
+
+选择量化音阶的主音
+
+### 5.Version 版本信息
+
+显示当前模块的软件版本信息
+
+### 6.Modular Reboot 重启设备
+
+将数值解锁并调整至最大，重启设备
 
 待完善
