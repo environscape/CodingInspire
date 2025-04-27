@@ -1,6 +1,6 @@
 
-<img src="POSC_Appearance.jpg" alt="产品效果图" width="120" height="420">
-<img src="POSC_UI.png" alt="屏幕主界面" width="630" height="420">
+<img src="https://environscape.github.io/CodingInspire/doc/POSC_Appearance.jpg" alt="产品效果图" width="120" height="420">
+<img src="https://environscape.github.io/CodingInspire/doc/POSC_UI.png" alt="屏幕主界面" width="630" height="420">
 
 ## Polymorphic数字振荡器操作说明书
 

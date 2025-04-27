@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+  <div id="markdown-content"></div>
+
+  <script>
+    // 替换为实际的Markdown文件路径
+    const mdFilePath = 'https://environscape.github.io/CodingInspire/doc/Polymorphic_manual.md';
+    fetch(mdFilePath)
+      .then(response => response.text())
+      .then(data => {
+        const html = marked.parse(data);
+        document.getElementById('markdown-content').innerHTML = html;
+      });
+  </script>
+</body>
+
+</html>
