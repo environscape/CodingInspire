@@ -3,6 +3,20 @@
 
 <head>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    /* 添加页面整体的边距 */
+    body {
+      margin: 20px;
+    }
+
+    /* 给显示 Markdown 内容的容器添加边距 */
+    #markdown-content {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,8 +29,8 @@
     const mdFilePath = newUrl;
     // const mdFilePath = 'https://environscape.github.io/CodingInspire/doc/Polymorphic_manual.md';
     fetch(mdFilePath)
-      .then(response => response.text())
-      .then(data => {
+     .then(response => response.text())
+     .then(data => {
         const html = marked.parse(data);
         document.getElementById('markdown-content').innerHTML = html;
       });
