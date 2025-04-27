@@ -9,8 +9,11 @@
   <div id="markdown-content"></div>
 
   <script>
+    const currentUrl = window.location.href;
+    const newUrl = currentUrl.replace('.html', '.md');
     // 替换为实际的Markdown文件路径
-    const mdFilePath = 'https://environscape.github.io/CodingInspire/doc/Polymorphic_manual.md';
+    const mdFilePath = newUrl;
+    // const mdFilePath = 'https://environscape.github.io/CodingInspire/doc/Polymorphic_manual.md';
     fetch(mdFilePath)
       .then(response => response.text())
       .then(data => {
