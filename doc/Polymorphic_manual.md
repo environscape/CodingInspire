@@ -96,15 +96,29 @@
 
 **OPLV**：用于调整算子对主振荡器的调制程度(offset)
 
-**Attk**：算子对主振荡器的调制程度由一个包络控制，为包络的Attack调节
+**Attk**：算子对主振荡器的调制程度同时由一个包络控制，为包络的Attack调节
 
-**Decay**：算子对主振荡器的调制程度由一个包络控制，为包络的Decay调节
+**Decay**：算子对主振荡器的调制程度同时由一个包络控制，为包络的Decay调节
 
-**Sustain**：算子对主振荡器的调制程度由一个包络控制，为包络的Sustain调节
+**Sustain**：算子对主振荡器的调制程度同时由一个包络控制，为包络的Sustain调节
 
-**Release**：算子对主振荡器的调制程度由一个包络控制，为包络的Release调节
+**Release**：算子对主振荡器的调制程度同时由一个包络控制，为包络的Release调节
 
 **WaveType**：主振荡器与算子的波形类型，共有8种组合类型
+
+#### CV1-6调制参数
+
+**OPFreq**：压控OPFreq参数
+
+**OPLV**：压控OPLV参数
+
+**EGTrig**：调制包络触发器
+
+**Attk**：压控Attack参数
+
+**Sustain**：压控Sustain参数
+
+**Release**：压控Release参数
 
 ### 2.WSDCOII 波形渐变振荡器，内置算子
 
@@ -152,6 +166,20 @@
 
 **WaveType**：振荡器的波形类型，共有8种类型
 
+#### CV1-6调制参数
+
+**AddGain**：压控AddGain
+
+**Harm**：压控Harm参数
+
+**SideCh.**：侧链触发器，可以使用音频信号触发
+
+**AttenL**：左声道音量衰减器，与AttenR配合可以产生变化的声像效果
+
+**AttenR**：右声道音量衰减器，与AttenL配合可以产生变化的声像效果
+
+**WaveType**：压控WaveType参数
+
 ### 4.ChordDCO 和弦振荡器
 
 **Root**：根音频率调整
@@ -165,6 +193,20 @@
 **SideChTime**：对adc3的侧链输入的启动与释放时间做修改(beta)
 
 **WaveType**：振荡器的波形类型，共有8种类型
+
+#### CV1-6调制参数
+
+**Chord**：压控Chord参数
+
+**Inver**：压控Inver参数
+
+**SideCh.**：侧链触发器，可以使用音频信号触发
+
+**AttenL**：左声道音量衰减器，与AttenR配合可以产生变化的声像效果
+
+**AttenR**：右声道音量衰减器，与AttenL配合可以产生变化的声像效果
+
+**WaveType**：压控WaveType参数
 
 ### 5.HarmonicDCO 和谐音程振荡器
 
