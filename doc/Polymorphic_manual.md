@@ -1,7 +1,5 @@
 
-<img src="https://environscape.github.io/CodingInspire/doc/POSC_Appearance.jpg" alt="产品效果图" width="120" height="420">
 
-<img src="https://environscape.github.io/CodingInspire/doc/POSC_UI.png" alt="屏幕主界面" width="630" height="420">
 
 ## Polymorphic数字振荡器操作说明书
 
@@ -10,6 +8,9 @@
 ## 一、模块操作与接口详解
 
 #### Polymorphic的操作逻辑基于多个并列的振荡器与修改参数，只需您了解本章内容，便可以轻松上手。
+
+
+<img src="POSC_Appearance.png" alt="产品效果图" width="180" height="720">
 
 ### 1. 编码器
 
@@ -42,6 +43,9 @@
 在一些适合立体声输出的振荡器功能下作为立体声输出。
 
 在某些功能下，作为发声链路的一环用于输出与调制 。
+
+
+<img src="POSC_UI.png" alt="屏幕主界面" width="320" height="160">
 
 ### 12. Param 参数名称
 
