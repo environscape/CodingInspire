@@ -4,64 +4,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-    <title>产品详情页 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Porduct Info</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
     <style>
-       .product-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto 1fr;
-            max-width: 600px; /* 可根据需要调整最大宽度 */
-            margin: 0 auto;
+        /* 通用样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
         }
 
-       .product-large-img {
+        /* 顶部导航栏样式 */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+        }
+
+       .logo {
+            height: 40px;
+        }
+
+       .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+       .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 350;
+        }
+
+       .menu-icon {
+            display: none;
+        }
+
+        /* 轮播图样式 */
+       .slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+       .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+       .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+       .slide img {
             width: 100%;
             height: auto;
         }
 
-       .product-small-imgs {
+       .prev,
+       .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+       .prev {
+            left: 10px;
+        }
+
+       .next {
+            right: 10px;
+        }
+
+        /* 特色产品部分样式 */
+       .featured-products {
+            padding: 20px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 20px;
         }
 
-       .product-small-imgs img {
+       .product-item {
+            text-align: left;
+            position: relative;
+        }
+
+       .product-image-container {
+            position: relative;
             width: 100%;
-            height: auto;
+            padding-bottom: 100%;
+            background-color: #f4f4f4;
         }
 
-       .product-titles {
-            margin-top: 1rem;
+       .product-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+       .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+       .product-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+       .product-code {
+            font-size: 12px;
+            color: #999;
+        }
+
+       .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #777;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+
+        /* 产品详细信息样式 */
+       .product-details {
+            display: flex;
+            margin-top: 20px;
+        }
+
+       .product-details-slider {
+            width: 60%;
+        }
+
+       .product-details-info {
+            width: 40%;
+            padding-left: 20px;
+        }
+
+       .product-details-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+       .product-details-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+       .product-details-price {
+            font-size: 18px;
+            font-weight: 560;
+            margin-bottom: 10px;
+        }
+
+       .product-details-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Cookie提示条样式 */
+       .cookie-notice {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+       .cookie-notice p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+       .cookie-notice a {
+            color: #0099ff;
+            text-decoration: none;
+        }
+
+       .close-cookie {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* 新增空白区域样式 */
+       .blank-area {
+            height: 240px;
         }
     </style>
 </head>
 
-<body class="bg-gray-100">
-    <!-- 品牌 logo -->
-    <header class="bg-white shadow-md p-4">
-        <div class="container mx-auto">
-            <h1 class="text-2xl font-bold text-blue-600">品牌 Logo</h1>
-        </div>
-    </header>
-    <!-- 产品详情 -->
-    <main class="container mx-auto p-4">
-        <div class="product-container">
-            <img src="https://picsum.photos/800/600" alt="产品大图 1" class="product-large-img">
-            <div class="product-small-imgs">
-                <img src="https://picsum.photos/400/300" alt="产品多图 1-1">
-                <img src="https://picsum.photos/400/301" alt="产品多图 1-2">
-            </div>
-            <div class="product-titles">
-                <h2 class="text-2xl font-bold text-gray-800">产品大标题 1</h2>
-                <p class="text-gray-600">产品小标题 1，这里可以详细介绍产品的特点、功能、使用方法等。</p>
-                <p class="text-xl font-bold text-green-600">价格：$99.99</p>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav>
+        <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
+        <div class="nav-links">
+            <a href="#">Eurorack</a>
+            <a href="#">Instrument</a>
+            <a href="#">Support</a>
+            <div class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
             </div>
         </div>
-    </main>
+    </nav>
+
+    <!-- 轮播图 -->
+    <!-- <div class="slider">
+        <div class="slides" id="slides">
+            <div class="slide">
+                <img src="eurorack.jpg" alt="轮播图 1">
+            </div>
+            <div class="slide">
+                <img src="eurorack.jpg" alt="轮播图 2">
+            </div>
+            <div class="slide">
+                <img src="eurorack.jpg" alt="轮播图 3">
+            </div>
+        </div>
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+    </div> -->
+
+    <!-- 产品详细信息展示 -->
+    <div class="product-details">
+        <div class="product-details-slider">
+            <div class="slider">
+                <div class="slides" id="product-slides">
+                    <div class="slide">
+                        <img src="product (1).png" alt="产品图片 1"> <!-- 替换为实际产品图片 -->
+                    </div>
+                    <div class="slide">
+                        <img src="product (2).png" alt="产品图片 2"> <!-- 替换为实际产品图片 -->
+                    </div>
+                    <div class="slide">
+                        <img src="product (3).png" alt="产品图片 3"> <!-- 替换为实际产品图片 -->
+                    </div>
+                </div>
+                <button class="prev" onclick="plusProductSlides(-1)">&#10094;</button>
+                <button class="next" onclick="plusProductSlides(1)">&#10095;</button>
+            </div>
+        </div>
+        <div class="product-details-info">
+            <h1 class="product-details-title">产品大标题</h1>
+            <h2 class="product-details-subtitle">产品小标题</h2>
+            <p class="product-details-price">价格: $99.99</p>
+            <p class="product-details-desc">
+                这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。
+            </p>
+        </div>
+    </div>
+
+    <!-- 新增空白区域 -->
+    <div class="blank-area"></div>
+
+    <!-- Cookie提示条 -->
+    <div class="cookie-notice">
+        <p>We use cookies to improve your experience on our site. By continuing to use our site you consent to use our
+            cookies. Find out more <a href="#">here</a>.</p>
+        <button class="close-cookie">×</button>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        let productSlideIndex = 1;
+        showProductSlides(productSlideIndex);
+
+        function plusProductSlides(n) {
+            showProductSlides(productSlideIndex += n);
+        }
+
+        function showProductSlides(n) {
+            let i;
+            let slides = document.getElementById("product-slides").getElementsByClassName("slide");
+            if (n > slides.length) {
+                productSlideIndex = 1;
+            }
+            if (n < 1) {
+                productSlideIndex = slides.length;
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[productSlideIndex - 1].style.display = "block";
+        }
+
+        const closeButton = document.querySelector('.close-cookie');
+        const cookieNotice = document.querySelector('.cookie-notice');
+
+        closeButton.addEventListener('click', function () {
+            cookieNotice.style.display = 'none';
+        });
+    </script>
 </body>
 
 </html>
-    

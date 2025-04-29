@@ -9,8 +9,10 @@
 
 #### Polymorphic的操作逻辑基于多个并列的振荡器与对应的参数列表，您了只需解本章内容，便可以轻松上手模块的使用。
 
-
-<img src="POSC_Appearance.png" alt="产品效果图" width="180" height="720">
+<figure>
+<img src="POSC_Appearance.png" alt="" width="180" height="720">
+    <figcaption>模块示意图</figcaption>
+</figure>
 
 ### 1. 编码器
 
@@ -44,8 +46,10 @@
 
 在某些功能下，作为发声链路的一环用于输出与调制 。
 
-
-<img src="POSC_UI.png" alt="屏幕主界面" width="320" height="160">
+<figure>
+    <img src="POSC_UI.png" alt="屏幕主界面" width="320" height="160">
+    <figcaption>模块屏幕主界面</figcaption>
+</figure>
 
 ### 12. Param 参数名称
 
