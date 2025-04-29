@@ -132,14 +132,21 @@
    .source-link:hover {
       text-decoration: underline;
     }
+
+    /* 加载提示样式 */
+   .loading-tip {
+      color: #666;
+      margin-top: 10px;
+    }
   </style>
 </head>
 
 <body>
   <div class="table-of-contents" id="table-of-contents"></div>
   <div id="markdown-content"></div>
-  <button class="retry-button" id="retry-button" style="display: none;">说明书获取失败，点击手动重试</button>
+  <button class="retry-button" id="retry-button" style="display: none;">手动重试</button>
   <a href="#" class="source-link" id="source-link" style="display: none;"></a>
+  <p class="loading-tip" id="loading-tip" style="display: block;">正在加载中 请稍后</p>
 
   <script>
     const currentUrl = window.location.href;
@@ -171,6 +178,8 @@
         sourceLink.href = mdFilePath;
         sourceLink.textContent = mdFilePath;
         sourceLink.style.display = 'block';
+        // 显示加载失败提示
+        document.getElementById('loading-tip').textContent = '加载失败，请检查网络或重试';
         throw error;
       }
     };
@@ -205,6 +214,8 @@
         };
 
         generateTOC();
+        // 隐藏加载提示
+        document.getElementById('loading-tip').style.display = 'none';
       } catch (error) {
         console.error('处理 Markdown 文件时出错:', error);
       }
@@ -218,6 +229,9 @@
       retryCount++;
       document.getElementById('retry-button').style.display = 'none';
       document.getElementById('source-link').style.display = 'none';
+      // 显示加载提示
+      document.getElementById('loading-tip').style.display = 'block';
+      document.getElementById('loading-tip').textContent = '正在加载中 请稍后...';
       await loadMarkdown();
     });
   </script>
