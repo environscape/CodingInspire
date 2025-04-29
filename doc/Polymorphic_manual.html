@@ -106,21 +106,78 @@
    .table-of-contents a:hover {
       text-decoration: underline; /* 鼠标悬停时显示下划线 */
     }
+
+    /* 手动重试按钮样式 */
+   .retry-button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+   .retry-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* 链接样式 */
+   .source-link {
+      margin-left: 10px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+   .source-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
 <body>
   <div class="table-of-contents" id="table-of-contents"></div>
   <div id="markdown-content"></div>
+  <button class="retry-button" id="retry-button" style="display: none;">说明书获取失败，点击手动重试</button>
+  <a href="#" class="source-link" id="source-link" style="display: none;"></a>
 
   <script>
     const currentUrl = window.location.href;
     const newUrl = currentUrl.replace('.html', '.md');
     const mdFilePath = newUrl;
 
-    fetch(mdFilePath)
-     .then(response => response.text())
-     .then(data => {
+    const maxRetries = 3; // 最大重试次数
+    const retryInterval = 1000; // 重试间隔时间（毫秒）
+    let retryCount = 0;
+
+    const fetchWithRetry = async (url, retries = 0) => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.text();
+        return data;
+      } catch (error) {
+        if (retries < maxRetries) {
+          console.log(`请求失败，正在重试（第 ${retries + 1} 次）...`);
+          await new Promise(resolve => setTimeout(resolve, retryInterval));
+          return fetchWithRetry(url, retries + 1);
+        }
+        console.error('请求失败，已达到最大重试次数:', error);
+        // 显示手动重试按钮和源文件链接
+        document.getElementById('retry-button').style.display = 'block';
+        const sourceLink = document.getElementById('source-link');
+        sourceLink.href = mdFilePath;
+        sourceLink.textContent = mdFilePath;
+        sourceLink.style.display = 'block';
+        throw error;
+      }
+    };
+
+    const loadMarkdown = async () => {
+      try {
+        const data = await fetchWithRetry(mdFilePath, retryCount);
         const html = marked.parse(data);
         document.getElementById('markdown-content').innerHTML = html;
 
@@ -148,7 +205,21 @@
         };
 
         generateTOC();
-      });
+      } catch (error) {
+        console.error('处理 Markdown 文件时出错:', error);
+      }
+    };
+
+    // 初始加载
+    loadMarkdown();
+
+    // 手动重试按钮点击事件
+    document.getElementById('retry-button').addEventListener('click', async () => {
+      retryCount++;
+      document.getElementById('retry-button').style.display = 'none';
+      document.getElementById('source-link').style.display = 'none';
+      await loadMarkdown();
+    });
   </script>
 </body>
 
