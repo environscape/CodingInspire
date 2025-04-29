@@ -428,11 +428,11 @@ Pico RP2040
 
 ### 4.音频输出技术指标
 
-44.1khz 16bit
+44.1khz 16bit 最大电平+-10V 实际电平+-7V
 
 ### 5.控制电压输入技术指标
 
-高于44.1khz 12bit
+高于44.1khz 12bit VOCT：0-5V CV1-6:0-10V
 
 ### 6.扩展设备 SPI Expander(Test)
 
