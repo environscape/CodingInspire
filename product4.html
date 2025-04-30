@@ -177,11 +177,45 @@
         }
 
        .product-details-desc {
-            font-size: 14px;
+            color:#777;
+            font-size: 18px;
+            font-weight: 400;
             line-height: 1.6;
-            color: #333;
+            white-space: pre-wrap; /* 添加这一行代码 允许内部换行 */
         }
 
+        /* 新增详细内容样式 */
+        .product-more-desc {
+            width: 100%;
+            font-size: 20px; /* 字体大小稍大 */
+            font-family: 'Segoe UI', Arial, sans-serif; /* 更换字体 */
+            line-height: 1.8;
+            color: #555;
+            white-space: pre-wrap; /* 允许内部换行 */
+            margin-top: 20px;
+            padding-left: 64px; /* 左侧边距 */
+            padding-right: 64px; /* 右侧边距 */
+        }
+          /* 手册链接区域样式 */
+       .manual-area {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+       .manual-area p {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+       .manual-area a {
+            /* display: inline-block; */
+            /* background-color: #aaa; */
+            color: #aaa;
+            padding: 8px 15px;
+            text-decoration: none;
+            /* border-radius: 5px; */
+        }
         /* Cookie提示条样式 */
        .cookie-notice {
             position: fixed;
@@ -262,13 +296,13 @@
             <div class="slider">
                 <div class="slides" id="product-slides">
                     <div class="slide">
-                        <img src="product (1).png" alt="产品图片 1"> <!-- 替换为实际产品图片 -->
+                        <img src="product (4).png" alt="产品图片 1"> <!-- 替换为实际产品图片 -->
                     </div>
                     <div class="slide">
-                        <img src="product (2).png" alt="产品图片 2"> <!-- 替换为实际产品图片 -->
+                        <img src="product (4).png" alt="产品图片 2"> <!-- 替换为实际产品图片 -->
                     </div>
                     <div class="slide">
-                        <img src="product (3).png" alt="产品图片 3"> <!-- 替换为实际产品图片 -->
+                        <img src="product (4).png" alt="产品图片 3"> <!-- 替换为实际产品图片 -->
                     </div>
                 </div>
                 <button class="prev" onclick="plusProductSlides(-1)">&#10094;</button>
@@ -276,13 +310,19 @@
             </div>
         </div>
         <div class="product-details-info">
-            <h1 class="product-details-title">产品大标题</h1>
-            <h2 class="product-details-subtitle">产品小标题</h2>
-            <p class="product-details-price">价格: $99.99</p>
+            <h1 class="product-details-title">Knit (Mini Plaits)</h1>
+            <h2 class="product-details-subtitle">多模态数字振荡器</h2>
+            <p class="product-details-price">价格: $249</p>
             <p class="product-details-desc">
-                这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。这是产品的文字介绍，可能字数达上百字之多。
-            </p>
+    </p>
         </div>
+    </div>
+
+    <!-- 新增详细内容区域 -->
+    <div class="product-more-desc">
+功能概述  
+
+Plaits 迷你版
     </div>
 
     <!-- 新增空白区域 -->
