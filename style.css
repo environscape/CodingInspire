@@ -1,5 +1,5 @@
- /* 通用样式 */
- body {
+/* 通用样式 */
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -85,6 +85,13 @@ nav {
     gap: 20px;
 }
 
+/* 添加媒体查询，当视口宽度大于 768px（可根据需求调整）时应用以下样式 */
+@media (min-width: 768px) {
+   .featured-products {
+        padding: 20px 100px; /* 左右两侧留出较大空白 */
+    }
+}
+
 .product-item {
     text-align: left;
     position: relative;
@@ -133,17 +140,10 @@ nav {
     border-radius: 50%;
 }
 
-
-
-
 /* 新增空白区域样式 */
 .blank-area {
     height: 240px;
 }
-
-
-
-
 
 /* 产品详细信息样式 */
 .product-details {
