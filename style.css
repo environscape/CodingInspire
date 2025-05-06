@@ -88,7 +88,7 @@ nav {
 /* 添加媒体查询，当视口宽度大于 768px（可根据需求调整）时应用以下样式 */
 @media (min-width: 768px) {
    .featured-products {
-        padding: 20px 100px; /* 左右两侧留出较大空白 */
+        padding: 20px 160px; /* 左右两侧留出较大空白 */
     }
 }
 
