@@ -13,8 +13,11 @@
 
 <body>
     <!-- 顶部导航栏 -->
-    <nav>
-        <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
+    <nav
+        style="position: fixed; top: 0; left: 0; width: 100%; background-color: #fff; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+        <a href="/CodingInspire">
+            <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
+        </a>
         <div class="nav-links">
             <a href="#">Eurorack</a>
             <a href="#">Instrument</a>
@@ -22,8 +25,7 @@
             <div class="menu-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </div>
         </div>
@@ -84,6 +86,13 @@ Plaits 迷你版
     <!-- 新增空白区域 -->
     <div class="blank-area"></div>
 
+    <!-- 新增灰色区域用于放置友情链接 -->
+    <div style="background-color: #999; padding: 48px; text-align: center;">
+        <!-- <h4>友情链接</h4> -->
+        <a href="https://www.midifan.com/" style="color: #ddd; text-decoration: none; margin: 0 32px;">midifan</a>
+        <a href="https://modulargrid.net/" style="color: #ddd; text-decoration: none; margin: 0 32px;">modular grid</a>
+        <a href="https://doepfer.de/" style="color: #ddd; text-decoration: none; margin: 0 32px;">doepfer</a>
+    </div>
     <!-- Cookie提示条 -->
     <div class="cookie-notice">
         <p>We use cookies to improve your experience on our site. By continuing to use our site you consent to use our
