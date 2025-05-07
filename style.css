@@ -198,6 +198,16 @@ nav {
     padding-left: 64px; /* 左侧边距 */
     padding-right: 64px; /* 右侧边距 */
 }
+/* 新增详细内容样式 */
+.product-more-desc h5{
+    width: 100%;
+    font-size: 24px; /* 字体大小稍大 */
+    font-weight: 600;
+    font-family: 'Segoe UI', Arial, sans-serif; /* 更换字体 */
+    line-height: 1.8;
+    color: #333;
+    white-space: pre-wrap; /* 允许内部换行 */
+}
 
  /* 手册链接区域样式 */
 .manual-area {
@@ -228,6 +238,14 @@ nav {
     color: #555; /* 深灰色 */
     white-space: pre-wrap; /* 保留换行符和空格 */
     margin: 20px 0; /* 上下外边距 */
+}    
+.brand-introduction h5{
+    text-align: center;
+    font-size: 1.5rem; /* 字体变大，可按需调整 */
+    font-weight: 600;
+    color: #333; /* 深灰色 */
+    white-space: pre-wrap; /* 保留换行符和空格 */
+    margin: 0 0; /* 上下外边距 */
 }    
 
 /* Cookie提示条样式 */
