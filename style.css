@@ -4,16 +4,11 @@ body {
     margin: 0;
     padding: 0;
     background-color: #fafafa;
+    scroll-behavior: smooth; /* 平滑滚动 */
 }
 
 /* 顶部导航栏样式 */
 nav {
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 10px;
-    background-color: #fff; */
-
     position: fixed;
     top: 0;
     left: 0;
@@ -24,6 +19,11 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 10px 10px;
+    transition: opacity 0.3s ease; /* 导航栏透明度过渡动画 */
+}
+
+nav.scrolled {
+    opacity: 0.8; /* 滚动时导航栏透明度降低 */
 }
 
 .logo {
@@ -41,11 +41,18 @@ nav {
     font-weight: 350;
     margin: 0 16px;
     /* 添加一些间距 */
+    transition: color 0.3s ease;
+    /* 添加导航链接的颜色过渡动画 */
+}
+
+.nav-links a:hover {
+    color: #0099ff;
+    /* 鼠标悬停时改变颜色 */
 }
 
 /* 移动端媒体查询 */
 @media (max-width: 768px) {
-    .nav-links a {
+  .nav-links a {
         font-size: 10px;
         /* 减小字体大小 */
         margin: 0 0px;
@@ -62,16 +69,30 @@ nav {
     position: relative;
     width: 100%;
     overflow: hidden;
+    margin-top: 60px;
+    /* 根据nav的高度调整这个值 */
 }
 
 .slides {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    /* 轮播图滑动动画 */
 }
 
 .slide {
     min-width: 100%;
     box-sizing: border-box;
+    animation: fadeIn 1s ease;
+    /* 添加淡入动画 */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .slide img {
@@ -90,14 +111,26 @@ nav {
     border: none;
     cursor: pointer;
     z-index: 10;
+    transition: background-color 0.3s ease;
+    /* 添加按钮背景颜色过渡动画 */
 }
 
 .prev {
     left: 10px;
 }
 
+.prev:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 鼠标悬停时改变背景颜色 */
+}
+
 .next {
     right: 10px;
+}
+
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 鼠标悬停时改变背景颜色 */
 }
 
 /* 特色产品部分样式 */
@@ -109,11 +142,9 @@ nav {
     row-gap: 20px;
 }
 
-
-
 /* 添加媒体查询，当视口宽度大于 768px（可根据需求调整）时应用以下样式 */
 @media (min-width: 768px) {
-    .featured-products {
+  .featured-products {
         padding: 20px 160px;
         /* 左右两侧留出较大空白 */
     }
@@ -122,12 +153,20 @@ nav {
 .product-item {
     text-align: left;
     position: relative;
+    transition: transform 0.3s ease;
+    /* 添加产品项的平移过渡动画 */
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    /* 鼠标悬停时向上平移 */
 }
 
 .product-image-container {
     position: relative;
     width: 100%;
     padding-bottom: 100%;
+    overflow: hidden; /* 隐藏溢出部分，使缩放效果更明显 */
 }
 
 .product-image-container img {
@@ -137,6 +176,11 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease; /* 添加图片缩放过渡动画 */
+}
+
+.product-image-container:hover img {
+    transform: scale(1.05); /* 鼠标悬停时图片放大 */
 }
 
 .overlay {
@@ -151,15 +195,6 @@ nav {
 
 .product-image-container:hover>.overlay {
     background-color: rgba(88, 88, 88, 0.2);
-}
-
-.product-image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .product-title {
@@ -360,3 +395,24 @@ nav {
     padding: 48px;
     text-align: center;
 }
+
+.friend-links a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 32px;
+    transition: color 0.3s ease; /* 添加友情链接颜色渐变过渡动画 */
+}
+
+.friend-links a:hover {
+    color: #0099ff; /* 鼠标悬停时改变友情链接颜色 */
+}
+
+/* 导航栏透明度动画的JavaScript实现 */
+window.addEventListener('scroll', function () {
+    const nav = document.querySelector('nav');
+    if (window.pageYOffset > 0) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
