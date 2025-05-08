@@ -416,7 +416,7 @@ nav.scrolled {
 }
 
 .friend-links a:hover {
-    color: #0099ff;
+    color: #ffbb00;
     /* 鼠标悬停时改变友情链接颜色 */
 }
 
@@ -434,7 +434,7 @@ a::after {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #0099ff;
+    background-color: #ffbb00;
     transform-origin: bottom right;
     transition: transform 0.5s ease-out;
 }
