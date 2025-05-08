@@ -20,7 +20,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 10px 10px;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.5s ease;
     /* 导航栏透明度过渡动画 */
 }
 
@@ -44,7 +44,7 @@ nav.scrolled {
     font-weight: 350;
     margin: 0 16px;
     /* 添加一些间距 */
-    transition: color 0.3s ease;
+    transition: color 0.5s ease;
     /* 添加导航链接的颜色过渡动画 */
     position: relative;
 }
@@ -116,7 +116,7 @@ nav.scrolled {
     border: none;
     cursor: pointer;
     z-index: 10;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease;
     /* 添加按钮背景颜色过渡动画 */
 }
 
@@ -158,7 +158,7 @@ nav.scrolled {
 .product-item {
     text-align: left;
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
     /* 添加产品项的平移过渡动画 */
 }
 
@@ -182,7 +182,7 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
     /* 添加图片缩放过渡动画 */
 }
 
@@ -410,7 +410,7 @@ nav.scrolled {
     color: #ddd;
     text-decoration: none;
     margin: 0 32px;
-    transition: color 0.3s ease;
+    transition: color 0.5s ease;
     /* 添加友情链接颜色渐变过渡动画 */
     position: relative;
 }
@@ -436,7 +436,7 @@ a::after {
     left: 0;
     background-color: #0099ff;
     transform-origin: bottom right;
-    transition: transform 0.3s ease-out;
+    transition: transform 0.5s ease-out;
 }
 
 a:hover::after {
