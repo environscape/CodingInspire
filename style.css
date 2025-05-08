@@ -46,6 +46,7 @@ nav.scrolled {
     /* 添加一些间距 */
     transition: color 0.3s ease;
     /* 添加导航链接的颜色过渡动画 */
+    position: relative;
 }
 
 .nav-links a:hover {
@@ -329,6 +330,7 @@ nav.scrolled {
     padding: 8px 15px;
     text-decoration: none;
     /* border-radius: 5px; */
+    position: relative;
 }
 
 /* 首页 底部 品牌介绍 */
@@ -380,6 +382,7 @@ nav.scrolled {
 .cookie-notice a {
     color: #0099ff;
     text-decoration: none;
+    position: relative;
 }
 
 .close-cookie {
@@ -409,6 +412,7 @@ nav.scrolled {
     margin: 0 32px;
     transition: color 0.3s ease;
     /* 添加友情链接颜色渐变过渡动画 */
+    position: relative;
 }
 
 .friend-links a:hover {
@@ -416,52 +420,26 @@ nav.scrolled {
     /* 鼠标悬停时改变友情链接颜色 */
 }
 
-/* img 加载动画 */
-/* img {
+/* a 标签鼠标悬停动画 */
+a {
     position: relative;
+    text-decoration: none;
 }
 
-img:before {
+a::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    background-color: #fafafa;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-    color: #0099ff;
-    animation: spin 1s linear infinite;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #0099ff;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    margin: auto;
-    top: 0;
+    transform: scaleX(0);
+    height: 2px;
     bottom: 0;
     left: 0;
-    right: 0;
+    background-color: #0099ff;
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
 }
 
-img[src]:not([src=""]) {
-    visibility: visible;
+a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
-
-img[src]:not([src=""]):before {
-    display: none;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}  */
