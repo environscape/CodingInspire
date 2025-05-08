@@ -162,7 +162,7 @@ nav.scrolled {
 }
 
 .product-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-50%);
     /* 鼠标悬停时向上平移 */
 }
 
@@ -428,24 +428,9 @@ img:before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fafafa;
+    background-color: #e0e0e0;
+    /* 修改为淡灰色 */
     z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-    color: #0099ff;
-    animation: spin 1s linear infinite;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #0099ff;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }
 
 img[src]:not([src=""]) {
