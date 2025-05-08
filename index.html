@@ -206,6 +206,16 @@
                 img.alt = h3.textContent;
             }
         });
+
+        /* 导航栏透明度动画的JavaScript实现 */
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('nav');
+            if (window.pageYOffset > 0) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 
