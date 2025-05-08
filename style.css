@@ -353,3 +353,11 @@ nav {
 .blank-area {
     height: 240px;
 }
+
+/* 底部友情链接布局 */
+.friend-links {
+    height: 480px;
+    background-color: #999;
+    padding: 48px;
+    text-align: center;
+}
