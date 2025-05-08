@@ -56,7 +56,7 @@ nav.scrolled {
 
 /* 移动端媒体查询 */
 @media (max-width: 768px) {
-    .nav-links a {
+   .nav-links a {
         font-size: 10px;
         /* 减小字体大小 */
         margin: 0 0px;
@@ -149,7 +149,7 @@ nav.scrolled {
 
 /* 添加媒体查询，当视口宽度大于 768px（可根据需求调整）时应用以下样式 */
 @media (min-width: 768px) {
-    .featured-products {
+   .featured-products {
         padding: 20px 160px;
         /* 左右两侧留出较大空白 */
     }
@@ -182,17 +182,12 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-    /* 添加图片缩放过渡动画 */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease-in-out;
+    transition: transform 0.5s ease-in-out; /* 调整过渡时间和函数 */
 }
 
 .product-image-container:hover img {
     transform: scale(1.05);
     /* 鼠标悬停时图片放大 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-
 }
 
 .overlay {
@@ -266,6 +261,7 @@ nav.scrolled {
     font-size: 18px;
     font-weight: 400;
     margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .product-details-price {
@@ -325,7 +321,7 @@ nav.scrolled {
 .manual-area p {
     display: inline-block;
     margin-right: 10px;
-}
+    }
 
 .manual-area a {
     /* display: inline-block; */
@@ -347,9 +343,6 @@ nav.scrolled {
     /* 深灰色 */
     white-space: pre-wrap;
     /* 保留换行符和空格 */
-    /* margin: 20px 0; */
-    /* 上下外边距 */
-
     overflow: hidden;
     width: 0;
     /* 初始宽度为0 */
@@ -473,5 +466,4 @@ a::after {
 a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
-    
 }
