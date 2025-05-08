@@ -50,7 +50,7 @@ nav.scrolled {
 }
 
 .nav-links a:hover {
-    color: #0099ff;
+    color: #ffbb00;
     /* 鼠标悬停时改变颜色 */
 }
 
@@ -184,11 +184,15 @@ nav.scrolled {
     object-fit: cover;
     transition: transform 0.5s ease;
     /* 添加图片缩放过渡动画 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .product-image-container:hover img {
     transform: scale(1.05);
     /* 鼠标悬停时图片放大 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
 }
 
 .overlay {
@@ -343,8 +347,24 @@ nav.scrolled {
     /* 深灰色 */
     white-space: pre-wrap;
     /* 保留换行符和空格 */
-    margin: 20px 0;
+    /* margin: 20px 0; */
     /* 上下外边距 */
+
+    overflow: hidden;
+    width: 0;
+    /* 初始宽度为0 */
+    animation: typing 5s steps(40, end) forwards;
+    margin: 0 auto; /* 使元素自身水平居中 */
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
 }
 
 .brand-introduction h5 {
@@ -372,6 +392,14 @@ nav.scrolled {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    bottom: -50px;
+    opacity: 0;
+    transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.cookie-notice.show {
+    bottom: 0;
+    opacity: 1;
 }
 
 .cookie-notice p {
@@ -380,7 +408,7 @@ nav.scrolled {
 }
 
 .cookie-notice a {
-    color: #0099ff;
+    color: #ffbb00;
     text-decoration: none;
     position: relative;
 }
@@ -413,9 +441,12 @@ nav.scrolled {
     transition: color 0.5s ease;
     /* 添加友情链接颜色渐变过渡动画 */
     position: relative;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
 }
 
 .friend-links a:hover {
+    transform: scale(1.1);
     color: #ffbb00;
     /* 鼠标悬停时改变友情链接颜色 */
 }
@@ -442,4 +473,5 @@ a::after {
 a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
+    
 }
