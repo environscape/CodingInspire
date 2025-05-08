@@ -8,11 +8,22 @@ body {
 
 /* 顶部导航栏样式 */
 nav {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    background-color: #fff; */
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
+    padding: 10px 10px;
 }
 
 .logo {
@@ -21,13 +32,25 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 8px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #333;
     font-weight: 350;
+    margin: 0 16px;
+    /* 添加一些间距 */
+}
+
+/* 移动端媒体查询 */
+@media (max-width: 768px) {
+    .nav-links a {
+        font-size: 10px;
+        /* 减小字体大小 */
+        margin: 0 0px;
+        /* 减小间距 */
+    }
 }
 
 .menu-icon {
@@ -82,16 +105,17 @@ nav {
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap:48px;
-    row-gap:20px;
+    column-gap: 48px;
+    row-gap: 20px;
 }
 
 
 
 /* 添加媒体查询，当视口宽度大于 768px（可根据需求调整）时应用以下样式 */
 @media (min-width: 768px) {
-   .featured-products {
-        padding: 20px 160px; /* 左右两侧留出较大空白 */
+    .featured-products {
+        padding: 20px 160px;
+        /* 左右两侧留出较大空白 */
     }
 }
 
@@ -126,7 +150,8 @@ nav {
 }
 
 .product-image-container:hover.overlay {
-    background-color: rgba(111, 224, 224, 0.5); /* 半透明的灰色 */
+    background-color: rgba(111, 224, 224, 0.5);
+    /* 半透明的灰色 */
 }
 
 .product-image-container img {
@@ -204,37 +229,47 @@ nav {
 }
 
 .product-details-desc {
-    color:#777;
+    color: #777;
     font-size: 18px;
     font-weight: 400;
     line-height: 1.6;
-    white-space: pre-wrap; /* 添加这一行代码 允许内部换行 */
+    white-space: pre-wrap;
+    /* 添加这一行代码 允许内部换行 */
 }
 
 /* 新增详细内容样式 */
 .product-more-desc {
     width: 100%;
-    font-size: 20px; /* 字体大小稍大 */
-    font-family: 'Segoe UI', Arial, sans-serif; /* 更换字体 */
+    font-size: 20px;
+    /* 字体大小稍大 */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    /* 更换字体 */
     line-height: 1.8;
     color: #555;
-    white-space: pre-wrap; /* 允许内部换行 */
+    white-space: pre-wrap;
+    /* 允许内部换行 */
     margin-top: 20px;
-    padding-left: 64px; /* 左侧边距 */
-    padding-right: 64px; /* 右侧边距 */
-}
-/* 新增详细内容样式 */
-.product-more-desc h5{
-    width: 100%;
-    font-size: 24px; /* 字体大小稍大 */
-    font-weight: 600;
-    font-family: 'Segoe UI', Arial, sans-serif; /* 更换字体 */
-    line-height: 1.8;
-    color: #333;
-    white-space: pre-wrap; /* 允许内部换行 */
+    padding-left: 64px;
+    /* 左侧边距 */
+    padding-right: 64px;
+    /* 右侧边距 */
 }
 
- /* 手册链接区域样式 */
+/* 新增详细内容样式 */
+.product-more-desc h5 {
+    width: 100%;
+    font-size: 24px;
+    /* 字体大小稍大 */
+    font-weight: 600;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    /* 更换字体 */
+    line-height: 1.8;
+    color: #333;
+    white-space: pre-wrap;
+    /* 允许内部换行 */
+}
+
+/* 手册链接区域样式 */
 .manual-area {
     text-align: center;
     margin-top: 20px;
@@ -258,20 +293,29 @@ nav {
 /* 首页 底部 品牌介绍 */
 .brand-introduction {
     text-align: center;
-    font-size: 1.25rem; /* 字体变大，可按需调整 */
+    font-size: 1.25rem;
+    /* 字体变大，可按需调整 */
     font-weight: 500;
-    color: #555; /* 深灰色 */
-    white-space: pre-wrap; /* 保留换行符和空格 */
-    margin: 20px 0; /* 上下外边距 */
-}    
-.brand-introduction h5{
+    color: #555;
+    /* 深灰色 */
+    white-space: pre-wrap;
+    /* 保留换行符和空格 */
+    margin: 20px 0;
+    /* 上下外边距 */
+}
+
+.brand-introduction h5 {
     text-align: center;
-    font-size: 1.5rem; /* 字体变大，可按需调整 */
+    font-size: 1.5rem;
+    /* 字体变大，可按需调整 */
     font-weight: 600;
-    color: #333; /* 深灰色 */
-    white-space: pre-wrap; /* 保留换行符和空格 */
-    margin: 0 0; /* 上下外边距 */
-}    
+    color: #333;
+    /* 深灰色 */
+    white-space: pre-wrap;
+    /* 保留换行符和空格 */
+    margin: 0 0;
+    /* 上下外边距 */
+}
 
 /* Cookie提示条样式 */
 .cookie-notice {

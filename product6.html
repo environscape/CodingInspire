@@ -13,8 +13,7 @@
 
 <body>
     <!-- 顶部导航栏 -->
-    <nav
-        style="position: fixed; top: 0; left: 0; width: 100%; background-color: #fff; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+    <nav>
         <a href="/CodingInspire">
             <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
         </a>
@@ -149,6 +148,14 @@
         closeButton.addEventListener('click', function () {
             cookieNotice.style.display = 'none';
         });
+
+        // 获取 product-details-title 元素的文本内容
+        const productTitleElement = document.querySelector('.product-details-title');
+        if (productTitleElement) {
+            const productTitle = productTitleElement.textContent;
+            // 将文本内容赋值给 title 标签
+            document.title = productTitle;
+        }
     </script>
 </body>
 

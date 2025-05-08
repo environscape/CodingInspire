@@ -12,8 +12,7 @@
 
 <body>
     <!-- 顶部导航栏 -->
-    <nav
-        style="position: fixed; top: 0; left: 0; width: 100%; background-color: #fff; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+    <nav>
         <a href="/CodingInspire">
             <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
         </a>
@@ -114,7 +113,7 @@
         </a>
         <a href="product8.html" class="product-item"> <!-- 添加 a 标签并设置 href 属性 -->
             <div class="product-image-container">
-                <img src="product (8).png" alt="产品图片 7">
+                <img src="product (8).png" alt="产品图片 8">
                 <div class="overlay"></div>
             </div>
             <h3 class="product-title">MIDI2GATE</h3>
@@ -194,7 +193,17 @@
         closeButton.addEventListener('click', function () {
             cookieNotice.style.display = 'none';
         });
+
+        // 更新 img 的 alt 属性
+        const productItems = document.querySelectorAll('.product-item');
+        productItems.forEach(item => {
+            const img = item.querySelector('img');
+            const h3 = item.querySelector('h3');
+            if (img && h3) {
+                img.alt = h3.textContent;
+            }
+        });
     </script>
 </body>
 
-</html>
+</html>    
