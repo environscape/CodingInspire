@@ -82,7 +82,6 @@ nav.scrolled {
     display: flex;
     transition: transform 0.5s ease-in-out;
     /* 轮播图滑动动画 */
-    margin-left: 32px;
 }
 
 .slide {
@@ -112,16 +111,16 @@ nav.scrolled {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    padding: 4px;
+    /* 去掉背景颜色 */
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 0.6); /* 设置半透明白色箭头 */
+    font-size: 48px; /* 增大箭头尺寸 */
+    font-weight: 200;
     border: none;
     cursor: pointer;
     z-index: 10;
-    transition: background-color 0.5s ease;
-    margin-left: 32px;
-
-    /* 添加按钮背景颜色过渡动画 */
+    /* 保留过渡动画，如果你还想要过渡效果 */
+    transition: color 1s ease; 
 }
 
 .prev {
@@ -245,6 +244,7 @@ nav.scrolled {
 }
 
 .product-details-slider {
+    margin-left: 32px;
     width: 60%;
 }
 
