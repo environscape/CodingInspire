@@ -297,7 +297,6 @@ nav.scrolled {
     white-space: pre-wrap;
     /* 允许内部换行 */
     color: #666;
-    margin-top: 20px;
     padding-left: 64px;
     /* 左侧边距 */
     padding-right: 64px;
@@ -308,10 +307,10 @@ nav.scrolled {
     font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
-    line-height: 1.8;
     white-space: pre-wrap;
     /* 允许内部换行 */
     color: #444;
+    margin: 0;
 }
 
 /* 手册链接区域样式 */
