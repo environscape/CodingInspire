@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
-    <title>Porduct Info</title>
+    <title>Support</title>
     <link rel="icon" href="icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -31,58 +30,52 @@
     </nav>
 
     <!-- 轮播图 -->
-    <!-- <div class="slider">
+    <div class="slider">
         <div class="slides" id="slides">
             <div class="slide">
-                <img src="eurorack.jpg" alt="轮播图 1">
+                <img src="banner01.jpg" alt="轮播图 1">
             </div>
             <div class="slide">
-                <img src="eurorack.jpg" alt="轮播图 2">
+                <img src="banner02.jpg" alt="轮播图 2">
             </div>
             <div class="slide">
-                <img src="eurorack.jpg" alt="轮播图 3">
+                <img src="banner03.jpg" alt="轮播图 3">
             </div>
         </div>
         <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
         <button class="next" onclick="plusSlides(1)">&#10095;</button>
-    </div> -->
-
-    <!-- 产品详细信息展示 -->
-    <div class="product-details">
-        <div class="product-details-slider">
-            <div class="slider">
-                <div class="slides" id="product-slides">
-                    <div class="slide">
-                        <img src="product (5).png" alt="产品图片 1"> <!-- 替换为实际产品图片 -->
-                    </div>
-                    <div class="slide">
-                        <img src="product (5).png" alt="产品图片 2"> <!-- 替换为实际产品图片 -->
-                    </div>
-                    <div class="slide">
-                        <img src="product (5).png" alt="产品图片 3"> <!-- 替换为实际产品图片 -->
-                    </div>
-                </div>
-                <button class="prev" onclick="plusProductSlides(-1)">&#10094;</button>
-                <button class="next" onclick="plusProductSlides(1)">&#10095;</button>
-            </div>
-        </div>
-        <div class="product-details-info">
-            <h1 class="product-details-title">Mixer / Stereo Mix Black</h1>
-            <h2 class="product-details-subtitle">立体声小尺寸混音器</h2>
-            <p class="product-details-price">价格: $99</p>
-            <p class="product-details-desc">
-    </p>
-        </div>
     </div>
 
-    <!-- 新增详细内容区域 -->
-    <div class="product-more-desc">
-        <h5>功能概述 </h5> 
-立体声小尺寸混音器
+    <!-- 轮播图与产品展示之间的空隙 -->
+    <div style="height: 40px;"> </div>
+
+    <div style="text-align: center;">
+        <h5 style="font-size: 32px; font-weight: 400;">独立乐器</h5>
+        <p style="color: #666;">敬请期待</p>
     </div>
 
     <!-- 新增空白区域 -->
-    <div class="blank-area"></div>
+    <div style="height: 120px;"></div>
+
+    <!-- 底部 品牌 信息 -->
+    <div class="brand-introduction">
+        <h5>-> Coding Inspire Modular | 编码灵感模块化</h5>
+        以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。
+        产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景
+        以极简形态承载丰富可能性，借助便捷的连接与多样的方式，
+        即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。
+
+        <h5>-> Coding Inspire Modular | Redefining Sound Creation</h5>
+        Innovative technology reshapes the boundaries of sound design. Sophisticated hardware
+        architecture and adaptive configuration systems endow modules with workflow efficiency
+        and unprecedented versatility. Each product functions as a dynamic sound tool—capable of
+        standalone operation or seamless integration via parameter blending and mode switching,
+        adapting effortlessly to diverse creative scenarios.
+        Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional
+        controls enable effortless modular networks, transforming fleeting inspirations into
+        experimental soundscapes. Technical barriers are dissolved, restoring modularity to its
+        purest artistic essence.
+    </div>
 
     <!-- 新增灰色区域用于放置友情链接 -->
     <div class="friend-links">
@@ -91,6 +84,7 @@
         <a href="https://modulargrid.net/" style="color: #ddd; text-decoration: none; margin: 0 32px;">modular grid</a>
         <a href="https://doepfer.de/" style="color: #ddd; text-decoration: none; margin: 0 32px;">doepfer</a>
     </div>
+
     <!-- Cookie提示条 -->
     <div class="cookie-notice">
         <p>We use cookies to improve your experience on our site. By continuing to use our site you consent to use our
@@ -121,28 +115,6 @@
             slides[slideIndex - 1].style.display = "block";
         }
 
-        let productSlideIndex = 1;
-        showProductSlides(productSlideIndex);
-
-        function plusProductSlides(n) {
-            showProductSlides(productSlideIndex += n);
-        }
-
-        function showProductSlides(n) {
-            let i;
-            let slides = document.getElementById("product-slides").getElementsByClassName("slide");
-            if (n > slides.length) {
-                productSlideIndex = 1;
-            }
-            if (n < 1) {
-                productSlideIndex = slides.length;
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[productSlideIndex - 1].style.display = "block";
-        }
-
         const closeButton = document.querySelector('.close-cookie');
         const cookieNotice = document.querySelector('.cookie-notice');
 
@@ -150,13 +122,26 @@
             cookieNotice.style.display = 'none';
         });
 
-        // 获取 product-details-title 元素的文本内容
-        const productTitleElement = document.querySelector('.product-details-title');
-        if (productTitleElement) {
-            const productTitle = productTitleElement.textContent;
-            // 将文本内容赋值给 title 标签
-            document.title = productTitle;
-        }
+        // 更新 img 的 alt 属性
+        const productItems = document.querySelectorAll('.product-item');
+        productItems.forEach(item => {
+            const img = item.querySelector('img');
+            const h3 = item.querySelector('h3');
+            if (img && h3) {
+                img.alt = h3.textContent;
+            }
+        });
+
+        /* 导航栏透明度动画的JavaScript实现 */
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('nav');
+            if (window.pageYOffset > 0) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
     </script>
 </body>
 
