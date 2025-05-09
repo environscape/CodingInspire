@@ -341,6 +341,7 @@ nav.scrolled {
     font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 1.0rem;
     font-weight: 400;
+    line-height: 1.8;
     white-space: pre-wrap;
     /* 保留换行符和空格 */
     overflow: hidden;
