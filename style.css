@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fafafa;
+    background-color: #f7f7f7;
     scroll-behavior: smooth;
     /* 平滑滚动 */
 }
@@ -82,6 +82,7 @@ nav.scrolled {
     display: flex;
     transition: transform 0.5s ease-in-out;
     /* 轮播图滑动动画 */
+    margin-left: 32px;
 }
 
 .slide {
@@ -118,6 +119,8 @@ nav.scrolled {
     cursor: pointer;
     z-index: 10;
     transition: background-color 0.5s ease;
+    margin-left: 32px;
+
     /* 添加按钮背景颜色过渡动画 */
 }
 
@@ -233,11 +236,6 @@ nav.scrolled {
     color: white;
     padding: 5px 10px;
     border-radius: 50%;
-}
-
-/* 新增空白区域样式 */
-.blank-area {
-    height: 240px;
 }
 
 /* 产品详细信息样式 */
