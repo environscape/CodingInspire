@@ -23,7 +23,6 @@ nav {
     transition: opacity 0.5s ease;
     /* 导航栏透明度过渡动画 */
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
-
 }
 
 nav.scrolled {
@@ -42,7 +41,7 @@ nav.scrolled {
 
 .nav-links a {
     text-decoration: none;
-    color: #333;
+    color: #444;
     font-weight: 350;
     margin: 0 16px;
     /* 添加一些间距 */
@@ -61,7 +60,7 @@ nav.scrolled {
     .nav-links a {
         font-size: 10px;
         /* 减小字体大小 */
-        margin: 0 0px;
+        margin: 0;
         /* 减小间距 */
     }
 }
@@ -175,8 +174,7 @@ nav.scrolled {
     padding-bottom: 100%;
     overflow: hidden;
     /* 隐藏溢出部分，使缩放效果更明显 */
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-    /* 水平偏移5px，垂直偏移5px，模糊半径10px，颜色为 rgba(0, 0, 0, 0.2) */
+    /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); */
 }
 
 .product-image-container img {
@@ -188,12 +186,15 @@ nav.scrolled {
     object-fit: cover;
     transition: transform 0.5s ease-in-out;
     /* 调整过渡时间和函数 */
-
 }
 
 .product-image-container:hover img {
     transform: scale(1.05);
     /* 鼠标悬停时图片放大 */
+}
+
+.product-image-container:hover>.overlay {
+    background-color: rgba(88, 88, 88, 0.1);
 }
 
 .overlay {
@@ -204,10 +205,6 @@ nav.scrolled {
     height: 100%;
     background-color: transparent;
     transition: background-color 0.5s ease;
-}
-
-.product-image-container:hover>.overlay {
-    background-color: rgba(88, 88, 88, 0.2);
 }
 
 .product-title {
@@ -255,18 +252,22 @@ nav.scrolled {
 .product-details-info {
     width: 40%;
     padding-left: 20px;
+    margin-top: 60px;
 }
 
 .product-details-title {
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 10px;
+    color: #444;
 }
 
 .product-details-subtitle {
+    font-family: Arial, sans-serif;
     font-size: 18px;
-    font-weight: 400;
-    margin-bottom: 10px;
+    font-weight: 500;
+    color: #666;
     margin-bottom: 10px;
 }
 
@@ -277,25 +278,24 @@ nav.scrolled {
 }
 
 .product-details-desc {
-    color: #777;
+    font-family: Arial, sans-serif;
     font-size: 18px;
     font-weight: 400;
     line-height: 1.6;
     white-space: pre-wrap;
-    /* 添加这一行代码 允许内部换行 */
+    /* 允许内部换行 */
+    color: #444;
 }
 
 /* 新增详细内容样式 */
 .product-more-desc {
-    width: 100%;
-    font-size: 20px;
-    /* 字体大小稍大 */
     font-family: 'Segoe UI', Arial, sans-serif;
-    /* 更换字体 */
+    font-size: 1.0rem;
+    font-weight: 400;
     line-height: 1.8;
-    color: #555;
     white-space: pre-wrap;
     /* 允许内部换行 */
+    color: #666;
     margin-top: 20px;
     padding-left: 64px;
     /* 左侧边距 */
@@ -303,18 +303,14 @@ nav.scrolled {
     /* 右侧边距 */
 }
 
-/* 新增详细内容样式 */
 .product-more-desc h5 {
-    width: 100%;
-    font-size: 24px;
-    /* 字体大小稍大 */
-    font-weight: 600;
     font-family: 'Segoe UI', Arial, sans-serif;
-    /* 更换字体 */
+    font-size: 1.5rem;
+    font-weight: 600;
     line-height: 1.8;
-    color: #333;
     white-space: pre-wrap;
     /* 允许内部换行 */
+    color: #444;
 }
 
 /* 手册链接区域样式 */
@@ -325,28 +321,26 @@ nav.scrolled {
 }
 
 .manual-area p {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #666;
     display: inline-block;
     margin-right: 10px;
 }
 
 .manual-area a {
-    /* display: inline-block; */
-    /* background-color: #aaa; */
     color: #aaa;
     padding: 8px 15px;
     text-decoration: none;
-    /* border-radius: 5px; */
     position: relative;
 }
 
 /* 首页 底部 品牌介绍 */
 .brand-introduction {
     text-align: center;
-    font-size: 1.25rem;
-    /* 字体变大，可按需调整 */
-    font-weight: 500;
-    color: #555;
-    /* 深灰色 */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 1.0rem;
+    font-weight: 400;
     white-space: pre-wrap;
     /* 保留换行符和空格 */
     overflow: hidden;
@@ -355,6 +349,7 @@ nav.scrolled {
     animation: typing 5s steps(40, end) forwards;
     margin: 0 auto;
     /* 使元素自身水平居中 */
+    color: #666;
 }
 
 @keyframes typing {
@@ -369,13 +364,12 @@ nav.scrolled {
 
 .brand-introduction h5 {
     text-align: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 1.5rem;
-    /* 字体变大，可按需调整 */
     font-weight: 600;
-    color: #333;
-    /* 深灰色 */
     white-space: pre-wrap;
     /* 保留换行符和空格 */
+    color: #444;
     margin: 0 0;
     /* 上下外边距 */
 }
@@ -403,8 +397,10 @@ nav.scrolled {
 }
 
 .cookie-notice p {
-    margin: 0;
+    font-family: Arial, sans-serif;
     font-size: 14px;
+    color: #666;
+    margin: 0;
 }
 
 .cookie-notice a {
@@ -419,11 +415,6 @@ nav.scrolled {
     color: #fff;
     cursor: pointer;
     font-size: 18px;
-}
-
-/* 新增空白区域样式 */
-.blank-area {
-    height: 240px;
 }
 
 /* 底部友情链接布局 */
