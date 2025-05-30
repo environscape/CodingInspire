@@ -235,6 +235,7 @@ nav.scrolled {
     color: white;
     padding: 5px 10px;
     border-radius: 50%;
+    display :none; /* 暂时隐藏 */
 }
 
 /* 产品详细信息样式 */
