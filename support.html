@@ -61,7 +61,7 @@
                 <div class="download-item" style="display: flex; align-items: center; padding: 12px 0; border-bottom: 1px dashed #eee;">
                     <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">固件</span>
                     <span class="download-title" style="flex: 1; text-align: left; color: #333;">uf2固件 版本号v0.9</span>
-                    <a href="https://environscape.github.io/CodingInspire/support/Maniflod.ino_v0.9.uf2" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">获取</a>
+                    <a href="https://environscape.github.io/CodingInspire/support/Manifold.ino_v0.9.uf2" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">获取</a>
                 </div>
                 
                 <div class="download-item" style="display: flex; align-items: center; padding: 12px 0;">
@@ -166,13 +166,22 @@
 
     <!-- 新增灰色区域用于放置友情链接 -->
     <div class="friend-links">
-        <!-- <h4>友情链接</h4> -->
+        <a href="https://codlnginspire.taobao.com/" style="color: #ddd; text-decoration: none; margin: 0 32px;">淘宝购买</a>
         <a href="https://www.midifan.com/" style="color: #ddd; text-decoration: none; margin: 0 32px;">midifan</a>
         <a href="https://modulargrid.net/" style="color: #ddd; text-decoration: none; margin: 0 32px;">modular grid</a>
         <a href="https://doepfer.de/" style="color: #ddd; text-decoration: none; margin: 0 32px;">doepfer</a>
 
-        <!-- 新增二维码区域 -->
-        <div class="qr-code-container" style="margin-top: 32px; text-align: center;">
+        <!-- 新增二维码区域（改为flex布局实现并列） -->
+        <div class="qr-code-container" style="margin-top: 32px; text-align: center; display: flex; justify-content: center; gap: 30px;">
+            <!-- 淘宝二维码 -->
+            <div class="qr-code-wrapper"
+                style="display: inline-block; background-color: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <img src="tb_qrcode.png" alt="淘宝店铺"
+                    style="width: 100px; height: 100px; display: block;">
+                <p style="margin-top: 10px; color: #000; font-size: 0.9em;">淘宝店铺</p>
+            </div>
+
+            <!-- 原有二维码 -->
             <div class="qr-code-wrapper"
                 style="display: inline-block; background-color: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <img src="qrcode.png" alt="手机扫码查看"
