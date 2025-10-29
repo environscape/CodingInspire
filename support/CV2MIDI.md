@@ -72,4 +72,13 @@
 四、MIDI 参数配置 / 定制介绍
 
 使用 "CodingInspireCV2MIDIHelper" 编辑器，进行CV与MIDI映射配置与上传模块
-下载地址:
+下载地址:  <a href="https://environscape.github.io/CodingInspire/support/CodingInspireCV2MIDIHelper_v1.0.zip">CodingInspireCV2MIDIHelper_v1.0</a>
+
+        使用方法：
+        "1.将模块USB连接至您的PC"
+        "2.界面上选择您模块所在的串口端口(如果有多个选择，需要要判断哪一个才是您的模块),然后点击“连接模块”"
+        "3.将模块放置10s，然后长按按钮5s，模块LED将闪烁，并且将模块上的映射信息发送到助手界面的表格中"
+        "4.界面中的表格就是配置信息，您可以在这里修改您的映射"
+        "5.点击“上传CV映射到模块”按钮"
+        "6.等待10s后，断开您的模块USB连接，并准备重新装回您的模块机架上使用"
+  
