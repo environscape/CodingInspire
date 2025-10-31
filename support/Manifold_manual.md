@@ -97,7 +97,7 @@ p3旋钮则用来修改当前模块的类型，您需要单击p3，屏幕此时�
 
 
 <figure>
-<img src="Manifold_Structure.png" alt="" width="540" height="820">
+<img src="Manifold_Structure.png" alt="" width="640" height="800">
     <figcaption>模块结构图</figcaption>
 </figure>
 
