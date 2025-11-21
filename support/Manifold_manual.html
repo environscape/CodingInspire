@@ -28,6 +28,15 @@
             position: relative;
         }
 
+        /* Logo图片样式 */
+        .header-logo {
+            width: 100%; /* 宽度自适应容器 */
+            max-width: 850px; /* 最大宽度850px */
+            height: auto; /* 高度自动，保持宽高比 */
+            margin-bottom: 20px; /* 与目录之间的间距 */
+            object-fit: contain; /* 确保图片完整显示 */
+        }
+
         /* 显示 Markdown 内容的容器样式 */
         #markdown-content {
             margin-top: 20px;
@@ -258,6 +267,11 @@
                 height: 100%;
             }
 
+            .header-logo {
+                max-width: 850px; /* 打印时保持最大宽度 */
+                height: auto;
+            }
+
             .table-of-contents {
                 display: none; /* 打印时隐藏目录 */
             }
@@ -283,8 +297,16 @@
 
 <body>
     <div id="content-wrapper">
+        <!-- Logo图片 -->
+        <img src="codinginspire.png" alt="Logo" class="header-logo">
+        
+        <!-- 目录 -->
         <div class="table-of-contents" id="table-of-contents"></div>
+        
+        <!-- Markdown内容 -->
         <div id="markdown-content"></div>
+        
+        <!-- 页码 -->
         <div class="page-number" id="page-number"></div>
     </div>
 
