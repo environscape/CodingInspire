@@ -2,240 +2,409 @@
 <html>
 
 <head>
-  <link rel="icon" href="../icon.ico" type="image/x-icon">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <style>
-    /* 页面整体样式 */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      line-height: 1.6;
-      color: #333;
-    }
+    <link rel="icon" href="../icon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* 页面整体样式 - 模拟PDF */
+        body {
+            /* 优先使用微软雅黑，如果没有则使用黑体，最后使用系统默认的无衬线字体 */
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+            margin: 0;
+            padding: 50px; /* 上下边距 */
+            background-color: #f0f0f0; /* 背景色，模拟纸张外的区域 */
+            color: #333;
+            /* 中文字体的行高通常设置得稍大一些，以提升可读性 */
+            line-height: 1.8; 
+        }
 
-    /* 显示 Markdown 内容的容器样式 */
-    #markdown-content {
-      margin-top: 20px;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-    }
+        /* 内容容器 - 模拟纸张 */
+        #content-wrapper {
+            max-width: 21cm; /* A4宽度 */
+            min-height: 29.7cm; /* A4高度 */
+            margin: 0 auto; /* 居中 */
+            padding: 2.5cm; /* 内边距，模拟页边距 */
+            background-color: white; /* 白色背景，模拟纸张 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影，提升立体感 */
+            position: relative;
+        }
 
-    /* 标题样式 */
-    #markdown-content h1,
-    #markdown-content h2,
-    #markdown-content h3,
-    #markdown-content h4,
-    #markdown-content h5,
-    #markdown-content h6 {
-      color: #ec8600;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-    }
+        /* Logo图片样式 */
+        .header-logo {
+            width: 100%; /* 宽度自适应容器 */
+            max-width: 850px; /* 最大宽度850px */
+            height: auto; /* 高度自动，保持宽高比 */
+            margin-bottom: 20px; /* 与目录之间的间距 */
+            object-fit: contain; /* 确保图片完整显示 */
+        }
 
-    #markdown-content h1 {
-      font-size: 24px;
-    }
+        /* 显示 Markdown 内容的容器样式 */
+        #markdown-content {
+            margin-top: 20px;
+        }
 
-    #markdown-content h2 {
-      font-size: 20px;
-    }
+        /* 标题样式 */
+        #markdown-content h1,
+        #markdown-content h2,
+        #markdown-content h3,
+        #markdown-content h4,
+        #markdown-content h5,
+        #markdown-content h6 {
+            color: #2c3e50;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 5px;
+            margin-top: 1.5em;
+            margin-bottom: 0.7em;
+            font-weight: bold;
+        }
 
-    #markdown-content h3 {
-      font-size: 18px;
-    }
+        #markdown-content h1 {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 1em;
+        }
 
-    #markdown-content h4 {
-      font-size: 16px;
-    }
+        #markdown-content h2 {
+            font-size: 1.5em;
+        }
 
-    #markdown-content h5 {
-      font-size: 14px;
-    }
+        #markdown-content h3 {
+            font-size: 1.2em;
+        }
 
-    #markdown-content h6 {
-      font-size: 12px;
-    }
+        /* 段落样式 */
+        #markdown-content p {
+            margin-bottom: 1em;
+            text-align: justify; /* 两端对齐，更像PDF */
+            text-justify: inter-ideograph; /* 针对中文的两端对齐优化 */
+        }
 
-    /* 列表样式 */
-    #markdown-content ul,
-    #markdown-content ol {
-      padding-left: 20px;
-    }
+        /* 列表样式 */
+        #markdown-content ul,
+        #markdown-content ol {
+            padding-left: 2em;
+            margin-bottom: 1em;
+        }
 
-    /* 链接样式 */
-    #markdown-content a {
-      color: #ec8600;
-      text-decoration: none;
-    }
+        #markdown-content li {
+            margin-bottom: 0.5em;
+        }
 
-    #markdown-content a:hover {
-      text-decoration: underline;
-    }
+        /* 链接样式 */
+        #markdown-content a {
+            color: #2980b9;
+            text-decoration: none;
+        }
 
-    /* 目录样式 */
-   .table-of-contents {
-      margin-bottom: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #f5f5f5;
-    }
+        #markdown-content a:hover {
+            text-decoration: underline;
+        }
 
-   .table-of-contents h2 {
-      margin-top: 0;
-      color: #333;
-      border-bottom: none;
-    }
+        /* 强调文本样式 */
+        #markdown-content strong {
+            font-weight: bold;
+        }
 
-   .table-of-contents ul {
-      list-style-type: none;
-      padding: 0;
-    }
+        #markdown-content em {
+            font-style: italic;
+        }
 
-   .table-of-contents ul li {
-      margin-bottom: 5px;
-    }
+        /* 代码块样式 */
+        #markdown-content pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 1em;
+            overflow-x: auto;
+            margin-bottom: 1em;
+            /* 代码块使用等宽字体 */
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9em;
+        }
 
-   .table-of-contents a {
-      color: #666; /* 修改为灰色 */
-      text-decoration: none; /* 去掉下划线 */
-      font-weight: 500; /* 设置稍微粗一点的字体 */
-    }
+        #markdown-content code {
+            background-color: #f8f8f8;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9em;
+        }
 
-   .table-of-contents a:hover {
-      text-decoration: underline; /* 鼠标悬停时显示下划线 */
-    }
+        /* 表格样式 */
+        #markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1em;
+        }
 
-    /* 手动重试按钮样式 */
-   .retry-button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #ffbb00;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        #markdown-content th,
+        #markdown-content td {
+            border: 1px solid #e0e0e0;
+            padding: 0.5em 1em;
+            text-align: left;
+        }
 
-   .retry-button:hover {
-      background-color: #ffaa33;
-    }
+        #markdown-content th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
 
-    /* 链接样式 */
-   .source-link {
-      margin-left: 10px;
-      color: #ffaa33;
-      text-decoration: none;
-    }
+        /* 图片样式 */
+        #markdown-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1em auto;
+            border: 1px solid #e0e0e0;
+            padding: 5px;
+        }
 
-   .source-link:hover {
-      text-decoration: underline;
-    }
+        /* 引用样式 */
+        #markdown-content blockquote {
+            border-left: 4px solid #e0e0e0;
+            padding-left: 1em;
+            margin-left: 0;
+            font-style: italic;
+            color: #666;
+        }
 
-    /* 加载提示样式 */
-   .loading-tip {
-      color: #666;
-      margin-top: 10px;
-    }
-  </style>
+        /* 分割线样式 */
+        #markdown-content hr {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 2em 0;
+        }
+
+        /* 目录样式 */
+        .table-of-contents {
+            margin-bottom: 2em;
+            padding: 1em;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .table-of-contents h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: none;
+            font-size: 1.2em;
+        }
+
+        .table-of-contents ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .table-of-contents ul li {
+            margin-bottom: 0.3em;
+        }
+
+        .table-of-contents a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .table-of-contents a:hover {
+            text-decoration: underline;
+        }
+
+        /* 页码样式 */
+        .page-number {
+            position: absolute;
+            bottom: 2cm;
+            right: 2.5cm;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* 手动重试按钮样式 */
+        .retry-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit; /* 继承父元素的字体 */
+        }
+
+        .retry-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* 链接样式 */
+        .source-link {
+            margin-left: 10px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .source-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 加载提示样式 */
+        .loading-tip {
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* 打印样式优化 */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+                font-family: "Microsoft YaHei", "SimHei", sans-serif;
+            }
+
+            #content-wrapper {
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .header-logo {
+                max-width: 850px; /* 打印时保持最大宽度 */
+                height: auto;
+            }
+
+            .table-of-contents {
+                display: none; /* 打印时隐藏目录 */
+            }
+
+            .page-number {
+                display: block; /* 打印时显示页码 */
+            }
+
+            /* 避免分页截断内容 */
+            #markdown-content h1,
+            #markdown-content h2,
+            #markdown-content h3 {
+                page-break-after: avoid;
+            }
+
+            #markdown-content table,
+            #markdown-content img {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="table-of-contents" id="table-of-contents"></div>
-  <div id="markdown-content"></div>
-  <button class="retry-button" id="retry-button" style="display: none;">手动重试</button>
-  <a href="#" class="source-link" id="source-link" style="display: none;"></a>
-  <p class="loading-tip" id="loading-tip" style="display: block;">正在加载中 请稍后</p>
+    <div id="content-wrapper">
+        <!-- Logo图片 -->
+        <img src="codinginspire.png" alt="Logo" class="header-logo">
+        
+        <!-- 目录 -->
+        <div class="table-of-contents" id="table-of-contents"></div>
+        
+        <!-- Markdown内容 -->
+        <div id="markdown-content"></div>
+        
+        <!-- 页码 -->
+        <div class="page-number" id="page-number"></div>
+    </div>
 
-  <script>
-    const currentUrl = window.location.href;
-    const newUrl = currentUrl.replace('.html', '.md');
-    const mdFilePath = newUrl;
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="retry-button" id="retry-button" style="display: none;">手动重试</button>
+        <a href="#" class="source-link" id="source-link" style="display: none;"></a>
+        <p class="loading-tip" id="loading-tip" style="display: block;">正在加载中 请稍后</p>
+    </div>
 
-    const maxRetries = 3; // 最大重试次数
-    const retryInterval = 1000; // 重试间隔时间（毫秒）
-    let retryCount = 0;
+    <script>
+        const currentUrl = window.location.href;
+        const newUrl = currentUrl.replace('.html', '.md');
+        const mdFilePath = newUrl;
 
-    const fetchWithRetry = async (url, retries = 0) => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.text();
-        return data;
-      } catch (error) {
-        if (retries < maxRetries) {
-          console.log(`请求失败，正在重试（第 ${retries + 1} 次）...`);
-          await new Promise(resolve => setTimeout(resolve, retryInterval));
-          return fetchWithRetry(url, retries + 1);
-        }
-        console.error('请求失败，已达到最大重试次数:', error);
-        // 显示手动重试按钮和源文件链接
-        document.getElementById('retry-button').style.display = 'block';
-        const sourceLink = document.getElementById('source-link');
-        sourceLink.href = mdFilePath;
-        sourceLink.textContent = mdFilePath;
-        sourceLink.style.display = 'block';
-        // 显示加载失败提示
-        document.getElementById('loading-tip').textContent = '加载失败，请检查网络或重试';
-        throw error;
-      }
-    };
+        const maxRetries = 3;
+        const retryInterval = 1000;
+        let retryCount = 0;
 
-    const loadMarkdown = async () => {
-      try {
-        const data = await fetchWithRetry(mdFilePath, retryCount);
-        const html = marked.parse(data);
-        document.getElementById('markdown-content').innerHTML = html;
-
-        // 生成目录
-        const generateTOC = () => {
-          const toc = document.getElementById('table-of-contents');
-          const headers = document.querySelectorAll('#markdown-content h2, #markdown-content h3');
-          const tocList = document.createElement('ul');
-
-          headers.forEach(header => {
-            const id = header.id || `section-${Date.now()}-${Math.random()}`;
-            header.id = id;
-            const link = document.createElement('a');
-            link.href = `#${id}`;
-            link.textContent = header.textContent;
-            const listItem = document.createElement('li');
-            listItem.appendChild(link);
-            tocList.appendChild(listItem);
-          });
-
-          const tocHeader = document.createElement('h2');
-          tocHeader.textContent = '目录';
-          toc.appendChild(tocHeader);
-          toc.appendChild(tocList);
+        const fetchWithRetry = async (url, retries = 0) => {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.text();
+                return data;
+            } catch (error) {
+                if (retries < maxRetries) {
+                    console.log(`请求失败，正在重试（第 ${retries + 1} 次）...`);
+                    await new Promise(resolve => setTimeout(resolve, retryInterval));
+                    return fetchWithRetry(url, retries + 1);
+                }
+                console.error('请求失败，已达到最大重试次数:', error);
+                document.getElementById('retry-button').style.display = 'block';
+                const sourceLink = document.getElementById('source-link');
+                sourceLink.href = mdFilePath;
+                sourceLink.textContent = mdFilePath;
+                sourceLink.style.display = 'block';
+                document.getElementById('loading-tip').textContent = '加载失败，请检查网络或重试';
+                throw error;
+            }
         };
 
-        generateTOC();
-        // 隐藏加载提示
-        document.getElementById('loading-tip').style.display = 'none';
-      } catch (error) {
-        console.error('处理 Markdown 文件时出错:', error);
-      }
-    };
+        const loadMarkdown = async () => {
+            try {
+                const data = await fetchWithRetry(mdFilePath, retryCount);
+                const html = marked.parse(data);
+                document.getElementById('markdown-content').innerHTML = html;
 
-    // 初始加载
-    loadMarkdown();
+                // 生成目录
+                const generateTOC = () => {
+                    const toc = document.getElementById('table-of-contents');
+                    const headers = document.querySelectorAll('#markdown-content h2, #markdown-content h3');
+                    const tocList = document.createElement('ul');
 
-    // 手动重试按钮点击事件
-    document.getElementById('retry-button').addEventListener('click', async () => {
-      retryCount++;
-      document.getElementById('retry-button').style.display = 'none';
-      document.getElementById('source-link').style.display = 'none';
-      // 显示加载提示
-      document.getElementById('loading-tip').style.display = 'block';
-      document.getElementById('loading-tip').textContent = '正在加载中 请稍后...';
-      await loadMarkdown();
-    });
-  </script>
+                    headers.forEach(header => {
+                        const id = header.id || `section-${Date.now()}-${Math.random()}`;
+                        header.id = id;
+                        const link = document.createElement('a');
+                        link.href = `#${id}`;
+                        link.textContent = header.textContent;
+                        const listItem = document.createElement('li');
+                        listItem.appendChild(link);
+                        tocList.appendChild(listItem);
+                    });
+
+                    const tocHeader = document.createElement('h2');
+                    tocHeader.textContent = '目录';
+                    toc.appendChild(tocHeader);
+                    toc.appendChild(tocList);
+                };
+
+                generateTOC();
+
+                // 隐藏加载提示
+                document.getElementById('loading-tip').style.display = 'none';
+
+                // 添加页码（简单模拟）
+                document.getElementById('page-number').textContent = '1';
+
+            } catch (error) {
+                console.error('处理 Markdown 文件时出错:', error);
+            }
+        };
+
+        // 初始加载
+        loadMarkdown();
+
+        // 手动重试按钮点击事件
+        document.getElementById('retry-button').addEventListener('click', async () => {
+            retryCount++;
+            document.getElementById('retry-button').style.display = 'none';
+            document.getElementById('source-link').style.display = 'none';
+            document.getElementById('loading-tip').style.display = 'block';
+            document.getElementById('loading-tip').textContent = '正在加载中 请稍后...';
+            await loadMarkdown();
+        });
+    </script>
 </body>
 
 </html>
