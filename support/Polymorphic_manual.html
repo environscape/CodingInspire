@@ -7,34 +7,44 @@
     <style>
         /* 页面整体样式 - 模拟PDF */
         body {
-            /* 优先使用微软雅黑，如果没有则使用黑体，最后使用系统默认的无衬线字体 */
             font-family: "Microsoft YaHei", "SimHei", sans-serif;
             margin: 0;
-            padding: 50px; /* 上下边距 */
-            background-color: #f0f0f0; /* 背景色，模拟纸张外的区域 */
+            padding: 50px;
+            background-color: #f0f0f0;
             color: #333;
-            /* 中文字体的行高通常设置得稍大一些，以提升可读性 */
-            line-height: 1.8; 
+            line-height: 1.8;
         }
 
         /* 内容容器 - 模拟纸张 */
         #content-wrapper {
-            max-width: 21cm; /* A4宽度 */
-            min-height: 29.7cm; /* A4高度 */
-            margin: 0 auto; /* 居中 */
-            padding: 2.5cm; /* 内边距，模拟页边距 */
-            background-color: white; /* 白色背景，模拟纸张 */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影，提升立体感 */
+            max-width: 21cm;
+            min-height: 29.7cm;
+            margin: 0 auto 50px;
+            padding: 2.5cm;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: relative;
+        }
+
+        /* Logo页面样式 */
+        #logo-page {
+            max-width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto 50px;
+            padding: 2.5cm;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Logo图片样式 */
         .header-logo {
-            width: 100%; /* 宽度自适应容器 */
-            max-width: 850px; /* 最大宽度850px */
-            height: auto; /* 高度自动，保持宽高比 */
-            margin-bottom: 20px; /* 与目录之间的间距 */
-            object-fit: contain; /* 确保图片完整显示 */
+            max-width: 850px;
+            max-height: 190px;
+            width: auto;
+            height: auto;
         }
 
         /* 显示 Markdown 内容的容器样式 */
@@ -42,7 +52,7 @@
             margin-top: 20px;
         }
 
-        /* 标题样式 */
+        /* 标题样式 - 已移除 border-bottom */
         #markdown-content h1,
         #markdown-content h2,
         #markdown-content h3,
@@ -50,17 +60,15 @@
         #markdown-content h5,
         #markdown-content h6 {
             color: #2c3e50;
-            /* border-bottom: 1px solid #e0e0e0; */
-            padding-bottom: 5px;
-            margin-top: 1.5em;
-            margin-bottom: 0.7em;
+            margin-top: 1.8em;
+            margin-bottom: 0.9em;
             font-weight: bold;
         }
 
         #markdown-content h1 {
             font-size: 2em;
             text-align: center;
-            margin-bottom: 1em;
+            margin-bottom: 1.2em;
         }
 
         #markdown-content h2 {
@@ -74,8 +82,8 @@
         /* 段落样式 */
         #markdown-content p {
             margin-bottom: 1em;
-            text-align: justify; /* 两端对齐，更像PDF */
-            text-justify: inter-ideograph; /* 针对中文的两端对齐优化 */
+            text-align: justify;
+            text-justify: inter-ideograph;
         }
 
         /* 列表样式 */
@@ -99,15 +107,6 @@
             text-decoration: underline;
         }
 
-        /* 强调文本样式 */
-        #markdown-content strong {
-            font-weight: bold;
-        }
-
-        #markdown-content em {
-            font-style: italic;
-        }
-
         /* 代码块样式 */
         #markdown-content pre {
             background-color: #f8f8f8;
@@ -116,7 +115,6 @@
             padding: 1em;
             overflow-x: auto;
             margin-bottom: 1em;
-            /* 代码块使用等宽字体 */
             font-family: "Courier New", Courier, monospace;
             font-size: 0.9em;
         }
@@ -186,7 +184,6 @@
         .table-of-contents h2 {
             margin-top: 0;
             color: #333;
-            border-bottom: none;
             font-size: 1.2em;
         }
 
@@ -226,7 +223,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-family: inherit; /* 继承父元素的字体 */
+            font-family: inherit;
         }
 
         .retry-button:hover {
@@ -259,28 +256,33 @@
                 font-family: "Microsoft YaHei", "SimHei", sans-serif;
             }
 
+            #logo-page,
             #content-wrapper {
                 box-shadow: none;
                 padding: 0;
-                margin: 0;
-                width: 100%;
-                height: 100%;
+                margin: 0 auto;
+                width: 21cm;
+                height: 29.7cm;
+                page-break-after: always;
+            }
+
+            #content-wrapper:last-child {
+                page-break-after: avoid;
             }
 
             .header-logo {
-                max-width: 850px; /* 打印时保持最大宽度 */
-                height: auto;
+                max-width: 850px;
+                max-height: 190px;
             }
 
             .table-of-contents {
-                display: none; /* 打印时隐藏目录 */
+                display: none;
             }
 
             .page-number {
-                display: block; /* 打印时显示页码 */
+                display: block;
             }
 
-            /* 避免分页截断内容 */
             #markdown-content h1,
             #markdown-content h2,
             #markdown-content h3 {
@@ -296,17 +298,15 @@
 </head>
 
 <body>
-    <div id="content-wrapper">
-        <!-- Logo图片 -->
+    <!-- Logo第一页 -->
+    <div id="logo-page">
         <img src="codinginspire.png" alt="Logo" class="header-logo">
-        
-        <!-- 目录 -->
+    </div>
+
+    <!-- 内容页 -->
+    <div id="content-wrapper">
         <div class="table-of-contents" id="table-of-contents"></div>
-        
-        <!-- Markdown内容 -->
         <div id="markdown-content"></div>
-        
-        <!-- 页码 -->
         <div class="page-number" id="page-number"></div>
     </div>
 
@@ -356,7 +356,6 @@
                 const html = marked.parse(data);
                 document.getElementById('markdown-content').innerHTML = html;
 
-                // 生成目录
                 const generateTOC = () => {
                     const toc = document.getElementById('table-of-contents');
                     const headers = document.querySelectorAll('#markdown-content h2, #markdown-content h3');
@@ -380,22 +379,16 @@
                 };
 
                 generateTOC();
-
-                // 隐藏加载提示
                 document.getElementById('loading-tip').style.display = 'none';
-
-                // 添加页码（简单模拟）
-                document.getElementById('page-number').textContent = '1';
+                document.getElementById('page-number').textContent = '2'; // 内容页从第2页开始
 
             } catch (error) {
                 console.error('处理 Markdown 文件时出错:', error);
             }
         };
 
-        // 初始加载
         loadMarkdown();
 
-        // 手动重试按钮点击事件
         document.getElementById('retry-button').addEventListener('click', async () => {
             retryCount++;
             document.getElementById('retry-button').style.display = 'none';
