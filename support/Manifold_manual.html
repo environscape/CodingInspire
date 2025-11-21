@@ -7,12 +7,14 @@
     <style>
         /* 页面整体样式 - 模拟PDF */
         body {
-            font-family: Georgia, "Times New Roman", Times, serif; /* 使用 serif 字体，更像PDF */
+            /* 优先使用微软雅黑，如果没有则使用黑体，最后使用系统默认的无衬线字体 */
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
             margin: 0;
             padding: 50px; /* 上下边距 */
             background-color: #f0f0f0; /* 背景色，模拟纸张外的区域 */
             color: #333;
-            line-height: 1.7; /* 行高，提升可读性 */
+            /* 中文字体的行高通常设置得稍大一些，以提升可读性 */
+            line-height: 1.8; 
         }
 
         /* 内容容器 - 模拟纸张 */
@@ -43,6 +45,7 @@
             padding-bottom: 5px;
             margin-top: 1.5em;
             margin-bottom: 0.7em;
+            font-weight: bold;
         }
 
         #markdown-content h1 {
@@ -63,6 +66,7 @@
         #markdown-content p {
             margin-bottom: 1em;
             text-align: justify; /* 两端对齐，更像PDF */
+            text-justify: inter-ideograph; /* 针对中文的两端对齐优化 */
         }
 
         /* 列表样式 */
@@ -103,6 +107,7 @@
             padding: 1em;
             overflow-x: auto;
             margin-bottom: 1em;
+            /* 代码块使用等宽字体 */
             font-family: "Courier New", Courier, monospace;
             font-size: 0.9em;
         }
@@ -212,6 +217,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-family: inherit; /* 继承父元素的字体 */
         }
 
         .retry-button:hover {
@@ -241,6 +247,7 @@
             body {
                 background-color: white;
                 padding: 0;
+                font-family: "Microsoft YaHei", "SimHei", sans-serif;
             }
 
             #content-wrapper {
@@ -355,7 +362,7 @@
                 // 隐藏加载提示
                 document.getElementById('loading-tip').style.display = 'none';
 
-                // 添加页码（简单模拟，实际PDF页码需要更复杂的计算）
+                // 添加页码（简单模拟）
                 document.getElementById('page-number').textContent = '1';
 
             } catch (error) {
