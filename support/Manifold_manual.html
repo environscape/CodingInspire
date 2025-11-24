@@ -14,7 +14,7 @@
             color: #333;
             line-height: 1.8;
         }
-    
+
         /* 内容容器 - 模拟纸张 */
         #content-wrapper {
             max-width: 21cm;
@@ -25,7 +25,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: relative;
         }
-    
+
         /* Logo页面样式 */
         #logo-page {
             max-width: 21cm;
@@ -38,7 +38,7 @@
             justify-content: center;
             align-items: center;
         }
-    
+
         /* Logo图片样式 */
         .header-logo {
             max-width: 560px;
@@ -46,40 +46,40 @@
             width: auto;
             height: auto;
         }
-    
+
         /* 显示 Markdown 内容的容器样式 */
         #markdown-content {
             margin-top: 20px;
         }
-    
+
         /* 段落样式 */
         #markdown-content p {
             margin-bottom: 1em;
             text-align: justify;
             text-justify: inter-ideograph;
         }
-    
+
         /* 列表样式 */
         #markdown-content ul,
         #markdown-content ol {
             padding-left: 2em;
             margin-bottom: 1em;
         }
-    
+
         #markdown-content li {
             margin-bottom: 0.5em;
         }
-    
+
         /* 链接样式 */
         #markdown-content a {
             color: #444;
             text-decoration: none;
         }
-    
+
         #markdown-content a:hover {
             text-decoration: underline;
         }
-    
+
         /* 代码块样式 */
         #markdown-content pre {
             background-color: #f8f8f8;
@@ -91,7 +91,7 @@
             font-family: "Courier New", Courier, monospace;
             font-size: 0.9em;
         }
-    
+
         #markdown-content code {
             background-color: #f8f8f8;
             padding: 0.2em 0.4em;
@@ -99,36 +99,55 @@
             font-family: "Courier New", Courier, monospace;
             font-size: 0.9em;
         }
-    
+
         /* 表格样式 */
         #markdown-content table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 1em;
         }
-    
+
         #markdown-content th,
         #markdown-content td {
             border: 1px solid #e0e0e0;
             padding: 0.5em 1em;
             text-align: left;
         }
-    
+
         #markdown-content th {
             background-color: #f5f5f5;
             font-weight: bold;
         }
-    
-        /* 图片样式 */
-        #markdown-content img {
+
+        /* 图片容器（figure）样式 - 让整个图片+说明文字居中 */
+        #markdown-content figure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 子元素水平居中 */
+            margin: 1.5em auto;
+            /* 上下间距，左右自动居中 */
+        }
+
+        /* 图片样式 - 保持原有样式，去掉多余margin避免冲突 */
+        #markdown-content figure img {
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 1em auto;
             border: 1px solid #e0e0e0;
             padding: 5px;
+            /* 这里不需要再写 margin: 1em auto; ，由 figure 控制居中 */
         }
-    
+
+        /* 图片说明文字（figcaption）样式 - 居中+优化样式 */
+        #markdown-content figcaption {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-top: 0.8em;
+            font-size: 0.95em;
+        }
+
         /* 引用样式 */
         #markdown-content blockquote {
             border-left: 4px solid #e0e0e0;
@@ -137,20 +156,20 @@
             font-style: italic;
             color: #666;
         }
-    
+
         /* 分割线样式 */
         #markdown-content hr {
             border: none;
             border-top: 1px solid #e0e0e0;
             margin: 2em 0;
         }
-    
+
         /* 主标题样式（Markdown的标题） */
         #main-title {
             text-align: center;
             margin-bottom: 2em;
         }
-    
+
         #main-title h1 {
             font-size: 2.8em;
             color: #2c3e50;
@@ -158,12 +177,12 @@
             font-weight: bold;
             letter-spacing: 2px;
         }
-        
+
         /* 用于防止margin塌陷的包装器 */
         .toc-wrapper {
             overflow: hidden;
         }
-    
+
         /* 目录样式调整 */
         .table-of-contents {
             margin: 0 auto 3em;
@@ -173,56 +192,62 @@
             background-color: #f9f9f9;
             max-width: 80%;
         }
-    
+
         .table-of-contents ul {
             list-style-type: none;
             padding: 0;
-            text-align: left; /* 确保整个列表默认是左对齐的 */
+            text-align: left;
+            /* 确保整个列表默认是左对齐的 */
         }
-    
+
         .table-of-contents ul li {
             margin-bottom: 0.8em;
         }
-        
+
         /* 目录级别样式 */
         .table-of-contents .toc-h2 {
             font-size: 1.2em;
             font-weight: bold;
         }
-    
+
         /* --- 修改点：减小了 h3 对应的目录项字体大小 --- */
         .table-of-contents .toc-h3 {
-            font-size: 0.9em;   /* 从 1em 调整为 0.9em */
+            font-size: 0.9em;
+            /* 从 1em 调整为 0.9em */
             padding-left: 1.5em;
         }
-        
+
         /* --- 新增代码开始 --- */
         /* 让目录的第一行（通常是第一个h2）居中显示并增大字体 */
         .table-of-contents ul li:first-child {
             text-align: center;
             margin-bottom: 1.5em;
-            font-size: 1.8em; /* <--- 主要修改点：增大字体大小 */
-            font-weight: bold; /* <--- 可选：如果希望更粗 */
+            font-size: 1.8em;
+            /* <--- 主要修改点：增大字体大小 */
+            font-weight: bold;
+            /* <--- 可选：如果希望更粗 */
         }
+
         /* 移除第一个居中项的左边距，防止它看起来不那么居中 */
         .table-of-contents ul li:first-child a {
             padding-left: 0;
         }
+
         /* --- 新增代码结束 --- */
-    
+
         .table-of-contents a {
             color: #333;
             text-decoration: none;
             transition: all 0.3s;
             display: block;
         }
-    
+
         .table-of-contents a:hover {
             color: #0066cc;
             text-decoration: underline;
             padding-left: 5px;
         }
-    
+
         /* 页码样式 */
         .page-number {
             position: absolute;
@@ -231,7 +256,7 @@
             font-size: 0.9em;
             color: #666;
         }
-    
+
         /* 手动重试按钮样式 */
         .retry-button {
             margin-top: 10px;
@@ -245,22 +270,22 @@
             font-size: 1em;
             transition: background-color 0.3s;
         }
-    
+
         .retry-button:hover {
             background-color: #aaa;
         }
-    
+
         /* 链接样式 */
         .source-link {
             margin-left: 10px;
             color: #555;
             text-decoration: none;
         }
-    
+
         .source-link:hover {
             text-decoration: underline;
         }
-    
+
         /* 加载提示样式 */
         .loading-tip {
             color: #666;
@@ -268,7 +293,7 @@
             text-align: center;
             font-size: 1.1em;
         }
-    
+
         /* 打印样式优化 */
         @media print {
             body {
@@ -276,7 +301,7 @@
                 padding: 0;
                 font-family: "Microsoft YaHei", "SimHei", sans-serif;
             }
-    
+
             #logo-page,
             #content-wrapper {
                 box-shadow: none;
@@ -286,35 +311,35 @@
                 height: 29.7cm;
                 page-break-after: always;
             }
-    
+
             #content-wrapper:last-child {
                 page-break-after: avoid;
             }
-    
+
             .header-logo {
                 max-width: 560px;
                 max-height: 124px;
             }
-    
+
             .table-of-contents {
                 display: none;
             }
-    
+
             .page-number {
                 display: block;
             }
-    
+
             #markdown-content h1,
             #markdown-content h2,
             #markdown-content h3 {
                 page-break-after: avoid;
             }
-    
+
             #markdown-content table,
             #markdown-content img {
                 page-break-inside: avoid;
             }
-    
+
             /* 打印时主标题和目录不显示（只在电子稿显示） */
             #main-title,
             .table-of-contents {
@@ -410,7 +435,7 @@
 
                 // 创建目录列表项
                 const listItem = document.createElement('li');
-                
+
                 if (header.tagName === 'H2') {
                     listItem.classList.add('toc-h2');
                 } else if (header.tagName === 'H3') {
@@ -431,7 +456,7 @@
             try {
                 // 1. 读取Markdown文件
                 const markdownContent = await fetchWithRetry(mdFilePath, retryCount);
-                
+
                 // 2. 解析Markdown为HTML
                 const htmlContent = marked.parse(markdownContent);
                 document.getElementById('markdown-content').innerHTML = htmlContent;
@@ -461,7 +486,7 @@
             document.getElementById('source-link').style.display = 'none';
             document.getElementById('loading-tip').textContent = '正在重新加载...';
             document.getElementById('loading-tip').style.display = 'block';
-            
+
             // 重新加载
             await loadMarkdown();
         });
