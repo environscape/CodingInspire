@@ -172,35 +172,35 @@
             margin: 2em 0;
         }
 
-        /* 主标题样式（Markdown的标题） */
+        /* 主标题样式（Markdown的标题）- 字体大小减小 */
         #main-title {
             text-align: center;
             margin-bottom: 2em;
         }
 
         #main-title h1 {
-            font-size: 2.8em; /* 更大的字体 */
+            font-size: 2.8em; /* 恢复为原来的大字体 */
             color: #2c3e50;
             margin-bottom: 0.3em;
             font-weight: bold;
-            letter-spacing: 2px; /* 增加字间距，更美观 */
+            letter-spacing: 2px;
         }
 
-        /* 目录样式调整 - 居中显示 */
+        /* 目录样式调整 - 目录标题字体增大，仅标题居中 */
         .table-of-contents {
             margin: 3em auto;
             padding: 2em;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             background-color: #f9f9f9;
-            text-align: center;
-            max-width: 80%; /* 限制目录宽度，避免太宽 */
+            text-align: center; /* 仅标题居中 */
+            max-width: 80%;
         }
 
         .table-of-contents h2 {
             margin-top: 0;
             color: #333;
-            font-size: 2em; /* 目录标题放大 */
+            font-size: 2em; /* 恢复为原来的小字体 */
             margin-bottom: 1.5em;
             font-weight: bold;
         }
@@ -209,7 +209,7 @@
             list-style-type: none;
             padding: 0;
             display: inline-block; /* 让列表居中 */
-            text-align: left;
+            text-align: left; /* 列表内容左对齐 */
         }
 
         .table-of-contents ul li {
@@ -336,9 +336,9 @@
         <img src="codinginspire.png" alt="Logo" class="header-logo">
     </div>
 
-    <!-- 内容页 -->
+    <!-- 内容页 - 标题放在目录上方 -->
     <div id="content-wrapper">
-        <div id="main-title"></div> <!-- Markdown标题容器 -->
+        <div id="main-title"></div> <!-- Markdown标题容器（现在在目录上方） -->
         <div class="table-of-contents" id="table-of-contents"></div> <!-- 目录容器 -->
         <div id="markdown-content"></div> <!-- Markdown内容容器 -->
         <div class="page-number" id="page-number"></div> <!-- 页码 -->
