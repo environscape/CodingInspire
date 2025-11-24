@@ -99,7 +99,7 @@
 
         /* 链接样式 */
         #markdown-content a {
-            color: #2980b9;
+            color: #444;
             text-decoration: none;
         }
 
@@ -172,37 +172,61 @@
             margin: 2em 0;
         }
 
-        /* 目录样式 */
-        .table-of-contents {
+        /* 主标题样式（Markdown的标题） */
+        #main-title {
+            text-align: center;
             margin-bottom: 2em;
-            padding: 1em;
+        }
+
+        #main-title h1 {
+            font-size: 2.8em; /* 更大的字体 */
+            color: #2c3e50;
+            margin-bottom: 0.3em;
+            font-weight: bold;
+            letter-spacing: 2px; /* 增加字间距，更美观 */
+        }
+
+        /* 目录样式调整 - 居中显示 */
+        .table-of-contents {
+            margin: 3em auto;
+            padding: 2em;
             border: 1px solid #e0e0e0;
-            border-radius: 4px;
+            border-radius: 8px;
             background-color: #f9f9f9;
+            text-align: center;
+            max-width: 80%; /* 限制目录宽度，避免太宽 */
         }
 
         .table-of-contents h2 {
             margin-top: 0;
             color: #333;
-            font-size: 1.2em;
+            font-size: 2em; /* 目录标题放大 */
+            margin-bottom: 1.5em;
+            font-weight: bold;
         }
 
         .table-of-contents ul {
             list-style-type: none;
             padding: 0;
+            display: inline-block; /* 让列表居中 */
+            text-align: left;
         }
 
         .table-of-contents ul li {
-            margin-bottom: 0.3em;
+            margin-bottom: 1em;
+            font-size: 1.1em;
         }
 
         .table-of-contents a {
             color: #333;
             text-decoration: none;
+            transition: all 0.3s;
         }
 
         .table-of-contents a:hover {
+            color: #444;
             text-decoration: underline;
+            padding-left: 5px;
         }
 
         /* 页码样式 */
@@ -218,22 +242,24 @@
         .retry-button {
             margin-top: 10px;
             padding: 10px 20px;
-            background-color: #3498db;
+            background-color: #444;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-family: inherit;
+            font-size: 1em;
+            transition: background-color 0.3s;
         }
 
         .retry-button:hover {
-            background-color: #2980b9;
+            background-color: #aaa;
         }
 
         /* 链接样式 */
         .source-link {
             margin-left: 10px;
-            color: #3498db;
+            color: #555;
             text-decoration: none;
         }
 
@@ -246,6 +272,7 @@
             color: #666;
             margin-top: 10px;
             text-align: center;
+            font-size: 1.1em;
         }
 
         /* 打印样式优化 */
@@ -293,6 +320,12 @@
             #markdown-content img {
                 page-break-inside: avoid;
             }
+
+            /* 打印时主标题和目录不显示（只在电子稿显示） */
+            #main-title,
+            .table-of-contents {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -305,34 +338,43 @@
 
     <!-- 内容页 -->
     <div id="content-wrapper">
-        <div class="table-of-contents" id="table-of-contents"></div>
-        <div id="markdown-content"></div>
-        <div class="page-number" id="page-number"></div>
+        <div id="main-title"></div> <!-- Markdown标题容器 -->
+        <div class="table-of-contents" id="table-of-contents"></div> <!-- 目录容器 -->
+        <div id="markdown-content"></div> <!-- Markdown内容容器 -->
+        <div class="page-number" id="page-number"></div> <!-- 页码 -->
     </div>
 
+    <!-- 加载状态提示 -->
     <div style="text-align: center; margin-top: 20px;">
         <button class="retry-button" id="retry-button" style="display: none;">手动重试</button>
         <a href="#" class="source-link" id="source-link" style="display: none;"></a>
-        <p class="loading-tip" id="loading-tip" style="display: block;">正在加载中 请稍后</p>
+        <p class="loading-tip" id="loading-tip" style="display: block;">正在加载中 请稍后...</p>
     </div>
 
     <script>
+        // 获取当前HTML文件对应的Markdown文件路径
         const currentUrl = window.location.href;
         const newUrl = currentUrl.replace('.html', '.md');
         const mdFilePath = newUrl;
 
+        // 重试配置
         const maxRetries = 3;
         const retryInterval = 1000;
         let retryCount = 0;
 
+        /**
+         * 带重试机制的fetch请求
+         * @param {string} url - 请求地址
+         * @param {number} retries - 当前重试次数
+         * @returns {Promise<string>} - Markdown内容
+         */
         const fetchWithRetry = async (url, retries = 0) => {
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                const data = await response.text();
-                return data;
+                return await response.text();
             } catch (error) {
                 if (retries < maxRetries) {
                     console.log(`请求失败，正在重试（第 ${retries + 1} 次）...`);
@@ -340,61 +382,102 @@
                     return fetchWithRetry(url, retries + 1);
                 }
                 console.error('请求失败，已达到最大重试次数:', error);
+                // 显示错误状态
                 document.getElementById('retry-button').style.display = 'block';
                 const sourceLink = document.getElementById('source-link');
                 sourceLink.href = mdFilePath;
-                sourceLink.textContent = mdFilePath;
-                sourceLink.style.display = 'block';
-                document.getElementById('loading-tip').textContent = '加载失败，请检查网络或重试';
+                sourceLink.textContent = `查看源文件: ${mdFilePath}`;
+                sourceLink.style.display = 'inline-block';
+                document.getElementById('loading-tip').textContent = '加载失败，请检查网络或点击重试';
                 throw error;
             }
         };
 
+        /**
+         * 生成目录（从Markdown的h2、h3标题）
+         */
+        const generateTOC = () => {
+            const tocContainer = document.getElementById('table-of-contents');
+            const contentContainer = document.getElementById('markdown-content');
+            const headers = contentContainer.querySelectorAll('h2, h3'); // 只取h2和h3作为目录
+            const tocList = document.createElement('ul');
+
+            // 生成目录标题
+            const tocHeader = document.createElement('h2');
+            tocHeader.textContent = '目录';
+            tocContainer.appendChild(tocHeader);
+
+            // 遍历标题生成目录项
+            headers.forEach(header => {
+                // 为标题添加唯一ID（用于锚点跳转）
+                const id = header.id || `section-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                header.id = id;
+
+                // 创建目录链接
+                const link = document.createElement('a');
+                link.href = `#${id}`;
+                link.textContent = header.textContent;
+
+                // 创建目录列表项（h3添加缩进）
+                const listItem = document.createElement('li');
+                if (header.tagName === 'H3') {
+                    listItem.style.paddingLeft = '1.5em';
+                    listItem.style.fontSize = '1em';
+                }
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            tocContainer.appendChild(tocList);
+        };
+
+        /**
+         * 加载并渲染Markdown内容
+         */
         const loadMarkdown = async () => {
             try {
-                const data = await fetchWithRetry(mdFilePath, retryCount);
-                const html = marked.parse(data);
-                document.getElementById('markdown-content').innerHTML = html;
+                // 1. 读取Markdown文件
+                const markdownContent = await fetchWithRetry(mdFilePath, retryCount);
+                
+                // 2. 解析Markdown为HTML
+                const htmlContent = marked.parse(markdownContent);
+                document.getElementById('markdown-content').innerHTML = htmlContent;
 
-                const generateTOC = () => {
-                    const toc = document.getElementById('table-of-contents');
-                    const headers = document.querySelectorAll('#markdown-content h2, #markdown-content h3');
-                    const tocList = document.createElement('ul');
+                // 3. 提取Markdown的第一个h1作为主标题
+                const firstH1 = document.querySelector('#markdown-content h1');
+                if (firstH1) {
+                    const mainTitleContainer = document.getElementById('main-title');
+                    mainTitleContainer.innerHTML = `<h1>${firstH1.textContent}</h1>`;
+                    firstH1.remove(); // 从内容中移除原h1（避免重复显示）
+                }
 
-                    headers.forEach(header => {
-                        const id = header.id || `section-${Date.now()}-${Math.random()}`;
-                        header.id = id;
-                        const link = document.createElement('a');
-                        link.href = `#${id}`;
-                        link.textContent = header.textContent;
-                        const listItem = document.createElement('li');
-                        listItem.appendChild(link);
-                        tocList.appendChild(listItem);
-                    });
-
-                    const tocHeader = document.createElement('h2');
-                    tocHeader.textContent = '目录';
-                    toc.appendChild(tocHeader);
-                    toc.appendChild(tocList);
-                };
-
+                // 4. 生成目录
                 generateTOC();
+
+                // 5. 更新页码（内容页从第2页开始）
+                document.getElementById('page-number').textContent = '2';
+
+                // 6. 隐藏加载提示
                 document.getElementById('loading-tip').style.display = 'none';
-                document.getElementById('page-number').textContent = '2'; // 内容页从第2页开始
 
             } catch (error) {
-                console.error('处理 Markdown 文件时出错:', error);
+                console.error('处理Markdown文件时出错:', error);
             }
         };
 
+        // 初始化加载
         loadMarkdown();
 
+        // 绑定重试按钮事件
         document.getElementById('retry-button').addEventListener('click', async () => {
+            // 重置状态
             retryCount++;
             document.getElementById('retry-button').style.display = 'none';
             document.getElementById('source-link').style.display = 'none';
+            document.getElementById('loading-tip').textContent = '正在重新加载...';
             document.getElementById('loading-tip').style.display = 'block';
-            document.getElementById('loading-tip').textContent = '正在加载中 请稍后...';
+            
+            // 重新加载
             await loadMarkdown();
         });
     </script>
