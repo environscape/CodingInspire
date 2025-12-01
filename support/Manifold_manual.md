@@ -67,8 +67,8 @@
 每个输出接口左上方包含一个Led指示灯，用于提示输出的电平。在Manifold的程序中，Gate输出与CV输出都被视为0-4095的数值，因此它们都可以使用这些接口输出。  
 
 <figure>
-    <img src="Manifold_Screen.png" alt="屏幕主界面" width="280" height="160">
-    <figcaption>模块屏幕主界面</figcaption>
+    <img src="Manifold_Screen1.png" alt="屏幕主界面" width="280" height="160">
+    <figcaption>模块屏幕主界面-路由界面</figcaption>
 </figure>
 
 ### 8. 屏幕-下标指示器    
@@ -121,6 +121,11 @@ P3旋钮则用来修改当前模块的类型，您需要单击P3，屏幕此时�
 
 #### 回到P3旋钮初始状态
 最后再次点击P3时，P3将循环回到初始状态，此时它不修改任何参数，以防止您可能误旋转导致模块被轻易改变类型或者改变输出路由的。  
+
+<figure>
+    <img src="Manifold_Screen2.png" alt="屏幕主界面" width="280" height="160">
+    <figcaption>模块屏幕主界面-参数界面</figcaption>
+</figure>
 
 ### 12. 屏幕-Param View 参数界面  
 
