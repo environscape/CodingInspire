@@ -7,12 +7,15 @@
     <style>
         /* 页面整体样式 - 模拟PDF */
         body {
-            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+            /* 核心字体设置：优先微软雅黑，添加更多备选字体确保兼容性 */
+            font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", "Microsoft JhengHei", "微软正黑体", Arial, sans-serif;
             margin: 0;
             padding: 50px;
             background-color: #f0f0f0;
             color: #333;
             line-height: 1.8;
+            /* 基础字体缩小（原无明确设置，现在统一设置为0.95em作为基准） */
+            font-size: 0.95em;
         }
 
         /* 内容容器 - 模拟纸张 */
@@ -24,6 +27,8 @@
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: relative;
+            /* 继承body字体，确保容器内所有元素统一字体 */
+            font-family: inherit;
         }
 
         /* Logo页面样式 */
@@ -37,6 +42,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: inherit;
         }
 
         /* Logo图片样式 */
@@ -50,61 +56,78 @@
         /* 显示 Markdown 内容的容器样式 */
         #markdown-content {
             margin-top: 20px;
+            font-family: inherit; /* 继承父容器字体 */
         }
 
-        /* 段落样式 */
+        /* 段落样式 - 字体缩小（原1.1em → 1.0em） */
         #markdown-content p {
-            margin-bottom: 1em;
+            margin-top: 0.4em;
+            margin-bottom: 1.2em;
             text-align: justify;
             text-justify: inter-ideograph;
+            font-size: 1.0em; /* 缩小 */
+            line-height: 1.9;
+            /* 继承字体，无需重复设置 */
         }
 
-        /* 列表样式 */
+        /* 列表样式 - 字体缩小（原1.1em → 1.0em） */
         #markdown-content ul,
         #markdown-content ol {
             padding-left: 2em;
-            margin-bottom: 1em;
+            margin-top: 0.3em;
+            margin-bottom: 1.2em;
+            font-size: 1.0em; /* 缩小 */
+            font-family: inherit;
         }
 
         #markdown-content li {
-            margin-bottom: 0.5em;
+            margin-bottom: 0.6em;
+            line-height: 1.9;
+            font-family: inherit;
         }
 
         /* 链接样式 */
         #markdown-content a {
             color: #444;
             text-decoration: none;
+            font-family: inherit;
         }
 
         #markdown-content a:hover {
             text-decoration: underline;
         }
 
-        /* 代码块样式 */
+        /* 代码块样式 - 字体缩小（原0.95em → 0.9em） */
         #markdown-content pre {
             background-color: #f8f8f8;
             border: 1px solid #e0e0e0;
             border-radius: 4px;
             padding: 1em;
             overflow-x: auto;
-            margin-bottom: 1em;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 0.9em;
+            margin-top: 0.3em;
+            margin-bottom: 1.2em;
+            /* 代码块保留等宽字体，这是行业惯例 */
+            font-family: "Courier New", Courier, monospace, "Microsoft YaHei";
+            font-size: 0.9em; /* 缩小 */
         }
 
         #markdown-content code {
             background-color: #f8f8f8;
             padding: 0.2em 0.4em;
             border-radius: 4px;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 0.9em;
+            /* 行内代码同样保留等宽字体 */
+            font-family: "Courier New", Courier, monospace, "Microsoft YaHei";
+            font-size: 0.9em; /* 缩小 */
         }
 
-        /* 表格样式 */
+        /* 表格样式 - 字体缩小（原1.05em → 0.95em） */
         #markdown-content table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 1em;
+            margin-top: 0.3em;
+            margin-bottom: 1.2em;
+            font-size: 0.95em; /* 缩小 */
+            font-family: inherit;
         }
 
         #markdown-content th,
@@ -112,6 +135,7 @@
             border: 1px solid #e0e0e0;
             padding: 0.5em 1em;
             text-align: left;
+            font-family: inherit;
         }
 
         #markdown-content th {
@@ -119,71 +143,124 @@
             font-weight: bold;
         }
 
-        /* 图片容器（figure）样式 - 让整个图片+说明文字居中 */
+        /* 图片容器（figure）样式 */
         #markdown-content figure {
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* 子元素水平居中 */
-            margin: 1.5em auto;
-            /* 上下间距，左右自动居中 */
+            margin-top: 0.5em;
+            margin-bottom: 2em;
         }
 
-        /* 图片样式 - 保持原有样式，去掉多余margin避免冲突 */
+        /* 图片样式 */
         #markdown-content figure img {
             max-width: 100%;
             height: auto;
             display: block;
             border: 1px solid #e0e0e0;
             padding: 5px;
-            /* 这里不需要再写 margin: 1em auto; ，由 figure 控制居中 */
         }
 
-        /* 图片说明文字（figcaption）样式 - 居中+优化样式 */
+        /* 图片说明文字 - 字体缩小（原1.0em → 0.95em） */
         #markdown-content figcaption {
             text-align: center;
             font-style: italic;
             color: #666;
             margin-top: 0.8em;
-            font-size: 0.95em;
+            font-size: 0.95em; /* 缩小 */
+            font-family: inherit;
         }
 
-        /* 引用样式 */
+        /* 引用样式 - 字体缩小（原1.05em → 0.95em） */
         #markdown-content blockquote {
             border-left: 4px solid #e0e0e0;
             padding-left: 1em;
             margin-left: 0;
+            margin-top: 0.5em;
+            margin-bottom: 1.2em;
             font-style: italic;
             color: #666;
+            font-size: 0.95em; /* 缩小 */
+            font-family: inherit;
         }
 
         /* 分割线样式 */
         #markdown-content hr {
             border: none;
             border-top: 1px solid #e0e0e0;
-            margin: 2em 0;
+            margin: 2.5em 0;
         }
 
-        /* 主标题样式（Markdown的标题） */
+        /* 主标题样式 - 字体缩小（原2.8em → 2.5em） */
         #main-title {
             text-align: center;
             margin-bottom: 2em;
+            font-family: inherit;
         }
 
         #main-title h1 {
-            font-size: 2.8em;
+            font-size: 2.5em; /* 缩小 */
             color: #2c3e50;
             margin-bottom: 0.3em;
             font-weight: bold;
             letter-spacing: 2px;
+            font-family: inherit;
         }
+
+        /* ------------ Markdown标题样式（全部缩小） ------------ */
+        #markdown-content h1,
+        #markdown-content h2,
+        #markdown-content h3,
+        #markdown-content h4,
+        #markdown-content h5,
+        #markdown-content h6 {
+            margin-top: 2.2em;
+            margin-bottom: 0.15em;
+            color: #2c3e50;
+            font-weight: bold;
+            font-family: inherit; /* 标题继承全局字体 */
+        }
+
+        /* 分级调整：所有标题字体都缩小 */
+        #markdown-content h1 {
+            font-size: 2.0em; /* 原2.2em → 缩小 */
+            margin-top: 3em;
+            margin-bottom: 0.2em;
+        }
+        #markdown-content h2 {
+            font-size: 1.6em; /* 原1.8em → 缩小 */
+            margin-top: 2.5em;
+            margin-bottom: 0.15em;
+        }
+        #markdown-content h3 {
+            font-size: 1.3em; /* 原1.5em → 缩小 */
+            margin-top: 2em;
+            margin-bottom: 0.15em;
+        }
+        #markdown-content h4 {
+            font-size: 1.1em; /* 原1.3em → 缩小 */
+            margin-top: 1.8em;
+            margin-bottom: 0.1em;
+        }
+        #markdown-content h5 {
+            font-size: 1.0em; /* 原1.2em → 缩小 */
+            margin-top: 1.6em;
+            margin-bottom: 0.1em;
+        }
+        #markdown-content h6 {
+            font-size: 0.95em; /* 原1.1em → 缩小 */
+            margin-top: 1.5em;
+            margin-bottom: 0.1em;
+        }
+        /* ------------ 标题样式修改结束 ------------ */
 
         /* 用于防止margin塌陷的包装器 */
         .toc-wrapper {
             overflow: hidden;
+            font-family: inherit;
         }
 
-        /* 目录样式调整 */
+        /* 目录样式 - 保持原样，不缩小 */
         .table-of-contents {
             margin: 0 auto 3em;
             padding: 2em;
@@ -191,55 +268,54 @@
             border-radius: 8px;
             background-color: #f9f9f9;
             max-width: 80%;
+            font-family: inherit;
         }
 
         .table-of-contents ul {
             list-style-type: none;
             padding: 0;
             text-align: left;
-            /* 确保整个列表默认是左对齐的 */
+            font-family: inherit;
         }
 
         .table-of-contents ul li {
             margin-bottom: 0.8em;
+            font-family: inherit;
         }
 
-        /* 目录级别样式 */
+        /* 目录级别样式 - 保持原样 */
         .table-of-contents .toc-h2 {
-            font-size: 1.2em;
+            font-size: 1.2em; /* 保持不变 */
             font-weight: bold;
+            font-family: inherit;
         }
 
-        /* --- 修改点：减小了 h3 对应的目录项字体大小 --- */
         .table-of-contents .toc-h3 {
-            font-size: 0.9em;
-            /* 从 1em 调整为 0.9em */
+            font-size: 0.9em; /* 保持不变 */
             padding-left: 1.5em;
+            font-family: inherit;
         }
 
-        /* --- 新增代码开始 --- */
-        /* 让目录的第一行（通常是第一个h2）居中显示并增大字体 */
+        /* 目录第一行样式 - 保持原样 */
         .table-of-contents ul li:first-child {
             text-align: center;
             margin-bottom: 1.5em;
-            font-size: 1.8em;
-            /* <--- 主要修改点：增大字体大小 */
+            font-size: 1.8em; /* 保持不变 */
             font-weight: bold;
-            /* <--- 可选：如果希望更粗 */
+            font-family: inherit;
         }
 
-        /* 移除第一个居中项的左边距，防止它看起来不那么居中 */
         .table-of-contents ul li:first-child a {
             padding-left: 0;
+            font-family: inherit;
         }
-
-        /* --- 新增代码结束 --- */
 
         .table-of-contents a {
             color: #333;
             text-decoration: none;
             transition: all 0.3s;
             display: block;
+            font-family: inherit;
         }
 
         .table-of-contents a:hover {
@@ -248,16 +324,17 @@
             padding-left: 5px;
         }
 
-        /* 页码样式 */
+        /* 页码样式 - 字体缩小（原0.9em → 0.85em） */
         .page-number {
             position: absolute;
             bottom: 2cm;
             right: 2.5cm;
-            font-size: 0.9em;
+            font-size: 0.85em; /* 缩小 */
             color: #666;
+            font-family: inherit;
         }
 
-        /* 手动重试按钮样式 */
+        /* 手动重试按钮 - 字体缩小（原1.0em → 0.95em） */
         .retry-button {
             margin-top: 10px;
             padding: 10px 20px;
@@ -266,8 +343,8 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-family: inherit;
-            font-size: 1em;
+            font-family: inherit; /* 按钮继承全局字体 */
+            font-size: 0.95em; /* 缩小 */
             transition: background-color 0.3s;
         }
 
@@ -280,18 +357,21 @@
             margin-left: 10px;
             color: #555;
             text-decoration: none;
+            font-family: inherit;
+            font-size: 0.95em; /* 缩小 */
         }
 
         .source-link:hover {
             text-decoration: underline;
         }
 
-        /* 加载提示样式 */
+        /* 加载提示 - 字体缩小（原1.1em → 1.0em） */
         .loading-tip {
             color: #666;
             margin-top: 10px;
             text-align: center;
-            font-size: 1.1em;
+            font-size: 1.0em; /* 缩小 */
+            font-family: inherit;
         }
 
         /* 打印样式优化 */
@@ -299,7 +379,9 @@
             body {
                 background-color: white;
                 padding: 0;
-                font-family: "Microsoft YaHei", "SimHei", sans-serif;
+                /* 打印时同样保持统一字体 */
+                font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", Arial, sans-serif;
+                font-size: 0.95em; /* 同步缩小 */
             }
 
             #logo-page,
@@ -310,6 +392,7 @@
                 width: 21cm;
                 height: 29.7cm;
                 page-break-after: always;
+                font-family: inherit;
             }
 
             #content-wrapper:last-child {
@@ -327,6 +410,7 @@
 
             .page-number {
                 display: block;
+                font-size: 0.85em; /* 同步缩小 */
             }
 
             #markdown-content h1,
@@ -340,7 +424,7 @@
                 page-break-inside: avoid;
             }
 
-            /* 打印时主标题和目录不显示（只在电子稿显示） */
+            /* 打印时主标题和目录不显示 */
             #main-title,
             .table-of-contents {
                 display: none;
@@ -461,13 +545,13 @@
                 const htmlContent = marked.parse(markdownContent);
                 document.getElementById('markdown-content').innerHTML = htmlContent;
 
-                // 4. 生成目录
+                // 3. 生成目录
                 generateTOC();
 
-                // 5. 更新页码（内容页从第2页开始）
+                // 4. 更新页码（内容页从第2页开始）
                 document.getElementById('page-number').textContent = '2';
 
-                // 6. 隐藏加载提示
+                // 5. 隐藏加载提示
                 document.getElementById('loading-tip').style.display = 'none';
 
             } catch (error) {
