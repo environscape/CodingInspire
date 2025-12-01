@@ -7,13 +7,19 @@
 ##### 软件版本 v1.00 文档更新日期 2025-11-18
 
 
+## 一、快速入门
+
 <figure>
 <img src="Manifold_Structure.png" alt="" width="640" height="800">
-    <figcaption>模块结构图</figcaption>
+    <figcaption>模块简介</figcaption>
 </figure>
 
+<figure>
+<img src="Manifold_Quickstart.png" alt="" width="960" height="480">
+    <figcaption>模块操作概述</figcaption>
+</figure>
 
-## 一、模块操作与接口详解
+## 二、模块操作与接口详解
 
 #### Manifold的操作逻辑基于12个并列的内部调制模块与对应的参数，您可以自由路由这些内部模块之间的调制关系以及输入输出接口, 每个内部模块包含三个参数，两个输入，一个输出。
 
@@ -142,7 +148,7 @@ P3旋钮则用来修改当前模块的类型，您需要单击P3，屏幕此时�
     <figcaption>模块工作流说明</figcaption>
 </figure>
 
-## 二、各个模块功能详解
+## 三、各个模块功能详解
 
 #### 您可以随时通过<>旋钮切换多个模块，当您处于某个模块之下，您可以查阅以下文档用于了解参数以及调制内容。
 
