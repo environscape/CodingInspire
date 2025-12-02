@@ -5,16 +5,14 @@
     <link rel="icon" href="../icon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        /* 页面整体样式 - 模拟PDF */
+        /* 页面整体样式 - 模拟PDF              font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", "Microsoft JhengHei", "微软正黑体", Arial, sans-serif;
+*/
         body {
-            /* 核心字体设置：优先微软雅黑，添加更多备选字体确保兼容性 */
-            font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", "Microsoft JhengHei", "微软正黑体", Arial, sans-serif;
             margin: 0;
             padding: 50px;
             background-color: #f0f0f0;
             color: #333;
             line-height: 1.8;
-            /* 基础字体缩小（原无明确设置，现在统一设置为0.95em作为基准） */
             font-size: 0.95em;
         }
 
@@ -27,7 +25,6 @@
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: relative;
-            /* 继承body字体，确保容器内所有元素统一字体 */
             font-family: inherit;
         }
 
@@ -56,27 +53,27 @@
         /* 显示 Markdown 内容的容器样式 */
         #markdown-content {
             margin-top: 20px;
-            font-family: inherit; /* 继承父容器字体 */
+            font-family: inherit;
         }
 
-        /* 段落样式 - 字体缩小（原1.1em → 1.0em） */
+        /* 段落样式 */
         #markdown-content p {
-            margin-top: 0.4em;
-            margin-bottom: 1.2em;
+            color: #666666;
+            margin-top: 0.0em;
+            margin-bottom: 1.0em;
             text-align: justify;
             text-justify: inter-ideograph;
-            font-size: 1.0em; /* 缩小 */
-            line-height: 1.9;
-            /* 继承字体，无需重复设置 */
+            font-size: 1.0em;
+            line-height: 1.6;
         }
 
-        /* 列表样式 - 字体缩小（原1.1em → 1.0em） */
+        /* 列表样式 */
         #markdown-content ul,
         #markdown-content ol {
             padding-left: 2em;
             margin-top: 0.3em;
             margin-bottom: 1.2em;
-            font-size: 1.0em; /* 缩小 */
+            font-size: 1.0em;
             font-family: inherit;
         }
 
@@ -97,7 +94,7 @@
             text-decoration: underline;
         }
 
-        /* 代码块样式 - 字体缩小（原0.95em → 0.9em） */
+        /* 代码块样式 */
         #markdown-content pre {
             background-color: #f8f8f8;
             border: 1px solid #e0e0e0;
@@ -106,27 +103,25 @@
             overflow-x: auto;
             margin-top: 0.3em;
             margin-bottom: 1.2em;
-            /* 代码块保留等宽字体，这是行业惯例 */
             font-family: "Courier New", Courier, monospace, "Microsoft YaHei";
-            font-size: 0.9em; /* 缩小 */
+            font-size: 0.9em;
         }
 
         #markdown-content code {
             background-color: #f8f8f8;
             padding: 0.2em 0.4em;
             border-radius: 4px;
-            /* 行内代码同样保留等宽字体 */
             font-family: "Courier New", Courier, monospace, "Microsoft YaHei";
-            font-size: 0.9em; /* 缩小 */
+            font-size: 0.9em;
         }
 
-        /* 表格样式 - 字体缩小（原1.05em → 0.95em） */
+        /* 表格样式 */
         #markdown-content table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.3em;
             margin-bottom: 1.2em;
-            font-size: 0.95em; /* 缩小 */
+            font-size: 0.95em;
             font-family: inherit;
         }
 
@@ -143,7 +138,7 @@
             font-weight: bold;
         }
 
-        /* 图片容器（figure）样式 */
+        /* 图片容器样式 */
         #markdown-content figure {
             display: flex;
             flex-direction: column;
@@ -161,17 +156,17 @@
             padding: 5px;
         }
 
-        /* 图片说明文字 - 字体缩小（原1.0em → 0.95em） */
+        /* 图片说明文字 */
         #markdown-content figcaption {
             text-align: center;
             font-style: italic;
             color: #666;
             margin-top: 0.8em;
-            font-size: 0.95em; /* 缩小 */
+            font-size: 0.95em;
             font-family: inherit;
         }
 
-        /* 引用样式 - 字体缩小（原1.05em → 0.95em） */
+        /* 引用样式 */
         #markdown-content blockquote {
             border-left: 4px solid #e0e0e0;
             padding-left: 1em;
@@ -180,7 +175,7 @@
             margin-bottom: 1.2em;
             font-style: italic;
             color: #666;
-            font-size: 0.95em; /* 缩小 */
+            font-size: 0.95em;
             font-family: inherit;
         }
 
@@ -191,7 +186,7 @@
             margin: 2.5em 0;
         }
 
-        /* 主标题样式 - 字体缩小（原2.8em → 2.5em） */
+        /* 主标题样式 */
         #main-title {
             text-align: center;
             margin-bottom: 2em;
@@ -199,7 +194,7 @@
         }
 
         #main-title h1 {
-            font-size: 2.5em; /* 缩小 */
+            font-size: 2.5em;
             color: #2c3e50;
             margin-bottom: 0.3em;
             font-weight: bold;
@@ -207,60 +202,60 @@
             font-family: inherit;
         }
 
-        /* ------------ Markdown标题样式（全部缩小） ------------ */
+        /* Markdown标题样式 */
         #markdown-content h1,
         #markdown-content h2,
         #markdown-content h3,
         #markdown-content h4,
         #markdown-content h5,
         #markdown-content h6 {
-            margin-top: 2.2em;
-            margin-bottom: 0.15em;
+            margin-top: 1.8em;
+            margin-bottom: 0.2em;
             color: #2c3e50;
             font-weight: bold;
-            font-family: inherit; /* 标题继承全局字体 */
+            font-family: inherit;
         }
 
-        /* 分级调整：所有标题字体都缩小 */
+        /* 分级调整 */
         #markdown-content h1 {
-            font-size: 2.0em; /* 原2.2em → 缩小 */
+            font-size: 2.0em;
             margin-top: 3em;
             margin-bottom: 0.2em;
         }
         #markdown-content h2 {
-            font-size: 1.6em; /* 原1.8em → 缩小 */
+            font-size: 1.6em;
             margin-top: 2.5em;
             margin-bottom: 0.15em;
         }
         #markdown-content h3 {
-            font-size: 1.3em; /* 原1.5em → 缩小 */
-            margin-top: 2em;
+            font-size: 1.3em;
+            margin-top: 2.2em;
             margin-bottom: 0.15em;
         }
         #markdown-content h4 {
-            font-size: 1.1em; /* 原1.3em → 缩小 */
+            font-size: 1.1em;
             margin-top: 1.8em;
             margin-bottom: 0.1em;
         }
         #markdown-content h5 {
-            font-size: 1.0em; /* 原1.2em → 缩小 */
+            font-size: 1.0em;
             margin-top: 1.6em;
             margin-bottom: 0.1em;
         }
         #markdown-content h6 {
-            font-size: 0.95em; /* 原1.1em → 缩小 */
-            margin-top: 1.5em;
-            margin-bottom: 0.1em;
+            color: #444;
+            font-size: 0.95em;
+            margin-top: 0.8em;
+            margin-bottom: 0.0em;
         }
-        /* ------------ 标题样式修改结束 ------------ */
 
-        /* 用于防止margin塌陷的包装器 */
+        /* 目录包装器 */
         .toc-wrapper {
             overflow: hidden;
             font-family: inherit;
         }
 
-        /* 目录样式 - 保持原样，不缩小 */
+        /* 目录样式 */
         .table-of-contents {
             margin: 0 auto 3em;
             padding: 2em;
@@ -283,33 +278,27 @@
             font-family: inherit;
         }
 
-        /* 目录级别样式 - 保持原样 */
-        .table-of-contents .toc-h2 {
-            font-size: 1.2em; /* 保持不变 */
+        /* 目录级别样式 - 保持层级感 */
+        .table-of-contents .toc-h1 { /* 第一个h1作为目录标题，样式突出 */
+            font-size: 1.8em;
             font-weight: bold;
-            font-family: inherit;
-        }
-
-        .table-of-contents .toc-h3 {
-            font-size: 0.9em; /* 保持不变 */
-            padding-left: 1.5em;
-            font-family: inherit;
-        }
-
-        /* 目录第一行样式 - 保持原样 */
-        .table-of-contents ul li:first-child {
             text-align: center;
             margin-bottom: 1.5em;
-            font-size: 1.8em; /* 保持不变 */
+            padding-left: 0 !important;
+        }
+
+        .table-of-contents .toc-h2 { /* h2作为一级目录项 */
+            font-size: 1.2em;
             font-weight: bold;
-            font-family: inherit;
+            padding-left: 0.8em;
         }
 
-        .table-of-contents ul li:first-child a {
-            padding-left: 0;
-            font-family: inherit;
+        .table-of-contents .toc-h3 { /* h3作为二级目录项 */
+            font-size: 0.9em;
+            padding-left: 2.3em;
         }
 
+        /* 目录链接样式 */
         .table-of-contents a {
             color: #333;
             text-decoration: none;
@@ -324,17 +313,17 @@
             padding-left: 5px;
         }
 
-        /* 页码样式 - 字体缩小（原0.9em → 0.85em） */
+        /* 页码样式 */
         .page-number {
             position: absolute;
             bottom: 2cm;
             right: 2.5cm;
-            font-size: 0.85em; /* 缩小 */
+            font-size: 0.85em;
             color: #666;
             font-family: inherit;
         }
 
-        /* 手动重试按钮 - 字体缩小（原1.0em → 0.95em） */
+        /* 重试按钮样式 */
         .retry-button {
             margin-top: 10px;
             padding: 10px 20px;
@@ -343,8 +332,8 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-family: inherit; /* 按钮继承全局字体 */
-            font-size: 0.95em; /* 缩小 */
+            font-family: inherit;
+            font-size: 0.95em;
             transition: background-color 0.3s;
         }
 
@@ -352,25 +341,25 @@
             background-color: #aaa;
         }
 
-        /* 链接样式 */
+        /* 源文件链接样式 */
         .source-link {
             margin-left: 10px;
             color: #555;
             text-decoration: none;
             font-family: inherit;
-            font-size: 0.95em; /* 缩小 */
+            font-size: 0.95em;
         }
 
         .source-link:hover {
             text-decoration: underline;
         }
 
-        /* 加载提示 - 字体缩小（原1.1em → 1.0em） */
+        /* 加载提示样式 */
         .loading-tip {
             color: #666;
             margin-top: 10px;
             text-align: center;
-            font-size: 1.0em; /* 缩小 */
+            font-size: 1.0em;
             font-family: inherit;
         }
 
@@ -379,9 +368,8 @@
             body {
                 background-color: white;
                 padding: 0;
-                /* 打印时同样保持统一字体 */
                 font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", Arial, sans-serif;
-                font-size: 0.95em; /* 同步缩小 */
+                font-size: 0.95em;
             }
 
             #logo-page,
@@ -410,7 +398,7 @@
 
             .page-number {
                 display: block;
-                font-size: 0.85em; /* 同步缩小 */
+                font-size: 0.85em;
             }
 
             #markdown-content h1,
@@ -424,7 +412,6 @@
                 page-break-inside: avoid;
             }
 
-            /* 打印时主标题和目录不显示 */
             #main-title,
             .table-of-contents {
                 display: none;
@@ -439,13 +426,16 @@
         <img src="codinginspire.png" alt="Logo" class="header-logo">
     </div>
 
-    <!-- 内容页 - 标题放在目录上方 -->
+    <!-- 内容页 - 目录容器（移除手动添加的固定“目录”标题） -->
     <div id="content-wrapper">
         <div class="toc-wrapper">
-            <div class="table-of-contents" id="table-of-contents"></div> <!-- 目录容器 -->
+            <div class="table-of-contents" id="table-of-contents">
+                <!-- 这里不再手动添加“目录”标题，留空让JS动态插入第一个h1 -->
+                <ul></ul>
+            </div>
         </div>
-        <div id="markdown-content"></div> <!-- Markdown内容容器 -->
-        <div class="page-number" id="page-number"></div> <!-- 页码 -->
+        <div id="markdown-content"></div>
+        <div class="page-number" id="page-number"></div>
     </div>
 
     <!-- 加载状态提示 -->
@@ -456,7 +446,7 @@
     </div>
 
     <script>
-        // 获取当前HTML文件对应的Markdown文件路径
+        // 获取当前HTML对应的Markdown文件路径
         const currentUrl = window.location.href;
         const newUrl = currentUrl.replace('.html', '.md');
         const mdFilePath = newUrl;
@@ -468,9 +458,6 @@
 
         /**
          * 带重试机制的fetch请求
-         * @param {string} url - 请求地址
-         * @param {number} retries - 当前重试次数
-         * @returns {Promise<string>} - Markdown内容
          */
         const fetchWithRetry = async (url, retries = 0) => {
             try {
@@ -486,7 +473,6 @@
                     return fetchWithRetry(url, retries + 1);
                 }
                 console.error('请求失败，已达到最大重试次数:', error);
-                // 显示错误状态
                 document.getElementById('retry-button').style.display = 'block';
                 const sourceLink = document.getElementById('source-link');
                 sourceLink.href = mdFilePath;
@@ -498,15 +484,17 @@
         };
 
         /**
-         * 生成目录（从Markdown的h2、h3标题）
+         * 生成目录：第一个h1作为目录标题，h2/h3作为子目录
          */
         const generateTOC = () => {
             const tocContainer = document.getElementById('table-of-contents');
             const contentContainer = document.getElementById('markdown-content');
-            const headers = contentContainer.querySelectorAll('h2, h3'); // 只取h2和h3作为目录
-            const tocList = document.createElement('ul');
+            const headers = contentContainer.querySelectorAll('h1, h2, h3'); // 包含h1
+            const tocList = tocContainer.querySelector('ul');
 
-            // 遍历标题生成目录项
+            // 标记是否已处理第一个h1（确保只取第一个h1作为目录标题）
+            let firstH1Processed = false;
+
             headers.forEach(header => {
                 // 为标题添加唯一ID（用于锚点跳转）
                 const id = header.id || `section-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
@@ -520,17 +508,43 @@
                 // 创建目录列表项
                 const listItem = document.createElement('li');
 
-                if (header.tagName === 'H2') {
-                    listItem.classList.add('toc-h2');
+                // 核心逻辑：第一个h1作为目录标题，后续h1不重复显示（如果有的话）
+                if (header.tagName === 'H1') {
+                    if (!firstH1Processed) {
+                        listItem.classList.add('toc-h1'); // 目录标题样式（突出显示）
+                        firstH1Processed = true; // 标记已处理，避免重复
+                    } else {
+                        // 如果Markdown有多个h1，后续h1作为普通目录项（可选：也可以用toc-h2样式）
+                        listItem.classList.add('toc-h1'); 
+                    }
+                } else if (header.tagName === 'H2') {
+                    listItem.classList.add('toc-h2'); // 一级目录项
                 } else if (header.tagName === 'H3') {
-                    listItem.classList.add('toc-h3');
+                    listItem.classList.add('toc-h3'); // 二级目录项
                 }
 
                 listItem.appendChild(link);
                 tocList.appendChild(listItem);
             });
+        };
 
-            tocContainer.appendChild(tocList);
+        /**
+         * 设置网页标题为第一个h1的内容
+         */
+        const setPageTitleFromFirstH1 = () => {
+            const contentContainer = document.getElementById('markdown-content');
+            // 找到第一个h1标签
+            const firstH1 = contentContainer.querySelector('h1');
+            
+            if (firstH1) {
+                // 如果找到h1，设置为网页标题
+                document.title = firstH1.textContent.trim();
+                console.log('网页标题已设置为:', document.title);
+            } else {
+                // 如果没有h1标签，使用默认标题
+                document.title = '文档预览';
+                console.log('未找到h1标签，使用默认标题');
+            }
         };
 
         /**
@@ -541,17 +555,20 @@
                 // 1. 读取Markdown文件
                 const markdownContent = await fetchWithRetry(mdFilePath, retryCount);
 
-                // 2. 解析Markdown为HTML
+                // 2. 解析为HTML并渲染
                 const htmlContent = marked.parse(markdownContent);
                 document.getElementById('markdown-content').innerHTML = htmlContent;
 
-                // 3. 生成目录
+                // 3. 关键修改：设置网页标题（从第一个h1提取）
+                setPageTitleFromFirstH1();
+
+                // 4. 生成目录（第一个h1作为目录标题）
                 generateTOC();
 
-                // 4. 更新页码（内容页从第2页开始）
+                // 5. 更新页码
                 document.getElementById('page-number').textContent = '2';
 
-                // 5. 隐藏加载提示
+                // 6. 隐藏加载提示
                 document.getElementById('loading-tip').style.display = 'none';
 
             } catch (error) {
@@ -562,19 +579,15 @@
         // 初始化加载
         loadMarkdown();
 
-        // 绑定重试按钮事件
+        // 重试按钮事件
         document.getElementById('retry-button').addEventListener('click', async () => {
-            // 重置状态
             retryCount++;
             document.getElementById('retry-button').style.display = 'none';
             document.getElementById('source-link').style.display = 'none';
             document.getElementById('loading-tip').textContent = '正在重新加载...';
             document.getElementById('loading-tip').style.display = 'block';
-
-            // 重新加载
             await loadMarkdown();
         });
     </script>
 </body>
-
 </html>
