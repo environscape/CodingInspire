@@ -67,20 +67,30 @@
             line-height: 1.6;
         }
 
-        /* 列表样式 */
+        /* 列表样式 - 关键修改：让列表与正文样式统一 */
         #markdown-content ul,
         #markdown-content ol {
             padding-left: 2em;
-            margin-top: 0.3em;
-            margin-bottom: 1.2em;
-            font-size: 1.0em;
+            margin-top: 0.0em; /* 与段落保持一致 */
+            margin-bottom: 1.0em; /* 与段落保持一致 */
+            font-size: 1.0em; /* 与正文相同 */
             font-family: inherit;
         }
 
         #markdown-content li {
-            margin-bottom: 0.6em;
-            line-height: 1.9;
+            margin-bottom: 0.3em; /* 适当调整，避免过于稀疏 */
+            line-height: 1.6; /* 与正文段落行高一致 */
+            color: #666666; /* 与正文颜色一致 */
             font-family: inherit;
+        }
+
+        /* 嵌套列表样式优化（可选，保持层级感） */
+        #markdown-content ul ul,
+        #markdown-content ol ol,
+        #markdown-content ul ol,
+        #markdown-content ol ul {
+            margin-top: 0.3em;
+            margin-bottom: 0.3em;
         }
 
         /* 链接样式 */
