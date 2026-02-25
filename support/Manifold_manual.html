@@ -28,26 +28,36 @@
             font-family: inherit;
         }
 
-        /* Logo页面样式 */
+        /* Logo页面样式 - 关键修改：移除padding，确保图片完全铺满 */
         #logo-page {
             max-width: 21cm;
             height: 29.7cm;
             margin: 0 auto 50px;
-            padding: 2.5cm;
+            /* 移除原有padding，避免图片和边缘有间距 */
+            padding: 0; 
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: inherit;
+            /* 防止图片溢出容器 */
+            overflow: hidden; 
         }
 
-        /* Logo图片样式 */
+            /* Logo图片样式 - 关键修改：让图片铺满容器 */
         .header-logo {
-            max-width: 560px;
-            max-height: 124px;
-            width: auto;
-            height: auto;
+            /* 移除原有尺寸限制 */
+            max-width: none;
+            max-height: none;
+            /* 让图片宽度和高度都铺满容器 */
+            width: 100%;
+            height: 100%;
+            /* 保持图片比例并铺满容器（裁剪超出部分），如果想完整显示图片用 object-fit: contain; */
+            object-fit: cover;
+            /* 移除图片边框/内边距（如果有的话） */
+            border: none;
+            padding: 0;
         }
 
         /* 显示 Markdown 内容的容器样式 */
@@ -398,8 +408,11 @@
             }
 
             .header-logo {
-                max-width: 560px;
-                max-height: 124px;
+                max-width: none;
+                max-height: none;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
 
             .table-of-contents {
@@ -433,7 +446,7 @@
 <body>
     <!-- Logo第一页 -->
     <div id="logo-page">
-        <img src="codinginspire.png" alt="Logo" class="header-logo">
+        <img src="Manifold_Cover.png" alt="Logo" class="header-logo">
     </div>
 
     <!-- 内容页 - 目录容器（移除手动添加的固定“目录”标题） -->
