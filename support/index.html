@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+    <title>Support</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <nav>
+        <a href="/CodingInspire">
+            <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Eurorack</a>
+            <a href="instrument.html">Instrument</a>
+            <a href="support.html">Support</a>
+            <div class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 轮播图 -->
+    <div class="slider">
+        <div class="slides" id="slides">
+            <div class="slide">
+                <img src="banner01.jpg" alt="轮播图 1">
+            </div>
+            <div class="slide">
+                <img src="banner02.jpg" alt="轮播图 2">
+            </div>
+            <div class="slide">
+                <img src="banner03.jpg" alt="轮播图 3">
+            </div>
+        </div>
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+    </div>
+
+    <!-- 轮播图与产品展示之间的空隙 -->
+    <div style="height: 40px;"> </div>
+
+    <div style="text-align: center; margin: 40px 0;">
+        <h5 style="font-size: 32px; font-weight: 400; margin-bottom: 20px;">手册以及固件</h5>
+        
+        <!-- 查看列表容器 -->
+        <div class="download-container" style="max-width: 800px; margin: 0 auto;">
+            <!-- 产品1分组 -->
+            <div class="product-group" style="margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #eee;">
+                <h6 style="font-size: 1.2em; color: #333; margin-bottom: 16px; text-align: left;">Manifold</h6>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0; border-bottom: 1px dashed #eee;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">固件</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">uf2固件 版本号v1.00</span>
+                    <a href="https://environscape.github.io/CodingInspire/support/Manifold_v1.00.uf2" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">获取</a>
+                </div>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">手册</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">使用手册</span>
+                    <a href="https://environscape.github.io/CodingInspire/support/Manifold_manual.html" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">查看</a>
+                </div>
+            </div>
+
+            <!-- 产品1分组 -->
+            <div class="product-group" style="margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #eee;">
+                <h6 style="font-size: 1.2em; color: #333; margin-bottom: 16px; text-align: left;">Polymorhpic OSC</h6>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0; border-bottom: 1px dashed #eee;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">固件</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">uf2固件 版本号v1.4</span>
+                    <a href="#" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">暂无</a>
+                </div>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">手册</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">使用手册（含扩展模块）</span>
+                    <a href="https://environscape.github.io/CodingInspire/support/Polymorphic_manual.html" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">查看</a>
+                </div>
+            </div>
+            
+            <!-- 产品2分组 -->
+            <div class="product-group" style="margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #eee;">
+                <h6 style="font-size: 1.2em; color: #333; margin-bottom: 16px; text-align: left;">MIDI Convert</h6>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0; border-bottom: 1px dashed #eee;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">固件</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">版本v4.1(开源)</span>
+                    <a href="https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.1" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">前往</a>
+                </div>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">手册</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">使用手册</span>
+                    <a href="https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.1" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">查看</a>
+                </div>
+            </div>
+
+            <!-- 产品4分组 -->
+            <div class="product-group" style="margin-bottom: 32px;">
+                <h6 style="font-size: 1.2em; color: #333; margin-bottom: 16px; text-align: left;">CV2MIDI</h6>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0; border-bottom: 1px dashed #eee;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">CV2MIDI映射配置与上传助手</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">v1.0</span>
+                    <a href="https://environscape.github.io/CodingInspire/support/CodingInspireCV2MIDIHelper_v1.0.zip" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">下载运行(无需安装)</a>
+                </div>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">手册</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">v2.0</span>
+                    <a href="https://environscape.github.io/CodingInspire/support/CV2MIDI.html" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">前往查看</a>
+                </div>
+            </div>
+
+            <!-- 产品5分组 -->
+            <div class="product-group" style="margin-bottom: 32px;">
+                <h6 style="font-size: 1.2em; color: #333; margin-bottom: 16px; text-align: left;">MIDI2GATE</h6>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0; border-bottom: 1px dashed #eee;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">固件</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">暂无</span>
+                    <a href="#" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">暂无</a>
+                </div>
+                
+                <div class="download-item" style="display: flex; align-items: center; padding: 12px 0;">
+                    <span class="download-type" style="color: #555; margin-right: 24px; min-width: 60px; text-align: left;">手册</span>
+                    <span class="download-title" style="flex: 1; text-align: left; color: #333;">暂无</span>
+                    <a href="#" class="download-link" style="color: #666; text-decoration: none; margin-left: 16px;">暂无</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增空白区域 -->
+    <div style="height: 120px;"></div>
+
+    <!-- 底部 品牌 信息 -->
+    <div class="brand-introduction">
+        <h5>-> Coding Inspire Modular | 编码灵感模块化</h5>
+        以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。
+        产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景
+        以极简形态承载丰富可能性，借助便捷的连接与多样的方式，
+        即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。
+
+        <h5>-> Coding Inspire Modular | Redefining Sound Creation</h5>
+        Innovative technology reshapes the boundaries of sound design. Sophisticated hardware
+        architecture and adaptive configuration systems endow modules with workflow efficiency
+        and unprecedented versatility. Each product functions as a dynamic sound tool—capable of
+        standalone operation or seamless integration via parameter blending and mode switching,
+        adapting effortlessly to diverse creative scenarios.
+        Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional
+        controls enable effortless modular networks, transforming fleeting inspirations into
+        experimental soundscapes. Technical barriers are dissolved, restoring modularity to its
+        purest artistic essence.
+    </div>
+
+    <!-- 新增灰色区域用于放置友情链接 -->
+    <div class="friend-links">
+        <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2" style="color: #ddd; text-decoration: none; margin: 0 32px;">淘宝购买</a>
+        <a href="https://www.midifan.com/" style="color: #ddd; text-decoration: none; margin: 0 32px;">midifan</a>
+        <a href="https://modulargrid.net/" style="color: #ddd; text-decoration: none; margin: 0 32px;">modular grid</a>
+        <a href="https://doepfer.de/" style="color: #ddd; text-decoration: none; margin: 0 32px;">doepfer</a>
+
+        <!-- 新增二维码区域（改为flex布局实现并列） -->
+        <div class="qr-code-container" style="margin-top: 32px; text-align: center; display: flex; justify-content: center; gap: 30px;">
+            <!-- 淘宝二维码 -->
+            <div class="qr-code-wrapper"
+                style="display: inline-block; background-color: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <img src="tb_qrcode.png" alt="淘宝店铺"
+                    style="width: 100px; height: 100px; display: block;">
+                <p style="margin-top: 10px; color: #000; font-size: 0.9em;">淘宝店铺</p>
+            </div>
+
+            <!-- 原有二维码 -->
+            <div class="qr-code-wrapper"
+                style="display: inline-block; background-color: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <img src="qrcode.png" alt="手机扫码查看"
+                    style="width: 100px; height: 100px; display: block;">
+                <p style="margin-top: 10px; color: #000; font-size: 0.9em;">手机扫码查看</p>
+            </div>
+        </div>
+
+        <!-- 新增版权信息区域，通过margin-top控制间距 -->
+        <div class="copyright" style="margin-top: 48px; color: #ddd; font-size: 0.9em;">
+            © 2023 - 2025 Coding Inspire Modular
+        </div>
+    </div>
+
+    <!-- Cookie提示条 -->
+    <div class="cookie-notice">
+        <p>We use cookies to improve your experience on our site. By continuing to use our site you consent to use our
+            cookies. Find out more <a href="#">here</a>.</p>
+        <button class="close-cookie">×</button>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        const closeButton = document.querySelector('.close-cookie');
+        const cookieNotice = document.querySelector('.cookie-notice');
+
+        closeButton.addEventListener('click', function () {
+            cookieNotice.style.display = 'none';
+        });
+
+        // 更新 img 的 alt 属性
+        const productItems = document.querySelectorAll('.product-item');
+        productItems.forEach(item => {
+            const img = item.querySelector('img');
+            const h3 = item.querySelector('h3');
+            if (img && h3) {
+                img.alt = h3.textContent;
+            }
+        });
+
+        /* 导航栏透明度动画的JavaScript实现 */
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('nav');
+            if (window.pageYOffset > 0) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+    </script>
+</body>
+
+</html>
