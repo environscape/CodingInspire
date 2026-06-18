@@ -2,73 +2,81 @@
   "products": [
     {
       "id": "1",
-      "name": "PolymorphicOsc",
-      "subtitle": "多模态数字振荡器",
-      "description": "多态数字振荡器",
-      "price": "$279",
+      "name": "Manifold",
+      "subtitle": "集成式数字调制器",
+      "description": "基于12个并列的内部调制模块与对应的参数，可自由路由模块间的调制关系以及输入输出接口",
+      "price": "$199",
       "image": "product (1).png",
       "category": "digital",
       "isNew": true,
-      "specs": "128x64像素1寸屏幕\n自带示波器展示输出波形让震荡更加理性\n每个振荡器都包含一些列可以调节和直接压控的参数\n多个振荡器都包含了LFO模式 既可以作为声源也可以作为调制输出\n自带量化输出能力 约10种音阶可以使用\n可精细调谐\n支持立体声输出(部分振荡器程序使用左声道输出其中算子)\n6个CV输入\n1个VOCT输入\n支持SPI Expander 可用于快速调整参数(beta)\nUSB-TYPEC可以用于轻松快速\"拖放\"更新固件\n防反接电路以保护模块\n\n电源: 10Pin +12v 80ma -12v 30ma\n宽度: 6HP\n深度: 28mm\n16bit Stereo processing\nBase On Pico RP2040",
+      "specs": "128.5mm x 40.64mm\nEurorack宽度8HP\n深度约24mm\n使用10pin电源插头\n含有防反接电路\n+12v 100ma\n-12v 10ma\n基于Pico RP2040平台\n8khz 12bit 输出电平范围:0-10V\n8khz 12bit 输入电平范围:0-10V\n\n3个Gate输入接口\n3个CV输入接口\n6个输出接口",
       "features": [
         {
-          "name": "WSDCO",
-          "desc": "波形渐变振荡器 八种渐变算法 自带双算子FM调频功能 Sync 16种波形可以控制切换"
+          "name": "LFO",
+          "desc": "低频振荡器，震荡范围0.1-20hz，支持五种波形选择"
         },
         {
-          "name": "FMDCO",
-          "desc": "双算子FM振荡器 包含一个可压控包络触发器 共8种载波与调制波组合可控制切换"
+          "name": "EG",
+          "desc": "包络发生器，可压控Decay与Release参数"
         },
         {
-          "name": "ADDDCO",
-          "desc": "加法振荡器 可以控制倍频量与排列方式的振荡器 8种波形可以控制切换"
+          "name": "CLKDIV",
+          "desc": "时钟分频器，支持1-16分频及2的n次方分频模式"
         },
         {
-          "name": "ChordDCO",
-          "desc": "四复音和弦振荡器 8种波形可以控制切换 16个和弦包含大小属减囊括尽可能多的和声 可控和弦转位 包含一个侧链压缩器 和左右声道vca"
+          "name": "Logic",
+          "desc": "逻辑模块，支持AND、OR、NOT、YES四种逻辑运算"
         },
         {
-          "name": "HarmonicOSC",
-          "desc": "四复音和谐音程振荡器 可以选择三个音与根音的音程 还可以压控每个振荡器的音量与波形"
+          "name": "SNH",
+          "desc": "采样保持模块，整合平滑器以及突变器功能"
         },
         {
-          "name": "Swarmduino",
-          "desc": "失谐振荡器 多达8个复音可调detune程度的振荡器"
+          "name": "RNDOM",
+          "desc": "随机模块，支持概率触发、随机电平、随机故障方波、随机噪音"
         },
         {
-          "name": "AnalogWave",
-          "desc": "虚拟模拟振荡器 营造尽可能相似的模拟之声"
+          "name": "SEQ",
+          "desc": "生成式CV音序器，根据最大/最小电平与步进长度生成音序"
         },
         {
-          "name": "Plucks",
-          "desc": "将狂野的VCF加入进来 可控的包络生成有趣的弹拨声音"
+          "name": "Eucld",
+          "desc": "欧几里得音序器，支持偏移、步长、触发步进数参数"
         },
         {
-          "name": "FourPerc",
-          "desc": "四轨道打击乐"
+          "name": "ARP",
+          "desc": "琶音器，支持多种和弦类型与琶音模式"
         },
         {
-          "name": "DFM_OSC",
-          "desc": "灵感来自经典东海岸打击乐半模块合成器工作流"
+          "name": "Beati",
+          "desc": "比特节奏音序器，通过二进制位生成节奏模式"
         },
         {
-          "name": "Glitch",
-          "desc": "获取一些故障的声音"
+          "name": "MIX",
+          "desc": "混合器，支持两个输入信号混合及独立增益控制"
         },
         {
-          "name": "Smpl32k",
-          "desc": "将一些长采样作为波形(beta)"
+          "name": "FADER",
+          "desc": "比例推子，实现两个输入信号的平滑过渡渐变"
         },
         {
-          "name": "Granular",
-          "desc": "一些固定的声音作为碎片持续的散落(beta)"
+          "name": "VCA",
+          "desc": "压控放大器，用于处理CV信号之间的关系"
         },
         {
-          "name": "NoiseWindy",
-          "desc": "持续的噪音通过两个可控的滤波器以及两个可控增益 用以创建风声般的效果"
+          "name": "Invert",
+          "desc": "信号反向器，可控制信号反转程度"
+        },
+        {
+          "name": "Qunt",
+          "desc": "量化器，支持多种音阶类型与根音设置"
+        },
+        {
+          "name": "OVERFL",
+          "desc": "堆栈溢出模块，适合制作故障效果"
         }
       ],
-      "manualUrl": "https://environscape.github.io/CodingInspire/doc/Polymorphic_manual.html"
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Manifold_manual2.html"
     },
     {
       "id": "2",
