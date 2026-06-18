@@ -1,18 +1,255 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support</title>
-    <!-- HTML原生自动跳转（兼容无JS的环境） -->
-    <meta http-equiv="refresh" content="0; URL=./support/">
+    <title>Support | Coding Inspire Modular</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- 给用户的提示信息（跳转失败时可见） -->
-    <div style="text-align: center; margin-top: 50px; font-family: Arial, sans-serif;">
-        <p>正在跳转到Support...</p>
-        <p>如果没有自动跳转，请点击 <a href="./support/index.html">这里</a> 手动跳转</p>
+    <nav>
+        <a href="/CodingInspire">
+            <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Eurorack</a>
+            <a href="instrument.html">Instrument</a>
+            <a href="support.html" class="active">Support</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+        <div class="menu-icon" id="menuIcon" onclick="toggleMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </div>
+    </nav>
+
+    <main class="support-page" id="supportContent">
+        <div class="loading" style="text-align: center; padding: 100px 0;">加载中...</div>
+    </main>
+
+    <div class="friend-links">
+        <div class="links-row">
+            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2">淘宝购买</a>
+            <a href="https://www.midifan.com/">midifan</a>
+            <a href="https://modulargrid.net/">modular grid</a>
+            <a href="https://doepfer.de/">doepfer</a>
+        </div>
+        <div class="qr-code-container">
+            <div class="qr-code-wrapper">
+                <img src="tb_qrcode.png" alt="淘宝店铺">
+                <p>淘宝店铺</p>
+            </div>
+            <div class="qr-code-wrapper">
+                <img src="qrcode.png" alt="手机扫码查看">
+                <p>手机扫码查看</p>
+            </div>
+        </div>
+        <div class="copyright">© 2023 - 2026 Coding Inspire Modular</div>
     </div>
+
+    <div class="cookie-notice">
+        <p>我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a></p>
+        <button class="close-cookie" onclick="closeCookie()">×</button>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            if (root.classList.contains('dark-theme')) {
+                root.classList.remove('dark-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                `;
+            } else {
+                root.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                `;
+            }
+        }
+
+        function initTheme() {
+            const root = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                root.classList.add('dark-theme');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                `;
+            } else {
+                root.classList.remove('dark-theme');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                `;
+            }
+        }
+
+        function closeCookie() {
+            document.querySelector('.cookie-notice').style.display = 'none';
+        }
+
+        async function loadSupportData() {
+            try {
+                const response = await fetch('data/support.json');
+                const data = await response.json();
+                renderSupport(data.support);
+            } catch (error) {
+                console.error('Failed to load support data:', error);
+                document.getElementById('supportContent').innerHTML = '<div style="text-align: center; padding: 100px 0;">加载失败</div>';
+            }
+        }
+
+        function renderSupport(support) {
+            const manualsHtml = support.manuals.map(item => `
+                <div class="support-card">
+                    <h4>${item.title}</h4>
+                    <p>${item.description}</p>
+                    <div class="meta">
+                        <span>产品: ${item.productName}</span>
+                        <span>版本: ${item.version}</span>
+                    </div>
+                    <a href="${item.url}" target="_blank">查看文档</a>
+                </div>
+            `).join('');
+
+            const firmwareHtml = support.firmware.map(item => {
+                const targetAttr = item.isExternal ? 'target="_blank"' : 'download';
+                const btnText = item.isExternal ? '前往查看' : '下载固件';
+                return `
+                    <div class="support-card">
+                        <h4>${item.title}</h4>
+                        <p>${item.description}</p>
+                        <div class="meta">
+                            <span>产品: ${item.productName}</span>
+                            <span>版本: ${item.version}</span>
+                            <span>格式: ${item.fileType.toUpperCase()}</span>
+                        </div>
+                        <a href="${item.url}" ${targetAttr}>${btnText}</a>
+                    </div>
+                `;
+            }).join('');
+
+            const toolsHtml = support.tools.map(item => `
+                <div class="support-card">
+                    <h4>${item.title}</h4>
+                    <p>${item.description}</p>
+                    <div class="meta">
+                        <span>格式: ${item.fileType.toUpperCase()}</span>
+                    </div>
+                    <a href="${item.url}" download>下载工具</a>
+                </div>
+            `).join('');
+
+            const guidesHtml = support.guides.map(item => {
+                const targetAttr = item.isExternal ? 'target="_blank"' : '';
+                return `
+                    <div class="support-card">
+                        <h4>${item.title}</h4>
+                        <p>${item.description}</p>
+                        <a href="${item.url}" ${targetAttr}>阅读指南</a>
+                    </div>
+                `;
+            }).join('');
+
+            const resourcesHtml = support.resources ? support.resources.map(item => {
+                const targetAttr = item.isExternal ? 'target="_blank"' : '';
+                return `
+                    <div class="support-card">
+                        <h4>${item.title}</h4>
+                        <p>${item.description}</p>
+                        <a href="${item.url}" ${targetAttr}>访问链接</a>
+                    </div>
+                `;
+            }).join('') : '';
+
+            const content = `
+                <section class="support-section">
+                    <h3>用户手册</h3>
+                    <div class="support-grid">${manualsHtml}</div>
+                </section>
+
+                <section class="support-section">
+                    <h3>固件更新</h3>
+                    <div class="support-grid">${firmwareHtml}</div>
+                </section>
+
+                <section class="support-section">
+                    <h3>工具软件</h3>
+                    <div class="support-grid">${toolsHtml}</div>
+                </section>
+
+                <section class="support-section">
+                    <h3>使用指南</h3>
+                    <div class="support-grid">${guidesHtml}</div>
+                </section>
+
+                ${resourcesHtml ? `
+                <section class="support-section">
+                    <h3>外部资源</h3>
+                    <div class="support-grid">${resourcesHtml}</div>
+                </section>
+                ` : ''}
+
+                <section class="support-section">
+                    <div class="contact-info">
+                        <h3>联系我们</h3>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <a href="mailto:${support.contact.email}">${support.contact.email}</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>${support.contact.wechat}</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <a href="${support.contact.taobao}" target="_blank">淘宝店铺</a>
+                        </div>
+                    </div>
+                </section>
+            `;
+
+            document.getElementById('supportContent').innerHTML = content;
+        }
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('scrolled', window.scrollY > 0);
+        });
+
+        initTheme();
+        loadSupportData();
+    </script>
 </body>
+</html>

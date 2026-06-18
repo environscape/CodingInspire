@@ -1,0 +1,217 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "PolymorphicOsc",
+      "subtitle": "多模态数字振荡器",
+      "description": "多态数字振荡器",
+      "price": "$249",
+      "image": "product (1).png",
+      "category": "digital",
+      "isNew": true,
+      "specs": "128x64像素1寸屏幕\n自带示波器展示输出波形让震荡更加理性\n每个振荡器都包含一些列可以调节和直接压控的参数\n多个振荡器都包含了LFO模式 既可以作为声源也可以作为调制输出\n自带量化输出能力 约10种音阶可以使用\n可精细调谐\n支持立体声输出(部分振荡器程序使用左声道输出其中算子)\n6个CV输入\n1个VOCT输入\n支持SPI Expander 可用于快速调整参数(beta)\nUSB-TYPEC可以用于轻松快速\"拖放\"更新固件\n防反接电路以保护模块\n\n电源: 10Pin +12v 80ma -12v 30ma\n宽度: 6HP\n深度: 28mm\n16bit Stereo processing\nBase On Pico RP2040",
+      "features": [
+        {
+          "name": "WSDCO",
+          "desc": "波形渐变振荡器 八种渐变算法 自带双算子FM调频功能 Sync 16种波形可以控制切换"
+        },
+        {
+          "name": "FMDCO",
+          "desc": "双算子FM振荡器 包含一个可压控包络触发器 共8种载波与调制波组合可控制切换"
+        },
+        {
+          "name": "ADDDCO",
+          "desc": "加法振荡器 可以控制倍频量与排列方式的振荡器 8种波形可以控制切换"
+        },
+        {
+          "name": "ChordDCO",
+          "desc": "四复音和弦振荡器 8种波形可以控制切换 16个和弦包含大小属减囊括尽可能多的和声 可控和弦转位 包含一个侧链压缩器 和左右声道vca"
+        },
+        {
+          "name": "HarmonicOSC",
+          "desc": "四复音和谐音程振荡器 可以选择三个音与根音的音程 还可以压控每个振荡器的音量与波形"
+        },
+        {
+          "name": "Swarmduino",
+          "desc": "失谐振荡器 多达8个复音可调detune程度的振荡器"
+        },
+        {
+          "name": "AnalogWave",
+          "desc": "虚拟模拟振荡器 营造尽可能相似的模拟之声"
+        },
+        {
+          "name": "Plucks",
+          "desc": "将狂野的VCF加入进来 可控的包络生成有趣的弹拨声音"
+        },
+        {
+          "name": "FourPerc",
+          "desc": "四轨道打击乐"
+        },
+        {
+          "name": "DFM_OSC",
+          "desc": "灵感来自经典东海岸打击乐半模块合成器工作流"
+        },
+        {
+          "name": "Glitch",
+          "desc": "获取一些故障的声音"
+        },
+        {
+          "name": "Smpl32k",
+          "desc": "将一些长采样作为波形(beta)"
+        },
+        {
+          "name": "Granular",
+          "desc": "一些固定的声音作为碎片持续的散落(beta)"
+        },
+        {
+          "name": "NoiseWindy",
+          "desc": "持续的噪音通过两个可控的滤波器以及两个可控增益 用以创建风声般的效果"
+        }
+      ],
+      "manualUrl": "https://environscape.github.io/CodingInspire/doc/Polymorphic_manual.html"
+    },
+    {
+      "id": "2",
+      "name": "MIDI2CV MK2",
+      "subtitle": "迷笛信號轉化器",
+      "description": "Digital Circuit",
+      "price": "$99",
+      "image": "product (2).png",
+      "category": "digital",
+      "isNew": true,
+      "specs": "1xTrs Midi In(可通过跳线盘切换Trs TypeA/B)\n1xClock 同时cc24调整clock div x2 x3 x4等等\n2xV/Oct 分别位于midi ch1/ch2(CV范围0-5V)\n2xGate 两个音符的门\n3xCV vel1/vel2/mod 可在音序器中编程修改\n\n2HP width\n10p power header\n38mm deep\n+12v:30ma\n-12v:0ma\n+5v:0ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "適合用於Drum Machine將midi信號發出轉化爲CV信號\n適合用於Groovebox將midi信號發出轉化為CV信號\n尽可能小的尺寸，便于您的系统任意组合"
+        }
+      ],
+      "manualUrl": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.1"
+    },
+    {
+      "id": "3",
+      "name": "ADSR / Envelope",
+      "subtitle": "模拟包络发生器",
+      "description": "Analog Circuit",
+      "price": "$79",
+      "image": "product (3).png",
+      "category": "analog",
+      "isNew": true,
+      "specs": "Attack: 0.1ms-10s\nDecay: 0.1ms-10s\nSustain: 0-100%\nRelease: 0.1ms-10s\n\n1个Trigger输入\n1个Gate输入\n1个Envelope输出\n1个Inverted Envelope输出\n\n4HP width\n10p power header\n30mm deep\n+12v:20ma\n-12v:10ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "经典ADSR包络发生器\n支持Trigger和Gate两种触发模式\n可反转包络输出\n精确的时间控制"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "4",
+      "name": "Knit",
+      "subtitle": "Mini Plaits",
+      "description": "Mult Mode Digital Oscillator",
+      "price": "$129",
+      "image": "product (4).png",
+      "category": "digital",
+      "isNew": true,
+      "specs": "多种波形输出: Square, Saw, Triangle, Sine, Noise\nSub Oscillator\nPulse Width Modulation\nFM调制输入\nHard Sync输入\n\n1个V/Oct输入\n1个FM输入\n1个Sync输入\n1个PW输入\n1个音频输出\n\n6HP width\n10p power header\n32mm deep\n+12v:40ma\n-12v:15ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "基于Mutable Instruments Plaits的开源复制品\n紧凑的6HP尺寸\n丰富的波形选择\n内置子振荡器"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "5",
+      "name": "4CH-Mixer-Send",
+      "subtitle": "四通道混音器",
+      "description": "Analog Circuit",
+      "price": "$69",
+      "image": "product (5).png",
+      "category": "analog",
+      "isNew": true,
+      "specs": "4个输入通道\n每个通道独立音量控制\nPan控制\nSend效果发送\nMaster输出\nSend返回输入\n\n4HP width\n10p power header\n25mm deep\n+12v:15ma\n-12v:5ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "紧凑的四通道混音器\n每个通道带有Pan控制\n效果Send/Return回路\n适合小型系统使用"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "6",
+      "name": "Buffer Mult",
+      "subtitle": "缓冲多路输出",
+      "description": "Analog Circuit",
+      "price": "$49",
+      "image": "product (6).png",
+      "category": "analog",
+      "isNew": true,
+      "specs": "1个输入\n4个缓冲输出\n高阻抗输入\n低阻抗输出\n\n2HP width\n10p power header\n20mm deep\n+12v:10ma\n-12v:0ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "高品质缓冲多路器\n避免信号衰减\n1分4输出\n适合CV和音频信号"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "7",
+      "name": "VFAM",
+      "subtitle": "Valentine from another mother",
+      "description": "Digital Circuit",
+      "price": "$89",
+      "image": "product (7).png",
+      "category": "digital",
+      "isNew": true,
+      "specs": "基于经典Roland TB-303滤波器\n截止频率控制\n谐振控制\n包络控制\nAccent输入\n\n1个音频输入\n1个Cutoff CV输入\n1个Resonance CV输入\n1个Env CV输入\n1个Accent输入\n1个音频输出\n\n4HP width\n10p power header\n28mm deep\n+12v:25ma\n-12v:10ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "经典的模拟滤波器声音\n源自Roland TB-303的电路设计\n丰富的CV控制\n适合acid风格音乐制作"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "8",
+      "name": "MS-20 VCF",
+      "subtitle": "经典滤波器",
+      "description": "Analog Circuit",
+      "price": "$149",
+      "image": "product (8).png",
+      "category": "analog",
+      "isNew": true,
+      "specs": "基于Korg MS-20滤波器\nHPF和LPF串联\n截止频率控制\n谐振控制\nPeak控制\n\n1个音频输入\n1个VCF CV输入\n1个HPF输出\n1个LPF输出\n1个串联输出\n\n8HP width\n10p power header\n35mm deep\n+12v:35ma\n-12v:20ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "经典MS-20滤波器电路\n高通和低通滤波器\n强大的谐振特性\n三种输出模式"
+        }
+      ],
+      "manualUrl": "#"
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "name": "全部产品",
+      "icon": "grid"
+    },
+    {
+      "id": "digital",
+      "name": "数字模块",
+      "icon": "cpu"
+    },
+    {
+      "id": "analog",
+      "name": "模拟模块",
+      "icon": "waveform"
+    }
+  ]
+}

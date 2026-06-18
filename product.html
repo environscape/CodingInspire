@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instrument | Coding Inspire Modular</title>
+    <title>Product Info | Coding Inspire Modular</title>
     <link rel="icon" href="icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
         </a>
         <div class="nav-links" id="navLinks">
             <a href="index.html">Eurorack</a>
-            <a href="instrument.html" class="active">Instrument</a>
+            <a href="instrument.html">Instrument</a>
             <a href="support.html">Support</a>
         </div>
         <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
@@ -30,16 +30,9 @@
         </div>
     </nav>
 
-    <main class="instrument-page">
-        <h2>独立乐器</h2>
-        <p>全新的独立乐器产品线正在开发中</p>
-        <div class="coming-soon">敬请期待</div>
+    <main class="product-details-page" id="productContent">
+        <div class="loading" style="text-align: center; padding: 100px 0;">加载中...</div>
     </main>
-
-    <div class="brand-introduction">
-        <h5>Coding Inspire Modular | 编码灵感模块化</h5>
-        <p>以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。</p>
-    </div>
 
     <div class="friend-links">
         <div class="links-row">
@@ -67,6 +60,8 @@
     </div>
 
     <script>
+        let productSlideIndex = 1;
+
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
@@ -119,12 +114,105 @@
             document.querySelector('.cookie-notice').style.display = 'none';
         }
 
-        initTheme();
+        function plusProductSlides(n) {
+            showProductSlides(productSlideIndex += n);
+        }
+
+        function showProductSlides(n) {
+            const slides = document.getElementById("product-slides")?.getElementsByClassName("slide");
+            if (!slides) return;
+            if (n > slides.length) productSlideIndex = 1;
+            if (n < 1) productSlideIndex = slides.length;
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[productSlideIndex - 1].style.display = "block";
+        }
+
+        function getUrlParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        async function loadProduct() {
+            const productId = getUrlParam('id');
+            if (!productId) {
+                document.getElementById('productContent').innerHTML = '<div style="text-align: center; padding: 100px 0;">产品ID无效</div>';
+                return;
+            }
+
+            try {
+                const response = await fetch('data/products.json');
+                const data = await response.json();
+                const product = data.products.find(p => p.id === productId);
+                
+                if (!product) {
+                    document.getElementById('productContent').innerHTML = '<div style="text-align: center; padding: 100px 0;">产品不存在</div>';
+                    return;
+                }
+
+                renderProduct(product);
+            } catch (error) {
+                console.error('Failed to load product:', error);
+                document.getElementById('productContent').innerHTML = '<div style="text-align: center; padding: 100px 0;">加载失败</div>';
+            }
+        }
+
+        function renderProduct(product) {
+            document.title = product.name + ' | Coding Inspire Modular';
+            
+            const featuresHtml = product.features.map(feature => `
+                <div class="feature-item">
+                    <h6>${feature.name}</h6>
+                    <p>${feature.desc}</p>
+                </div>
+            `).join('');
+
+            const content = `
+                <div class="product-details">
+                    <div class="product-details-slider">
+                        <div class="slider">
+                            <div class="slides" id="product-slides">
+                                <div class="slide"><img src="${product.image}" alt="${product.name}"></div>
+                                <div class="slide"><img src="${product.image}" alt="${product.name}"></div>
+                                <div class="slide"><img src="${product.image}" alt="${product.name}"></div>
+                            </div>
+                            <button class="prev" onclick="plusProductSlides(-1)">&#10094;</button>
+                            <button class="next" onclick="plusProductSlides(1)">&#10095;</button>
+                        </div>
+                    </div>
+                    <div class="product-details-info">
+                        <h1 class="product-details-title">${product.name}</h1>
+                        <h2 class="product-details-subtitle">${product.subtitle}</h2>
+                        <p class="product-details-price">${product.price}</p>
+                        <p class="product-details-desc">${product.specs}</p>
+                    </div>
+                </div>
+
+                <div class="product-more-desc">
+                    <h5>功能概述</h5>
+                    <div class="feature-list">${featuresHtml}</div>
+                </div>
+
+                <div class="manual-area">
+                    <p>产品手册：</p>
+                    ${product.manualUrl && product.manualUrl !== '#' ? 
+                        `<a href="${product.manualUrl}" target="_blank" class="btn">查看手册</a>` : 
+                        '<span style="color: var(--text-muted);">手册即将推出</span>'}
+                </div>
+            `;
+
+            document.getElementById('productContent').innerHTML = content;
+            showProductSlides(productSlideIndex);
+        }
 
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('nav');
             nav.classList.toggle('scrolled', window.scrollY > 0);
         });
+
+        initTheme();
+        loadProduct();
     </script>
 </body>
 </html>

@@ -1,0 +1,143 @@
+{
+  "support": {
+    "manuals": [
+      {
+        "id": "2",
+        "productName": "Manifold",
+        "title": "Manifold 用户手册",
+        "description": "Mult Mode Modulator 用户指南",
+        "fileType": "html",
+        "url": "support/manual/Manifold_manual.html",
+        "version": "v1.0",
+        "isExternal": false
+      },
+      {
+        "id": "4",
+        "productName": "CV2MIDI",
+        "title": "CV2MIDI 用户手册",
+        "description": "CV转MIDI模块用户指南",
+        "fileType": "html",
+        "url": "support/manual/CV2MIDI.html",
+        "version": "v2.0",
+        "isExternal": false
+      },
+      {
+        "id": "5",
+        "productName": "MIDI2CV",
+        "title": "MIDI2CV 用户手册",
+        "description": "MIDI转CV模块用户指南（一代/二代）",
+        "fileType": "html",
+        "url": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.2",
+        "version": "v4.2",
+        "isExternal": true
+      },
+      {
+        "id": "1",
+        "productName": "PolymorphicOsc",
+        "title": "Polymorphic Oscillator 用户手册",
+        "description": "多模态数字振荡器完整用户指南",
+        "fileType": "html",
+        "url": "support/manual/Polymorphic_manual.html",
+        "version": "v1.0",
+        "isExternal": false
+      }
+    ],
+    "firmware": [
+      {
+        "id": "1",
+        "productName": "Manifold",
+        "title": "Manifold 固件",
+        "description": "Manifold 最新固件更新",
+        "fileType": "uf2",
+        "url": "support/firmware/Manifold_v1.00.uf2",
+        "version": "v1.00"
+      },
+      {
+        "id": "2",
+        "productName": "VFAM",
+        "title": "VFAM 固件",
+        "description": "VFAM 最新固件更新",
+        "fileType": "hex",
+        "url": "support/firmware/VFAM_v2.0_atmega168.hex",
+        "version": "v2.0"
+      },
+      {
+        "id": "3",
+        "productName": "MIDI2CV",
+        "title": "MIDI2CV 固件",
+        "description": "MIDI2CV 版本v4.2(开源)",
+        "fileType": "hex",
+        "url": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.2",
+        "version": "v4.2",
+        "isExternal": true
+      }
+    ],
+    "tools": [
+      {
+        "id": "1",
+        "title": "xLoader",
+        "description": "Arduino 固件烧录工具",
+        "fileType": "zip",
+        "url": "support/tools/xLoader.zip"
+      },
+      {
+        "id": "2",
+        "title": "CV2MIDI Helper",
+        "description": "CV2MIDI 配置工具",
+        "fileType": "zip",
+        "url": "support/tools/CodingInspireCV2MIDIHelper_v1.0.zip"
+      }
+    ],
+    "guides": [
+      {
+        "id": "1",
+        "title": "入门指南",
+        "description": "Eurorack模块入门教程",
+        "url": "https://learn.synthesizemodular.com/basics",
+        "isExternal": true
+      },
+      {
+        "id": "2",
+        "title": "电源连接指南",
+        "description": "正确连接模块电源",
+        "url": "https://learn.synthesizemodular.com/power",
+        "isExternal": true
+      },
+      {
+        "id": "3",
+        "title": "固件更新指南",
+        "description": "如何更新模块固件",
+        "url": "https://learn.synthesizemodular.com/firmware",
+        "isExternal": true
+      }
+    ],
+    "resources": [
+      {
+        "id": "1",
+        "title": "GitHub",
+        "description": "源代码仓库",
+        "url": "https://github.com/environscape/CodingInspire",
+        "isExternal": true
+      },
+      {
+        "id": "2",
+        "title": "Discord 社区",
+        "description": "加入我们的Discord讨论群",
+        "url": "https://discord.gg/XXX",
+        "isExternal": true
+      },
+      {
+        "id": "3",
+        "title": "YouTube 教程",
+        "description": "观看官方教程视频",
+        "url": "https://youtube.com/@codinginspire",
+        "isExternal": true
+      }
+    ],
+    "contact": {
+      "email": "lechenggood@foxmail.com",
+      "wechat": "CodingInspire",
+      "taobao": "https://m.tb.cn/h.SQfZFM67ZAOsRs2"
+    }
+  }
+}

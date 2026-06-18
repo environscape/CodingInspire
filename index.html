@@ -1,246 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
     <title>Coding Inspire Modular</title>
     <link rel="icon" href="icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <meta http-equiv="refresh" content="0; URL=https://m.tb.cn/h.SQfZFM67ZAOsRs2">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- 顶部导航栏 -->
     <nav>
         <a href="/CodingInspire">
             <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
         </a>
-        <div class="nav-links">
-            <a href="index.html">Eurorack</a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="active">Eurorack</a>
             <a href="instrument.html">Instrument</a>
             <a href="support.html">Support</a>
-            <div class="menu-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+        <div class="menu-icon" id="menuIcon" onclick="toggleMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
         </div>
     </nav>
 
-    <!-- 轮播图 -->
-    <div class="slider">
-        <div class="slides" id="slides">
-            <div class="slide">
-                <img src="banner01.jpg" alt="轮播图 1">
+    <section class="hero-section">
+        <div class="slider">
+            <div class="slides" id="slides">
+                <div class="slide">
+                    <img src="banner01.jpg" alt="轮播图 1">
+                    <div class="slide-content">
+                        <h2>探索声音的无限可能</h2>
+                        <p>创新技术重塑声音创作边界，让模块化回归纯粹的艺术表达</p>
+                        <a href="#products" class="btn">探索产品</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="banner02.jpg" alt="轮播图 2">
+                    <div class="slide-content">
+                        <h2>数字与模拟的完美融合</h2>
+                        <p>精心设计的硬件架构，为您的音乐创作提供无限灵感</p>
+                        <a href="#products" class="btn">查看系列</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="banner03.jpg" alt="轮播图 3">
+                    <div class="slide-content">
+                        <h2>精密工艺，卓越品质</h2>
+                        <p>每一个模块都经过精心调校，只为呈现最完美的声音</p>
+                        <a href="#products" class="btn">立即选购</a>
+                    </div>
+                </div>
             </div>
-            <div class="slide">
-                <img src="banner02.jpg" alt="轮播图 2">
-            </div>
-            <div class="slide">
-                <img src="banner03.jpg" alt="轮播图 3">
-            </div>
+            <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+            <button class="next" onclick="plusSlides(1)">&#10095;</button>
         </div>
-        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
-        <button class="next" onclick="plusSlides(1)">&#10095;</button>
-    </div>
-
-    <!-- 轮播图与产品展示之间的空隙 -->
-    <div style="height: 40px;"> </div>
-
-    <!-- 产品展示列表 竖列两列 -->
-    <section class="featured-products">
-        <a href="product1.html" class="product-item"> <!-- 添加 a 标签并设置 href 属性 -->
-            <div class="product-image-container">
-                <img src="product (1).png" alt="">
-                <div class="overlay"></div>
-            </div>
-            <h3 class="product-title">Manifold</h3>
-            <p class="product-desc">Mult Mode Modulator</p>
-            <span class="new-badge">NEW!</span>
-        </a>
-        <a href="product2.html" class="product-item"> <!-- 添加 a 标签并设置 href 属性 -->
-            <div class="product-image-container">
-                <img src="product (2).png" alt="">
-                <div class="overlay"></div>
-            </div>
-            <h3 class="product-title">MIDI2CV MK2</h3>
-            <p class="product-desc">Digital Circuit</p>
-            <span class="new-badge">NEW!</span>
-        </a>
-        <a href="product3.html" class="product-item"> <!-- 添加 a 标签并设置 href 属性 -->
-            <div class="product-image-container">
-                <img src="product (3).png" alt="">
-                <div class="overlay"></div>
-            </div>
-            <h3 class="product-title">ADSR / Envlope</h3>
-            <p class="product-desc">Analog Circuit</p>
-            <span class="new-badge">NEW!</span>
-        </a>
-        <a href="product4.html" class="product-item"> <!-- 添加 a 标签并设置 href 属性 -->
-            <div class="product-image-container">
-                <img src="product (4).png" alt="">
-                <div class="overlay"></div>
-            </div>
-            <h3 class="product-title">Knit (Mini Plaits)</h3>
-            <p class="product-desc">Mult Mode Digital Oscillator</p>
-            <span class="new-badge">NEW!</span>
-        </a>
-        <a href="product5.html" class="product-item"> <!-- 添加 a 标签并设置 href 属性 -->
-            <div class="product-image-container">
-                <img src="product (5).png" alt="">
-                <div class="overlay"></div>
-            </div>
-            <h3 class="product-title">4CH-Mixer-Send</h3>
-            <p class="product-desc">Analog Circuit</p>
-            <span class="new-badge">NEW!</span>
-        </a>
-        <a href="product6.html" class="product-item"> <!-- 添加 a 标签并设置 href 属性 -->
-            <div class="product-image-container">
-                <img src="product (6).png" alt="">
-                <div class="overlay"></div>
-            </div>
-            <h3 class="product-title">Buffer Mult</h3>
-            <p class="product-desc">Analog Circuit</p>
-            <span class="new-badge">NEW!</span>
-        </a>
-        <a href="product7.html" class="product-item"> <!-- 添加 a 标签并设置 href 属性 -->
-            <div class="product-image-container">
-                <img src="product (7).png" alt="">
-                <div class="overlay"></div>
-            </div>
-            <h3 class="product-title">VFAM / Valentine from another mother</h3>
-            <p class="product-desc">Digital Circuit</p>
-            <span class="new-badge">NEW!</span>
-        </a>
-        <a href="product8.html" class="product-item"> <!-- 添加 a 标签并设置 href 属性 -->
-            <div class="product-image-container">
-                <img src="product (8).png" alt="">
-                <div class="overlay"></div>
-            </div>
-            <h3 class="product-title">MS-20 VCF</h3>
-            <p class="product-desc">Analog Circuit</p>
-            <span class="new-badge">NEW!</span>
-        </a>
-        <!-- 可按需添加更多产品项 -->
     </section>
 
-    <!-- 新增空白区域 -->
-    <div style="height: 120px;"></div>
+    <section class="featured-products" id="products">
+        <div class="section-header">
+            <h2>Eurorack Modules</h2>
+            <p>探索我们精心设计的模块化合成器系列</p>
+        </div>
+        <div class="category-filter" id="categoryFilter">
+            <button class="category-btn active" data-category="all">全部产品</button>
+            <button class="category-btn" data-category="digital">数字模块</button>
+            <button class="category-btn" data-category="analog">模拟模块</button>
+        </div>
+        <div class="products-grid" id="productsGrid">
+            <div class="loading">加载中...</div>
+        </div>
+    </section>
 
-    <!-- 底部 品牌 信息 -->
     <div class="brand-introduction">
-        <h5>-> Coding Inspire Modular | 编码灵感模块化</h5>
-        以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。
-        产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景
-        以极简形态承载丰富可能性，借助便捷的连接与多样的方式，
-        即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。
-
-        <h5>-> Coding Inspire Modular | Redefining Sound Creation</h5>
-        Innovative technology reshapes the boundaries of sound design. Sophisticated hardware
-        architecture and adaptive configuration systems endow modules with workflow efficiency
-        and unprecedented versatility. Each product functions as a dynamic sound tool—capable of
-        standalone operation or seamless integration via parameter blending and mode switching,
-        adapting effortlessly to diverse creative scenarios.
-        Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional
-        controls enable effortless modular networks, transforming fleeting inspirations into
-        experimental soundscapes. Technical barriers are dissolved, restoring modularity to its
-        purest artistic essence.
+        <h5>Coding Inspire Modular | 编码灵感模块化</h5>
+        <p>以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。</p>
+        <h5>Coding Inspire Modular | Redefining Sound Creation</h5>
+        <p>Innovative technology reshapes the boundaries of sound design. Sophisticated hardware architecture and adaptive configuration systems endow modules with workflow efficiency and unprecedented versatility. Each product functions as a dynamic sound tool—capable of standalone operation or seamless integration via parameter blending and mode switching, adapting effortlessly to diverse creative scenarios. Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional controls enable effortless modular networks, transforming fleeting inspirations into experimental soundscapes. Technical barriers are dissolved, restoring modularity to its purest artistic essence.</p>
     </div>
 
-
-    <!-- 新增灰色区域用于放置友情链接 -->
     <div class="friend-links">
-        <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2" style="color: #ddd; text-decoration: none; margin: 0 32px;">淘宝购买</a>
-        <a href="https://www.midifan.com/" style="color: #ddd; text-decoration: none; margin: 0 32px;">midifan</a>
-        <a href="https://modulargrid.net/" style="color: #ddd; text-decoration: none; margin: 0 32px;">modular grid</a>
-        <a href="https://doepfer.de/" style="color: #ddd; text-decoration: none; margin: 0 32px;">doepfer</a>
-
-        <!-- 新增二维码区域（改为flex布局实现并列） -->
-        <div class="qr-code-container" style="margin-top: 32px; text-align: center; display: flex; justify-content: center; gap: 30px;">
-            <!-- 淘宝二维码 -->
-            <div class="qr-code-wrapper"
-                style="display: inline-block; background-color: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                <img src="tb_qrcode.png" alt="淘宝店铺"
-                    style="width: 100px; height: 100px; display: block;">
-                <p style="margin-top: 10px; color: #000; font-size: 0.9em;">淘宝店铺</p>
+        <div class="links-row">
+            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2">淘宝购买</a>
+            <a href="https://www.midifan.com/">midifan</a>
+            <a href="https://modulargrid.net/">modular grid</a>
+            <a href="https://doepfer.de/">doepfer</a>
+        </div>
+        <div class="qr-code-container">
+            <div class="qr-code-wrapper">
+                <img src="tb_qrcode.png" alt="淘宝店铺">
+                <p>淘宝店铺</p>
             </div>
-
-            <!-- 原有二维码 -->
-            <div class="qr-code-wrapper"
-                style="display: inline-block; background-color: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                <img src="qrcode.png" alt="手机扫码查看"
-                    style="width: 100px; height: 100px; display: block;">
-                <p style="margin-top: 10px; color: #000; font-size: 0.9em;">手机扫码查看</p>
+            <div class="qr-code-wrapper">
+                <img src="qrcode.png" alt="手机扫码查看">
+                <p>手机扫码查看</p>
             </div>
         </div>
-
-        <!-- 新增版权信息区域，通过margin-top控制间距 -->
-        <div class="copyright" style="margin-top: 48px; color: #ddd; font-size: 0.9em;">
-            © 2023 - 2026 Coding Inspire Modular
-        </div>
+        <div class="copyright">© 2023 - 2026 Coding Inspire Modular</div>
     </div>
 
-    <!-- Cookie提示条 -->
     <div class="cookie-notice">
-        <p>We use cookies to improve your experience on our site. By continuing to use our site you consent to use our
-            cookies. Find out more <a href="#">here</a>.</p>
-        <button class="close-cookie">×</button>
+        <p>我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a></p>
+        <button class="close-cookie" onclick="closeCookie()">×</button>
     </div>
 
     <script>
         let slideIndex = 1;
-        showSlides(slideIndex);
+        let productsData = [];
+        let currentCategory = 'all';
+
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            if (root.classList.contains('dark-theme')) {
+                root.classList.remove('dark-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                `;
+            } else {
+                root.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                `;
+            }
+        }
+
+        function initTheme() {
+            const root = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                root.classList.add('dark-theme');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                `;
+            } else {
+                root.classList.remove('dark-theme');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                `;
+            }
+        }
 
         function plusSlides(n) {
             showSlides(slideIndex += n);
         }
 
         function showSlides(n) {
-            let i;
             let slides = document.getElementsByClassName("slide");
-            if (n > slides.length) {
-                slideIndex = 1;
-            }
-            if (n < 1) {
-                slideIndex = slides.length;
-            }
-            for (i = 0; i < slides.length; i++) {
+            if (n > slides.length) slideIndex = 1;
+            if (n < 1) slideIndex = slides.length;
+            for (let i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
             slides[slideIndex - 1].style.display = "block";
         }
 
-        const closeButton = document.querySelector('.close-cookie');
-        const cookieNotice = document.querySelector('.cookie-notice');
+        function closeCookie() {
+            document.querySelector('.cookie-notice').style.display = 'none';
+        }
 
-        closeButton.addEventListener('click', function () {
-            cookieNotice.style.display = 'none';
-        });
-
-        // 更新 img 的 alt 属性
-        const productItems = document.querySelectorAll('.product-item');
-        productItems.forEach(item => {
-            const img = item.querySelector('img');
-            const h3 = item.querySelector('h3');
-            if (img && h3) {
-                img.alt = h3.textContent;
+        async function loadProducts() {
+            try {
+                const response = await fetch('data/products.json');
+                const data = await response.json();
+                productsData = data.products;
+                renderProducts(productsData);
+            } catch (error) {
+                console.error('Failed to load products:', error);
             }
+        }
+
+        function renderProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            const filteredProducts = currentCategory === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentCategory);
+            
+            filteredProducts.forEach(product => {
+                const item = document.createElement('div');
+                item.className = 'product-item';
+                item.onclick = () => navigateToProduct(product.id);
+                item.innerHTML = `
+                    <div class="product-image-container">
+                        <img src="${product.image}" alt="${product.name}">
+                        ${product.isNew ? '<span class="product-badge">NEW</span>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-subtitle">${product.subtitle}</p>
+                        <p class="product-desc">${product.description}</p>
+                        <p class="product-price">${product.price}</p>
+                    </div>
+                `;
+                grid.appendChild(item);
+            });
+        }
+
+        function navigateToProduct(productId) {
+            window.location.href = `product.html?id=${productId}`;
+        }
+
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.dataset.category;
+                renderProducts(productsData);
+            });
         });
 
-        /* 导航栏透明度动画的JavaScript实现 */
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
             const nav = document.querySelector('nav');
-            if (window.pageYOffset > 0) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+            nav.classList.toggle('scrolled', window.scrollY > 0);
         });
 
+        initTheme();
+        showSlides(slideIndex);
+        loadProducts();
+
+        setInterval(() => {
+            plusSlides(1);
+        }, 5000);
     </script>
 </body>
-
 </html>
