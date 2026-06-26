@@ -9,7 +9,7 @@
       "image": "product (1).png",
       "category": "digital",
       "isNew": true,
-      "specs": "128.5mm x 40.64mm\nEurorack宽度8HP\n深度约24mm\n使用10pin电源插头\n含有防反接电路\n+12v 100ma\n-12v 10ma\n基于Pico RP2040平台\n8khz 12bit 输出电平范围:0-10V\n8khz 12bit 输入电平范围:0-10V\n\n3个Gate输入接口\n3个CV输入接口\n6个输出接口",
+      "specs": "128.5mm x 40.64mm\nEurorack宽度8HP\n深度约24mm\n使用10pin电源插头\n含有防反接电路\n+12v 100ma\n-12v 10ma\n基于Pico RP2040平台\n12个并列的内部调制模块与对应的参数，可自由路由模块间的调制关系以及输入输出接口\n8khz 12bit 输出电平范围:0-10V\n8khz 12bit 输入电平范围:0-10V\n\n3个Gate输入接口\n3个CV输入接口\n6个输出接口",
       "features": [
         {
           "name": "LFO",
