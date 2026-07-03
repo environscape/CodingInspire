@@ -48,7 +48,7 @@
         "productName": "Manifold",
         "title": "Manifold 固件",
         "description": "Manifold 最新固件更新",
-        "fileType": "uf2",
+        "fileType": ".uf2",
         "url": "support/firmware/Manifold_v1.00.uf2",
         "version": "v1.00"
       },
@@ -57,7 +57,7 @@
         "productName": "VFAM",
         "title": "VFAM 固件",
         "description": "VFAM 最新固件更新",
-        "fileType": "hex",
+        "fileType": ".hex (配合xloader上传)",
         "url": "support/firmware/VFAM_v2.0_atmega168.hex",
         "version": "v2.0"
       },
@@ -66,8 +66,8 @@
         "productName": "MIDI2CV",
         "title": "MIDI2CV 固件",
         "description": "MIDI2CV 版本v4.2(开源)",
-        "fileType": "hex",
-        "url": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.2",
+        "fileType": ".hex (配合xloader上传)",
+        "url": "support/firmware/Midi2CV_v4.2_atmega168.ino.hex",
         "version": "v4.2",
         "isExternal": true
       }
