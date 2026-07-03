@@ -76,14 +76,14 @@
       {
         "id": "1",
         "title": "xLoader",
-        "description": "Arduino 固件烧录工具",
+        "description": "hex固件烧录工具",
         "fileType": "zip",
         "url": "support/tools/xLoader.zip"
       },
       {
         "id": "2",
         "title": "CV2MIDI Helper",
-        "description": "CV2MIDI 配置工具",
+        "description": "CV2MIDI 映射配置工具",
         "fileType": "zip",
         "url": "support/tools/CodingInspireCV2MIDIHelper_v1.0.zip"
       }
@@ -93,21 +93,14 @@
         "id": "1",
         "title": "入门指南",
         "description": "Eurorack模块入门教程",
-        "url": "https://learn.synthesizemodular.com/basics",
+        "url": "https://m.midifan.com/article_body.php?id=6957",
         "isExternal": true
       },
       {
         "id": "2",
         "title": "电源连接指南",
         "description": "正确连接模块电源",
-        "url": "https://learn.synthesizemodular.com/power",
-        "isExternal": true
-      },
-      {
-        "id": "3",
-        "title": "固件更新指南",
-        "description": "如何更新模块固件",
-        "url": "https://learn.synthesizemodular.com/firmware",
+        "url": "https://www.bilibili.com/opus/687022938621214737",
         "isExternal": true
       }
     ],
@@ -116,14 +109,14 @@
         "id": "1",
         "title": "GitHub",
         "description": "源代码仓库",
-        "url": "https://github.com/environscape/CodingInspire",
+        "url": "https://github.com/environscape",
         "isExternal": true
       },
       {
         "id": "2",
-        "title": "Discord 社区",
-        "description": "加入我们的Discord讨论群",
-        "url": "https://discord.gg/XXX",
+        "title": "联系我们",
+        "description": "",
+        "url": "",
         "isExternal": true
       },
       {
