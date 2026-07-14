@@ -32,6 +32,16 @@
         "isExternal": true
       },
       {
+        "id": "2",
+        "productName": "Convergence",
+        "title": "Convergence 用户手册",
+        "description": "模块化数字效果器DSP",
+        "fileType": "html",
+        "url": "support/manual/Convergence_manual.html",
+        "version": "v2.0",
+        "isExternal": false
+      },
+      {
         "id": "1",
         "productName": "PolymorphicOsc",
         "title": "Polymorphic Oscillator 用户手册",

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="../icon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 50px;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+
+        #content-wrapper {
+            max-width: 21cm;
+            min-height: 29.7cm;
+            margin: 0 auto 50px;
+            padding: 2.5cm;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            font-family: inherit;
+        }
+
+        #logo-page {
+            max-width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto 50px;
+            padding: 0;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: inherit;
+            overflow: hidden;
+        }
+
+        .header-logo {
+            max-width: none;
+            max-height: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            padding: 0;
+        }
+
+        #markdown-content {
+            margin-top: 20px;
+            font-family: inherit;
+        }
+
+        #markdown-content p {
+            color: #666666;
+            margin-top: 0.0em;
+            margin-bottom: 1.0em;
+            text-align: justify;
+            text-justify: inter-ideograph;
+            font-size: 1.0em;
+            line-height: 1.6;
+        }
+
+        #markdown-content ul,
+        #markdown-content ol {
+            padding-left: 2em;
+            margin-top: 0.0em;
+            margin-bottom: 1.0em;
+            font-size: 1.0em;
+            font-family: inherit;
+        }
+
+        #markdown-content li {
+            margin-bottom: 0.3em;
+            line-height: 1.6;
+            color: #666666;
+            font-family: inherit;
+        }
+
+        #markdown-content a {
+            color: #444;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        #markdown-content a:hover {
+            text-decoration: underline;
+        }
+
+        #markdown-content pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 1em;
+            overflow-x: auto;
+            margin-top: 0.3em;
+            margin-bottom: 1.2em;
+            font-family: "Courier New", Courier, monospace, "Microsoft YaHei";
+            font-size: 0.9em;
+        }
+
+        #markdown-content code {
+            background-color: #f8f8f8;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace, "Microsoft YaHei";
+            font-size: 0.9em;
+        }
+
+        #markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.3em;
+            margin-bottom: 1.2em;
+            font-size: 0.95em;
+            font-family: inherit;
+        }
+
+        #markdown-content th,
+        #markdown-content td {
+            border: 1px solid #e0e0e0;
+            padding: 0.5em 1em;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        #markdown-content th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        #markdown-content figure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0.5em;
+            margin-bottom: 2em;
+        }
+
+        #markdown-content figure img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid #e0e0e0;
+            padding: 5px;
+        }
+
+        #markdown-content figcaption {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-top: 0.8em;
+            font-size: 0.95em;
+            font-family: inherit;
+        }
+
+        #markdown-content blockquote {
+            border-left: 4px solid #e0e0e0;
+            padding-left: 1em;
+            margin-left: 0;
+            margin-top: 0.5em;
+            margin-bottom: 1.2em;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+            font-family: inherit;
+        }
+
+        #markdown-content hr {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 2.5em 0;
+        }
+
+        #main-title {
+            text-align: center;
+            margin-bottom: 2em;
+            font-family: inherit;
+        }
+
+        #main-title h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 0.3em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-family: inherit;
+        }
+
+        #markdown-content h1,
+        #markdown-content h2,
+        #markdown-content h3,
+        #markdown-content h4,
+        #markdown-content h5,
+        #markdown-content h6 {
+            margin-top: 1.8em;
+            margin-bottom: 0.2em;
+            color: #2c3e50;
+            font-weight: bold;
+            font-family: inherit;
+        }
+
+        #markdown-content h1 {
+            font-size: 2.0em;
+            margin-top: 3em;
+            margin-bottom: 0.2em;
+        }
+        #markdown-content h2 {
+            font-size: 1.6em;
+            margin-top: 2.5em;
+            margin-bottom: 0.15em;
+        }
+        #markdown-content h3 {
+            font-size: 1.3em;
+            margin-top: 2.2em;
+            margin-bottom: 0.15em;
+        }
+        #markdown-content h4 {
+            font-size: 1.1em;
+            margin-top: 1.8em;
+            margin-bottom: 0.1em;
+        }
+        #markdown-content h5 {
+            font-size: 1.0em;
+            margin-top: 1.6em;
+            margin-bottom: 0.1em;
+        }
+        #markdown-content h6 {
+            color: #444;
+            font-size: 0.95em;
+            margin-top: 0.8em;
+            margin-bottom: 0.0em;
+        }
+
+        .toc-wrapper {
+            overflow: hidden;
+            font-family: inherit;
+        }
+
+        .table-of-contents {
+            margin: 0 auto 3em;
+            padding: 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            max-width: 80%;
+            font-family: inherit;
+        }
+
+        .table-of-contents ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .table-of-contents ul li {
+            margin-bottom: 0.8em;
+            font-family: inherit;
+        }
+
+        .table-of-contents .toc-h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5em;
+            padding-left: 0 !important;
+        }
+
+        .table-of-contents .toc-h2 {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-left: 0.8em;
+        }
+
+        .table-of-contents .toc-h3 {
+            font-size: 0.9em;
+            padding-left: 2.3em;
+        }
+
+        .table-of-contents a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            font-family: inherit;
+        }
+
+        .table-of-contents a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+            padding-left: 5px;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 2cm;
+            right: 2.5cm;
+            font-size: 0.85em;
+            color: #666;
+            font-family: inherit;
+        }
+
+        .retry-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95em;
+            transition: background-color 0.3s;
+        }
+
+        .retry-button:hover {
+            background-color: #aaa;
+        }
+
+        .source-link {
+            margin-left: 10px;
+            color: #555;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 0.95em;
+        }
+
+        .source-link:hover {
+            text-decoration: underline;
+        }
+
+        .loading-tip {
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 1.0em;
+            font-family: inherit;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+                font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", Arial, sans-serif;
+                font-size: 0.95em;
+            }
+
+            #logo-page,
+            #content-wrapper {
+                box-shadow: none;
+                padding: 0;
+                margin: 0 auto;
+                width: 21cm;
+                height: 29.7cm;
+                page-break-after: always;
+                font-family: inherit;
+            }
+
+            #content-wrapper:last-child {
+                page-break-after: avoid;
+            }
+
+            .header-logo {
+                max-width: none;
+                max-height: none;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .table-of-contents {
+                display: none;
+            }
+
+            .page-number {
+                display: block;
+                font-size: 0.85em;
+            }
+
+            #markdown-content h1,
+            #markdown-content h2,
+            #markdown-content h3 {
+                page-break-after: avoid;
+            }
+
+            #markdown-content table,
+            #markdown-content img {
+                page-break-inside: avoid;
+            }
+
+            #main-title,
+            .table-of-contents {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content-wrapper">
+        <div class="toc-wrapper">
+            <div class="table-of-contents" id="table-of-contents">
+                <ul></ul>
+            </div>
+        </div>
+        <div id="markdown-content"></div>
+        <div class="page-number" id="page-number"></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="retry-button" id="retry-button" style="display: none;">手动重试</button>
+        <a href="#" class="source-link" id="source-link" style="display: none;"></a>
+        <p class="loading-tip" id="loading-tip" style="display: block;">正在加载中 请稍后...</p>
+    </div>
+
+    <script>
+        const currentUrl = window.location.href;
+        const newUrl = currentUrl.replace('.html', '.md');
+        const mdFilePath = newUrl;
+
+        const maxRetries = 3;
+        const retryInterval = 1000;
+        let retryCount = 0;
+
+        const fetchWithRetry = async (url, retries = 0) => {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return await response.text();
+            } catch (error) {
+                if (retries < maxRetries) {
+                    console.log(`请求失败，正在重试（第 ${retries + 1} 次）...`);
+                    await new Promise(resolve => setTimeout(resolve, retryInterval));
+                    return fetchWithRetry(url, retries + 1);
+                }
+                console.error('请求失败，已达到最大重试次数:', error);
+                document.getElementById('retry-button').style.display = 'block';
+                const sourceLink = document.getElementById('source-link');
+                sourceLink.href = mdFilePath;
+                sourceLink.textContent = `查看源文件: ${mdFilePath}`;
+                sourceLink.style.display = 'inline-block';
+                document.getElementById('loading-tip').textContent = '加载失败，请检查网络或点击重试';
+                throw error;
+            }
+        };
+
+        const generateTOC = () => {
+            const tocContainer = document.getElementById('table-of-contents');
+            const contentContainer = document.getElementById('markdown-content');
+            const headers = contentContainer.querySelectorAll('h1, h2, h3');
+            const tocList = tocContainer.querySelector('ul');
+
+            let firstH1Processed = false;
+
+            headers.forEach(header => {
+                const id = header.id || `section-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                header.id = id;
+
+                const link = document.createElement('a');
+                link.href = `#${id}`;
+                link.textContent = header.textContent;
+
+                const listItem = document.createElement('li');
+
+                if (header.tagName === 'H1') {
+                    if (!firstH1Processed) {
+                        listItem.classList.add('toc-h1');
+                        firstH1Processed = true;
+                    } else {
+                        listItem.classList.add('toc-h1');
+                    }
+                } else if (header.tagName === 'H2') {
+                    listItem.classList.add('toc-h2');
+                } else if (header.tagName === 'H3') {
+                    listItem.classList.add('toc-h3');
+                }
+
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+        };
+
+        const setPageTitleFromFirstH1 = () => {
+            const contentContainer = document.getElementById('markdown-content');
+            const firstH1 = contentContainer.querySelector('h1');
+
+            if (firstH1) {
+                document.title = firstH1.textContent.trim();
+                console.log('网页标题已设置为:', document.title);
+            } else {
+                document.title = '文档预览';
+                console.log('未找到h1标签，使用默认标题');
+            }
+        };
+
+        const loadMarkdown = async () => {
+            try {
+                const markdownContent = await fetchWithRetry(mdFilePath, retryCount);
+
+                const htmlContent = marked.parse(markdownContent);
+                document.getElementById('markdown-content').innerHTML = htmlContent;
+
+                setPageTitleFromFirstH1();
+                generateTOC();
+                document.getElementById('page-number').textContent = '1';
+                document.getElementById('loading-tip').style.display = 'none';
+
+            } catch (error) {
+                console.error('处理Markdown文件时出错:', error);
+            }
+        };
+
+        loadMarkdown();
+
+        document.getElementById('retry-button').addEventListener('click', async () => {
+            retryCount++;
+            document.getElementById('retry-button').style.display = 'none';
+            document.getElementById('source-link').style.display = 'none';
+            document.getElementById('loading-tip').textContent = '正在重新加载...';
+            document.getElementById('loading-tip').style.display = 'block';
+            await loadMarkdown();
+        });
+    </script>
+</body>
+
+</html>
