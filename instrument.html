@@ -956,7 +956,7 @@ nav.scrolled {
 }</style>
 </head>
 <body>
-    <nav>
+    <nav onclick="handleNavClick(event)">
         <a href="/CodingInspire">
             <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
         </a>
@@ -1019,6 +1019,13 @@ nav.scrolled {
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+        }
+
+        function handleNavClick(event) {
+            const target = event.target;
+            if (!target.closest('a') && !target.closest('button') && !target.closest('.menu-icon')) {
+                toggleTheme();
+            }
         }
 
         function toggleTheme() {
