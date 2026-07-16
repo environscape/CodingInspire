@@ -77,7 +77,7 @@
         "title": "MIDI2CV 固件",
         "description": "MIDI2CV 版本v4.2(开源)",
         "fileType": ".hex (配合xLoader上传)",
-        "url": "support/firmware/Midi2CV_v4.2_atmega168.ino.hex",
+        "url": "support/firmware/Midi2CV_v4.2_atmega168.hex",
         "version": "v4.2",
         "isExternal": true
       },
@@ -113,7 +113,7 @@
         "title": "CV2MIDI Helper",
         "description": "CV2MIDI 映射配置工具",
         "fileType": "zip",
-        "url": "support/tools/CodingInspireCV2MIDIHelper_v1.0.zip"
+        "url": "support/tools/CV2MIDIHelper_v1.0.zip"
       }
     ],
     "guides": [
