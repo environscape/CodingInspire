@@ -165,6 +165,31 @@ nav.scrolled {
   background: rgba(255, 255, 255, 0.1);
 }
 
+.lang-toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-color);
+  background: rgba(255, 107, 53, 0.05);
+}
+
+:root.dark-theme .lang-toggle:hover {
+  background: rgba(255, 107, 53, 0.1);
+}
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -962,10 +987,11 @@ nav.scrolled {
         </a>
         <div class="nav-right">
             <div class="nav-links" id="navLinks">
-                <a href="index.html" class="active">Eurorack</a>
-                <a href="instrument.html">Instrument</a>
-                <a href="support.html">Support</a>
+                <a href="index.html" class="active" data-i18n="nav_eurorack">Eurorack</a>
+                <a href="instrument.html" data-i18n="nav_instrument">Instrument</a>
+                <a href="support.html" data-i18n="nav_support">Support</a>
             </div>
+            <button class="lang-toggle" id="langToggle" onclick="toggleLang()" title="切换语言">EN</button>
             <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -985,25 +1011,25 @@ nav.scrolled {
                 <div class="slide">
                     <img src="banner01.jpg" alt="轮播图 1">
                     <div class="slide-content">
-                        <h2>探索声音的多元性</h2>
-                        <p>创新技术重塑声音创作边界，让模块化回归纯粹的艺术表达</p>
-                        <a href="#products" class="btn">探索产品</a>
+                        <h2 data-i18n="slide1_title">探索声音的多元性</h2>
+                        <p data-i18n="slide1_desc">创新技术重塑声音创作边界，让模块化回归纯粹的艺术表达</p>
+                        <a href="#products" class="btn" data-i18n="slide1_btn">探索产品</a>
                     </div>
                 </div>
                 <div class="slide">
                     <img src="banner02.jpg" alt="轮播图 2">
                     <div class="slide-content">
-                        <h2>数字与模拟的完美融合</h2>
-                        <p>精心设计的硬件架构，为您的音乐创作提供无限灵感</p>
-                        <a href="#products" class="btn">查看系列</a>
+                        <h2 data-i18n="slide2_title">数字与模拟的完美融合</h2>
+                        <p data-i18n="slide2_desc">精心设计的硬件架构，为您的音乐创作提供无限灵感</p>
+                        <a href="#products" class="btn" data-i18n="slide2_btn">查看系列</a>
                     </div>
                 </div>
                 <div class="slide">
                     <img src="banner03.jpg" alt="轮播图 3">
                     <div class="slide-content">
-                        <h2>模块化的无限可能</h2>
-                        <p>赋予每个模块强大的工作流与多面性，为声音创作注入更多灵感</p>
-                        <a href="#products" class="btn">立即选购</a>
+                        <h2 data-i18n="slide3_title">模块化的无限可能</h2>
+                        <p data-i18n="slide3_desc">赋予每个模块强大的工作流与多面性，为声音创作注入更多灵感</p>
+                        <a href="#products" class="btn" data-i18n="slide3_btn">立即选购</a>
                     </div>
                 </div>
             </div>
@@ -1015,28 +1041,26 @@ nav.scrolled {
     <section class="featured-products" id="products">
         <div class="section-header">
             <h2>Eurorack Modules</h2>
-            <p>探索我们精心设计的模块化合成器系列</p>
+            <p data-i18n="product_desc">探索我们精心设计的模块化合成器系列</p>
         </div>
         <div class="category-filter" id="categoryFilter">
-            <button class="category-btn active" data-category="all">全部产品</button>
-            <button class="category-btn" data-category="digital">数字模块</button>
-            <button class="category-btn" data-category="analog">模拟模块</button>
+            <button class="category-btn active" data-category="all" data-i18n="cat_all">全部产品</button>
+            <button class="category-btn" data-category="digital" data-i18n="cat_digital">数字模块</button>
+            <button class="category-btn" data-category="analog" data-i18n="cat_analog">模拟模块</button>
         </div>
         <div class="products-grid" id="productsGrid">
             <div class="loading">加载中...</div>
         </div>
     </section>
 
-    <div class="brand-introduction">
+    <div class="brand-introduction" id="brandIntro">
         <h5>Coding Inspire Modular | 编码灵感模块化</h5>
         <p>以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。</p>
-        <h5>Coding Inspire Modular | Redefining Sound Creation</h5>
-        <p>Innovative technology reshapes the boundaries of sound design. Sophisticated hardware architecture and adaptive configuration systems endow modules with workflow efficiency and unprecedented versatility. Each product functions as a dynamic sound tool—capable of standalone operation or seamless integration via parameter blending and mode switching, adapting effortlessly to diverse creative scenarios. Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional controls enable effortless modular networks, transforming fleeting inspirations into experimental soundscapes. Technical barriers are dissolved, restoring modularity to its purest artistic essence.</p>
     </div>
 
     <div class="friend-links">
         <div class="links-row">
-            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2">淘宝购买</a>
+            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2" data-i18n="link_taobao">淘宝购买</a>
             <a href="https://www.midifan.com/">midifan</a>
             <a href="https://modulargrid.net/">modular grid</a>
             <a href="https://doepfer.de/">doepfer</a>
@@ -1044,18 +1068,18 @@ nav.scrolled {
         <div class="qr-code-container">
             <div class="qr-code-wrapper">
                 <img src="tb_qrcode.png" alt="淘宝店铺">
-                <p>淘宝店铺</p>
+                <p data-i18n="qr_taobao">淘宝店铺</p>
             </div>
             <div class="qr-code-wrapper">
                 <img src="qrcode.png" alt="手机扫码查看">
-                <p>手机扫码查看</p>
+                <p data-i18n="qr_mobile">手机扫码查看</p>
             </div>
         </div>
         <div class="copyright">© 2023 - 2026 Coding Inspire Modular</div>
     </div>
 
     <div class="cookie-notice">
-        <p>我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a></p>
+        <p data-i18n="cookie_text">我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#" data-i18n="cookie_more">了解更多</a></p>
         <button class="close-cookie" onclick="closeCookie()">×</button>
     </div>
 
@@ -1063,6 +1087,100 @@ nav.scrolled {
         let slideIndex = 1;
         let productsData = [];
         let currentCategory = 'all';
+        let currentLang = 'zh';
+
+        const translations = {
+            en: {
+                nav_eurorack: 'Eurorack',
+                nav_instrument: 'Instrument',
+                nav_support: 'Support',
+                slide1_title: 'Explore Sound Diversity',
+                slide1_desc: 'Innovative technology reshapes the boundaries of sound creation, returning modularity to pure artistic expression',
+                slide1_btn: 'Explore Products',
+                slide2_title: 'Digital & Analog Fusion',
+                slide2_desc: 'Carefully designed hardware architecture provides infinite inspiration for your music creation',
+                slide2_btn: 'View Collection',
+                slide3_title: 'Infinite Modular Possibilities',
+                slide3_desc: 'Endow each module with powerful workflow and versatility, infusing more inspiration into sound creation',
+                slide3_btn: 'Shop Now',
+                product_desc: 'Explore our meticulously designed modular synthesizer series',
+                cat_all: 'All Products',
+                cat_digital: 'Digital Modules',
+                cat_analog: 'Analog Modules',
+                link_taobao: 'Buy on Taobao',
+                qr_taobao: 'Taobao Store',
+                qr_mobile: 'Scan to View',
+                cookie_text: 'We use cookies to improve your experience. By continuing to use this website, you agree to our cookie policy. <a href="#">Learn more</a>',
+                cookie_more: 'Learn more',
+                brand_title: 'Coding Inspire Modular | Redefining Sound Creation',
+                brand_desc: 'Innovative technology reshapes the boundaries of sound design. Sophisticated hardware architecture and adaptive configuration systems endow modules with workflow efficiency and unprecedented versatility. Each product functions as a dynamic sound tool—capable of standalone operation or seamless integration via parameter blending and mode switching, adapting effortlessly to diverse creative scenarios. Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional controls enable effortless modular networks, transforming fleeting inspirations into experimental soundscapes. Technical barriers are dissolved, restoring modularity to its purest artistic essence.'
+            },
+            zh: {
+                nav_eurorack: 'Eurorack',
+                nav_instrument: 'Instrument',
+                nav_support: 'Support',
+                slide1_title: '探索声音的多元性',
+                slide1_desc: '创新技术重塑声音创作边界，让模块化回归纯粹的艺术表达',
+                slide1_btn: '探索产品',
+                slide2_title: '数字与模拟的完美融合',
+                slide2_desc: '精心设计的硬件架构，为您的音乐创作提供无限灵感',
+                slide2_btn: '查看系列',
+                slide3_title: '模块化的无限可能',
+                slide3_desc: '赋予每个模块强大的工作流与多面性，为声音创作注入更多灵感',
+                slide3_btn: '立即选购',
+                product_desc: '探索我们精心设计的模块化合成器系列',
+                cat_all: '全部产品',
+                cat_digital: '数字模块',
+                cat_analog: '模拟模块',
+                link_taobao: '淘宝购买',
+                qr_taobao: '淘宝店铺',
+                qr_mobile: '手机扫码查看',
+                cookie_text: '我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a>',
+                cookie_more: '了解更多',
+                brand_title: 'Coding Inspire Modular | 编码灵感模块化',
+                brand_desc: '以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。'
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            
+            const langToggle = document.getElementById('langToggle');
+            langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'A' && key === 'cookie_more') {
+                        element.textContent = translations[lang][key];
+                    } else if (element.tagName === 'P' && key === 'cookie_text') {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            const brandIntro = document.getElementById('brandIntro');
+            if (brandIntro) {
+                brandIntro.innerHTML = `
+                    <h5>${translations[lang].brand_title}</h5>
+                    <p>${translations[lang].brand_desc}</p>
+                `;
+            }
+
+            loadProducts();
+        }
+
+        function toggleLang() {
+            setLanguage(currentLang === 'zh' ? 'en' : 'zh');
+        }
+
+        function initLanguage() {
+            const savedLang = localStorage.getItem('lang') || 'zh';
+            setLanguage(savedLang);
+        }
 
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
@@ -1145,9 +1263,30 @@ nav.scrolled {
 
         async function loadProducts() {
             try {
-                const response = await fetch('data/products.json');
+                const fileName = currentLang === 'zh' ? 'data/products.json' : 'data/products_en.json';
+                const response = await fetch(fileName);
                 const data = await response.json();
                 productsData = data.products;
+                
+                const categories = data.categories || [];
+                const categoryFilter = document.getElementById('categoryFilter');
+                if (categoryFilter && categories.length > 0) {
+                    categoryFilter.innerHTML = categories.map(cat => `
+                        <button class="category-btn ${cat.id === currentCategory ? 'active' : ''}" 
+                                data-category="${cat.id}" 
+                                data-i18n="cat_${cat.id}">${cat.name}</button>
+                    `).join('');
+                    
+                    document.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                            this.classList.add('active');
+                            currentCategory = this.dataset.category;
+                            renderProducts(productsData);
+                        });
+                    });
+                }
+                
                 renderProducts(productsData);
             } catch (error) {
                 console.error('Failed to load products:', error);
@@ -1201,6 +1340,7 @@ nav.scrolled {
         });
 
         initTheme();
+        initLanguage();
         showSlides(slideIndex);
         loadProducts();
 

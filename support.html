@@ -165,6 +165,31 @@ nav.scrolled {
   background: rgba(255, 255, 255, 0.1);
 }
 
+.lang-toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-color);
+  background: rgba(255, 107, 53, 0.05);
+}
+
+:root.dark-theme .lang-toggle:hover {
+  background: rgba(255, 107, 53, 0.1);
+}
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -966,6 +991,7 @@ nav.scrolled {
                 <a href="instrument.html">Instrument</a>
                 <a href="support.html" class="active">Support</a>
             </div>
+            <button class="lang-toggle" id="langToggle" onclick="toggleLang()" title="切换语言">EN</button>
             <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -985,7 +1011,7 @@ nav.scrolled {
 
     <div class="friend-links">
         <div class="links-row">
-            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2">淘宝购买</a>
+            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2" data-i18n="link_taobao">淘宝购买</a>
             <a href="https://www.midifan.com/">midifan</a>
             <a href="https://modulargrid.net/">modular grid</a>
             <a href="https://doepfer.de/">doepfer</a>
@@ -993,22 +1019,105 @@ nav.scrolled {
         <div class="qr-code-container">
             <div class="qr-code-wrapper">
                 <img src="tb_qrcode.png" alt="淘宝店铺">
-                <p>淘宝店铺</p>
+                <p data-i18n="qr_taobao">淘宝店铺</p>
             </div>
             <div class="qr-code-wrapper">
                 <img src="qrcode.png" alt="手机扫码查看">
-                <p>手机扫码查看</p>
+                <p data-i18n="qr_mobile">手机扫码查看</p>
             </div>
         </div>
         <div class="copyright">© 2023 - 2026 Coding Inspire Modular</div>
     </div>
 
     <div class="cookie-notice">
-        <p>我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a></p>
+        <p data-i18n="cookie_text">我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#" data-i18n="cookie_more">了解更多</a></p>
         <button class="close-cookie" onclick="closeCookie()">×</button>
     </div>
 
     <script>
+        let currentLang = 'zh';
+
+        const translations = {
+            en: {
+                link_taobao: 'Buy on Taobao',
+                qr_taobao: 'Taobao Store',
+                qr_mobile: 'Scan to View',
+                cookie_text: 'We use cookies to improve your experience. By continuing to use this website, you agree to our cookie policy. <a href="#">Learn more</a>',
+                cookie_more: 'Learn more',
+                section_manuals: 'User Manuals',
+                section_firmware: 'Firmware Updates',
+                section_tools: 'Tools & Software',
+                section_guides: 'Guides',
+                section_resources: 'Resources',
+                section_contact: 'Contact Us',
+                view_manual: 'View Manual',
+                download_firmware: 'Download Firmware',
+                download_tool: 'Download Tool',
+                read_guide: 'Read Guide',
+                visit_link: 'Visit Link',
+                loading: 'Loading...',
+                load_failed: 'Loading failed',
+                product_label: 'Product:',
+                version_label: 'Version:',
+                format_label: 'Format:'
+            },
+            zh: {
+                link_taobao: '淘宝购买',
+                qr_taobao: '淘宝店铺',
+                qr_mobile: '手机扫码查看',
+                cookie_text: '我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a>',
+                cookie_more: '了解更多',
+                section_manuals: '用户手册',
+                section_firmware: '固件更新',
+                section_tools: '工具软件',
+                section_guides: '使用指南',
+                section_resources: '外部资源',
+                section_contact: '联系我们',
+                view_manual: '查看手册',
+                download_firmware: '下载固件',
+                download_tool: '下载工具',
+                read_guide: '阅读指南',
+                visit_link: '访问链接',
+                loading: '加载中...',
+                load_failed: '加载失败',
+                product_label: '产品:',
+                version_label: '版本:',
+                format_label: '格式:'
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            
+            const langToggle = document.getElementById('langToggle');
+            langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'A' && key === 'cookie_more') {
+                        element.textContent = translations[lang][key];
+                    } else if (element.tagName === 'P' && key === 'cookie_text') {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            loadSupportData();
+        }
+
+        function toggleLang() {
+            setLanguage(currentLang === 'zh' ? 'en' : 'zh');
+        }
+
+        function initLanguage() {
+            const savedLang = localStorage.getItem('lang') || 'zh';
+            setLanguage(savedLang);
+        }
+
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
@@ -1076,39 +1185,42 @@ nav.scrolled {
 
         async function loadSupportData() {
             try {
-                const response = await fetch('data/support.json');
+                const fileName = currentLang === 'zh' ? 'data/support.json' : 'data/support_en.json';
+                const response = await fetch(fileName);
                 const data = await response.json();
                 renderSupport(data.support);
             } catch (error) {
                 console.error('Failed to load support data:', error);
-                document.getElementById('supportContent').innerHTML = '<div style="text-align: center; padding: 100px 0;">加载失败</div>';
+                document.getElementById('supportContent').innerHTML = `<div style="text-align: center; padding: 100px 0;">${translations[currentLang].load_failed}</div>`;
             }
         }
 
         function renderSupport(support) {
+            const t = translations[currentLang];
+            
             const manualsHtml = support.manuals.map(item => `
                 <div class="support-card">
                     <h4>${item.title}</h4>
                     <p>${item.description}</p>
                     <div class="meta">
-                        <span>产品: ${item.productName}</span>
-                        <span>版本: ${item.version}</span>
+                        <span>${t.product_label} ${item.productName}</span>
+                        <span>${t.version_label} ${item.version}</span>
                     </div>
-                    <a href="${item.url}" target="_blank">查看手册</a>
+                    <a href="${item.url}" target="_blank">${t.view_manual}</a>
                 </div>
             `).join('');
 
             const firmwareHtml = support.firmware.map(item => {
                 const targetAttr = item.isExternal ? 'target="_blank"' : 'download';
-                const btnText = item.isExternal ? '前往查看' : '下载固件';
+                const btnText = item.isExternal ? t.visit_link : t.download_firmware;
                 return `
                     <div class="support-card">
                         <h4>${item.title}</h4>
                         <p>${item.description}</p>
                         <div class="meta">
-                            <span>产品: ${item.productName}</span>
-                            <span>版本: ${item.version}</span>
-                            <span>格式: ${item.fileType.toUpperCase()}</span>
+                            <span>${t.product_label} ${item.productName}</span>
+                            <span>${t.version_label} ${item.version}</span>
+                            <span>${t.format_label} ${item.fileType.toUpperCase()}</span>
                         </div>
                         <a href="${item.url}" ${targetAttr}>${btnText}</a>
                     </div>
@@ -1120,9 +1232,9 @@ nav.scrolled {
                     <h4>${item.title}</h4>
                     <p>${item.description}</p>
                     <div class="meta">
-                        <span>格式: ${item.fileType.toUpperCase()}</span>
+                        <span>${t.format_label} ${item.fileType.toUpperCase()}</span>
                     </div>
-                    <a href="${item.url}" download>下载工具</a>
+                    <a href="${item.url}" download>${t.download_tool}</a>
                 </div>
             `).join('');
 
@@ -1132,7 +1244,7 @@ nav.scrolled {
                     <div class="support-card">
                         <h4>${item.title}</h4>
                         <p>${item.description}</p>
-                        <a href="${item.url}" ${targetAttr}>阅读指南</a>
+                        <a href="${item.url}" ${targetAttr}>${t.read_guide}</a>
                     </div>
                 `;
             }).join('');
@@ -1143,42 +1255,42 @@ nav.scrolled {
                     <div class="support-card">
                         <h4>${item.title}</h4>
                         <p>${item.description}</p>
-                        <a href="${item.url}" ${targetAttr}>访问链接</a>
+                        <a href="${item.url}" ${targetAttr}>${t.visit_link}</a>
                     </div>
                 `;
             }).join('') : '';
 
             const content = `
                 <section class="support-section">
-                    <h3>用户手册</h3>
+                    <h3>${t.section_manuals}</h3>
                     <div class="support-grid">${manualsHtml}</div>
                 </section>
 
                 <section class="support-section">
-                    <h3>固件更新</h3>
+                    <h3>${t.section_firmware}</h3>
                     <div class="support-grid">${firmwareHtml}</div>
                 </section>
 
                 <section class="support-section">
-                    <h3>工具软件</h3>
+                    <h3>${t.section_tools}</h3>
                     <div class="support-grid">${toolsHtml}</div>
                 </section>
 
                 <section class="support-section">
-                    <h3>使用指南</h3>
+                    <h3>${t.section_guides}</h3>
                     <div class="support-grid">${guidesHtml}</div>
                 </section>
 
                 ${resourcesHtml ? `
                 <section class="support-section">
-                    <h3>外部资源</h3>
+                    <h3>${t.section_resources}</h3>
                     <div class="support-grid">${resourcesHtml}</div>
                 </section>
                 ` : ''}
 
                 <section class="support-section">
                     <div class="contact-info">
-                        <h3>联系我们</h3>
+                        <h3>${t.section_contact}</h3>
                         <div class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -1211,6 +1323,7 @@ nav.scrolled {
         });
 
         initTheme();
+        initLanguage();
         loadSupportData();
     </script>
 </body>

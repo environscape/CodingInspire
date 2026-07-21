@@ -165,6 +165,31 @@ nav.scrolled {
   background: rgba(255, 255, 255, 0.1);
 }
 
+.lang-toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-color);
+  background: rgba(255, 107, 53, 0.05);
+}
+
+:root.dark-theme .lang-toggle:hover {
+  background: rgba(255, 107, 53, 0.1);
+}
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -966,6 +991,7 @@ nav.scrolled {
                 <a href="instrument.html" class="active">Instrument</a>
                 <a href="support.html">Support</a>
             </div>
+            <button class="lang-toggle" id="langToggle" onclick="toggleLang()" title="切换语言">EN</button>
             <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -980,19 +1006,19 @@ nav.scrolled {
     </nav>
 
     <main class="instrument-page">
-        <h2>独立乐器</h2>
-        <p>全新的独立乐器产品线正在开发中</p>
-        <div class="coming-soon">敬请期待</div>
+        <h2 data-i18n="instrument_title">独立乐器</h2>
+        <p data-i18n="instrument_desc">全新的独立乐器产品线正在开发中</p>
+        <div class="coming-soon" data-i18n="instrument_coming">敬请期待</div>
     </main>
 
-    <div class="brand-introduction">
+    <div class="brand-introduction" id="brandIntro">
         <h5>Coding Inspire Modular | 编码灵感模块化</h5>
         <p>以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。</p>
     </div>
 
     <div class="friend-links">
         <div class="links-row">
-            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2">淘宝购买</a>
+            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2" data-i18n="link_taobao">淘宝购买</a>
             <a href="https://www.midifan.com/">midifan</a>
             <a href="https://modulargrid.net/">modular grid</a>
             <a href="https://doepfer.de/">doepfer</a>
@@ -1000,22 +1026,89 @@ nav.scrolled {
         <div class="qr-code-container">
             <div class="qr-code-wrapper">
                 <img src="tb_qrcode.png" alt="淘宝店铺">
-                <p>淘宝店铺</p>
+                <p data-i18n="qr_taobao">淘宝店铺</p>
             </div>
             <div class="qr-code-wrapper">
                 <img src="qrcode.png" alt="手机扫码查看">
-                <p>手机扫码查看</p>
+                <p data-i18n="qr_mobile">手机扫码查看</p>
             </div>
         </div>
         <div class="copyright">© 2023 - 2026 Coding Inspire Modular</div>
     </div>
 
     <div class="cookie-notice">
-        <p>我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a></p>
+        <p data-i18n="cookie_text">我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#" data-i18n="cookie_more">了解更多</a></p>
         <button class="close-cookie" onclick="closeCookie()">×</button>
     </div>
 
     <script>
+        let currentLang = 'zh';
+
+        const translations = {
+            en: {
+                link_taobao: 'Buy on Taobao',
+                qr_taobao: 'Taobao Store',
+                qr_mobile: 'Scan to View',
+                cookie_text: 'We use cookies to improve your experience. By continuing to use this website, you agree to our cookie policy. <a href="#">Learn more</a>',
+                cookie_more: 'Learn more',
+                instrument_title: 'Standalone Instruments',
+                instrument_desc: 'New standalone instrument product line is under development',
+                instrument_coming: 'Coming Soon',
+                brand_title: 'Coding Inspire Modular | Redefining Sound Creation',
+                brand_desc: 'Innovative technology reshapes the boundaries of sound design. Sophisticated hardware architecture and adaptive configuration systems endow modules with workflow efficiency and unprecedented versatility. Each product functions as a dynamic sound tool—capable of standalone operation or seamless integration via parameter blending and mode switching, adapting effortlessly to diverse creative scenarios. Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional controls enable effortless modular networks, transforming fleeting inspirations into experimental soundscapes. Technical barriers are dissolved, restoring modularity to its purest artistic essence.'
+            },
+            zh: {
+                link_taobao: '淘宝购买',
+                qr_taobao: '淘宝店铺',
+                qr_mobile: '手机扫码查看',
+                cookie_text: '我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a>',
+                cookie_more: '了解更多',
+                instrument_title: '独立乐器',
+                instrument_desc: '全新的独立乐器产品线正在开发中',
+                instrument_coming: '敬请期待',
+                brand_title: 'Coding Inspire Modular | 编码灵感模块化',
+                brand_desc: '以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。'
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            
+            const langToggle = document.getElementById('langToggle');
+            langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'A' && key === 'cookie_more') {
+                        element.textContent = translations[lang][key];
+                    } else if (element.tagName === 'P' && key === 'cookie_text') {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            const brandIntro = document.getElementById('brandIntro');
+            if (brandIntro) {
+                brandIntro.innerHTML = `
+                    <h5>${translations[lang].brand_title}</h5>
+                    <p>${translations[lang].brand_desc}</p>
+                `;
+            }
+        }
+
+        function toggleLang() {
+            setLanguage(currentLang === 'zh' ? 'en' : 'zh');
+        }
+
+        function initLanguage() {
+            const savedLang = localStorage.getItem('lang') || 'zh';
+            setLanguage(savedLang);
+        }
+
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
@@ -1082,6 +1175,7 @@ nav.scrolled {
         }
 
         initTheme();
+        initLanguage();
 
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('nav');

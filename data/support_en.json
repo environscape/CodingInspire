@@ -1,0 +1,164 @@
+{
+  "support": {
+    "manuals": [
+      {
+        "id": "2",
+        "productName": "Manifold",
+        "title": "Manifold User Manual",
+        "description": "Multi Mode Modulator User Guide",
+        "fileType": "html",
+        "url": "support/manual/Manifold_manual.html",
+        "version": "v1.0",
+        "isExternal": false
+      },
+      {
+        "id": "4",
+        "productName": "CV2MIDI",
+        "title": "CV2MIDI User Manual",
+        "description": "CV to MIDI Module User Guide",
+        "fileType": "html",
+        "url": "support/manual/CV2MIDI.html",
+        "version": "v2.0",
+        "isExternal": false
+      },
+      {
+        "id": "5",
+        "productName": "MIDI2CV",
+        "title": "MIDI2CV User Manual",
+        "description": "MIDI to CV Module User Guide (Gen 1/Gen 2)",
+        "fileType": "html",
+        "url": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.2",
+        "version": "v4.2",
+        "isExternal": true
+      },
+      {
+        "id": "2",
+        "productName": "Convergence",
+        "title": "Convergence User Manual",
+        "description": "Modular Digital Effects Processor DSP",
+        "fileType": "html",
+        "url": "support/manual/Convergence_manual.html",
+        "version": "v2.0",
+        "isExternal": false
+      },
+      {
+        "id": "1",
+        "productName": "PolymorphicOsc",
+        "title": "Polymorphic Oscillator User Manual",
+        "description": "Complete User Guide for Multimode Digital Oscillator",
+        "fileType": "html",
+        "url": "support/manual/Polymorphic_manual.html",
+        "version": "v1.0",
+        "isExternal": false
+      }
+    ],
+    "firmware": [
+      {
+        "id": "1",
+        "productName": "Manifold",
+        "title": "Manifold Firmware",
+        "description": "Latest firmware update for Manifold",
+        "fileType": ".uf2",
+        "url": "support/firmware/Manifold_v1.00.uf2",
+        "version": "v1.00"
+      },
+      {
+        "id": "2",
+        "productName": "VFAM",
+        "title": "VFAM Firmware",
+        "description": "Latest firmware update for VFAM",
+        "fileType": ".hex (use xLoader to upload)",
+        "url": "support/firmware/VFAM_v2.0_atmega168.hex",
+        "version": "v2.0"
+      },
+      {
+        "id": "3",
+        "productName": "MIDI2CV",
+        "title": "MIDI2CV Firmware",
+        "description": "MIDI2CV version v4.2 (Open Source)",
+        "fileType": ".hex (use xLoader to upload)",
+        "url": "support/firmware/Midi2CV_v4.2_atmega168.hex",
+        "version": "v4.2",
+        "isExternal": true
+      },
+      {
+        "id": "4",
+        "productName": "Convergence",
+        "title": "Convergence Firmware",
+        "description": "Latest firmware update for Convergence",
+        "fileType": ".hex (use xLoader to upload)",
+        "url": "support/firmware/Convergence_v2.0_atmega328.hex",
+        "version": "v2.0"
+      },
+      {
+        "id": "5",
+        "productName": "Quantizer",
+        "title": "Quantizer Firmware",
+        "description": "Latest firmware update for Quantizer",
+        "fileType": ".uf2",
+        "url": "support/firmware/Quantizer_v1.0.uf2",
+        "version": "v1.0"
+      }
+    ],
+    "tools": [
+      {
+        "id": "1",
+        "title": "xLoader",
+        "description": "Hex firmware update tool",
+        "fileType": "zip",
+        "url": "support/tools/xLoader.zip"
+      },
+      {
+        "id": "2",
+        "title": "CV2MIDI Helper",
+        "description": "CV2MIDI mapping configuration tool",
+        "fileType": "zip",
+        "url": "support/tools/CV2MIDIHelper_v1.0.zip"
+      }
+    ],
+    "guides": [
+      {
+        "id": "1",
+        "title": "Getting Started Guide",
+        "description": "Eurorack Module Introduction Tutorial",
+        "url": "https://m.midifan.com/article_body.php?id=6957",
+        "isExternal": true
+      },
+      {
+        "id": "2",
+        "title": "Power Connection Guide",
+        "description": "Correctly connecting module power",
+        "url": "https://www.bilibili.com/opus/687022938621214737",
+        "isExternal": true
+      }
+    ],
+    "resources": [
+      {
+        "id": "1",
+        "title": "GitHub",
+        "description": "Source code repository",
+        "url": "https://github.com/environscape",
+        "isExternal": true
+      },
+      {
+        "id": "2",
+        "title": "Contact Us",
+        "description": "",
+        "url": "",
+        "isExternal": true
+      },
+      {
+        "id": "3",
+        "title": "YouTube Tutorials",
+        "description": "Watch official tutorial videos",
+        "url": "https://youtube.com/@codinginspire",
+        "isExternal": true
+      }
+    ],
+    "contact": {
+      "email": "lechenggood@foxmail.com",
+      "wechat": "CodingInspire",
+      "taobao": "https://m.tb.cn/h.SQfZFM67ZAOsRs2"
+    }
+  }
+}
