@@ -50,6 +50,16 @@
         "url": "support/manual/Polymorphic_manual.html",
         "version": "v1.0",
         "isExternal": false
+      },
+      {
+        "id": "6",
+        "productName": "Modulus84",
+        "title": "Modulus8+4 用户手册",
+        "description": "双轨CV音序器模块用户指南",
+        "fileType": "html",
+        "url": "support/manual/Modulus84_manual.html",
+        "version": "v1.0",
+        "isExternal": false
       }
     ],
     "firmware": [
