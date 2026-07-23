@@ -6,7 +6,7 @@
       "subtitle": "Integrated Digital Modulator",
       "description": "Based on 12 parallel internal modulation modules with corresponding parameters, allowing free routing of modulation relationships between modules and input/output interfaces",
       "price": "$279",
-      "image": "src/product (1).png",
+      "image": "src/Manifold.jpg",
       "category": "digital",
       "isNew": true,
       "specs": "128.5mm x 40.64mm\nEurorack width 8HP\nDepth approx 24mm\nUses 10pin power connector\nIncludes reverse polarity protection\n+12v 100ma\n-12v 10ma\nBased on Pico RP2040 platform\n12 parallel internal modulation modules with corresponding parameters, allowing free routing of modulation relationships between modules and input/output interfaces\n8khz 12bit output level range: 0-10V\n8khz 12bit input level range: 0-10V\n\n3x Gate input\n3x CV input\n6x Output",
@@ -83,8 +83,8 @@
       "name": "MIDI2CV MK2",
       "subtitle": "MIDI to CV Converter",
       "description": "Programmable Eurorack module synthesizer, perfect for pairing with drum machines, sequencers, and MIDI-equipped control keyboards",
-      "price": "$99",
-      "image": "src/product (2).png",
+      "price": "$119",
+      "image": "src/MIDI2CV_MK2.webp",
       "category": "digital",
       "isNew": true,
       "specs": "1xTrs Midi In (switchable Trs Type A/B via jumper)\n1xClock with cc24 adjustable Clock Div x2 x3 x4... etc\n2xNote/Gate/Vel (2 sets of note info, 3 jacks per set, 6 jacks total)\n3xModWheel editable on your MIDI device\nVel can also be changed to CC info\nAutomatically switches to probability mode after 10 seconds of no MIDI signal\n\nWidth: 2HP\nDepth: 50mm\nPower Header: 10p/16p\n+12v: 45ma\n-12v: 0ma\n+5v: 0ma",
@@ -98,11 +98,73 @@
     },
     {
       "id": "3",
+      "name": "CV2MIDI",
+      "subtitle": "CV to MIDI Converter",
+      "description": "CV to MIDI converter module with editable mapping, Eurorack modular synthesizer",
+      "price": "$109",
+      "image": "src/CV2MIDI.jpg",
+      "category": "digital",
+      "isNew": true,
+      "specs": "2HP Eurorack module\nCV to MIDI conversion\nSupports editable mapping\nMIDI output jack\nCV input jack\n\nWidth: 2HP\nPower Header: 10p/16p",
+      "features": [
+        {
+          "name": "Overview",
+          "desc": "CV to MIDI converter module\nSupports editable mapping\nConverts analog control signals to digital MIDI signals"
+        }
+      ],
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/CV2MIDI.html"
+    },
+    {
+      "id": "4",
+      "name": "Quantizer",
+      "subtitle": "Touch Quantizer Module",
+      "description": "Touch quantizer module with arpeggiator and touch loop recording functionality",
+      "price": "$149",
+      "image": "src/Quantizer.jpg",
+      "category": "digital",
+      "isNew": true,
+      "specs": "4 HP Eurorack module\n42mm depth\n1x CV input\n1x VOct output\n1x Mode Switch Button (switchable between Quantization Mode, Loop Recording Mode, Arpeggio Mode)\n12x LEDs (for displaying currently activated/triggered notes)\n\n+12v: 80ma\n-12v: 10ma\n+5v: 0ma",
+      "features": [
+        {
+          "name": "Quantization Mode",
+          "desc": "Touch keyboard layout; trigger notes and scales by pressing the touch points"
+        },
+        {
+          "name": "Loop Recording Mode",
+          "desc": "Press a touch point to start recording and output the corresponding voltage in real time. When the touch is released for more than 0.3s, the voltage just recorded will be played back in a loop"
+        },
+        {
+          "name": "Arpeggio Mode",
+          "desc": "Receives clock signals via the CV In interface and alternately outputs the pitch corresponding to the pressed touch points"
+        }
+      ],
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Quantizer_manual.html"
+    },
+    {
+      "id": "5",
+      "name": "Convergence",
+      "subtitle": "Digital Effects Processor",
+      "description": "Multi-mode digital effects processor with 23 effect modes, supporting clock-synced delay effects",
+      "price": "$179",
+      "image": "src/Convergence.webp",
+      "category": "digital",
+      "isNew": true,
+      "specs": "6 HP Eurorack module\n38mm depth\nStereo input and output\nBased on SpinFV1 engine\n23 effect modes\nSupports clock-synced delay effects\n\n+12v: 100ma\n-12v: 10ma\n+5v: 0ma",
+      "features": [
+        {
+          "name": "Overview",
+          "desc": "Multi-mode digital effects processor\nContains 23 effect modes\nSupports clock-synced delay effects\nStereo input and output"
+        }
+      ],
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Convergence_manual.html"
+    },
+    {
+      "id": "6",
       "name": "ADSR Envelope",
       "subtitle": "Envelope Generator",
       "description": "Panel upgrade, circuit upgrade, LED with lamp post",
-      "price": "$79",
-      "image": "src/product (3).png",
+      "price": "$69",
+      "image": "src/ADSR_Envelope.jpg",
       "category": "analog",
       "isNew": true,
       "specs": "Width: 2HP\nDepth: 25mm\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
@@ -115,30 +177,12 @@
       "manualUrl": "#"
     },
     {
-      "id": "4",
-      "name": "Knit",
-      "subtitle": "Mini Plaits",
-      "description": "6HP mini Plaits digital oscillator",
-      "price": "$129",
-      "image": "src/product (4).png",
-      "category": "digital",
-      "isNew": true,
-      "specs": "Width: 6HP\nDepth: 30mm\nPower Header: 10p/16p\n+12V: 50mA\n-12V: 5mA\n+5V: 0mA",
-      "features": [
-        {
-          "name": "Overview",
-          "desc": "KNIT is a compact redesign of Mutable Instruments Plaits\nAvailable in black or white panel\nFirmware is up-to-date with Plaits\nClone module for supporting new product development"
-        }
-      ],
-      "manualUrl": "#"
-    },
-    {
-      "id": "5",
+      "id": "7",
       "name": "4CH-Mixer&Send",
       "subtitle": "Mixing Console with Send",
       "description": "Four-channel input, stereo output, headphone output",
-      "price": "$69",
-      "image": "src/product (5).png",
+      "price": "$139",
+      "image": "src/4CH_Mixer_Send.webp",
       "category": "analog",
       "isNew": true,
       "specs": "4 input channels\nChannels I/II are stereo inputs\nChannels III/IV are mono inputs\nChannels I/II/III are sent to effects loop by default\nStereo send and stereo return jacks\nOutput supports headphones and stereo output\nIncludes 3P (L/R/Gnd) jumper header on the back\n\nWidth: 8HP\nDepth: 28mm\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
@@ -151,12 +195,12 @@
       "manualUrl": "#"
     },
     {
-      "id": "6",
+      "id": "8",
       "name": "Buffer Mult",
       "subtitle": "Active Buffer",
       "description": "2nd generation upgrade, 3 sets of 1In2Out duplicators",
-      "price": "$49",
-      "image": "src/product (6).png",
+      "price": "$59",
+      "image": "src/Buffer_Mult.jpg",
       "category": "analog",
       "isNew": true,
       "specs": "3 sets of 1In2Out duplicators\nIncludes default routing\nWhen In jack has no patch cable, automatically connects to previous input\nSwitchable to 1In 6Out or 1In 4Out & 1In 2Out or 1In 2Out x3\n\nWidth: 2HP\nDepth: 35mm\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
@@ -169,30 +213,12 @@
       "manualUrl": "#"
     },
     {
-      "id": "7",
-      "name": "VFAM",
-      "subtitle": "DFAM Sync",
-      "description": "MOOG DFAM dedicated synchronizer",
-      "price": "$89",
-      "image": "src/product (7).png",
-      "category": "digital",
-      "isNew": true,
-      "specs": "1xExt Adv In external clock input\n1xAdv Out connects to DFAM's adv/clock jack\n1xRun/Stop button\n1xStop button\n1xRst button\n1xSet 1 button\n\nWidth: 2HP\nDepth: 40mm\nPower Header: 10p/16p\n+12v: 40ma\n-12v: 0ma\n+5v: 0ma",
-      "features": [
-        {
-          "name": "Overview",
-          "desc": "MOOG DFAM dedicated synchronizer\nSolves the synchronization difficulty of DFAM step sequencer\nAllows easy synchronization between DFAM and other modules\nReset/stop returns to locked step 1\nCan also designate any step as step 1 at any time"
-        }
-      ],
-      "manualUrl": "#"
-    },
-    {
-      "id": "8",
+      "id": "9",
       "name": "MS-20 VCF",
       "subtitle": "Voltage-Controlled Filter",
       "description": "Classic filter circuit",
-      "price": "$149",
-      "image": "src/product (8).png",
+      "price": "$89",
+      "image": "src/MS_20_VCF.webp",
       "category": "analog",
       "isNew": true,
       "specs": "Based on Korg MS-20 filter\nFeatures volts per octave (potentiometer adjustable on back panel)\nFeatures gain overload knob with asymmetric clipping distortion\nFeatures filter mode gradient knob\n\nWidth: 4HP\nDepth: 28mm\nPower Header: 10p\n+12v: 10ma\n-12v: 10ma",
@@ -200,6 +226,148 @@
         {
           "name": "Overview",
           "desc": "Classic filter circuit\nFeatures volts per octave\nFeatures gain overload knob\nAsymmetric clipping distortion\nFeatures filter mode gradient knob"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "10",
+      "name": "RatioMixer",
+      "subtitle": "Pan Module",
+      "description": "Control signal mixing module, Eurorack modular synthesizer",
+      "price": "$89",
+      "image": "src/RatioMixer.webp",
+      "category": "analog",
+      "isNew": true,
+      "specs": "Control signal mixing module\nPan control function\nMulti-input signal mixing\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "features": [
+        {
+          "name": "Overview",
+          "desc": "Control signal mixing module\nSupports pan control\nMulti-input signal mixing\nCompact 2HP design"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "11",
+      "name": "4CH-Mixer",
+      "subtitle": "Mixer",
+      "description": "Four-channel input mixer, Eurorack modular synthesizer",
+      "price": "$89",
+      "image": "src/4CH_Mixer.webp",
+      "category": "analog",
+      "isNew": true,
+      "specs": "4 input channels\nStereo output\nCompact 2HP design\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "features": [
+        {
+          "name": "Overview",
+          "desc": "Four-channel input mixer\nStereo output\nCompact 2HP design\nPerfect for small systems"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "12",
+      "name": "VFAM",
+      "subtitle": "MOOG DFAM Sync Adapter",
+      "description": "Valentine from another mother, MOOG DFAM dedicated sync module",
+      "price": "$99",
+      "image": "src/VFAM.webp",
+      "category": "digital",
+      "isNew": true,
+      "specs": "MOOG DFAM dedicated sync adapter\nClock sync function\nTrigger signal processing\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "features": [
+        {
+          "name": "Overview",
+          "desc": "MOOG DFAM dedicated sync adapter\nClock sync function\nTrigger signal processing\nAchieve multi-device synchronized performance"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "13",
+      "name": "S&H LFO",
+      "subtitle": "Sample & Hold + LFO",
+      "description": "Sample & Hold + Low Frequency Oscillator + Noise Generator, Eurorack modular synthesizer",
+      "price": "$99",
+      "image": "src/S_H_LFO.jpg",
+      "category": "analog",
+      "isNew": true,
+      "specs": "Sample & Hold function\nLow Frequency Oscillator\nNoise Generator\nMultiple waveform outputs\n\nWidth: 4HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "features": [
+        {
+          "name": "Sample & Hold",
+          "desc": "Sample input signal and hold output"
+        },
+        {
+          "name": "LFO",
+          "desc": "Multiple waveform low frequency oscillation output"
+        },
+        {
+          "name": "Noise Generator",
+          "desc": "White noise and pink noise output"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "14",
+      "name": "VCA-2CH",
+      "subtitle": "Dual Channel VCA",
+      "description": "Dual channel voltage-controlled amplifier, Eurorack modular synthesizer",
+      "price": "$69",
+      "image": "src/VCA_2CH.jpg",
+      "category": "analog",
+      "isNew": true,
+      "specs": "Dual channel voltage-controlled amplifier\nIndependent gain control\nCV control input\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "features": [
+        {
+          "name": "Overview",
+          "desc": "Dual channel voltage-controlled amplifier\nIndependent gain control\nCV control input\nPerfect for signal amplification and modulation"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "15",
+      "name": "RandomSkip",
+      "subtitle": "Probability/Gate Generator",
+      "description": "Four-channel probability/gate signal/creative rhythm generator, compact Eurorack",
+      "price": "$119",
+      "image": "src/RandomSkip.jpg",
+      "category": "digital",
+      "isNew": true,
+      "specs": "Four-channel probability trigger\nGate signal generation\nCreative rhythm patterns\nCompact design\n\nWidth: 4HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "features": [
+        {
+          "name": "Probability Trigger",
+          "desc": "Four-channel independent probability trigger control"
+        },
+        {
+          "name": "Gate Signal",
+          "desc": "Multiple gate signal modes"
+        },
+        {
+          "name": "Creative Rhythm",
+          "desc": "Generate creative rhythm patterns"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "16",
+      "name": "Stereo Mixer",
+      "subtitle": "Stereo Mixer",
+      "description": "Stereo output, headphone amplifier, mixer, Eurorack modular synthesizer",
+      "price": "$59",
+      "image": "src/Stereo_Mixer.jpg",
+      "category": "analog",
+      "isNew": true,
+      "specs": "Stereo input/output\nHeadphone output\nHeadphone amplifier function\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "features": [
+        {
+          "name": "Overview",
+          "desc": "Stereo mixer\nHeadphone output\nHeadphone amplifier function\nPerfect for monitoring and mixing"
         }
       ],
       "manualUrl": "#"

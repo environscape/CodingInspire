@@ -6,7 +6,7 @@
       "subtitle": "集成式数字调制器",
       "description": "基于12个并列的内部调制模块与对应的参数，可自由路由模块间的调制关系以及输入输出接口",
       "price": "$279",
-      "image": "src/product (1).png",
+      "image": "src/Manifold.jpg",
       "category": "digital",
       "isNew": true,
       "specs": "128.5mm x 40.64mm\nEurorack宽度8HP\n深度约24mm\n使用10pin电源插头\n含有防反接电路\n+12v 100ma\n-12v 10ma\n基于Pico RP2040平台\n12个并列的内部调制模块与对应的参数，可自由路由模块间的调制关系以及输入输出接口\n8khz 12bit 输出电平范围:0-10V\n8khz 12bit 输入电平范围:0-10V\n\n3个Gate输入接口\n3个CV输入接口\n6个输出接口",
@@ -83,8 +83,8 @@
       "name": "MIDI2CV MK2",
       "subtitle": "迷笛信号转压控信号",
       "description": "可编程模块合成器 Eurorack，适合搭配鼓机、音序器、带midi接口的控制键盘",
-      "price": "$99",
-      "image": "src/product (2).png",
+      "price": "$119",
+      "image": "src/MIDI2CV_MK2.webp",
       "category": "digital",
       "isNew": true,
       "specs": "1xTrs Midi In(可通过跳线盘切换Trs TypeA/B)\n1xClock 同时cc24调整Clock Div x2 x3 x4...等等\n2xNote/Gate/Vel(2组音符信息每组3个接口共6个接口)\n3xModWheel 可在您发送Midi信息的设备中编辑修改\nvel也可以修改为cc信息\n10秒未收到midi信号将自动切换到概率模式\n\nWidth:2HP\nDepth:50mm\nPower Header:10p/16p\n+12v:45ma\n-12v:0ma\n+5v:0ma",
@@ -94,15 +94,77 @@
           "desc": "可编程模块合成器 Eurorack\n适合搭配鼓机、音序器、带midi接口的控制键盘\n10秒未收到midi信号自动切换到概率模式\n固件版本v4.1"
         }
       ],
-      "manualUrl": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.1"
+      "manualUrl": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.2"
     },
     {
       "id": "3",
+      "name": "CV2MIDI",
+      "subtitle": "压控信号转迷笛信号",
+      "description": "CV信号转MIDI信号模块，支持可编辑映射，Eurorack模块合成器",
+      "price": "$109",
+      "image": "src/CV2MIDI.jpg",
+      "category": "digital",
+      "isNew": true,
+      "specs": "2HP Eurorack模块\n压控信号转MIDI信号\n支持可编辑映射\nMIDI输出接口\nCV输入接口\n\nWidth:2HP\nPower Header:10p/16p",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "CV信号转MIDI信号模块\n支持可编辑映射\n将模拟控制信号转换为数字MIDI信号"
+        }
+      ],
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/CV2MIDI.html"
+    },
+    {
+      "id": "4",
+      "name": "Quantizer",
+      "subtitle": "量化器模块",
+      "description": "触摸量化器模块，支持琶音器和触摸循环录制功能",
+      "price": "$149",
+      "image": "src/Quantizer.jpg",
+      "category": "digital",
+      "isNew": true,
+      "specs": "4 HP Eurorack模块\n42mm深度\n1xCV输入接口\n1xVOct输出接口\n1个模式切换按钮（量化模式/循环录制模式/琶音模式）\n12个LED指示灯\n\n+12v:80ma\n-12v:10ma\n+5v:0ma",
+      "features": [
+        {
+          "name": "量化模式",
+          "desc": "触摸键盘布局，通过触摸触发音符和音阶"
+        },
+        {
+          "name": "循环录制模式",
+          "desc": "触摸开始录制，释放后循环播放录制的电压"
+        },
+        {
+          "name": "琶音模式",
+          "desc": "接收时钟信号，交替输出触摸点对应的音高"
+        }
+      ],
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Quantizer_manual.html"
+    },
+    {
+      "id": "5",
+      "name": "Convergence",
+      "subtitle": "数字效果器",
+      "description": "多模式数字效果器，包含23种效果模式，支持时钟同步延迟效果",
+      "price": "$179",
+      "image": "src/Convergence.webp",
+      "category": "digital",
+      "isNew": true,
+      "specs": "6 HP Eurorack模块\n38mm深度\n立体声输入和输出\n基于SpinFV1引擎\n23种效果模式\n支持时钟同步延迟效果\n\n+12v:100ma\n-12v:10ma\n+5v:0ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "多模式数字效果器\n包含23种效果模式\n支持时钟同步延迟效果\n立体声输入和输出"
+        }
+      ],
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Convergence_manual.html"
+    },
+    {
+      "id": "6",
       "name": "ADSR Envelope",
       "subtitle": "包络发生器",
       "description": "面板升级 电路升级 Led采用灯柱",
-      "price": "$79",
-      "image": "src/product (3).png",
+      "price": "$69",
+      "image": "src/ADSR_Envelope.jpg",
       "category": "analog",
       "isNew": true,
       "specs": "Width:2HP\nDepth:25mm\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
@@ -115,30 +177,12 @@
       "manualUrl": "#"
     },
     {
-      "id": "4",
-      "name": "Knit",
-      "subtitle": "Mini Plaits",
-      "description": "6HP mini Plaits 数字振荡器",
-      "price": "$129",
-      "image": "src/product (4).png",
-      "category": "digital",
-      "isNew": true,
-      "specs": "Width:6HP\nDepth:30mm\nPower Header:10p/16p\n+12V:50mA\n-12V:5mA\n+5V:0mA",
-      "features": [
-        {
-          "name": "功能概述",
-          "desc": "KNIT是Mutable Instruments Plaits模块的小型重新设计\n面板黑色白色可选\n固件已是plaits最新\n复刻模块 用于支持研发新产品"
-        }
-      ],
-      "manualUrl": "#"
-    },
-    {
-      "id": "5",
+      "id": "7",
       "name": "4CH-Mixer&Send",
       "subtitle": "带返送式混音器",
       "description": "四路输入 立体声输出 耳机输出",
-      "price": "$69",
-      "image": "src/product (5).png",
+      "price": "$139",
+      "image": "src/4CH_Mixer_Send.webp",
       "category": "analog",
       "isNew": true,
       "specs": "4个输入通道\nI/II两路为立体声输入\nIII/IV两路为单声道输入\n默认将I/II/III通道发送至返效果器\n立体声发送和立体声返回接口\n输出接口支持耳机和立体声输出\n背部包含杜邦线3P(L/R/Gnd)跳线插口\n\nWidth:8HP\nDepth:28mm\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
@@ -151,12 +195,12 @@
       "manualUrl": "#"
     },
     {
-      "id": "6",
+      "id": "8",
       "name": "Buffer Mult",
       "subtitle": "有源缓冲器",
       "description": "二代新升级 3组1In2Out复制器",
-      "price": "$49",
-      "image": "src/product (6).png",
+      "price": "$59",
+      "image": "src/Buffer_Mult.jpg",
       "category": "analog",
       "isNew": true,
       "specs": "3组1In2Out复制器\n包含默认路由\n当In插口未接入跳线时 自动与上一个接口连通\n可切换为1In 6Out或1In 4Out & 1In 2Out或1In 2Out x3\n\nWidth:2HP\nDepth:35mm\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
@@ -169,30 +213,12 @@
       "manualUrl": "#"
     },
     {
-      "id": "7",
-      "name": "VFAM",
-      "subtitle": "DFAM同步器",
-      "description": "MOOG DFAM专用同步器",
-      "price": "$89",
-      "image": "src/product (7).png",
-      "category": "digital",
-      "isNew": true,
-      "specs": "1xExt Adv In 外部时钟输入\n1xAdv Out 连接DFAM的adv/clock接口\n1xRun/Stop按钮\n1xStop按钮\n1xRst按钮\n1xSet 1按钮\n\nWidth:2HP\nDepth:40mm\nPower Header:10p/16p\n+12v:40ma\n-12v:0ma\n+5v:0ma",
-      "features": [
-        {
-          "name": "功能概述",
-          "desc": "MOOG DFAM专用同步器\n用于解决DFAM步进音序器不便于同步的问题\n可以使DFAM与其他模块轻松同步\n复位/停止回到锁定的第一步\n也可随时指定某步为第一步"
-        }
-      ],
-      "manualUrl": "#"
-    },
-    {
-      "id": "8",
+      "id": "9",
       "name": "MS-20 VCF",
       "subtitle": "压控滤波器",
       "description": "经典的滤波器电路",
-      "price": "$149",
-      "image": "src/product (8).png",
+      "price": "$89",
+      "image": "src/MS_20_VCF.webp",
       "category": "analog",
       "isNew": true,
       "specs": "基于Korg MS-20滤波器\n具有伏每八度功能(背面含电位器可调谐)\n具有增益过载旋钮 失真方式为非对称削波\n具有滤波模式渐变旋钮\n\nWidth:4HP\nDepth:28mm\nPower Header:10p\n+12v:10ma\n-12v:10ma",
@@ -200,6 +226,148 @@
         {
           "name": "功能概述",
           "desc": "经典的滤波器电路\n具有伏每八度功能\n具有增益过载旋钮\n失真方式为非对称削波\n具有滤波模式渐变旋钮"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "10",
+      "name": "RatioMixer",
+      "subtitle": "声像模块",
+      "description": "控制信号混合模块，Eurorack模块合成器",
+      "price": "$89",
+      "image": "src/RatioMixer.webp",
+      "category": "analog",
+      "isNew": true,
+      "specs": "控制信号混合模块\n声像调节功能\n多输入信号混合\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "控制信号混合模块\n支持声像调节\n多输入信号混合\n简洁的2HP设计"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "11",
+      "name": "4CH-Mixer",
+      "subtitle": "混音器",
+      "description": "四路输入混音器，Eurorack模块合成器",
+      "price": "$89",
+      "image": "src/4CH_Mixer.webp",
+      "category": "analog",
+      "isNew": true,
+      "specs": "4个输入通道\n立体声输出\n简洁的2HP设计\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "四路输入混音器\n立体声输出\n简洁的2HP设计\n适合小型系统"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "12",
+      "name": "VFAM",
+      "subtitle": "MOOG DFAM专用同步器",
+      "description": "Valentine from another mother，MOOG DFAM专用同步器模块",
+      "price": "$99",
+      "image": "src/VFAM.webp",
+      "category": "digital",
+      "isNew": true,
+      "specs": "MOOG DFAM专用同步器\n时钟同步功能\n触发信号处理\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "MOOG DFAM专用同步器\n时钟同步功能\n触发信号处理\n实现多设备同步演奏"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "13",
+      "name": "S&H LFO",
+      "subtitle": "采样保持+低频振荡器",
+      "description": "采样保持+低频振荡器+噪音发生器，模块合成器 Eurorack",
+      "price": "$99",
+      "image": "src/S_H_LFO.jpg",
+      "category": "analog",
+      "isNew": true,
+      "specs": "采样保持功能\n低频振荡器\n噪音发生器\n多种波形输出\n\nWidth:4HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
+      "features": [
+        {
+          "name": "采样保持",
+          "desc": "采样输入信号并保持输出"
+        },
+        {
+          "name": "低频振荡器",
+          "desc": "多种波形的低频振荡输出"
+        },
+        {
+          "name": "噪音发生器",
+          "desc": "白噪音和粉红噪音输出"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "14",
+      "name": "VCA-2CH",
+      "subtitle": "双通道压控放大器",
+      "description": "双通道压控放大器，Eurorack模块合成器",
+      "price": "$69",
+      "image": "src/VCA_2CH.jpg",
+      "category": "analog",
+      "isNew": true,
+      "specs": "双通道压控放大器\n独立增益控制\nCV控制输入\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "双通道压控放大器\n独立增益控制\nCV控制输入\n适合信号放大和调制"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "15",
+      "name": "RandomSkip",
+      "subtitle": "概率/门信号发生器",
+      "description": "四通道概率/门信号/创意节奏发生器，紧凑版 Eurorack",
+      "price": "$119",
+      "image": "src/RandomSkip.jpg",
+      "category": "digital",
+      "isNew": true,
+      "specs": "四通道概率触发\n门信号生成\n创意节奏模式\n紧凑设计\n\nWidth:4HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
+      "features": [
+        {
+          "name": "概率触发",
+          "desc": "四通道独立概率触发控制"
+        },
+        {
+          "name": "门信号生成",
+          "desc": "多种门信号模式"
+        },
+        {
+          "name": "创意节奏",
+          "desc": "生成创意节奏模式"
+        }
+      ],
+      "manualUrl": "#"
+    },
+    {
+      "id": "16",
+      "name": "Stereo Mixer",
+      "subtitle": "立体声混音器",
+      "description": "立体声输出 耳放 混音器，Eurorack模块合成器",
+      "price": "$59",
+      "image": "src/Stereo_Mixer.jpg",
+      "category": "analog",
+      "isNew": true,
+      "specs": "立体声输入输出\n耳机输出\n耳放功能\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
+      "features": [
+        {
+          "name": "功能概述",
+          "desc": "立体声混音器\n耳机输出\n耳放功能\n适合监听和混音"
         }
       ],
       "manualUrl": "#"
