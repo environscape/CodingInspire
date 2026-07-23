@@ -42,16 +42,6 @@
         "isExternal": false
       },
       {
-        "id": "1",
-        "productName": "PolymorphicOsc",
-        "title": "Polymorphic Oscillator 用户手册",
-        "description": "多模态数字振荡器完整用户指南",
-        "fileType": "html",
-        "url": "support/manual/Polymorphic_manual.html",
-        "version": "v1.0",
-        "isExternal": false
-      },
-      {
         "id": "6",
         "productName": "Modulus84",
         "title": "Modulus8+4 用户手册",
@@ -68,6 +58,16 @@
         "description": "触摸控制量化器模块用户指南",
         "fileType": "html",
         "url": "support/manual/Quantizer_manual.html",
+        "version": "v1.0",
+        "isExternal": false
+      },
+      {
+        "id": "1",
+        "productName": "PolymorphicOsc",
+        "title": "Polymorphic Oscillator 用户手册",
+        "description": "多模态数字振荡器完整用户指南",
+        "fileType": "html",
+        "url": "support/manual/Polymorphic_manual.html",
         "version": "v1.0",
         "isExternal": false
       }

@@ -1,4 +1,4 @@
-<center><H1>Quantizer量化器 用户手册</H1></center>
+#  Quantizer量化器 用户手册
 <center>软件版本 v1.00 文档更新日期 2025-12-01</center>
 
 

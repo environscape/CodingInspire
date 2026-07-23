@@ -42,16 +42,6 @@
         "isExternal": false
       },
       {
-        "id": "1",
-        "productName": "PolymorphicOsc",
-        "title": "Polymorphic Oscillator User Manual",
-        "description": "Complete User Guide for Multimode Digital Oscillator",
-        "fileType": "html",
-        "url": "support/manual/Polymorphic_manual.html",
-        "version": "v1.0",
-        "isExternal": false
-      },
-      {
         "id": "6",
         "productName": "Modulus84",
         "title": "Modulus8+4 User Manual",
@@ -68,6 +58,16 @@
         "description": "Touch-controlled Quantizer Module User Guide",
         "fileType": "html",
         "url": "support/manual/Quantizer_manual.html",
+        "version": "v1.0",
+        "isExternal": false
+      },
+      {
+        "id": "1",
+        "productName": "PolymorphicOsc",
+        "title": "Polymorphic Oscillator User Manual",
+        "description": "Complete User Guide for Multimode Digital Oscillator",
+        "fileType": "html",
+        "url": "support/manual/Polymorphic_manual.html",
         "version": "v1.0",
         "isExternal": false
       }

@@ -1,6 +1,6 @@
 
 
-##  Convergence 数字效果处理器 用户手册
+#  Convergence 数字效果处理器 用户手册
 
 <center>软件版本 v2.0 文档更新日期 2026-07-01</center>
 
