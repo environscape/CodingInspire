@@ -863,25 +863,31 @@ nav.scrolled {
 
   .nav-links {
     display: none;
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    overflow: hidden;
+    z-index: 1001;
+    animation: dropdownFade 0.2s ease;
   }
 
   .nav-links.active {
     display: flex;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: rgba(13, 13, 13, 0.98);
-    backdrop-filter: blur(20px);
     flex-direction: column;
-    padding: 24px;
-    gap: 20px;
-    animation: slideDown 0.3s ease;
+    padding: 8px 0;
+    gap: 0;
   }
 
-  @keyframes slideDown {
+  @keyframes dropdownFade {
     from {
-      transform: translateY(-20px);
+      transform: translateY(-10px);
       opacity: 0;
     }
     to {
@@ -890,8 +896,44 @@ nav.scrolled {
     }
   }
 
+  .nav-links a {
+    padding: 12px 20px;
+    margin: 0;
+    text-transform: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-bottom: none;
+    transition: all var(--transition-fast);
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--accent-color);
+    background-color: rgba(255, 107, 53, 0.05);
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
   .menu-icon {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+  }
+
+  .menu-icon:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
   }
 
   .slide-content {
@@ -1108,6 +1150,18 @@ nav.scrolled {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
+
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuIcon = document.getElementById('menuIcon');
+            const nav = document.querySelector('nav');
+            
+            if (navLinks.classList.contains('active')) {
+                if (!nav.contains(event.target) || (event.target.closest('a') && !event.target.closest('.nav-links'))) {
+                    navLinks.classList.remove('active');
+                }
+            }
+        });
 
         function toggleTheme() {
             const root = document.documentElement;
