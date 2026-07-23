@@ -1,4 +1,4 @@
-# Modulus8+4 双音序器模块 用户手册
+<center><H1>Modulus8+4 双音序器模块 用户手册</H1></center>
 
 <center>软件版本 v1.0 文档更新日期 2026-07-22</center>
 

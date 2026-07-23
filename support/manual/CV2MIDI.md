@@ -1,5 +1,6 @@
-# CV2Midi V2.0 使用手册 #
+<center><H1>CV2Midi V2.0 使用手册</H1></center>
 
+<center>软件版本 v2.0 文档更新日期 2025-10-01</center>
 
 
 一、硬件及接口介绍
