@@ -60,6 +60,16 @@
         "url": "support/manual/Modulus84_manual.html",
         "version": "v1.0",
         "isExternal": false
+      },
+      {
+        "id": "7",
+        "productName": "Quantizer",
+        "title": "Quantizer User Manual",
+        "description": "Touch-controlled Quantizer Module User Guide",
+        "fileType": "html",
+        "url": "support/manual/Quantizer_manual.html",
+        "version": "v1.0",
+        "isExternal": false
       }
     ],
     "firmware": [

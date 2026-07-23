@@ -60,6 +60,16 @@
         "url": "support/manual/Modulus84_manual.html",
         "version": "v1.0",
         "isExternal": false
+      },
+      {
+        "id": "7",
+        "productName": "Quantizer",
+        "title": "Quantizer 用户手册",
+        "description": "触摸控制量化器模块用户指南",
+        "fileType": "html",
+        "url": "support/manual/Quantizer_manual.html",
+        "version": "v1.0",
+        "isExternal": false
       }
     ],
     "firmware": [
