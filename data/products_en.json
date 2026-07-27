@@ -97,22 +97,22 @@
       "manualUrl": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.1"
     },
     {
-      "id": "3",
-      "name": "CV2MIDI",
-      "subtitle": "CV to MIDI Converter",
-      "description": "CV to MIDI converter module with editable mapping, Eurorack modular synthesizer",
-      "price": "$109",
-      "image": "src/CV2MIDI.jpg",
+      "id": "5",
+      "name": "Convergence",
+      "subtitle": "Digital Effects Processor",
+      "description": "Multi-mode digital effects processor with 23 effect modes, supporting clock-synced delay effects",
+      "price": "$179",
+      "image": "src/Convergence.webp",
       "category": "digital",
       "isNew": true,
-      "specs": "2HP Eurorack module\nCV to MIDI conversion\nSupports editable mapping\nMIDI output jack\nCV input jack\n\nWidth: 2HP\nPower Header: 10p/16p",
+      "specs": "6 HP Eurorack module\n38mm depth\nStereo input and output\nBased on SpinFV1 engine\n23 effect modes\nSupports clock-synced delay effects\n\n+12v: 100ma\n-12v: 10ma\n+5v: 0ma",
       "features": [
         {
           "name": "Overview",
-          "desc": "CV to MIDI converter module\nSupports editable mapping\nConverts analog control signals to digital MIDI signals"
+          "desc": "Multi-mode digital effects processor\nContains 23 effect modes\nSupports clock-synced delay effects\nStereo input and output"
         }
       ],
-      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/CV2MIDI.html"
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Convergence_manual.html"
     },
     {
       "id": "4",
@@ -141,22 +141,22 @@
       "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Quantizer_manual.html"
     },
     {
-      "id": "5",
-      "name": "Convergence",
-      "subtitle": "Digital Effects Processor",
-      "description": "Multi-mode digital effects processor with 23 effect modes, supporting clock-synced delay effects",
-      "price": "$179",
-      "image": "src/Convergence.webp",
+      "id": "3",
+      "name": "CV2MIDI",
+      "subtitle": "CV to MIDI Converter",
+      "description": "CV to MIDI converter module with editable mapping, Eurorack modular synthesizer",
+      "price": "$109",
+      "image": "src/CV2MIDI.jpg",
       "category": "digital",
       "isNew": true,
-      "specs": "6 HP Eurorack module\n38mm depth\nStereo input and output\nBased on SpinFV1 engine\n23 effect modes\nSupports clock-synced delay effects\n\n+12v: 100ma\n-12v: 10ma\n+5v: 0ma",
+      "specs": "2HP Eurorack module\nCV to MIDI conversion\nSupports editable mapping\nMIDI output jack\nCV input jack\n\nWidth: 2HP\nPower Header: 10p/16p",
       "features": [
         {
           "name": "Overview",
-          "desc": "Multi-mode digital effects processor\nContains 23 effect modes\nSupports clock-synced delay effects\nStereo input and output"
+          "desc": "CV to MIDI converter module\nSupports editable mapping\nConverts analog control signals to digital MIDI signals"
         }
       ],
-      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Convergence_manual.html"
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/CV2MIDI.html"
     },
     {
       "id": "6",

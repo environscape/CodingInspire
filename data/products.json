@@ -97,22 +97,22 @@
       "manualUrl": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.2"
     },
     {
-      "id": "3",
-      "name": "CV2MIDI",
-      "subtitle": "压控信号转迷笛信号",
-      "description": "CV信号转MIDI信号模块，支持可编辑映射，Eurorack模块合成器",
-      "price": "$109",
-      "image": "src/CV2MIDI.jpg",
+      "id": "5",
+      "name": "Convergence",
+      "subtitle": "数字效果器",
+      "description": "多模式数字效果器，包含23种效果模式，支持时钟同步延迟效果",
+      "price": "$179",
+      "image": "src/Convergence.webp",
       "category": "digital",
       "isNew": true,
-      "specs": "2HP Eurorack模块\n压控信号转MIDI信号\n支持可编辑映射\nMIDI输出接口\nCV输入接口\n\nWidth:2HP\nPower Header:10p/16p",
+      "specs": "6 HP Eurorack模块\n38mm深度\n立体声输入和输出\n基于SpinFV1引擎\n23种效果模式\n支持时钟同步延迟效果\n\n+12v:100ma\n-12v:10ma\n+5v:0ma",
       "features": [
         {
           "name": "功能概述",
-          "desc": "CV信号转MIDI信号模块\n支持可编辑映射\n将模拟控制信号转换为数字MIDI信号"
+          "desc": "多模式数字效果器\n包含23种效果模式\n支持时钟同步延迟效果\n立体声输入和输出"
         }
       ],
-      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/CV2MIDI.html"
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Convergence_manual.html"
     },
     {
       "id": "4",
@@ -141,22 +141,22 @@
       "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Quantizer_manual.html"
     },
     {
-      "id": "5",
-      "name": "Convergence",
-      "subtitle": "数字效果器",
-      "description": "多模式数字效果器，包含23种效果模式，支持时钟同步延迟效果",
-      "price": "$179",
-      "image": "src/Convergence.webp",
+      "id": "3",
+      "name": "CV2MIDI",
+      "subtitle": "压控信号转迷笛信号",
+      "description": "CV信号转MIDI信号模块，支持可编辑映射，Eurorack模块合成器",
+      "price": "$109",
+      "image": "src/CV2MIDI.jpg",
       "category": "digital",
       "isNew": true,
-      "specs": "6 HP Eurorack模块\n38mm深度\n立体声输入和输出\n基于SpinFV1引擎\n23种效果模式\n支持时钟同步延迟效果\n\n+12v:100ma\n-12v:10ma\n+5v:0ma",
+      "specs": "2HP Eurorack模块\n压控信号转MIDI信号\n支持可编辑映射\nMIDI输出接口\nCV输入接口\n\nWidth:2HP\nPower Header:10p/16p",
       "features": [
         {
           "name": "功能概述",
-          "desc": "多模式数字效果器\n包含23种效果模式\n支持时钟同步延迟效果\n立体声输入和输出"
+          "desc": "CV信号转MIDI信号模块\n支持可编辑映射\n将模拟控制信号转换为数字MIDI信号"
         }
       ],
-      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Convergence_manual.html"
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/CV2MIDI.html"
     },
     {
       "id": "6",
