@@ -163,8 +163,8 @@
       {
         "id": "2",
         "title": "Contact Us",
-        "description": "",
-        "url": "",
+        "description": "lechenggood@foxmail.com",
+        "url": "mailto:lechenggood@foxmail.com",
         "isExternal": true
       },
       {
@@ -173,11 +173,18 @@
         "description": "Watch official tutorial videos",
         "url": "https://youtube.com/@codinginspire",
         "isExternal": true
+      },
+      {
+        "id": "4",
+        "title": "BilBli tutorial",
+        "description": "Watch BilBli tutorial videos",
+        "url": "https://space.bilibili.com/22529489",
+        "isExternal": true
       }
     ],
     "contact": {
       "email": "lechenggood@foxmail.com",
-      "wechat": "CodingInspire",
+      "wechat": "ENVIRON_",
       "taobao": "https://m.tb.cn/h.SQfZFM67ZAOsRs2"
     }
   }

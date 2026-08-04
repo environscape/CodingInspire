@@ -163,8 +163,8 @@
       {
         "id": "2",
         "title": "联系我们",
-        "description": "",
-        "url": "",
+        "description": "lechenggood@foxmail.com",
+        "url": "mailto:lechenggood@foxmail.com",
         "isExternal": true
       },
       {
@@ -173,11 +173,18 @@
         "description": "观看官方教程视频",
         "url": "https://youtube.com/@codinginspire",
         "isExternal": true
+      },
+      {
+        "id": "4",
+        "title": "BilBli 教程",
+        "description": "观看B站教程视频",
+        "url": "https://space.bilibili.com/22529489",
+        "isExternal": true
       }
     ],
     "contact": {
       "email": "lechenggood@foxmail.com",
-      "wechat": "CodingInspire",
+      "wechat": "ENVIRON_",
       "taobao": "https://m.tb.cn/h.SQfZFM67ZAOsRs2"
     }
   }
