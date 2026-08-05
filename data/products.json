@@ -356,21 +356,33 @@
     },
     {
       "id": "16",
-      "name": "Stereo Mixer",
-      "subtitle": "立体声混音器",
-      "description": "立体声输出 耳放 混音器，Eurorack模块合成器",
+      "name": "Modulus8+4",
+      "subtitle": "Mult Mode Sequencer;Matrix Sequencer",
+      "description": "Mult Mode Sequencer;Matrix Sequencer",
       "price": "$59",
-      "image": "src/Stereo_Mixer.jpg",
+      "image": "src/Modulus.png",
       "category": "analog",
       "isNew": true,
-      "specs": "立体声输入输出\n耳机输出\n耳放功能\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
+      "specs": "Width:12HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "features": [
         {
-          "name": "功能概述",
-          "desc": "立体声混音器\n耳机输出\n耳放功能\n适合监听和混音"
+          "name": "Mult Mode Sequencer;Matrix Sequencer",
+          "desc": "Modulus8+4 是一款 Eurorack 格式双轨音序器模块
+          集成了两条独立的CV音序轨道
+          轨道1含8个步进，轨道2含4个步进
+          4个Trig in 2个CV out
+          支持3种工作模式：
+          next/rst mode 常规的音序 可以复位
+          next/direct mode 可以修改步进方向
+          matrix mode 可以四个方向遍历4x3矩阵
+          包含长度旋钮以及切割组合模式
+          每个步进控制旋钮当处于最大时将在下一次触发时随机输出
+          自带音阶量化、根音选择
+          十余种音阶可供快速切换
+          输出范围7个八度 每个步进旋钮拧到最大，该步进讲随机电平输出"
         }
       ],
-      "manualUrl": "#"
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Modulus84_manual.html"
     }
   ],
   "categories": [

@@ -356,21 +356,21 @@
     },
     {
       "id": "16",
-      "name": "Stereo Mixer",
-      "subtitle": "Stereo Mixer",
-      "description": "Stereo output, headphone amplifier, mixer, Eurorack modular synthesizer",
+      "name": "Modulus8+4",
+      "subtitle": "Mult Mode Sequencer;Matrix Sequencer",
+      "description": "Mult Mode Sequencer;Matrix Sequencer",
       "price": "$59",
-      "image": "src/Stereo_Mixer.jpg",
+      "image": "src/Modulus.png",
       "category": "analog",
       "isNew": true,
-      "specs": "Stereo input/output\nHeadphone output\nHeadphone amplifier function\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs": "Width:12HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "features": [
         {
-          "name": "Overview",
-          "desc": "Stereo mixer\nHeadphone output\nHeadphone amplifier function\nPerfect for monitoring and mixing"
+          "name": "Mult Mode Sequencer;Matrix Sequencer",
+          "desc": "Modulus8+4 is a Eurorack format dual-track sequencer module that integrates two independent CV sequencer tracks. Track 1 contains 8 steps, while Track 2 contains 4 steps. It supports 4 Trigs in 2 CV outs and 3 working modes: next/rst mode, which is a regular sequencer that can be reset; next/direct mode, which allows you to modify the step direction; and matrix mode, which allows you to traverse a 4x3 matrix in four directions. It includes a length knob and a cutting combination mode. Each step control knob, when turned to its maximum, will output a random level at the next trigger. It comes with scale quantization and root note selection, offering more than ten scales for quick switching. The output range spans 7 octaves. When each step knob is turned to its maximum, the step will output a random level"
         }
       ],
-      "manualUrl": "#"
+      "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Modulus84_manual.html"
     }
   ],
   "categories": [
