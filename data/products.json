@@ -5,7 +5,6 @@
       "name": "Manifold",
       "subtitle": "集成式数字调制器",
       "description": "基于12个并列的内部调制模块与对应的参数，可自由路由模块间的调制关系以及输入输出接口",
-      "price": "$279",
       "image": "src/Manifold.jpg",
       "category": "digital",
       "isNew": true,
@@ -83,7 +82,6 @@
       "name": "MIDI2CV MK2",
       "subtitle": "迷笛信号转压控信号",
       "description": "可编程模块合成器 Eurorack，适合搭配鼓机、音序器、带midi接口的控制键盘",
-      "price": "$119",
       "image": "src/MIDI2CV_MK2.webp",
       "category": "digital",
       "isNew": true,
@@ -101,7 +99,6 @@
       "name": "Convergence",
       "subtitle": "数字效果器",
       "description": "多模式数字效果器，包含23种效果模式，支持时钟同步延迟效果",
-      "price": "$179",
       "image": "src/Convergence.webp",
       "category": "digital",
       "isNew": true,
@@ -119,7 +116,6 @@
       "name": "Quantizer",
       "subtitle": "量化器模块",
       "description": "触摸量化器模块，支持琶音器和触摸循环录制功能",
-      "price": "$149",
       "image": "src/Quantizer.jpg",
       "category": "digital",
       "isNew": true,
@@ -145,7 +141,6 @@
       "name": "CV2MIDI",
       "subtitle": "压控信号转迷笛信号",
       "description": "CV信号转MIDI信号模块，支持可编辑映射，Eurorack模块合成器",
-      "price": "$109",
       "image": "src/CV2MIDI.jpg",
       "category": "digital",
       "isNew": true,
@@ -163,7 +158,6 @@
       "name": "ADSR Envelope",
       "subtitle": "包络发生器",
       "description": "面板升级 电路升级 Led采用灯柱",
-      "price": "$69",
       "image": "src/ADSR_Envelope.jpg",
       "category": "analog",
       "isNew": true,
@@ -181,7 +175,6 @@
       "name": "4CH-Mixer&Send",
       "subtitle": "带返送式混音器",
       "description": "四路输入 立体声输出 耳机输出",
-      "price": "$139",
       "image": "src/4CH_Mixer_Send.webp",
       "category": "analog",
       "isNew": true,
@@ -199,7 +192,6 @@
       "name": "Buffer Mult",
       "subtitle": "有源缓冲器",
       "description": "二代新升级 3组1In2Out复制器",
-      "price": "$59",
       "image": "src/Buffer_Mult.jpg",
       "category": "analog",
       "isNew": true,
@@ -217,7 +209,6 @@
       "name": "MS-20 VCF",
       "subtitle": "压控滤波器",
       "description": "经典的滤波器电路",
-      "price": "$89",
       "image": "src/MS_20_VCF.webp",
       "category": "analog",
       "isNew": true,
@@ -235,7 +226,6 @@
       "name": "RatioMixer",
       "subtitle": "声像模块",
       "description": "控制信号混合模块，Eurorack模块合成器",
-      "price": "$89",
       "image": "src/RatioMixer.webp",
       "category": "analog",
       "isNew": true,
@@ -253,7 +243,6 @@
       "name": "4CH-Mixer",
       "subtitle": "混音器",
       "description": "四路输入混音器，Eurorack模块合成器",
-      "price": "$89",
       "image": "src/4CH_Mixer.webp",
       "category": "analog",
       "isNew": true,
@@ -271,7 +260,6 @@
       "name": "VFAM",
       "subtitle": "MOOG DFAM专用同步器",
       "description": "Valentine from another mother，MOOG DFAM专用同步器模块",
-      "price": "$99",
       "image": "src/VFAM.webp",
       "category": "digital",
       "isNew": true,
@@ -289,7 +277,6 @@
       "name": "S&H LFO",
       "subtitle": "采样保持+低频振荡器",
       "description": "采样保持+低频振荡器+噪音发生器，模块合成器 Eurorack",
-      "price": "$99",
       "image": "src/S_H_LFO.jpg",
       "category": "analog",
       "isNew": true,
@@ -315,7 +302,6 @@
       "name": "VCA-2CH",
       "subtitle": "双通道压控放大器",
       "description": "双通道压控放大器，Eurorack模块合成器",
-      "price": "$69",
       "image": "src/VCA_2CH.jpg",
       "category": "analog",
       "isNew": true,
@@ -333,7 +319,6 @@
       "name": "RandomSkip",
       "subtitle": "概率/门信号发生器",
       "description": "四通道概率/门信号/创意节奏发生器，紧凑版 Eurorack",
-      "price": "$119",
       "image": "src/RandomSkip.jpg",
       "category": "digital",
       "isNew": true,
@@ -359,7 +344,6 @@
       "name": "Modulus8+4",
       "subtitle": "Mult Mode Sequencer;Matrix Sequencer",
       "description": "Mult Mode Sequencer;Matrix Sequencer",
-      "price": "$109",
       "image": "src/Modulus.png",
       "category": "analog",
       "isNew": true,
@@ -367,19 +351,7 @@
       "features": [
         {
           "name": "Mult Mode Sequencer;Matrix Sequencer",
-          "desc": "Modulus8+4 是一款 Eurorack 格式双轨音序器模块
-          集成了两条独立的CV音序轨道
-          轨道1含8个步进，轨道2含4个步进
-          4个Trig in 2个CV out
-          支持3种工作模式：
-          next/rst mode 常规的音序 可以复位
-          next/direct mode 可以修改步进方向
-          matrix mode 可以四个方向遍历4x3矩阵
-          包含长度旋钮以及切割组合模式
-          每个步进控制旋钮当处于最大时将在下一次触发时随机输出
-          自带音阶量化、根音选择
-          十余种音阶可供快速切换
-          输出范围7个八度 每个步进旋钮拧到最大，该步进讲随机电平输出"
+          "desc": "Modulus8+4 是一款 Eurorack 格式双轨音序器模块，集成两条独立的CV音序轨道：\n- 轨道1: 8个步进，轨道2: 4个步进\n- 4个Trig输入，2个CV输出\n\n支持3种工作模式：\n- next/rst mode: 常规音序，可复位\n- next/direct mode: 可修改步进方向\n- matrix mode: 可四个方向遍历4x3矩阵\n\n功能特点：\n- 包含长度旋钮以及切割组合模式\n- 每个步进旋钮拧到最大时，下次触发将随机输出\n- 自带音阶量化、根音选择，十余种音阶可供快速切换\n- 输出范围7个八度"
         }
       ],
       "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Modulus84_manual.html"
