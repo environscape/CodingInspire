@@ -1295,7 +1295,7 @@ nav.scrolled {
                     <div class="product-details-info">
                         <h1 class="product-details-title">${product.name}</h1>
                         <h2 class="product-details-subtitle">${product.subtitle}</h2>
-                        <p class="product-details-price">${product.price}</p>
+                        ${product.price ? `<p class="product-details-price">${product.price}</p>` : ''}
                         <p class="product-details-desc">${product.specs}</p>
                     </div>
                 </div>
