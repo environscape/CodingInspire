@@ -20,7 +20,7 @@ Modulus8+4 是一款 Eurorack 格式双轨音序器模块，集成了两条独�
 
 ## 二、模块操作与接口详解
 
-![Modulus8+4 实物图](../img/Modulus84_Appearance.webp)
+![Modulus8+4 实物图](../img/Modulus84_Appearance.png)
 
 ### 1. 旋钮
 
