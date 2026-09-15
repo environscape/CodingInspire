@@ -584,6 +584,7 @@ nav.scrolled {
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   margin-bottom: 60px;
+  align-items: start;
 }
 
 .product-details-slider {
@@ -592,6 +593,7 @@ nav.scrolled {
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border-color);
+  aspect-ratio: 1;
 }
 
 .product-details-slider .slider {
@@ -641,6 +643,114 @@ nav.scrolled {
   background: var(--bg-card);
   border-radius: 12px;
   border: 1px solid var(--border-color);
+}
+
+.product-details-brief {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.product-specs-area {
+  margin-bottom: 48px;
+}
+
+.product-specs-area h5 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.store-links {
+  margin-top: 24px;
+  padding: 24px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.store-links h5 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.store-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.store-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.store-item:hover {
+  background: rgba(255, 107, 53, 0.08);
+  border-color: var(--accent-color);
+  transform: translateX(4px);
+}
+
+.store-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: var(--bg-card);
+  flex-shrink: 0;
+}
+
+.store-logo-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.store-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.store-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.store-region {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.store-arrow {
+  color: var(--accent-color);
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.store-item:hover .store-arrow {
+  transform: translateX(4px);
 }
 
 .product-more-desc {
@@ -1099,8 +1209,10 @@ nav.scrolled {
                 cookie_text: 'We use cookies to improve your experience. By continuing to use this website, you agree to our cookie policy. <a href="#">Learn more</a>',
                 cookie_more: 'Learn more',
                 features_title: 'Features Overview',
+                specs_title: 'Specifications',
                 manual_label: 'Product Manual:',
-                manual_coming: 'Manual coming soon'
+                manual_coming: 'Manual coming soon',
+                stores_title: 'Where to Buy'
             },
             zh: {
                 link_taobao: '淘宝购买',
@@ -1109,8 +1221,10 @@ nav.scrolled {
                 cookie_text: '我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a>',
                 cookie_more: '了解更多',
                 features_title: '功能概述',
+                specs_title: '规格参数',
                 manual_label: '产品手册：',
-                manual_coming: '手册即将推出'
+                manual_coming: '手册即将推出',
+                stores_title: '购买渠道'
             }
         };
 
@@ -1246,9 +1360,13 @@ nav.scrolled {
 
             try {
                 const fileName = currentLang === 'zh' ? 'data/products.json' : 'data/products_en.json';
-                const response = await fetch(fileName);
-                const data = await response.json();
-                const product = data.products.find(p => p.id === productId);
+                const [productRes, storesRes] = await Promise.all([
+                    fetch(fileName),
+                    fetch('data/stores.json')
+                ]);
+                const productData = await productRes.json();
+                const storesData = storesRes.ok ? await storesRes.json() : { stores: [] };
+                const product = productData.products.find(p => p.id === productId);
                 
                 if (!product) {
                     const msg = currentLang === 'zh' ? '产品不存在' : 'Product not found';
@@ -1256,7 +1374,7 @@ nav.scrolled {
                     return;
                 }
 
-                renderProduct(product);
+                renderProduct(product, storesData.stores);
             } catch (error) {
                 console.error('Failed to load product:', error);
                 const msg = currentLang === 'zh' ? '加载失败' : 'Loading failed';
@@ -1264,7 +1382,7 @@ nav.scrolled {
             }
         }
 
-        function renderProduct(product) {
+        function renderProduct(product, stores = []) {
             document.title = product.name + ' | Coding Inspire Modular';
             
             const featuresHtml = product.features.map(feature => `
@@ -1278,6 +1396,42 @@ nav.scrolled {
             const manualLabel = translations[currentLang].manual_label;
             const manualBtnText = currentLang === 'zh' ? '查看手册' : 'View Manual';
             const manualComing = translations[currentLang].manual_coming;
+            const storesTitle = translations[currentLang].stores_title;
+
+            // 渲染商店列表
+            let storesHtml = '';
+            if (stores.length > 0) {
+                const storeItemsHtml = stores.map(store => {
+                    const storeName = currentLang === 'zh' ? store.name : (store.name_en || store.name);
+                    const storeRegion = currentLang === 'zh' ? store.region : (store.region_en || store.region);
+                    const initial = storeName.charAt(0).toUpperCase();
+                    
+                    let logoHtml = '';
+                    if (store.logo) {
+                        logoHtml = `<img src="${store.logo}" alt="${storeName}" class="store-logo">`;
+                    } else {
+                        logoHtml = `<div class="store-logo-placeholder">${initial}</div>`;
+                    }
+                    
+                    return `
+                        <a href="${store.url}" target="_blank" rel="noopener" class="store-item">
+                            ${logoHtml}
+                            <div class="store-info">
+                                <div class="store-name">${storeName}</div>
+                                <div class="store-region">${storeRegion}</div>
+                            </div>
+                            <span class="store-arrow">&#8250;</span>
+                        </a>
+                    `;
+                }).join('');
+                
+                storesHtml = `
+                    <div class="store-links">
+                        <h5>${storesTitle}</h5>
+                        <div class="store-list">${storeItemsHtml}</div>
+                    </div>
+                `;
+            }
 
             const content = `
                 <div class="product-details">
@@ -1296,9 +1450,16 @@ nav.scrolled {
                         <h1 class="product-details-title">${product.name}</h1>
                         <h2 class="product-details-subtitle">${product.subtitle}</h2>
                         ${product.price ? `<p class="product-details-price">${product.price}</p>` : ''}
-                        <p class="product-details-desc">${product.specs}</p>
+                        ${product.description ? `<p class="product-details-brief">${product.description}</p>` : ''}
+                        ${storesHtml}
                     </div>
                 </div>
+
+                ${product.specs ? `
+                <div class="product-specs-area">
+                    <h5>${translations[currentLang].specs_title || 'Specifications'}</h5>
+                    <p class="product-details-desc">${product.specs}</p>
+                </div>` : ''}
 
                 <div class="product-more-desc">
                     <h5>${featuresTitle}</h5>
