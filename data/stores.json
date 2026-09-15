@@ -1,15 +1,6 @@
 {
   "stores": [
-    {
-      "id": "taobao",
-      "name": "淘宝店铺",
-      "name_en": "Taobao Store",
-      "url": "https://m.tb.cn/h.SQfZFM67ZAOsRs2",
-      "logo": "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/taobao.svg",
-      "region": "中国",
-      "region_en": "China"
-    },
-    {
+       {
       "id": "perfectcircuit",
       "name": "完美电路商店",
       "name_en": "Perfect Circuit",
@@ -17,6 +8,15 @@
       "logo": "https://www.perfectcircuit.com/static/version1789394590/frontend/Aware/default/en_US/images/logo.svg",
       "region": "全球",
       "region_en": "Global"
+    },
+    {
+      "id": "taobao",
+      "name": "淘宝店铺",
+      "name_en": "Taobao Store",
+      "url": "https://m.tb.cn/h.SQfZFM67ZAOsRs2",
+      "logo": "https://cdn.simpleicons.org/taobao",
+      "region": "中国",
+      "region_en": "China"
     }
   ]
 }

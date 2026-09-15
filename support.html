@@ -1052,12 +1052,7 @@ nav.scrolled {
     </main>
 
     <div class="friend-links">
-        <div class="links-row">
-            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2" data-i18n="link_taobao">淘宝购买</a>
-            <a href="https://www.midifan.com/">midifan</a>
-            <a href="https://modulargrid.net/">modular grid</a>
-            <a href="https://doepfer.de/">doepfer</a>
-        </div>
+        <div class="links-row" id="friendLinksRow"></div>
         <div class="qr-code-container">
             <div class="qr-code-wrapper">
                 <img src="tb_qrcode.png" alt="淘宝店铺">
@@ -1127,6 +1122,11 @@ nav.scrolled {
                 format_label: '格式:'
             }
         };
+
+        function tField(obj, field) {
+            if (currentLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
+            return obj[field];
+        }
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -1239,8 +1239,7 @@ nav.scrolled {
 
         async function loadSupportData() {
             try {
-                const fileName = currentLang === 'zh' ? 'data/support.json' : 'data/support_en.json';
-                const response = await fetch(fileName);
+                const response = await fetch('data/support.json');
                 const data = await response.json();
                 renderSupport(data.support);
             } catch (error) {
@@ -1251,11 +1250,22 @@ nav.scrolled {
 
         function renderSupport(support) {
             const t = translations[currentLang];
-            
+
+            // 渲染底部友情链接
+            if (support.friendLinks) {
+                const flRow = document.getElementById('friendLinksRow');
+                if (flRow) {
+                    flRow.innerHTML = support.friendLinks.map(link => {
+                        const name = currentLang === 'en' && link.name_en ? link.name_en : link.name;
+                        return `<a href="${link.url}" target="_blank">${name}</a>`;
+                    }).join('');
+                }
+            }
+
             const manualsHtml = support.manuals.map(item => `
                 <div class="support-card">
-                    <h4>${item.title}</h4>
-                    <p>${item.description}</p>
+                    <h4>${tField(item, 'title')}</h4>
+                    <p>${tField(item, 'description')}</p>
                     <div class="meta">
                         <span>${t.product_label} ${item.productName}</span>
                         <span>${t.version_label} ${item.version}</span>
@@ -1269,12 +1279,12 @@ nav.scrolled {
                 const btnText = item.isExternal ? t.visit_link : t.download_firmware;
                 return `
                     <div class="support-card">
-                        <h4>${item.title}</h4>
-                        <p>${item.description}</p>
+                        <h4>${tField(item, 'title')}</h4>
+                        <p>${tField(item, 'description')}</p>
                         <div class="meta">
                             <span>${t.product_label} ${item.productName}</span>
                             <span>${t.version_label} ${item.version}</span>
-                            <span>${t.format_label} ${item.fileType.toUpperCase()}</span>
+                            <span>${t.format_label} ${tField(item, 'fileType').toUpperCase()}</span>
                         </div>
                         <a href="${item.url}" ${targetAttr}>${btnText}</a>
                     </div>
@@ -1283,8 +1293,8 @@ nav.scrolled {
 
             const toolsHtml = support.tools.map(item => `
                 <div class="support-card">
-                    <h4>${item.title}</h4>
-                    <p>${item.description}</p>
+                    <h4>${tField(item, 'title')}</h4>
+                    <p>${tField(item, 'description')}</p>
                     <div class="meta">
                         <span>${t.format_label} ${item.fileType.toUpperCase()}</span>
                     </div>
@@ -1296,8 +1306,8 @@ nav.scrolled {
                 const targetAttr = item.isExternal ? 'target="_blank"' : '';
                 return `
                     <div class="support-card">
-                        <h4>${item.title}</h4>
-                        <p>${item.description}</p>
+                        <h4>${tField(item, 'title')}</h4>
+                        <p>${tField(item, 'description')}</p>
                         <a href="${item.url}" ${targetAttr}>${t.read_guide}</a>
                     </div>
                 `;
@@ -1307,8 +1317,8 @@ nav.scrolled {
                 const targetAttr = item.isExternal ? 'target="_blank"' : '';
                 return `
                     <div class="support-card">
-                        <h4>${item.title}</h4>
-                        <p>${item.description}</p>
+                        <h4>${tField(item, 'title')}</h4>
+                        <p>${tField(item, 'description')}</p>
                         <a href="${item.url}" ${targetAttr}>${t.visit_link}</a>
                     </div>
                 `;

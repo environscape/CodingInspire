@@ -5,7 +5,9 @@
         "id": "2",
         "productName": "Manifold",
         "title": "Manifold 用户手册",
+        "title_en": "Manifold User Manual",
         "description": "Mult Mode Modulator 用户指南",
+        "description_en": "Multi Mode Modulator User Guide",
         "fileType": "html",
         "url": "support/manual/Manifold_manual.html",
         "version": "v1.0",
@@ -15,7 +17,9 @@
         "id": "4",
         "productName": "CV2MIDI",
         "title": "CV2MIDI 用户手册",
+        "title_en": "CV2MIDI User Manual",
         "description": "CV转MIDI模块用户指南",
+        "description_en": "CV to MIDI Module User Guide",
         "fileType": "html",
         "url": "support/manual/CV2MIDI.html",
         "version": "v2.0",
@@ -25,7 +29,9 @@
         "id": "5",
         "productName": "MIDI2CV",
         "title": "MIDI2CV 用户手册",
+        "title_en": "MIDI2CV User Manual",
         "description": "MIDI转CV模块用户指南（一代/二代）",
+        "description_en": "MIDI to CV Module User Guide (Gen 1/Gen 2)",
         "fileType": "html",
         "url": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.2",
         "version": "v4.2",
@@ -35,7 +41,9 @@
         "id": "2",
         "productName": "Convergence",
         "title": "Convergence 用户手册",
+        "title_en": "Convergence User Manual",
         "description": "模块化数字效果器DSP",
+        "description_en": "Modular Digital Effects Processor DSP",
         "fileType": "html",
         "url": "support/manual/Convergence_manual.html",
         "version": "v2.0",
@@ -45,7 +53,9 @@
         "id": "6",
         "productName": "Modulus84",
         "title": "Modulus8+4 用户手册",
+        "title_en": "Modulus8+4 User Manual",
         "description": "双轨CV音序器模块用户指南",
+        "description_en": "Dual-track CV Sequencer Module User Guide",
         "fileType": "html",
         "url": "support/manual/Modulus84_manual.html",
         "version": "v1.0",
@@ -55,7 +65,9 @@
         "id": "7",
         "productName": "Quantizer",
         "title": "Quantizer 用户手册",
+        "title_en": "Quantizer User Manual",
         "description": "触摸控制量化器模块用户指南",
+        "description_en": "Touch-controlled Quantizer Module User Guide",
         "fileType": "html",
         "url": "support/manual/Quantizer_manual.html",
         "version": "v1.0",
@@ -65,7 +77,9 @@
         "id": "1",
         "productName": "PolymorphicOsc",
         "title": "Polymorphic Oscillator 用户手册",
+        "title_en": "Polymorphic Oscillator User Manual",
         "description": "多模态数字振荡器完整用户指南",
+        "description_en": "Complete User Guide for Multimode Digital Oscillator",
         "fileType": "html",
         "url": "support/manual/Polymorphic_manual.html",
         "version": "v1.0",
@@ -77,7 +91,9 @@
         "id": "1",
         "productName": "Manifold",
         "title": "Manifold 固件",
+        "title_en": "Manifold Firmware",
         "description": "Manifold 最新固件更新",
+        "description_en": "Latest firmware update for Manifold",
         "fileType": ".uf2",
         "url": "support/firmware/Manifold_v1.00.uf2",
         "version": "v1.00"
@@ -86,8 +102,11 @@
         "id": "2",
         "productName": "VFAM",
         "title": "VFAM 固件",
+        "title_en": "VFAM Firmware",
         "description": "VFAM 最新固件更新",
+        "description_en": "Latest firmware update for VFAM",
         "fileType": ".hex (配合xLoader上传)",
+        "fileType_en": ".hex (use xLoader to upload)",
         "url": "support/firmware/VFAM_v2.0_atmega168.hex",
         "version": "v2.0"
       },
@@ -95,8 +114,11 @@
         "id": "3",
         "productName": "MIDI2CV",
         "title": "MIDI2CV 固件",
+        "title_en": "MIDI2CV Firmware",
         "description": "MIDI2CV 版本v4.2(开源)",
+        "description_en": "MIDI2CV version v4.2 (Open Source)",
         "fileType": ".hex (配合xLoader上传)",
+        "fileType_en": ".hex (use xLoader to upload)",
         "url": "support/firmware/Midi2CV_v4.2_atmega168.hex",
         "version": "v4.2",
         "isExternal": true
@@ -105,8 +127,11 @@
         "id": "4",
         "productName": "Convergence",
         "title": "Convergence 固件",
+        "title_en": "Convergence Firmware",
         "description": "Convergence 最新固件更新",
+        "description_en": "Latest firmware update for Convergence",
         "fileType": ".hex (配合xLoader上传)",
+        "fileType_en": ".hex (use xLoader to upload)",
         "url": "support/firmware/Convergence_v2.0_atmega328.hex",
         "version": "v2.0"
       },
@@ -114,7 +139,9 @@
         "id": "5",
         "productName": "Quantizer",
         "title": "Quantizer 固件",
+        "title_en": "Quantizer Firmware",
         "description": "Quantizer 最新固件更新",
+        "description_en": "Latest firmware update for Quantizer",
         "fileType": ".uf2",
         "url": "support/firmware/Quantizer_v1.0.uf2",
         "version": "v1.0"
@@ -124,14 +151,18 @@
       {
         "id": "1",
         "title": "xLoader",
+        "title_en": "xLoader",
         "description": "hex固件更新工具",
+        "description_en": "Hex firmware update tool",
         "fileType": "zip",
         "url": "support/tools/xLoader.zip"
       },
       {
         "id": "2",
         "title": "CV2MIDI Helper",
+        "title_en": "CV2MIDI Helper",
         "description": "CV2MIDI 映射配置工具",
+        "description_en": "CV2MIDI mapping configuration tool",
         "fileType": "zip",
         "url": "support/tools/CV2MIDIHelper_v1.0.zip"
       }
@@ -140,14 +171,18 @@
       {
         "id": "1",
         "title": "入门指南",
+        "title_en": "Getting Started Guide",
         "description": "Eurorack模块入门教程",
+        "description_en": "Eurorack Module Introduction Tutorial",
         "url": "https://m.midifan.com/article_body.php?id=6957",
         "isExternal": true
       },
       {
         "id": "2",
         "title": "电源连接指南",
+        "title_en": "Power Connection Guide",
         "description": "正确连接模块电源",
+        "description_en": "Correctly connecting module power",
         "url": "https://www.bilibili.com/opus/687022938621214737",
         "isExternal": true
       }
@@ -156,28 +191,36 @@
       {
         "id": "1",
         "title": "GitHub",
+        "title_en": "GitHub",
         "description": "源代码仓库",
+        "description_en": "Source code repository",
         "url": "https://github.com/environscape",
         "isExternal": true
       },
       {
         "id": "2",
         "title": "联系我们",
+        "title_en": "Contact Us",
         "description": "lechenggood@foxmail.com",
+        "description_en": "lechenggood@foxmail.com",
         "url": "mailto:lechenggood@foxmail.com",
         "isExternal": true
       },
       {
         "id": "3",
         "title": "YouTube 教程",
+        "title_en": "YouTube Tutorials",
         "description": "观看官方教程视频",
+        "description_en": "Watch official tutorial videos",
         "url": "https://youtube.com/@codinginspire",
         "isExternal": true
       },
       {
         "id": "4",
         "title": "BilBli 教程",
+        "title_en": "BilBli tutorials",
         "description": "观看B站教程视频",
+        "description_en": "Watch BilBli tutorial videos",
         "url": "https://space.bilibili.com/22529489",
         "isExternal": true
       }
@@ -186,6 +229,38 @@
       "email": "lechenggood@foxmail.com",
       "wechat": "ENVIRON_",
       "taobao": "https://m.tb.cn/h.SQfZFM67ZAOsRs2"
-    }
+    },
+    "friendLinks": [
+      {
+        "id": "1",
+        "name": "淘宝店铺",
+        "name_en": "taobao store",
+        "url": "https://m.tb.cn/h.SQfZFM67ZAOsRs2"
+      },
+      {
+        "id": "2",
+        "name": "midifan",
+        "name_en": "midifan",
+        "url": "https://www.midifan.com/"
+      },
+         {
+        "id": "3",
+        "name": "完美电路商店",
+        "name_en": "perfect circuit",
+        "url": "https://www.perfectcircuit.com/coding-inspire-modular"
+      },
+      {
+        "id": "4",
+        "name": "modular grid",
+        "name_en": "modular grid",
+        "url": "https://modulargrid.net/e/vendors/view/1403"
+      },
+      {
+        "id": "5",
+        "name": "doepfer",
+        "name_en": "doepfer",
+        "url": "https://doepfer.de/"
+      }
+    ]
   }
 }

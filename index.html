@@ -1101,12 +1101,7 @@ nav.scrolled {
     </div>
 
     <div class="friend-links">
-        <div class="links-row">
-            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2" data-i18n="link_taobao">淘宝购买</a>
-            <a href="https://www.midifan.com/">midifan</a>
-            <a href="https://modulargrid.net/">modular grid</a>
-            <a href="https://doepfer.de/">doepfer</a>
-        </div>
+        <div class="links-row" id="friendLinksRow"></div>
         <div class="qr-code-container">
             <div class="qr-code-wrapper">
                 <img src="tb_qrcode.png" alt="淘宝店铺">
@@ -1130,6 +1125,7 @@ nav.scrolled {
         let productsData = [];
         let currentCategory = 'all';
         let currentLang = 'zh';
+        let friendLinksCache = null;
 
         const translations = {
             en: {
@@ -1184,6 +1180,11 @@ nav.scrolled {
             }
         };
 
+        function tField(obj, field) {
+            if (currentLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
+            return obj[field];
+        }
+
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('lang', lang);
@@ -1213,6 +1214,7 @@ nav.scrolled {
             }
 
             loadProducts();
+            loadFriendLinks();
         }
 
         function toggleLang() {
@@ -1222,6 +1224,24 @@ nav.scrolled {
         function initLanguage() {
             const savedLang = localStorage.getItem('lang') || 'zh';
             setLanguage(savedLang);
+        }
+
+        async function loadFriendLinks() {
+            try {
+                if (!friendLinksCache) {
+                    const res = await fetch('data/support.json');
+                    friendLinksCache = (await res.json()).support.friendLinks;
+                }
+                const flRow = document.getElementById('friendLinksRow');
+                if (flRow && friendLinksCache) {
+                    flRow.innerHTML = friendLinksCache.map(link => {
+                        const name = currentLang === 'en' && link.name_en ? link.name_en : link.name;
+                        return `<a href="${link.url}" target="_blank">${name}</a>`;
+                    }).join('');
+                }
+            } catch (e) {
+                console.error('Failed to load friend links:', e);
+            }
         }
 
         function toggleMenu() {
@@ -1317,8 +1337,7 @@ nav.scrolled {
 
         async function loadProducts() {
             try {
-                const fileName = currentLang === 'zh' ? 'data/products.json' : 'data/products_en.json';
-                const response = await fetch(fileName);
+                const response = await fetch('data/products.json');
                 const data = await response.json();
                 productsData = data.products;
                 
@@ -1328,7 +1347,7 @@ nav.scrolled {
                     categoryFilter.innerHTML = categories.map(cat => `
                         <button class="category-btn ${cat.id === currentCategory ? 'active' : ''}" 
                                 data-category="${cat.id}" 
-                                data-i18n="cat_${cat.id}">${cat.name}</button>
+                                data-i18n="cat_${cat.id}">${tField(cat, 'name')}</button>
                     `).join('');
                     
                     document.querySelectorAll('.category-btn').forEach(btn => {
@@ -1366,8 +1385,8 @@ nav.scrolled {
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${product.name}</h3>
-                        <p class="product-subtitle">${product.subtitle}</p>
-                        <p class="product-desc">${product.description}</p>
+                        <p class="product-subtitle">${tField(product, 'subtitle')}</p>
+                        <p class="product-desc">${tField(product, 'description')}</p>
                         ${product.price ? `<p class="product-price">${product.price}</p>` : ''}
                     </div>
                 `;

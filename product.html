@@ -1173,12 +1173,7 @@ nav.scrolled {
     </main>
 
     <div class="friend-links">
-        <div class="links-row">
-            <a href="https://m.tb.cn/h.SQfZFM67ZAOsRs2" data-i18n="link_taobao">淘宝购买</a>
-            <a href="https://www.midifan.com/">midifan</a>
-            <a href="https://modulargrid.net/">modular grid</a>
-            <a href="https://doepfer.de/">doepfer</a>
-        </div>
+        <div class="links-row" id="friendLinksRow"></div>
         <div class="qr-code-container">
             <div class="qr-code-wrapper">
                 <img src="tb_qrcode.png" alt="淘宝店铺">
@@ -1200,6 +1195,7 @@ nav.scrolled {
     <script>
         let productSlideIndex = 1;
         let currentLang = 'zh';
+        let friendLinksCache = null;
 
         const translations = {
             en: {
@@ -1228,6 +1224,11 @@ nav.scrolled {
             }
         };
 
+        function tField(obj, field) {
+            if (currentLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
+            return obj[field];
+        }
+
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('lang', lang);
@@ -1249,6 +1250,7 @@ nav.scrolled {
             });
 
             loadProduct();
+            loadFriendLinks();
         }
 
         function toggleLang() {
@@ -1258,6 +1260,24 @@ nav.scrolled {
         function initLanguage() {
             const savedLang = localStorage.getItem('lang') || 'zh';
             setLanguage(savedLang);
+        }
+
+        async function loadFriendLinks() {
+            try {
+                if (!friendLinksCache) {
+                    const res = await fetch('data/support.json');
+                    friendLinksCache = (await res.json()).support.friendLinks;
+                }
+                const flRow = document.getElementById('friendLinksRow');
+                if (flRow && friendLinksCache) {
+                    flRow.innerHTML = friendLinksCache.map(link => {
+                        const name = currentLang === 'en' && link.name_en ? link.name_en : link.name;
+                        return `<a href="${link.url}" target="_blank">${name}</a>`;
+                    }).join('');
+                }
+            } catch (e) {
+                console.error('Failed to load friend links:', e);
+            }
         }
 
         function toggleMenu() {
@@ -1359,9 +1379,8 @@ nav.scrolled {
             }
 
             try {
-                const fileName = currentLang === 'zh' ? 'data/products.json' : 'data/products_en.json';
                 const [productRes, storesRes] = await Promise.all([
-                    fetch(fileName),
+                    fetch('data/products.json'),
                     fetch('data/stores.json')
                 ]);
                 const productData = await productRes.json();
@@ -1388,7 +1407,7 @@ nav.scrolled {
             const featuresHtml = product.features.map(feature => `
                 <div class="feature-item">
                     <h6>${feature.name}</h6>
-                    <p>${feature.desc}</p>
+                    <p>${tField(feature, 'desc')}</p>
                 </div>
             `).join('');
 
@@ -1448,9 +1467,9 @@ nav.scrolled {
                     </div>
                     <div class="product-details-info">
                         <h1 class="product-details-title">${product.name}</h1>
-                        <h2 class="product-details-subtitle">${product.subtitle}</h2>
+                        <h2 class="product-details-subtitle">${tField(product, 'subtitle')}</h2>
                         ${product.price ? `<p class="product-details-price">${product.price}</p>` : ''}
-                        ${product.description ? `<p class="product-details-brief">${product.description}</p>` : ''}
+                        ${product.description ? `<p class="product-details-brief">${tField(product, 'description')}</p>` : ''}
                         ${storesHtml}
                     </div>
                 </div>
@@ -1458,7 +1477,7 @@ nav.scrolled {
                 ${product.specs ? `
                 <div class="product-specs-area">
                     <h5>${translations[currentLang].specs_title || 'Specifications'}</h5>
-                    <p class="product-details-desc">${product.specs}</p>
+                    <p class="product-details-desc">${tField(product, 'specs')}</p>
                 </div>` : ''}
 
                 <div class="product-more-desc">
