@@ -156,8 +156,27 @@ nav {
 }
 .article-error a { color: var(--accent-color); text-decoration: underline; }
 
+.brand-introduction {
+  padding: 100px 40px;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.brand-introduction h5 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+.brand-introduction p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 2;
+  margin-bottom: 32px;
+}
 .friend-links {
-  background: var(--secondary-color); padding: 60px 40px; text-align: center; margin-top: 80px;
+  background: var(--secondary-color); padding: 60px 40px; text-align: center;
 }
 .friend-links .links-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; flex-wrap: wrap; }
 .friend-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color var(--transition-fast); }
@@ -180,6 +199,8 @@ nav {
   .article-header p.summary { font-size: 15px; }
   .carousel-nav { width: 36px; height: 36px; font-size: 18px; }
   .carousel-prev { left: 10px; } .carousel-next { right: 10px; }
+  .brand-introduction { padding: 60px 20px; }
+  .brand-introduction h5 { font-size: 20px; }
   .friend-links .links-row { gap: 24px; }
 }
 </style>
@@ -214,6 +235,11 @@ nav {
         <div class="article-loading" data-i18n="loading">加载中...</div>
     </div>
 
+    <div class="brand-introduction" id="brandIntro">
+        <h5>Coding Inspire Modular | 编码灵感模块化</h5>
+        <p>以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。</p>
+    </div>
+
     <div class="friend-links">
         <div class="links-row" id="friendLinksRow"></div>
         <div class="qr-code-container">
@@ -241,13 +267,17 @@ nav {
             nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
             loading: 'Loading...', back_to_news: '← Back to News', read_more: 'Read more →',
             qr_taobao: 'Taobao Store', qr_mobile: 'Scan with phone',
-            article_not_found: 'Article not found.', back_to_news_link: 'Return to News page'
+            article_not_found: 'Article not found.', back_to_news_link: 'Return to News page',
+            brand_title: 'Coding Inspire Modular | Redefining Sound Creation',
+            brand_desc: 'Innovative technology reshapes the boundaries of sound design. Sophisticated hardware architecture and adaptive configuration systems endow modules with workflow efficiency and unprecedented versatility. Each product functions as a dynamic sound tool—capable of standalone operation or seamless integration via parameter blending and mode switching, adapting effortlessly to diverse creative scenarios. Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional controls enable effortless modular networks, transforming fleeting inspirations into experimental soundscapes. Technical barriers are dissolved, restoring modularity to its purest artistic essence.'
         },
         zh: {
             nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
             loading: '加载中...', back_to_news: '← 返回资讯列表', read_more: '阅读全文 →',
             qr_taobao: '淘宝店铺', qr_mobile: '手机扫码查看',
-            article_not_found: '未找到该文章。', back_to_news_link: '返回资讯列表'
+            article_not_found: '未找到该文章。', back_to_news_link: '返回资讯列表',
+            brand_title: 'Coding Inspire Modular | 编码灵感模块化',
+            brand_desc: '以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。'
         }
     };
 
@@ -272,6 +302,13 @@ nav {
             const key = el.getAttribute('data-i18n');
             if (translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
         });
+        const brandIntro = document.getElementById('brandIntro');
+        if (brandIntro) {
+            brandIntro.innerHTML = `
+                <h5>${translations[lang].brand_title}</h5>
+                <p>${translations[lang].brand_desc}</p>
+            `;
+        }
         if (currentArticle) renderArticle();
         loadFriendLinks();
     }
