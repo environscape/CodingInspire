@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Inspire Modular | Article</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style id="inline-css">:root {
+  --primary-color: #ffffff;
+  --secondary-color: #f5f5f5;
+  --accent-color: #ff6b35;
+  --accent-hover: #ff8c5a;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --bg-card: #ffffff;
+  --border-color: #e0e0e0;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+:root.dark-theme {
+  --primary-color: #1a1a1a;
+  --secondary-color: #2a2a2a;
+  --accent-color: #ff6b35;
+  --accent-hover: #ff8c5a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #151515;
+  --bg-card: #1e1e1e;
+  --border-color: #333333;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary); color: var(--text-primary);
+  line-height: 1.75;
+}
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  backdrop-filter: blur(10px);
+}
+.logo { height: 40px; object-fit: contain; }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  text-decoration: none; color: var(--text-secondary); font-weight: 500;
+  position: relative; padding-bottom: 4px; transition: color var(--transition-fast);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px; background-color: var(--accent-color);
+  transition: width var(--transition-fast);
+}
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.lang-toggle, .theme-toggle {
+  background: none; border: 1px solid var(--border-color); color: var(--text-primary);
+  padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500;
+  transition: all var(--transition-fast);
+}
+.lang-toggle:hover, .theme-toggle:hover { border-color: var(--accent-color); color: var(--accent-color); }
+.theme-toggle { padding: 6px; display: flex; align-items: center; justify-content: center; }
+.theme-toggle svg { width: 18px; height: 18px; }
+.menu-icon { display: none; cursor: pointer; color: var(--text-primary); }
+
+.back-link {
+  max-width: 880px; margin: 0 auto; padding: 32px 40px 0;
+}
+.back-link a {
+  color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px; transition: color var(--transition-fast);
+}
+.back-link a:hover { color: var(--accent-color); }
+
+.article { max-width: 880px; margin: 0 auto; padding: 24px 40px 80px; }
+.article-header { margin-bottom: 32px; }
+.article-header .meta {
+  display: flex; gap: 12px; margin-bottom: 16px;
+  font-size: 13px; color: var(--text-muted); flex-wrap: wrap;
+}
+.article-header .meta .tag {
+  background: var(--secondary-color); color: var(--accent-color);
+  padding: 3px 12px; border-radius: 14px; font-weight: 500;
+}
+.article-header h1 {
+  font-size: 38px; font-weight: 700; line-height: 1.25;
+  margin-bottom: 16px;
+}
+.article-header p.summary {
+  font-size: 17px; color: var(--text-secondary); line-height: 1.7;
+}
+
+.carousel {
+  position: relative; border-radius: 12px; overflow: hidden;
+  background: var(--bg-secondary); margin-bottom: 40px;
+}
+.carousel-main { width: 100%; aspect-ratio: 16/9; }
+.carousel-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,0.5); border: none; color: #fff;
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  font-size: 22px; display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition-fast);
+}
+.carousel-nav:hover { background: rgba(0,0,0,0.75); }
+.carousel-prev { left: 16px; }
+.carousel-next { right: 16px; }
+.carousel-dots {
+  position: absolute; bottom: 14px; left: 0; right: 0;
+  display: flex; justify-content: center; gap: 8px;
+}
+.carousel-dots button {
+  width: 10px; height: 10px; border-radius: 50%; border: none;
+  background: rgba(255,255,255,0.5); cursor: pointer; padding: 0;
+  transition: background var(--transition-fast);
+}
+.carousel-dots button.active { background: #fff; width: 24px; border-radius: 5px; }
+.carousel-thumbs {
+  display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; padding-bottom: 4px;
+}
+.carousel-thumbs button {
+  flex: 0 0 80px; aspect-ratio: 1; border: 2px solid transparent;
+  border-radius: 6px; overflow: hidden; padding: 0; cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+.carousel-thumbs button.active { border-color: var(--accent-color); }
+.carousel-thumbs img { width: 100%; height: 100%; object-fit: cover; }
+
+.article-body { font-size: 16px; color: var(--text-primary); }
+.article-body p { margin-bottom: 18px; line-height: 1.8; }
+.article-body h2 {
+  font-size: 24px; font-weight: 600; margin: 32px 0 14px;
+  color: var(--text-primary);
+}
+.article-body h3 {
+  font-size: 20px; font-weight: 600; margin: 24px 0 12px;
+}
+.article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 18px; }
+.article-body li { margin-bottom: 6px; }
+.article-body a { color: var(--accent-color); text-decoration: none; }
+.article-body a:hover { text-decoration: underline; }
+
+.article-loading, .article-error {
+  text-align: center; padding: 100px 0; color: var(--text-muted); font-size: 16px;
+}
+.article-error a { color: var(--accent-color); text-decoration: underline; }
+
+.friend-links {
+  background: var(--secondary-color); padding: 60px 40px; text-align: center; margin-top: 80px;
+}
+.friend-links .links-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; flex-wrap: wrap; }
+.friend-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color var(--transition-fast); }
+.friend-links a:hover { color: var(--accent-color); }
+.qr-code-container { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; flex-wrap: wrap; }
+.qr-code-wrapper img { width: 100px; height: 100px; object-fit: contain; border-radius: 8px; background: #fff; }
+.qr-code-wrapper p { margin-top: 8px; color: var(--text-secondary); font-size: 13px; }
+.copyright { color: var(--text-muted); font-size: 13px; }
+
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg-primary); flex-direction: column; padding: 20px; gap: 16px;
+    border-bottom: 1px solid var(--border-color); }
+  .nav-links.active { display: flex; }
+  .menu-icon { display: block; }
+  .back-link { padding: 20px 20px 0; }
+  .article { padding: 16px 20px 60px; }
+  .article-header h1 { font-size: 26px; }
+  .article-header p.summary { font-size: 15px; }
+  .carousel-nav { width: 36px; height: 36px; font-size: 18px; }
+  .carousel-prev { left: 10px; } .carousel-next { right: 10px; }
+  .friend-links .links-row { gap: 24px; }
+}
+</style>
+</head>
+<body>
+    <nav>
+        <a href="news.html">
+            <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
+        </a>
+        <div class="nav-right">
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav_eurorack">Eurorack</a>
+                <a href="instrument.html" data-i18n="nav_instrument">Instrument</a>
+                <a href="news.html" class="active" data-i18n="nav_news">News</a>
+                <a href="support.html" data-i18n="nav_support">Support</a>
+            </div>
+            <button class="lang-toggle" id="langToggle" onclick="toggleLang()" title="切换语言">EN</button>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+            <div class="menu-icon" id="menuIcon" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+
+    <div id="articleContainer">
+        <div class="article-loading" data-i18n="loading">加载中...</div>
+    </div>
+
+    <div class="friend-links">
+        <div class="links-row" id="friendLinksRow"></div>
+        <div class="qr-code-container">
+            <div class="qr-code-wrapper">
+                <img src="tb_qrcode.png" alt="淘宝店铺">
+                <p data-i18n="qr_taobao">淘宝店铺</p>
+            </div>
+            <div class="qr-code-wrapper">
+                <img src="qrcode.png" alt="手机扫码查看">
+                <p data-i18n="qr_mobile">手机扫码查看</p>
+            </div>
+        </div>
+        <div class="copyright">© 2023 - 2026 Coding Inspire Modular</div>
+    </div>
+
+<script>
+    let currentLang = 'zh';
+    let friendLinksCache = null;
+    let allArticles = [];
+    let currentArticle = null;
+    let carouselIndex = 0;
+
+    const translations = {
+        en: {
+            nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
+            loading: 'Loading...', back_to_news: '← Back to News', read_more: 'Read more →',
+            qr_taobao: 'Taobao Store', qr_mobile: 'Scan with phone',
+            article_not_found: 'Article not found.', back_to_news_link: 'Return to News page'
+        },
+        zh: {
+            nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
+            loading: '加载中...', back_to_news: '← 返回资讯列表', read_more: '阅读全文 →',
+            qr_taobao: '淘宝店铺', qr_mobile: '手机扫码查看',
+            article_not_found: '未找到该文章。', back_to_news_link: '返回资讯列表'
+        }
+    };
+
+    function tField(obj, field) {
+        if (currentLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
+        return obj[field];
+    }
+
+    function formatDate(dateStr) {
+        const d = new Date(dateStr);
+        if (currentLang === 'en') {
+            return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        document.getElementById('langToggle').textContent = lang === 'zh' ? 'EN' : '中文';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
+        });
+        if (currentArticle) renderArticle();
+        loadFriendLinks();
+    }
+    function toggleLang() { setLanguage(currentLang === 'zh' ? 'en' : 'zh'); }
+    function initLanguage() { setLanguage(localStorage.getItem('lang') || 'zh'); }
+    function toggleTheme() {
+        document.documentElement.classList.toggle('dark-theme');
+        localStorage.setItem('theme', document.documentElement.classList.contains('dark-theme') ? 'dark' : 'light');
+    }
+    function initTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark-theme');
+        }
+    }
+    function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+
+    function renderArticle() {
+        const container = document.getElementById('articleContainer');
+        const a = currentArticle;
+        const title = tField(a, 'title');
+        const summary = tField(a, 'summary');
+        const content = tField(a, 'content');
+        const images = a.images && a.images.length ? a.images : [a.cover];
+        carouselIndex = 0;
+
+        document.title = title + ' | Coding Inspire Modular';
+
+        const isMultiImage = images.length > 1;
+        const thumbsHtml = isMultiImage ? `
+            <div class="carousel-thumbs">
+                ${images.map((img, i) => `<button class="${i === 0 ? 'active' : ''}" onclick="goSlide(${i})"><img src="${img}" alt=""></button>`).join('')}
+            </div>` : '';
+        const dotsHtml = isMultiImage ? `
+            <div class="carousel-dots">
+                ${images.map((_, i) => `<button class="${i === 0 ? 'active' : ''}" onclick="goSlide(${i})" aria-label="slide ${i + 1}"></button>`).join('')}
+            </div>` : '';
+        const navHtml = isMultiImage ? `
+            <button class="carousel-nav carousel-prev" onclick="prevSlide()" aria-label="Previous">‹</button>
+            <button class="carousel-nav carousel-next" onclick="nextSlide()" aria-label="Next">›</button>` : '';
+
+        container.innerHTML = `
+            <div class="back-link"><a href="news.html">${translations[currentLang].back_to_news}</a></div>
+            <article class="article">
+                <header class="article-header">
+                    <div class="meta">
+                        <span>${formatDate(a.date)}</span>
+                        ${a.tags ? a.tags.map(t => `<span class="tag">${t}</span>`).join('') : ''}
+                    </div>
+                    <h1>${title}</h1>
+                    <p class="summary">${summary}</p>
+                </header>
+                <div class="carousel">
+                    <div class="carousel-main" id="carouselMain">
+                        <img src="${images[0]}" alt="${title}" id="carouselImg">
+                    </div>
+                    ${navHtml}
+                    ${dotsHtml}
+                    ${thumbsHtml}
+                </div>
+                <div class="article-body">${content}</div>
+            </article>
+        `;
+    }
+
+    function goSlide(i) {
+        const a = currentArticle;
+        const images = a.images && a.images.length ? a.images : [a.cover];
+        carouselIndex = (i + images.length) % images.length;
+        const img = document.getElementById('carouselImg');
+        if (img) img.src = images[carouselIndex];
+        document.querySelectorAll('.carousel-dots button').forEach((b, idx) => {
+            b.classList.toggle('active', idx === carouselIndex);
+        });
+        document.querySelectorAll('.carousel-thumbs button').forEach((b, idx) => {
+            b.classList.toggle('active', idx === carouselIndex);
+        });
+    }
+    function prevSlide() { goSlide(carouselIndex - 1); }
+    function nextSlide() { goSlide(carouselIndex + 1); }
+
+    function showNotFound() {
+        const container = document.getElementById('articleContainer');
+        container.innerHTML = `<div class="article-error">
+            <p>${translations[currentLang].article_not_found}</p>
+            <p style="margin-top:16px;"><a href="news.html">${translations[currentLang].back_to_news_link}</a></p>
+        </div>`;
+    }
+
+    async function loadArticle() {
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            if (!id) { showNotFound(); return; }
+            const res = await fetch('data/news.json');
+            const data = await res.json();
+            allArticles = data.articles || [];
+            currentArticle = allArticles.find(a => a.id === id);
+            if (!currentArticle) { showNotFound(); return; }
+            renderArticle();
+        } catch (e) {
+            document.getElementById('articleContainer').innerHTML = `<div class="article-error">加载失败</div>`;
+        }
+    }
+
+    async function loadFriendLinks() {
+        try {
+            if (!friendLinksCache) {
+                const res = await fetch('data/support.json');
+                friendLinksCache = (await res.json()).support.friendLinks;
+            }
+            const row = document.getElementById('friendLinksRow');
+            if (row && friendLinksCache) {
+                row.innerHTML = friendLinksCache.map(link => {
+                    const name = currentLang === 'en' && link.name_en ? link.name_en : link.name;
+                    return `<a href="${link.url}" target="_blank">${name}</a>`;
+                }).join('');
+            }
+        } catch (e) { console.error(e); }
+    }
+
+    document.addEventListener('click', function(e) {
+        const nav = document.querySelector('nav');
+        const links = document.getElementById('navLinks');
+        if (links && links.classList.contains('active') && !nav.contains(e.target)) {
+            links.classList.remove('active');
+        }
+    });
+
+    initTheme();
+    initLanguage();
+    loadArticle();
+</script>
+</body>
+</html>

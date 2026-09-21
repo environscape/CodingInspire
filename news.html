@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Inspire Modular | 资讯</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style id="inline-css">:root {
+  --primary-color: #ffffff;
+  --secondary-color: #f5f5f5;
+  --accent-color: #ff6b35;
+  --accent-hover: #ff8c5a;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --bg-card: #ffffff;
+  --border-color: #e0e0e0;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+:root.dark-theme {
+  --primary-color: #1a1a1a;
+  --secondary-color: #2a2a2a;
+  --accent-color: #ff6b35;
+  --accent-hover: #ff8c5a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #151515;
+  --bg-card: #1e1e1e;
+  --border-color: #333333;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  backdrop-filter: blur(10px);
+}
+.logo { height: 40px; object-fit: contain; }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  text-decoration: none; color: var(--text-secondary); font-weight: 500;
+  position: relative; padding-bottom: 4px; transition: color var(--transition-fast);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px; background-color: var(--accent-color);
+  transition: width var(--transition-fast);
+}
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.lang-toggle, .theme-toggle {
+  background: none; border: 1px solid var(--border-color); color: var(--text-primary);
+  padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500;
+  transition: all var(--transition-fast);
+}
+.lang-toggle:hover, .theme-toggle:hover {
+  border-color: var(--accent-color); color: var(--accent-color);
+}
+.theme-toggle { padding: 6px; display: flex; align-items: center; justify-content: center; }
+.theme-toggle svg { width: 18px; height: 18px; }
+.menu-icon { display: none; cursor: pointer; color: var(--text-primary); }
+
+/* Page header */
+.page-header {
+  padding: 80px 40px 40px; max-width: 1200px; margin: 0 auto;
+}
+.page-header h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+.page-header p { color: var(--text-secondary); font-size: 16px; max-width: 600px; }
+
+/* Article list */
+.news-list {
+  max-width: 1200px; margin: 0 auto; padding: 20px 40px 80px;
+  display: flex; flex-direction: column; gap: 48px;
+}
+.news-card {
+  display: flex; background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px; overflow: hidden;
+  text-decoration: none; color: inherit;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+}
+.news-card .cover {
+  flex: 0 0 45%; min-height: 280px; overflow: hidden;
+}
+.news-card .cover img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+.news-card:hover .cover img { transform: scale(1.05); }
+.news-card .info {
+  flex: 1; padding: 32px 36px; display: flex; flex-direction: column; justify-content: center;
+}
+.news-card .meta {
+  display: flex; gap: 12px; margin-bottom: 14px;
+  font-size: 13px; color: var(--text-muted);
+}
+.news-card .meta .tag {
+  background: var(--secondary-color); color: var(--accent-color);
+  padding: 2px 10px; border-radius: 12px; font-weight: 500;
+}
+.news-card h2 {
+  font-size: 24px; font-weight: 600; margin-bottom: 12px; line-height: 1.3;
+  color: var(--text-primary);
+}
+.news-card p.summary {
+  color: var(--text-secondary); font-size: 15px; line-height: 1.6;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.news-card .read-more {
+  margin-top: 18px; font-size: 14px; color: var(--accent-color); font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.news-card:hover .read-more { gap: 10px; }
+
+/* Loading */
+.news-loading, .news-empty {
+  text-align: center; padding: 100px 0; color: var(--text-muted); font-size: 16px;
+}
+
+/* Footer */
+.friend-links {
+  background: var(--secondary-color); padding: 60px 40px; text-align: center;
+}
+.friend-links .links-row {
+  display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; flex-wrap: wrap;
+}
+.friend-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color var(--transition-fast); }
+.friend-links a:hover { color: var(--accent-color); }
+.qr-code-container { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; flex-wrap: wrap; }
+.qr-code-wrapper img { width: 100px; height: 100px; object-fit: contain; border-radius: 8px; background: #fff; }
+.qr-code-wrapper p { margin-top: 8px; color: var(--text-secondary); font-size: 13px; }
+.copyright { color: var(--text-muted); font-size: 13px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .news-card { flex-direction: column; }
+  .news-card .cover { flex: none; width: 100%; min-height: 220px; }
+  .news-card .info { padding: 24px; }
+  .news-card h2 { font-size: 20px; }
+}
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg-primary); flex-direction: column; padding: 20px; gap: 16px;
+    border-bottom: 1px solid var(--border-color); }
+  .nav-links.active { display: flex; }
+  .menu-icon { display: block; }
+  .page-header { padding: 50px 20px 30px; }
+  .page-header h1 { font-size: 28px; }
+  .news-list { padding: 20px 20px 60px; gap: 32px; }
+  .friend-links .links-row { gap: 24px; }
+}
+</style>
+</head>
+<body>
+    <nav>
+        <a href="news.html">
+            <img src="codinginspire.jpg" alt="品牌Logo" class="logo">
+        </a>
+        <div class="nav-right">
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav_eurorack">Eurorack</a>
+                <a href="instrument.html" data-i18n="nav_instrument">Instrument</a>
+                <a href="news.html" class="active" data-i18n="nav_news">News</a>
+                <a href="support.html" data-i18n="nav_support">Support</a>
+            </div>
+            <button class="lang-toggle" id="langToggle" onclick="toggleLang()" title="切换语言">EN</button>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+            <div class="menu-icon" id="menuIcon" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 data-i18n="news_title">资讯动态</h1>
+        <p data-i18n="news_subtitle">了解 Coding Inspire Modular 最新产品发布、固件更新与技术分享</p>
+    </header>
+
+    <main class="news-list" id="newsList">
+        <div class="news-loading" data-i18n="loading">加载中...</div>
+    </main>
+
+    <div class="friend-links">
+        <div class="links-row" id="friendLinksRow"></div>
+        <div class="qr-code-container">
+            <div class="qr-code-wrapper">
+                <img src="tb_qrcode.png" alt="淘宝店铺">
+                <p data-i18n="qr_taobao">淘宝店铺</p>
+            </div>
+            <div class="qr-code-wrapper">
+                <img src="qrcode.png" alt="手机扫码查看">
+                <p data-i18n="qr_mobile">手机扫码查看</p>
+            </div>
+        </div>
+        <div class="copyright">© 2023 - 2026 Coding Inspire Modular</div>
+    </div>
+
+<script>
+    let currentLang = 'zh';
+    let friendLinksCache = null;
+    let articlesData = [];
+
+    const translations = {
+        en: {
+            nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
+            news_title: 'News & Updates', news_subtitle: 'Latest product launches, firmware updates and technical insights from Coding Inspire Modular',
+            loading: 'Loading...', read_more: 'Read more →', qr_taobao: 'Taobao Store', qr_mobile: 'Scan with phone'
+        },
+        zh: {
+            nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
+            news_title: '资讯动态', news_subtitle: '了解 Coding Inspire Modular 最新产品发布、固件更新与技术分享',
+            loading: '加载中...', read_more: '阅读全文 →', qr_taobao: '淘宝店铺', qr_mobile: '手机扫码查看'
+        }
+    };
+
+    function tField(obj, field) {
+        if (currentLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
+        return obj[field];
+    }
+
+    function formatDate(dateStr) {
+        const d = new Date(dateStr);
+        if (currentLang === 'en') {
+            return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+        return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        document.getElementById('langToggle').textContent = lang === 'zh' ? 'EN' : '中文';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
+        });
+        renderArticles();
+        loadFriendLinks();
+    }
+
+    function toggleLang() { setLanguage(currentLang === 'zh' ? 'en' : 'zh'); }
+
+    function initLanguage() {
+        const saved = localStorage.getItem('lang') || 'zh';
+        setLanguage(saved);
+    }
+
+    function toggleTheme() {
+        document.documentElement.classList.toggle('dark-theme');
+        localStorage.setItem('theme', document.documentElement.classList.contains('dark-theme') ? 'dark' : 'light');
+    }
+
+    function initTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark-theme');
+        }
+    }
+
+    function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+
+    function renderArticles() {
+        const list = document.getElementById('newsList');
+        if (!articlesData.length) {
+            list.innerHTML = `<div class="news-empty">${translations[currentLang].loading}</div>`;
+            return;
+        }
+        // 时间倒序
+        const sorted = [...articlesData].sort((a, b) => new Date(b.date) - new Date(a.date));
+        list.innerHTML = sorted.map(a => `
+            <a class="news-card" href="item.html?id=${a.id}">
+                <div class="cover"><img src="${a.cover}" alt="${tField(a, 'title')}"></div>
+                <div class="info">
+                    <div class="meta">
+                        <span>${formatDate(a.date)}</span>
+                        ${a.tags ? a.tags.map(t => `<span class="tag">${t}</span>`).join('') : ''}
+                    </div>
+                    <h2>${tField(a, 'title')}</h2>
+                    <p class="summary">${tField(a, 'summary')}</p>
+                    <span class="read-more">${translations[currentLang].read_more}</span>
+                </div>
+            </a>
+        `).join('');
+    }
+
+    async function loadArticles() {
+        try {
+            const res = await fetch('data/news.json');
+            const data = await res.json();
+            articlesData = data.articles || [];
+            renderArticles();
+        } catch (e) {
+            document.getElementById('newsList').innerHTML = `<div class="news-empty">加载失败</div>`;
+        }
+    }
+
+    async function loadFriendLinks() {
+        try {
+            if (!friendLinksCache) {
+                const res = await fetch('data/support.json');
+                friendLinksCache = (await res.json()).support.friendLinks;
+            }
+            const row = document.getElementById('friendLinksRow');
+            if (row && friendLinksCache) {
+                row.innerHTML = friendLinksCache.map(link => {
+                    const name = currentLang === 'en' && link.name_en ? link.name_en : link.name;
+                    return `<a href="${link.url}" target="_blank">${name}</a>`;
+                }).join('');
+            }
+        } catch (e) { console.error(e); }
+    }
+
+    document.addEventListener('click', function(e) {
+        const nav = document.querySelector('nav');
+        const links = document.getElementById('navLinks');
+        if (links && links.classList.contains('active') && !nav.contains(e.target)) {
+            links.classList.remove('active');
+        }
+    });
+
+    initTheme();
+    initLanguage();
+    loadArticles();
+</script>
+</body>
+</html>

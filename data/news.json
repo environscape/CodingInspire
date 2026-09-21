@@ -1,0 +1,43 @@
+{
+  "articles": [
+    {
+      "id": "manifold-v1",
+      "title": "Manifold 固件 v1.0 正式发布",
+      "title_en": "Manifold Firmware v1.0 Released",
+      "summary": "经过数月的内测与迭代，Manifold 多模式调制器终于迎来了首个正式固件版本，支持全部 16 个内置模块。",
+      "summary_en": "After months of beta testing, the Manifold multimode modulator gets its first official firmware with all 16 built-in modules.",
+      "content": "<p>经过数月的内测与迭代，Manifold 多模式调制器终于迎来了首个正式固件版本 v1.0。</p><p>本次更新包含全部 16 个内置模块的完整支持：LFO、EG、CLKDIV、Logic、SNH、RNDOM、SEQ、Eucld、ARP、Beati、MIX、FADER、VCA、Invert、Qunt、OVERFL。每个模块都经过了细致的参数调优，确保在不同工作流中都能稳定发挥。</p><p>同时，我们重写了模块间的路由引擎，让信号传递的延迟进一步降低。用户现在可以自由地在任意模块之间建立连接，实现真正灵活的调制网络。</p><p>固件文件已上传至支持页面，通过 USB 直接刷入即可升级。</p>",
+      "content_en": "<p>After months of beta testing and iterations, the Manifold multimode modulator has finally received its first official firmware v1.0.</p><p>This release includes full support for all 16 built-in modules: LFO, EG, CLKDIV, Logic, SNH, RNDOM, SEQ, Eucld, ARP, Beati, MIX, FADER, VCA, Invert, Qunt, and OVERFL. Each module has been carefully tuned to perform reliably across different workflows.</p><p>We also rewrote the routing engine between modules, further reducing signal routing latency. Users can now freely establish connections between any modules to create truly flexible modulation networks.</p><p>Firmware files are available on the support page and can be flashed directly via USB.</p>",
+      "cover": "src/Manifold.jpg",
+      "images": ["src/Manifold.jpg"],
+      "date": "2026-09-20",
+      "tags": ["产品", "固件"]
+    },
+    {
+      "id": "convergence-dsp",
+      "title": "Convergence 数字效果器 DSP 引擎解析",
+      "title_en": "Inside Convergence: The DSP Engine Explained",
+      "summary": "探索 Convergence 多模式数字效果器背后的 SpinFV1 引擎，它如何在小巧的 6HP 体积中实现 23 种效果。",
+      "summary_en": "Explore the SpinFV1 engine behind the Convergence digital effects processor and how it packs 23 effects into a compact 6HP module.",
+      "content": "<p>Convergence 是我们目前功能最密集的数字模块——在仅 6HP 的体积里，它塞入了 23 种效果模式。让我们一探它背后的 SpinFV1 DSP 引擎。</p><p>核心芯片运行在 48kHz / 24bit 精度下，所有效果算法都在这个采样率上以零延迟方式处理。立体声输入被同时送入 DSP 的两个处理通道，允许并行处理或串联路由。</p><p>23 种效果覆盖了常见的调制类（合唱、镶边、相位）、空间类（混响、延迟、回声）、滤波类以及一系列实验性效果。其中延迟效果特别支持外部时钟同步，让节奏调制与模块系统无缝联动。</p><p>完整效果列表、参数说明和固件更新方法，请查阅用户手册。</p>",
+      "content_en": "<p>Convergence is our most feature-dense digital module to date — packing 23 effect modes into a mere 6HP. Let's take a look at the SpinFV1 DSP engine that powers it.</p><p>The core chip runs at 48kHz / 24bit precision, with all effect algorithms processed at this sample rate with zero latency. Stereo inputs are fed into two parallel DSP channels, enabling either independent processing or serial routing.</p><p>The 23 effects cover modulation types (chorus, flanger, phaser), spatial types (reverb, delay, echo), filter effects, and a range of experimental effects. Delay effects in particular support external clock sync, allowing rhythm modulation to seamlessly integrate with your modular system.</p><p>For the full effect list, parameter descriptions, and firmware updates, please refer to the user manual.</p>",
+      "cover": "src/Convergence.webp",
+      "images": ["src/Convergence.webp"],
+      "date": "2026-09-08",
+      "tags": ["技术", "产品"]
+    },
+    {
+      "id": "modulus84-launch",
+      "title": "Modulus8+4 双轨音序器正式上线",
+      "title_en": "Modulus8+4 Dual-Track Sequencer Launched",
+      "summary": "全新 12HP 双轨音序器模块，8 步进 + 4 步进、三种工作模式、内置音阶量化与随机触发。",
+      "summary_en": "Brand new 12HP dual-track sequencer module with 8+4 steps, three working modes, built-in scale quantization, and random triggers.",
+      "content": "<p>Modulus8+4 是 Coding Inspire 最新发布的音序器产品，专为需要同时驱动多声部的音乐家设计。</p><p>它提供两条独立的 CV 音序轨道：轨道一为 8 步进，轨道二为 4 步进。两条轨道共享同一时钟但可以独立复位，适合构造复杂的节奏织体。</p><p>三种工作模式覆盖不同需求：常规音序模式（可复位）、方向可调模式、以及独特的 Matrix 模式——在 4x3 矩阵中用四个方向遍历生成音序，相当于 12 步进的创意变体。</p><p>音阶量化支持十余种常见音阶与根音选择，让即兴演奏变得轻松。每个步进旋钮拧到最大时，下次触发将输出随机电平，注入无穷的变化。</p>",
+      "content_en": "<p>Modulus8+4 is the latest sequencer product from Coding Inspire, designed for musicians who need to drive multiple voices simultaneously.</p><p>It provides two independent CV sequencer tracks: Track 1 with 8 steps, Track 2 with 4 steps. Both tracks share the same clock but can be reset independently, making them ideal for building complex rhythmic textures.</p><p>Three working modes cover different needs: standard sequencer mode (with reset), adjustable direction mode, and the unique Matrix mode — traversing a 4x3 matrix in four directions to generate sequences, essentially a creative variation of a 12-step sequencer.</p><p>Scale quantization supports over ten common scales and root note selections, making improvisation effortless. Each step knob, when turned to maximum, outputs a random level on the next trigger for infinite variation.</p>",
+      "cover": "src/Modulus.png",
+      "images": ["src/Modulus.png", "src/Manifold.jpg"],
+      "date": "2026-08-22",
+      "tags": ["产品", "发布"]
+    }
+  ]
+}
