@@ -95,8 +95,8 @@
         "description": "Manifold 最新固件更新",
         "description_en": "Latest firmware update for Manifold",
         "fileType": ".uf2",
-        "url": "support/firmware/Manifold_v1.00.uf2",
-        "version": "v1.00"
+        "url": "support/firmware/Manifold_v1.10.uf2",
+        "version": "v1.10"
       },
       {
         "id": "2",
