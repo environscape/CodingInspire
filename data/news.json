@@ -40,6 +40,19 @@
       "tags": ["固件", "产品"]
     },
     {
+      "id": "convergence-v13",
+      "title": "Convergence 固件 v1.3 发布",
+      "title_en": "Convergence Firmware v1.3 Released",
+      "summary": "Convergence v1.3 固件发布，专供原型机使用，修复时钟输入中断检测逻辑。",
+      "summary_en": "Convergence v1.3 firmware released for prototype units, fixing clock input interrupt detection logic.",
+      "content": "<p>Convergence 数字效果器发布 v1.3 固件，主要面向原型机交付使用。</p><p>本次更新修复了时钟输入中断检测的问题——将原来由 A0 引脚检测改为 A3 引脚检测，让 CLK 同步延迟效果的触发更加稳定，避免外部时钟信号丢失或抖动时出现节奏错位。</p><p>该版本作为向 v2.0 过渡的关键里程碑，为后续完整效果集奠定了基础。</p>",
+      "content_en": "<p>The Convergence digital effects processor gets its v1.3 firmware release, primarily aimed at prototype unit delivery.</p><p>This update fixes the clock input interrupt detection issue — switching from the original A0 pin to the A3 pin for detection, making CLK sync delay triggering more stable and preventing rhythm misalignment when external clock signals are lost or jittering.</p><p>This version serves as a key milestone in the transition to v2.0, laying the foundation for the subsequent complete effect set.</p>",
+      "cover": "src/Convergence.webp",
+      "images": ["src/Convergence.webp"],
+      "date": "2026-07-19",
+      "tags": ["固件", "产品"]
+    },
+    {
       "id": "modulus84-v10",
       "title": "Modulus8+4 固件 v1.0 发布",
       "title_en": "Modulus8+4 Firmware v1.0 Released",
@@ -155,6 +168,32 @@
       "images": ["src/Manifold.jpg"],
       "date": "2026-01-10",
       "tags": ["产品", "固件"]
+    },
+    {
+      "id": "midi2cvmk2-v41",
+      "title": "MIDI2CV MK2 固件 v4.1 发布",
+      "title_en": "MIDI2CV MK2 Firmware v4.1 Released",
+      "summary": "MIDI2CV MK2 v4.1 固件发布，在 v4.0 双通道架构上优化 3xCV 输出波纹，引入快速 PWM 与线性随机长度计算。",
+      "summary_en": "MIDI2CV MK2 v4.1 firmware released, refining 3xCV output ripple over the v4.0 dual-channel architecture with fast PWM and linear random-length calculation.",
+      "content": "<p>MIDI2CV MK2 模块发布 v4.1 固件，延续 v4.0 的双通道（ch1/ch2）+ 3xCV（vel1/vel2/mod）架构。</p><p>本次更新在 v4.0 基础上重点降低了 3xCV 输出的波纹，让控制电压更稳定；引入快速 PWM 方法提升模拟输出精度；并将随机长度的计算方式改为线性，使随机触发更可预测。同时整理了说明文档。</p><p>固件文件与升级说明已上传至 <a href=\"support.html\">支持页面</a>。</p>",
+      "content_en": "<p>The MIDI2CV MK2 module gets its v4.1 firmware release, continuing the v4.0 dual-channel (ch1/ch2) + 3xCV (vel1/vel2/mod) architecture.</p><p>This update focuses on reducing 3xCV output ripple over v4.0 for more stable control voltage, introduces a fast PWM method to improve analog output precision, and switches random-length calculation to linear for more predictable random triggering. Documentation has also been refined.</p><p>Firmware files and upgrade instructions are available on the <a href=\"support.html\">support page</a>.</p>",
+      "cover": "src/MIDI2CV_MK2.webp",
+      "images": ["src/MIDI2CV_MK2.webp"],
+      "date": "2025-08-18",
+      "tags": ["固件", "产品"]
+    },
+    {
+      "id": "midi2cvmk2-v42",
+      "title": "MIDI2CV MK2 固件 v4.2 发布",
+      "title_en": "MIDI2CV MK2 Firmware v4.2 Released",
+      "summary": "MIDI2CV MK2 v4.2 重构为四模式架构，新增时钟分频、播控同步、调谐功能，修复多通道监听问题。",
+      "summary_en": "MIDI2CV MK2 v4.2 restructures into a four-mode architecture, adding clock division, transport sync, and tuning, with multi-channel listening fixes.",
+      "content": "<p>MIDI2CV MK2 模块发布 v4.2 固件，完成从双通道架构向四模式版本的较大幅度重构。</p><p>本次更新引入四模式架构，新增时钟分频与播控（播放控制）同步能力；增加调谐功能与两个额外 gate 模式；提升音符处理优先级，并在停止（播控）事件时停止发送时钟。同时修复了 mode=1 与 D8 跳线帽状态下未监听 3/4 通道、mod 无法输出等问题，整理代码结构并移除了内部音序器预留。</p><p>固件文件与升级说明已上传至 <a href=\"support.html\">支持页面</a>。</p>",
+      "content_en": "<p>The MIDI2CV MK2 module gets its v4.2 firmware release, completing a substantial restructure from the dual-channel architecture into a four-mode version.</p><p>This update introduces a four-mode architecture with clock division and transport (playback-control) sync; adds a tuning function and two extra gate modes; raises note-processing priority; and stops sending clock on transport-stop events. It also fixes issues where mode=1 or the D8 jumper state failed to listen on channels 3/4 and where mod output failed, restructures the code, and removes the internal sequencer reservation.</p><p>Firmware files and upgrade instructions are available on the <a href=\"support.html\">support page</a>.</p>",
+      "cover": "src/MIDI2CV_MK2.webp",
+      "images": ["src/MIDI2CV_MK2.webp"],
+      "date": "2026-07-23",
+      "tags": ["固件", "产品"]
     }
   ]
 }
