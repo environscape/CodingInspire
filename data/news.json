@@ -40,19 +40,6 @@
       "tags": ["固件", "产品"]
     },
     {
-      "id": "convergence-v13",
-      "title": "Convergence 固件 v1.3 发布",
-      "title_en": "Convergence Firmware v1.3 Released",
-      "summary": "Convergence v1.3 固件发布，专供原型机使用，修复时钟输入中断检测逻辑。",
-      "summary_en": "Convergence v1.3 firmware released for prototype units, fixing clock input interrupt detection logic.",
-      "content": "<p>Convergence 数字效果器发布 v1.3 固件，主要面向原型机交付使用。</p><p>本次更新修复了时钟输入中断检测的问题——将原来由 A0 引脚检测改为 A3 引脚检测，让 CLK 同步延迟效果的触发更加稳定，避免外部时钟信号丢失或抖动时出现节奏错位。</p><p>该版本作为向 v2.0 过渡的关键里程碑，为后续完整效果集奠定了基础。</p>",
-      "content_en": "<p>The Convergence digital effects processor gets its v1.3 firmware release, primarily aimed at prototype unit delivery.</p><p>This update fixes the clock input interrupt detection issue — switching from the original A0 pin to the A3 pin for detection, making CLK sync delay triggering more stable and preventing rhythm misalignment when external clock signals are lost or jittering.</p><p>This version serves as a key milestone in the transition to v2.0, laying the foundation for the subsequent complete effect set.</p>",
-      "cover": "src/Convergence.webp",
-      "images": ["src/Convergence.webp"],
-      "date": "2026-07-19",
-      "tags": ["固件", "产品"]
-    },
-    {
       "id": "modulus84-v10",
       "title": "Modulus8+4 固件 v1.0 发布",
       "title_en": "Modulus8+4 Firmware v1.0 Released",
