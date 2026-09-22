@@ -465,22 +465,25 @@ nav.scrolled {
 
     const translations = {
         en: {
-            nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
             loading: 'Loading...', back_to_news: '← Back to News', read_more: 'Read more →',
-            qr_taobao: 'Taobao Store', qr_mobile: 'Scan with phone',
-            article_not_found: 'Article not found.', back_to_news_link: 'Return to News page',
-            brand_title: 'Coding Inspire Modular | Redefining Sound Creation',
-            brand_desc: 'Innovative technology reshapes the boundaries of sound design. Sophisticated hardware architecture and adaptive configuration systems endow modules with workflow efficiency and unprecedented versatility. Each product functions as a dynamic sound tool—capable of standalone operation or seamless integration via parameter blending and mode switching, adapting effortlessly to diverse creative scenarios. Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional controls enable effortless modular networks, transforming fleeting inspirations into experimental soundscapes. Technical barriers are dissolved, restoring modularity to its purest artistic essence.'
+            article_not_found: 'Article not found.', back_to_news_link: 'Return to News page'
         },
         zh: {
-            nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
             loading: '加载中...', back_to_news: '← 返回资讯列表', read_more: '阅读全文 →',
-            qr_taobao: '淘宝店铺', qr_mobile: '手机扫码查看',
-            article_not_found: '未找到该文章。', back_to_news_link: '返回资讯列表',
-            brand_title: 'Coding Inspire Modular | 编码灵感模块化',
-            brand_desc: '以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。'
+            article_not_found: '未找到该文章。', back_to_news_link: '返回资讯列表'
         }
     };
+
+    let sharedTranslations = null;
+
+    async function loadSharedTranslations() {
+        if (!sharedTranslations) {
+            const res = await fetch('data/translations.json');
+            sharedTranslations = await res.json();
+            Object.assign(translations.en, sharedTranslations.en);
+            Object.assign(translations.zh, sharedTranslations.zh);
+        }
+    }
 
     function tField(obj, field) {
         if (currentLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
@@ -697,8 +700,11 @@ nav.scrolled {
         });
 
     initTheme();
-    initLanguage();
-    loadArticle();
+
+    loadSharedTranslations().then(() => {
+        initLanguage();
+        loadArticle();
+    });
 </script>
 </body>
 </html>

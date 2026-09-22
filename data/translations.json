@@ -1,0 +1,28 @@
+{
+  "en": {
+    "nav_eurorack": "Eurorack",
+    "nav_instrument": "Instrument",
+    "nav_news": "News",
+    "nav_support": "Support",
+    "brand_title": "Coding Inspire Modular | Redefining Sound Creation",
+    "brand_desc": "Innovative technology reshapes the boundaries of sound design. Sophisticated hardware architecture and adaptive configuration systems endow modules with workflow efficiency and unprecedented versatility. Each product functions as a dynamic sound tool—capable of standalone operation or seamless integration via parameter blending and mode switching, adapting effortlessly to diverse creative scenarios. Bridging minimal form with maximal versatility, intuitive connectivity and multi-dimensional controls enable effortless modular networks, transforming fleeting inspirations into experimental soundscapes. Technical barriers are dissolved, restoring modularity to its purest artistic essence.",
+    "link_taobao": "Buy on Taobao",
+    "qr_taobao": "Taobao Store",
+    "qr_mobile": "Scan to View",
+    "cookie_text": "We use cookies to improve your experience. By continuing to use this website, you agree to our cookie policy. <a href=\"#\">Learn more</a>",
+    "cookie_more": "Learn more"
+  },
+  "zh": {
+    "nav_eurorack": "Eurorack",
+    "nav_instrument": "Instrument",
+    "nav_news": "News",
+    "nav_support": "Support",
+    "brand_title": "Coding Inspire Modular | 编码灵感模块化",
+    "brand_desc": "以创新技术重塑声音创作的边界，通过精妙的硬件架构和调配机制，赋予模块强大的工作流与多面性。产品皆为灵活的声音工具，既能独立承担核心功能，亦可通过参数组合与模式切换，适配多样化的创作场景。以极简形态承载丰富可能性，借助便捷的连接与多样的方式，即可轻松编织模块网络，让灵感顺畅转化为音乐实验。以技术打破创作枷锁，让模块化回归纯粹的艺术表达。",
+    "link_taobao": "淘宝购买",
+    "qr_taobao": "淘宝店铺",
+    "qr_mobile": "手机扫码查看",
+    "cookie_text": "我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href=\"#\">了解更多</a>",
+    "cookie_more": "了解更多"
+  }
+}

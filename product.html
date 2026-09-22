@@ -1200,11 +1200,6 @@ nav.scrolled {
 
         const translations = {
             en: {
-                link_taobao: 'Buy on Taobao',
-                qr_taobao: 'Taobao Store',
-                qr_mobile: 'Scan to View',
-                cookie_text: 'We use cookies to improve your experience. By continuing to use this website, you agree to our cookie policy. <a href="#">Learn more</a>',
-                cookie_more: 'Learn more',
                 features_title: 'Features Overview',
                 specs_title: 'Specifications',
                 manual_label: 'Product Manual:',
@@ -1212,11 +1207,6 @@ nav.scrolled {
                 stores_title: 'Where to Buy'
             },
             zh: {
-                link_taobao: '淘宝购买',
-                qr_taobao: '淘宝店铺',
-                qr_mobile: '手机扫码查看',
-                cookie_text: '我们使用cookies来改善您的体验。继续使用本网站即表示您同意我们的cookies政策。<a href="#">了解更多</a>',
-                cookie_more: '了解更多',
                 features_title: '功能概述',
                 specs_title: '规格参数',
                 manual_label: '产品手册：',
@@ -1224,6 +1214,17 @@ nav.scrolled {
                 stores_title: '购买渠道'
             }
         };
+
+        let sharedTranslations = null;
+
+        async function loadSharedTranslations() {
+            if (!sharedTranslations) {
+                const res = await fetch('data/translations.json');
+                sharedTranslations = await res.json();
+                Object.assign(translations.en, sharedTranslations.en);
+                Object.assign(translations.zh, sharedTranslations.zh);
+            }
+        }
 
         function tField(obj, field) {
             if (currentLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
@@ -1504,8 +1505,11 @@ nav.scrolled {
         });
 
         initTheme();
-        initLanguage();
-        loadProduct();
+
+        loadSharedTranslations().then(() => {
+            initLanguage();
+            loadProduct();
+        });
     </script>
 </body>
 </html>

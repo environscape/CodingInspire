@@ -427,16 +427,25 @@ nav.scrolled {
 
     const translations = {
         en: {
-            nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
             news_title: 'News & Updates', news_subtitle: 'Latest product launches, firmware updates and technical insights from Coding Inspire Modular',
-            loading: 'Loading...', read_more: 'Read more →', qr_taobao: 'Taobao Store', qr_mobile: 'Scan with phone'
+            loading: 'Loading...', read_more: 'Read more →'
         },
         zh: {
-            nav_eurorack: 'Eurorack', nav_instrument: 'Instrument', nav_news: 'News', nav_support: 'Support',
             news_title: '资讯动态', news_subtitle: '了解 Coding Inspire Modular 最新产品发布、固件更新与技术分享',
-            loading: '加载中...', read_more: '阅读全文 →', qr_taobao: '淘宝店铺', qr_mobile: '手机扫码查看'
+            loading: '加载中...', read_more: '阅读全文 →'
         }
     };
+
+    let sharedTranslations = null;
+
+    async function loadSharedTranslations() {
+        if (!sharedTranslations) {
+            const res = await fetch('data/translations.json');
+            sharedTranslations = await res.json();
+            Object.assign(translations.en, sharedTranslations.en);
+            Object.assign(translations.zh, sharedTranslations.zh);
+        }
+    }
 
     function tField(obj, field) {
         if (currentLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
@@ -599,8 +608,11 @@ nav.scrolled {
         });
 
     initTheme();
-    initLanguage();
-    loadArticles();
+
+    loadSharedTranslations().then(() => {
+        initLanguage();
+        loadArticles();
+    });
 </script>
 </body>
 </html>
