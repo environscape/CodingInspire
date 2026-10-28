@@ -772,25 +772,31 @@ class PCBImageProcessor {
     
     // 颜色角色说明（基于原始Python附录的定义）
     const colorNames = Object.keys(this.currentColorScheme);
-    const roleHint = {};
+    const roleMap = {};      // 颜色名 → 角色后缀（用于文件名）
+    const roleDisplay = {};  // 颜色名 → 显示文本（用于界面提示）
     if (colorNames.length >= 6) {
-      roleHint[colorNames[0]] = '→ 正阻焊无铜';   // 主色深
-      roleHint[colorNames[1]] = '→ 正阻焊有铜';   // 主色浅
-      roleHint[colorNames[2]] = '→ 背有阻焊';     // 深绿
-      roleHint[colorNames[3]] = '→ 背无阻焊';     // 浅绿
-      roleHint[colorNames[4]] = '→ 裸露铜皮';     // 黑色
-      roleHint[colorNames[5]] = '→ 丝印层';       // 白色
+      roleMap[colorNames[0]] = '正阻焊无铜';   // 主色深
+      roleMap[colorNames[1]] = '正阻焊有铜';   // 主色浅
+      roleMap[colorNames[2]] = '背有阻焊';     // 深绿
+      roleMap[colorNames[3]] = '背无阻焊';     // 浅绿
+      roleMap[colorNames[4]] = '裸露铜皮';     // 黑色
+      roleMap[colorNames[5]] = '丝印层';       // 白色
+      Object.keys(roleMap).forEach(k => {
+        roleDisplay[k] = `${k} → ${roleMap[k]}`;
+      });
     }
     
     for (const [colorName, canvas] of Object.entries(masks)) {
-      const role = roleHint[colorName] || '';
-      const labelText = role ? `${colorName} ${role}` : colorName;
+      const role = roleMap[colorName] || '';
+      const labelText = roleDisplay[colorName] || colorName;
+      // 文件名：颜色名_角色.png（点击下载和ZIP打包都用这个）
+      const fileName = role ? `${colorName}_${role}` : colorName;
       
       const imgElement = document.createElement('img');
       imgElement.src = canvas.toDataURL();
       imgElement.className = 'w-32 h-32 rounded border hover:shadow-lg cursor-pointer transition-all';
       imgElement.title = labelText;
-      imgElement.onclick = () => this.downloadImage(imgElement.src, `${colorName}_遮罩.png`);
+      imgElement.onclick = () => this.downloadImage(imgElement.src, `${fileName}.png`);
       
       const wrapper = document.createElement('div');
       wrapper.className = 'text-center';
@@ -804,7 +810,7 @@ class PCBImageProcessor {
       container.appendChild(wrapper);
       
       this.maskList.push({
-        name: colorName,
+        name: fileName,  // ZIP打包时直接用这个完整名
         canvas: canvas,
         dataURL: imgElement.src
       });
