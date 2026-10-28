@@ -230,6 +230,11 @@ class PCBImageProcessor {
       const image = await this.loadImage(processedFile);
       this.initializeCanvases(image);
       
+      // 用原图片文件名（去扩展名）作为导出ZIP的默认文件名
+      const baseName = file.name.replace(/\.[^.]+$/, '');
+      const customFilenameInput = document.getElementById('customFilename');
+      if (customFilenameInput) customFilenameInput.value = baseName;
+      
       // 显示原始文件信息
       const fileSizeMB = (file.size / 1024 / 1024).toFixed(2);
       const processedSizeMB = (processedFile.size / 1024 / 1024).toFixed(2);
@@ -765,11 +770,26 @@ class PCBImageProcessor {
     
     this.maskList = [];
     
+    // 颜色角色说明（基于原始Python附录的定义）
+    const colorNames = Object.keys(this.currentColorScheme);
+    const roleHint = {};
+    if (colorNames.length >= 6) {
+      roleHint[colorNames[0]] = '→ 正阻焊无铜';   // 主色深
+      roleHint[colorNames[1]] = '→ 正阻焊有铜';   // 主色浅
+      roleHint[colorNames[2]] = '→ 背有阻焊';     // 深绿
+      roleHint[colorNames[3]] = '→ 背无阻焊';     // 浅绿
+      roleHint[colorNames[4]] = '→ 裸露铜皮';     // 黑色
+      roleHint[colorNames[5]] = '→ 丝印层';       // 白色
+    }
+    
     for (const [colorName, canvas] of Object.entries(masks)) {
+      const role = roleHint[colorName] || '';
+      const labelText = role ? `${colorName} ${role}` : colorName;
+      
       const imgElement = document.createElement('img');
       imgElement.src = canvas.toDataURL();
       imgElement.className = 'w-32 h-32 rounded border hover:shadow-lg cursor-pointer transition-all';
-      imgElement.title = colorName;
+      imgElement.title = labelText;
       imgElement.onclick = () => this.downloadImage(imgElement.src, `${colorName}_遮罩.png`);
       
       const wrapper = document.createElement('div');
@@ -777,8 +797,8 @@ class PCBImageProcessor {
       wrapper.appendChild(imgElement);
       
       const label = document.createElement('p');
-      label.textContent = colorName;
-      label.className = 'text-sm mt-2';
+      label.textContent = labelText;
+      label.className = 'text-xs mt-2 text-gray-700';
       wrapper.appendChild(label);
       
       container.appendChild(wrapper);
@@ -795,15 +815,28 @@ class PCBImageProcessor {
     const container = document.getElementById('layers');
     container.innerHTML = '';
     
-    // 定义PCB图层组合
-    const layerDefinitions = {
-      '正面铜皮层': ['浅蓝', '浅红', '浅紫', '浅青', '浅黄', '浅橙', '浅粉', '黑色'],
-      '正面阻焉层': ['深绿', '浅绿', '黑色'],
-      '丝印层': ['白色'],
-      '背面阻焉层': ['浅绿']
-    };
+    // 从当前色系中动态获取各角色颜色名（COLOR_SCHEMES的键顺序固定）
+    const colorNames = Object.keys(this.currentColorScheme);
+    const darkPrimary = colorNames[0];  // 主色深（如深蓝/深红/深紫...）
+    const lightPrimary = colorNames[1]; // 主色浅（如浅蓝/浅红/浅紫...）
+    const darkGreen   = colorNames[2];  // 深绿
+    const lightGreen  = colorNames[3];  // 浅绿
+    const black       = colorNames[4];  // 黑色
+    const white       = colorNames[5];  // 白色
     
-    for (const [layerName, colorNames] of Object.entries(layerDefinitions)) {
+    // PCB标准六层 —— 颜色合成逻辑来自"星空py/附录：颜色合成公式.txt"
+    const layerDefinitions = [
+      { name: '顶层丝印层', colors: [white] },
+      { name: '顶层阻焊层', colors: [darkPrimary, lightPrimary, white, black] },
+      { name: '顶层铜皮层', colors: [lightPrimary, black] },
+      { name: '底层铜皮层', colors: [darkGreen, lightGreen] },
+      { name: '底层阻焊层', colors: [darkGreen] },
+      { name: '底层丝印层', colors: [] }  // PCB灯板底层通常无丝印，保留空层
+    ];
+    
+    for (const layerDef of layerDefinitions) {
+      const layerName = layerDef.name;
+      const colorNames = layerDef.colors;
       const layerCanvas = document.createElement('canvas');
       layerCanvas.width = this.image.width;
       layerCanvas.height = this.image.height;
@@ -919,26 +952,11 @@ class PCBImageProcessor {
     
     const zip = new JSZip();
     
-    // 添加所有生成的图片到ZIP
+    // 添加所有生成的图片到ZIP（层名已在生成时统一为标准名）
     this.maskList.forEach(({ name, dataURL }) => {
       if (dataURL && dataURL.includes('data:image')) {
         const base64Data = dataURL.split(',')[1];
-        let filename = name;
-        
-        // 重命名映射
-        const renameMap = {
-          '正面铜皮层': '放在顶层',
-          '白色': '放在顶层丝印层',
-          '正面阻焉层': '放在顶层阻焉层',
-          '背面阻焉层': '放在底层阻焉层注意镜像',
-          '实物预览图': '实物预览图'
-        };
-        
-        if (renameMap[name]) {
-          filename = renameMap[name];
-        }
-        
-        zip.file(`${filename}.png`, base64Data, { base64: true });
+        zip.file(`${name}.png`, base64Data, { base64: true });
       }
     });
     
