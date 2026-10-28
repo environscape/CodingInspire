@@ -833,7 +833,7 @@ class PCBImageProcessor {
     // PCB标准六层 —— 颜色合成逻辑来自"星空py/附录：颜色合成公式.txt"
     const layerDefinitions = [
       { name: '顶层丝印层', colors: [white] },
-      { name: '顶层阻焊层', colors: [darkPrimary, lightPrimary, white, black] },
+      { name: '预览_顶层阻焊层', colors: [darkPrimary, lightPrimary, white, black] },
       { name: '顶层铜皮层', colors: [lightPrimary, black] },
       { name: '底层铜皮层', colors: [darkGreen, lightGreen] },
       { name: '底层阻焊层', colors: [darkGreen] },
@@ -915,7 +915,7 @@ class PCBImageProcessor {
     previewImg.src = previewCanvas.toDataURL();
     previewImg.className = 'w-32 h-32 rounded border hover:shadow-lg cursor-pointer transition-all';
     previewImg.title = '实物预览图';
-    previewImg.onclick = () => this.downloadImage(previewImg.src, '实物预览图.png');
+    previewImg.onclick = () => this.downloadImage(previewImg.src, '预览_实物.png');
     
     const previewContainer = document.getElementById('preview');
     previewContainer.innerHTML = '';
@@ -932,7 +932,7 @@ class PCBImageProcessor {
     previewContainer.appendChild(wrapper);
     
     this.maskList.push({
-      name: '实物预览图',
+      name: '预览_实物',
       canvas: previewCanvas,
       dataURL: previewImg.src
     });
