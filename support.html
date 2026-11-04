@@ -1025,7 +1025,7 @@ nav.scrolled {
 <body>
     <nav onclick="handleNavClick(event)">
         <a href="news.html">
-            <img src="codinginspire.png" alt="品牌Logo" class="logo">
+            <img src="src/codinginspire.png" alt="品牌Logo" class="logo">
         </a>
         <div class="nav-right">
             <div class="nav-links" id="navLinks">
@@ -1056,11 +1056,11 @@ nav.scrolled {
         <div class="links-row" id="friendLinksRow"></div>
         <div class="qr-code-container">
             <div class="qr-code-wrapper">
-                <img src="tb_qrcode.png" alt="淘宝店铺">
+                <img src="src/tb_qrcode.png" alt="淘宝店铺">
                 <p data-i18n="qr_taobao">淘宝店铺</p>
             </div>
             <div class="qr-code-wrapper">
-                <img src="qrcode.png" alt="手机扫码查看">
+                <img src="src/qrcode.png" alt="手机扫码查看">
                 <p data-i18n="qr_mobile">手机扫码查看</p>
             </div>
         </div>
@@ -1198,7 +1198,7 @@ nav.scrolled {
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 `;
-                if (logo) logo.src = 'codinginspire.png';
+                if (logo) logo.src = 'src/codinginspire.png';
             } else {
                 root.classList.add('dark-theme');
                 localStorage.setItem('theme', 'dark');
@@ -1207,7 +1207,7 @@ nav.scrolled {
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                 `;
-                if (logo) logo.src = 'codinginspire_black.png';
+                if (logo) logo.src = 'src/codinginspire_black.png';
             }
         }
 
@@ -1223,7 +1223,7 @@ nav.scrolled {
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                 `;
-                if (logo) logo.src = 'codinginspire_black.png';
+                if (logo) logo.src = 'src/codinginspire_black.png';
             } else {
                 root.classList.remove('dark-theme');
                 themeToggle.innerHTML = `
@@ -1231,7 +1231,7 @@ nav.scrolled {
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 `;
-                if (logo) logo.src = 'codinginspire.png';
+                if (logo) logo.src = 'src/codinginspire.png';
             }
         }
 
