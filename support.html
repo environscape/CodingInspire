@@ -165,6 +165,67 @@ nav.scrolled {
   background: rgba(255, 255, 255, 0.1);
 }
 
+.lang-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 136px;
+  padding: 6px;
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1002;
+}
+
+.lang-menu.active {
+  display: flex;
+}
+
+.lang-menu button {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #666666);
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lang-menu button:hover {
+  background: rgba(255, 107, 53, 0.08);
+  color: var(--text-primary, #1a1a1a);
+}
+
+.lang-menu button.active {
+  color: var(--accent-color, #ff6b35);
+  font-weight: 600;
+}
+
+:root.dark-theme .lang-menu {
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+:root.dark-theme .lang-menu button:hover {
+  color: #ffffff;
+}
+
 .lang-toggle {
   background: transparent;
   border: 1px solid var(--border-color);
@@ -1034,7 +1095,14 @@ nav.scrolled {
                 <a href="news.html">News</a>
                 <a href="support.html" class="active">Support</a>
             </div>
-            <button class="lang-toggle" id="langToggle" onclick="toggleLang()" title="切换语言">EN</button>
+            <div class="lang-switcher">
+                <button class="lang-toggle" id="langToggle" onclick="toggleLangMenu(event)" title="切换语言">中文 ▾</button>
+                <div class="lang-menu" id="langMenu">
+                    <button type="button" data-lang="zh" onclick="chooseLang('zh', event)">中文</button>
+                    <button type="button" data-lang="en" onclick="chooseLang('en', event)">English</button>
+                    <button type="button" data-lang="jp" onclick="chooseLang('jp', event)">日本語</button>
+                </div>
+            </div>
             <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -1094,6 +1162,24 @@ nav.scrolled {
                 version_label: 'Version:',
                 format_label: 'Format:'
             },
+            jp: {
+                section_manuals: 'ユーザーマニュアル',
+                section_firmware: 'ファームウェア更新',
+                section_tools: 'ツール・ソフトウェア',
+                section_guides: 'ガイド',
+                section_resources: '外部リソース',
+                section_contact: 'お問い合わせ',
+                view_manual: 'マニュアルを見る',
+                download_firmware: 'ファームウェアをダウンロード',
+                download_tool: 'ツールをダウンロード',
+                read_guide: 'ガイドを読む',
+                visit_link: 'リンクを開く',
+                loading: '読み込み中...',
+                load_failed: '読み込みに失敗しました',
+                product_label: '製品:',
+                version_label: 'バージョン:',
+                format_label: '形式:'
+            },
             zh: {
                 section_manuals: '用户手册',
                 section_firmware: '固件更新',
@@ -1122,13 +1208,66 @@ nav.scrolled {
                 sharedTranslations = await res.json();
                 Object.assign(translations.en, sharedTranslations.en);
                 Object.assign(translations.zh, sharedTranslations.zh);
+                if (!translations.jp) translations.jp = {};
+                Object.assign(translations.jp, sharedTranslations.jp || {});
             }
         }
 
+        const SUPPORTED_LANGS = ['zh', 'en', 'jp'];
+        const LANG_SUFFIX = { zh: '', en: '_en', jp: '_jp' };
+        const LANG_BUTTON_LABEL = { zh: '中文', en: 'EN', jp: '日' };
+
+        function normalizeLang(lang) {
+            return SUPPORTED_LANGS.indexOf(lang) === -1 ? 'zh' : lang;
+        }
+
+        function tKey(key) {
+            const dict = translations[currentLang] || {};
+            if (dict[key]) return dict[key];
+            if (translations.en && translations.en[key]) return translations.en[key];
+            if (translations.zh && translations.zh[key]) return translations.zh[key];
+            return '';
+        }
+
         function tField(obj, field) {
-            if (currentLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
+            if (!obj) return '';
+            const suffix = LANG_SUFFIX[currentLang];
+            if (suffix) {
+                if (obj[field + suffix]) return obj[field + suffix];
+                if (obj[field + '_en']) return obj[field + '_en'];
+            }
             return obj[field];
         }
+
+        function updateLanguageUI() {
+            const toggle = document.getElementById('langToggle');
+            if (toggle) toggle.textContent = LANG_BUTTON_LABEL[currentLang] + ' ▾';
+            document.querySelectorAll('#langMenu button').forEach(function (btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
+            });
+        }
+
+        function toggleLangMenu(event) {
+            if (event) event.stopPropagation();
+            const menu = document.getElementById('langMenu');
+            if (menu) menu.classList.toggle('active');
+        }
+
+        function closeLangMenu() {
+            const menu = document.getElementById('langMenu');
+            if (menu) menu.classList.remove('active');
+        }
+
+        function chooseLang(lang, event) {
+            if (event) event.stopPropagation();
+            closeLangMenu();
+            if (normalizeLang(lang) === currentLang) return;
+            setLanguage(lang);
+        }
+
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.lang-switcher')) closeLangMenu();
+        });
 
         // 手册链接统一带上当前语言；中文为默认语言，不带参数
         function localizedManualUrl(url) {
@@ -1138,30 +1277,25 @@ nav.scrolled {
         }
 
         function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('lang', lang);
-            
-            const langToggle = document.getElementById('langToggle');
-            langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
+            currentLang = normalizeLang(lang);
+            localStorage.setItem('lang', currentLang);
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : (currentLang === 'jp' ? 'ja' : 'en');
+            updateLanguageUI();
 
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    if (element.tagName === 'A' && key === 'cookie_more') {
-                        element.textContent = translations[lang][key];
-                    } else if (element.tagName === 'P' && key === 'cookie_text') {
-                        element.innerHTML = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
+                const value = tKey(key);
+                if (!value) return;
+                if (element.tagName === 'A' && key === 'cookie_more') {
+                    element.textContent = value;
+                } else if (element.tagName === 'P' && key === 'cookie_text') {
+                    element.innerHTML = value;
+                } else {
+                    element.textContent = value;
                 }
             });
 
             loadSupportData();
-        }
-
-        function toggleLang() {
-            setLanguage(currentLang === 'zh' ? 'en' : 'zh');
         }
 
         function initLanguage() {
@@ -1265,7 +1399,7 @@ nav.scrolled {
                 const flRow = document.getElementById('friendLinksRow');
                 if (flRow) {
                     flRow.innerHTML = support.friendLinks.map(link => {
-                        const name = currentLang === 'en' && link.name_en ? link.name_en : link.name;
+                        const name = tField(link, 'name');
                         return `<a href="${link.url}" target="_blank">${name}</a>`;
                     }).join('');
                 }

@@ -12,6 +12,19 @@
     "cookie_text": "We use cookies to improve your experience. By continuing to use this website, you agree to our cookie policy. <a href=\"#\">Learn more</a>",
     "cookie_more": "Learn more"
   },
+  "jp": {
+    "nav_eurorack": "Eurorack",
+    "nav_instrument": "Instrument",
+    "nav_news": "News",
+    "nav_support": "Support",
+    "brand_title": "Coding Inspire Modular | コーディング・インスパイア・モジュラー",
+    "brand_desc": "革新的な技術でサウンド制作の境界を塗り替え、精巧なハードウェア設計と柔軟な制御機構によって、モジュールに高いワークフロー性と多様性をもたらします。各製品は柔軟なサウンドツールとして、単体で中核機能を担うことも、パラメーターの組み合わせやモード切り替えによって多様な制作シーンに適応することも可能です。ミニマルな形態に豊かな可能性を宿し、簡潔な接続と多彩な操作方法によってモジュールネットワークを気軽に構築でき、ひらめきをそのまま音楽実験へとつなげます。技術によって創作の制約を取り払い、モジュラーを純粋な芸術表現へと回帰させます。",
+    "link_taobao": "Taobaoで購入",
+    "qr_taobao": "Taobaoストア",
+    "qr_mobile": "スマートフォンでスキャン",
+    "cookie_text": "当サイトでは、より良い体験を提供するためにCookieを使用しています。引き続きご利用いただくことで、Cookieポリシーに同意したものとみなされます。<a href=\"#\">詳細を見る</a>",
+    "cookie_more": "詳細を見る"
+  },
   "zh": {
     "nav_eurorack": "Eurorack",
     "nav_instrument": "Instrument",
