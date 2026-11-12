@@ -14,7 +14,9 @@
       "cover": "src/Convergence.webp",
       "images": ["src/Convergence.webp"],
       "date": "2026-09-08",
-      "tags": ["技术", "产品"]
+      "tags": ["技术", "产品"],
+      "tags_en": ["Technology", "Product"],
+      "tags_jp": ["技術", "製品"]
     },
     {
       "id": "manifold-v11",
@@ -30,7 +32,9 @@
       "cover": "src/Manifold.jpg",
       "images": ["src/Manifold.jpg"],
       "date": "2026-08-03",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "convergence-v20",
@@ -46,7 +50,9 @@
       "cover": "src/Convergence.webp",
       "images": ["src/Convergence.webp"],
       "date": "2026-07-31",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "modulus84-v10",
@@ -62,7 +68,9 @@
       "cover": "src/Modulus.png",
       "images": ["src/Modulus.png"],
       "date": "2026-07-17",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "quantizer-v10",
@@ -78,7 +86,9 @@
       "cover": "src/Quantizer.jpg",
       "images": ["src/Quantizer.jpg"],
       "date": "2026-07-08",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "randomskip-v20",
@@ -94,7 +104,9 @@
       "cover": "src/RandomSkip.jpg",
       "images": ["src/RandomSkip.jpg"],
       "date": "2026-06-11",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "randomskip-v10",
@@ -110,7 +122,9 @@
       "cover": "src/RandomSkip.jpg",
       "images": ["src/RandomSkip.jpg"],
       "date": "2026-05-26",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "vfam-v21",
@@ -126,7 +140,9 @@
       "cover": "src/VFAM.webp",
       "images": ["src/VFAM.webp"],
       "date": "2026-04-02",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "vfam-v20",
@@ -142,7 +158,9 @@
       "cover": "src/VFAM.webp",
       "images": ["src/VFAM.webp"],
       "date": "2026-03-30",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "cv2midi-v22",
@@ -158,7 +176,9 @@
       "cover": "src/CV2MIDI.jpg",
       "images": ["src/CV2MIDI.jpg"],
       "date": "2026-03-23",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "cv2midi-v21",
@@ -174,7 +194,9 @@
       "cover": "src/CV2MIDI.jpg",
       "images": ["src/CV2MIDI.jpg"],
       "date": "2026-02-25",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "manifold-v1",
@@ -190,7 +212,9 @@
       "cover": "src/Manifold.jpg",
       "images": ["src/Manifold.jpg"],
       "date": "2026-01-10",
-      "tags": ["产品", "固件"]
+      "tags": ["产品", "固件"],
+      "tags_en": ["Product", "Firmware"],
+      "tags_jp": ["製品", "ファームウェア"]
     },
     {
       "id": "midi2cvmk2-v41",
@@ -206,7 +230,9 @@
       "cover": "src/MIDI2CV_MK2.webp",
       "images": ["src/MIDI2CV_MK2.webp"],
       "date": "2025-08-18",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     },
     {
       "id": "midi2cvmk2-v42",
@@ -222,7 +248,9 @@
       "cover": "src/MIDI2CV_MK2.webp",
       "images": ["src/MIDI2CV_MK2.webp"],
       "date": "2026-07-23",
-      "tags": ["固件", "产品"]
+      "tags": ["固件", "产品"],
+      "tags_en": ["Firmware", "Product"],
+      "tags_jp": ["ファームウェア", "製品"]
     }
   ]
 }
