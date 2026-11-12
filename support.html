@@ -1130,6 +1130,13 @@ nav.scrolled {
             return obj[field];
         }
 
+        // 手册链接统一带上当前语言；中文为默认语言，不带参数
+        function localizedManualUrl(url) {
+            if (!url || /^mailto:/i.test(url)) return url;
+            if (currentLang === 'zh') return url;
+            return url + (url.indexOf('?') === -1 ? '?' : '&') + 'lang=' + encodeURIComponent(currentLang);
+        }
+
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('lang', lang);
@@ -1272,7 +1279,7 @@ nav.scrolled {
                         <span>${t.product_label} ${item.productName}</span>
                         <span>${t.version_label} ${item.version}</span>
                     </div>
-                    <a href="${item.url}" target="_blank">${t.view_manual}</a>
+                    <a href="${localizedManualUrl(item.url)}" target="_blank">${t.view_manual}</a>
                 </div>
             `).join('');
 
