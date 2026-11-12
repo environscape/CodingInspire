@@ -5,93 +5,112 @@
       "name": "Manifold",
       "subtitle": "集成式数字调制器",
       "subtitle_en": "Integrated Digital Modulator",
+      "subtitle_jp": "統合型デジタルモジュレーター",
       "description": "基于12个并列的内部调制模块与对应的参数，可自由路由模块间的调制关系以及输入输出接口",
       "description_en": "Based on 12 parallel internal modulation modules with corresponding parameters, allowing free routing of modulation relationships between modules and input/output interfaces",
+      "description_jp": "12個の並列内部モジュレーションモジュールと対応するパラメーターを基に、モジュール間のモジュレーション関係および入出力インターフェースのルーティングを自由に設定できます",
       "image": "src/Manifold.jpg",
       "category": "digital",
       "isNew": true,
       "specs": "128.5mm x 40.64mm\nEurorack宽度8HP\n深度约24mm\n使用10pin电源插头\n含有防反接电路\n+12v 100ma\n-12v 10ma\n基于Pico RP2040平台\n12个并列的内部调制模块与对应的参数，可自由路由模块间的调制关系以及输入输出接口\n8khz 12bit 输出电平范围:0-10V\n8khz 12bit 输入电平范围:0-10V\n\n3个Gate输入接口\n3个CV输入接口\n6个输出接口",
       "specs_en": "128.5mm x 40.64mm\nEurorack width 8HP\nDepth approx 24mm\nUses 10pin power connector\nIncludes reverse polarity protection\n+12v 100ma\n-12v 10ma\nBased on Pico RP2040 platform\n12 parallel internal modulation modules with corresponding parameters, allowing free routing of modulation relationships between modules and input/output interfaces\n8khz 12bit output level range: 0-10V\n8khz 12bit input level range: 0-10V\n\n3x Gate input\n3x CV input\n6x Output",
+      "specs_jp": "128.5mm x 40.64mm\nEurorack幅 8HP\n奥行き 約24mm\n10pin電源コネクターを使用\n逆接続保護回路を搭載\n+12v 100ma\n-12v 10ma\nPico RP2040プラットフォームを採用\n12個の並列内部モジュレーションモジュールと対応するパラメーター、モジュール間のモジュレーション関係および入出力インターフェースのルーティングを自由に設定可能\n8khz 12bit 出力レベル範囲: 0-10V\n8khz 12bit 入力レベル範囲: 0-10V\n\n3x Gate入力\n3x CV入力\n6x 出力",
       "features": [
         {
           "name": "LFO",
           "desc": "低频振荡器，震荡范围0.1-20hz，支持五种波形选择",
-          "desc_en": "Low-frequency oscillator with 0.1-20hz range, supporting five waveform selections"
+          "desc_en": "Low-frequency oscillator with 0.1-20hz range, supporting five waveform selections",
+          "desc_jp": "0.1〜20hzの範囲を持つ低周波発振器で、5種類の波形から選択できます"
         },
         {
           "name": "EG",
           "desc": "包络发生器，可压控Decay与Release参数",
-          "desc_en": "Envelope generator with voltage-controlled Decay and Release parameters"
+          "desc_en": "Envelope generator with voltage-controlled Decay and Release parameters",
+          "desc_jp": "DecayとReleaseパラメーターを電圧制御できるエンベロープジェネレーター"
         },
         {
           "name": "CLKDIV",
           "desc": "时钟分频器，支持1-16分频及2的n次方分频模式",
-          "desc_en": "Clock divider supporting 1-16 division and 2^n division modes"
+          "desc_en": "Clock divider supporting 1-16 division and 2^n division modes",
+          "desc_jp": "1〜16分周と2のn乗分周モードに対応したクロックディバイダー"
         },
         {
           "name": "Logic",
           "desc": "逻辑模块，支持AND、OR、NOT、YES四种逻辑运算",
-          "desc_en": "Logic module supporting AND, OR, NOT, YES operations"
+          "desc_en": "Logic module supporting AND, OR, NOT, YES operations",
+          "desc_jp": "AND、OR、NOT、YESの4種類の論理演算に対応したロジックモジュール"
         },
         {
           "name": "SNH",
           "desc": "采样保持模块，整合平滑器以及突变器功能",
-          "desc_en": "Sample & hold module with integrated smoother and shaper"
+          "desc_en": "Sample & hold module with integrated smoother and shaper",
+          "desc_jp": "スムーザーとシェイパー機能を統合したサンプル&ホールドモジュール"
         },
         {
           "name": "RNDOM",
           "desc": "随机模块，支持概率触发、随机电平、随机故障方波、随机噪音",
-          "desc_en": "Random module supporting probability trigger, random voltage, random glitch square wave, random noise"
+          "desc_en": "Random module supporting probability trigger, random voltage, random glitch square wave, random noise",
+          "desc_jp": "確率トリガー、ランダム電圧、ランダムグリッチ矩形波、ランダムノイズに対応したランダムモジュール"
         },
         {
           "name": "SEQ",
           "desc": "生成式CV音序器，根据最大/最小电平与步进长度生成音序",
-          "desc_en": "Generative CV sequencer that generates sequences based on max/min voltage and step length"
+          "desc_en": "Generative CV sequencer that generates sequences based on max/min voltage and step length",
+          "desc_jp": "最大/最小電圧とステップ長に基づいてシーケンスを生成するジェネラティブCVシーケンサー"
         },
         {
           "name": "Eucld",
           "desc": "欧几里得音序器，支持偏移、步长、触发步进数参数",
-          "desc_en": "Euclidean sequencer supporting offset, step length, and trigger step count parameters"
+          "desc_en": "Euclidean sequencer supporting offset, step length, and trigger step count parameters",
+          "desc_jp": "オフセット、ステップ長、トリガーステップ数のパラメーターを備えたユークリッドシーケンサー"
         },
         {
           "name": "ARP",
           "desc": "琶音器，支持多种和弦类型与琶音模式",
-          "desc_en": "Arpeggiator supporting multiple chord types and arpeggio patterns"
+          "desc_en": "Arpeggiator supporting multiple chord types and arpeggio patterns",
+          "desc_jp": "複数のコードタイプとアルペジオパターンに対応したアルペジエーター"
         },
         {
           "name": "Beati",
           "desc": "比特节奏音序器，通过二进制位生成节奏模式",
-          "desc_en": "Bit rhythm sequencer that generates rhythm patterns through binary bits"
+          "desc_en": "Bit rhythm sequencer that generates rhythm patterns through binary bits",
+          "desc_jp": "2進ビットによってリズムパターンを生成するビットリズムシーケンサー"
         },
         {
           "name": "MIX",
           "desc": "混合器，支持两个输入信号混合及独立增益控制",
-          "desc_en": "Mixer supporting two input signal mixing with independent gain control"
+          "desc_en": "Mixer supporting two input signal mixing with independent gain control",
+          "desc_jp": "2つの入力信号のミックスと独立したゲインコントロールに対応したミキサー"
         },
         {
           "name": "FADER",
           "desc": "比例推子，实现两个输入信号的平滑过渡渐变",
-          "desc_en": "Proportional fader for smooth crossfade between two input signals"
+          "desc_en": "Proportional fader for smooth crossfade between two input signals",
+          "desc_jp": "2つの入力信号を滑らかにクロスフェードするプロポーショナルフェーダー"
         },
         {
           "name": "VCA",
           "desc": "压控放大器，用于处理CV信号之间的关系",
-          "desc_en": "Voltage-controlled amplifier for processing relationships between CV signals"
+          "desc_en": "Voltage-controlled amplifier for processing relationships between CV signals",
+          "desc_jp": "CV信号間の関係を処理する電圧制御アンプ"
         },
         {
           "name": "Invert",
           "desc": "信号反向器，可控制信号反转程度",
-          "desc_en": "Signal inverter with controllable inversion degree"
+          "desc_en": "Signal inverter with controllable inversion degree",
+          "desc_jp": "反転量をコントロールできる信号インバーター"
         },
         {
           "name": "Qunt",
           "desc": "量化器，支持多种音阶类型与根音设置",
-          "desc_en": "Quantizer supporting multiple scale types and root note settings"
+          "desc_en": "Quantizer supporting multiple scale types and root note settings",
+          "desc_jp": "複数のスケールタイプとルート音設定に対応したクオンタイザー"
         },
         {
           "name": "OVERFL",
           "desc": "堆栈溢出模块，适合制作故障效果",
-          "desc_en": "Stack overflow module, perfect for glitch effects"
+          "desc_en": "Stack overflow module, perfect for glitch effects",
+          "desc_jp": "グリッチエフェクトの制作に最適なスタックオーバーフローモジュール"
         }
       ],
       "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Manifold_manual.html"
@@ -101,18 +120,22 @@
       "name": "MIDI2CV MK2",
       "subtitle": "迷笛信号转压控信号",
       "subtitle_en": "MIDI to CV Converter",
+      "subtitle_jp": "MIDI信号→CV信号変換",
       "description": "可编程模块合成器 Eurorack，适合搭配鼓机、音序器、带midi接口的控制键盘",
       "description_en": "Programmable Eurorack module synthesizer, perfect for pairing with drum machines, sequencers, and MIDI-equipped control keyboards",
+      "description_jp": "プログラマブルなEurorackモジュラーシンセサイザーモジュール。ドラムマシン、シーケンサー、MIDI付きコントロールキーボードとの組み合わせに最適です",
       "image": "src/MIDI2CV_MK2.webp",
       "category": "digital",
       "isNew": true,
       "specs": "1xTrs Midi In(可通过跳线盘切换Trs TypeA/B)\n1xClock 同时cc24调整Clock Div x2 x3 x4...等等\n2xNote/Gate/Vel(2组音符信息每组3个接口共6个接口)\n3xModWheel 可在您发送Midi信息的设备中编辑修改\nvel也可以修改为cc信息\n10秒未收到midi信号将自动切换到概率模式\n\nWidth:2HP\nDepth:50mm\nPower Header:10p/16p\n+12v:45ma\n-12v:0ma\n+5v:0ma",
       "specs_en": "1xTrs Midi In (switchable Trs Type A/B via jumper)\n1xClock with cc24 adjustable Clock Div x2 x3 x4... etc\n2xNote/Gate/Vel (2 sets of note info, 3 jacks per set, 6 jacks total)\n3xModWheel editable on your MIDI device\nVel can also be changed to CC info\nAutomatically switches to probability mode after 10 seconds of no MIDI signal\n\nWidth: 2HP\nDepth: 50mm\nPower Header: 10p/16p\n+12v: 45ma\n-12v: 0ma\n+5v: 0ma",
+      "specs_jp": "1xTrs Midi In(ジャンパーでTrs Type A/Bを切り替え可能)\n1xClock cc24でClock Div x2 x3 x4...などを調整可能\n2xNote/Gate/Vel(ノート情報2組、各組3ジャック、計6ジャック)\n3xModWheel MIDI送信側のデバイスで編集可能\nVelはCC情報に変更可能\nMIDI信号を10秒間受信しないと自動的に確率モードへ切り替え\n\nWidth: 2HP\nDepth: 50mm\nPower Header: 10p/16p\n+12v: 45ma\n-12v: 0ma\n+5v: 0ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "可编程模块合成器 Eurorack\n适合搭配鼓机、音序器、带midi接口的控制键盘\n10秒未收到midi信号自动切换到概率模式\n固件版本v4.1",
-          "desc_en": "Programmable Eurorack module synthesizer\nPerfect for pairing with drum machines, sequencers, and MIDI-equipped control keyboards\nAutomatically switches to probability mode after 10 seconds of no MIDI signal\nFirmware version v4.1"
+          "desc_en": "Programmable Eurorack module synthesizer\nPerfect for pairing with drum machines, sequencers, and MIDI-equipped control keyboards\nAutomatically switches to probability mode after 10 seconds of no MIDI signal\nFirmware version v4.1",
+          "desc_jp": "プログラマブルなEurorackモジュラーシンセサイザーモジュール\nドラムマシン、シーケンサー、MIDI付きコントロールキーボードとの組み合わせに最適\nMIDI信号を10秒間受信しないと自動的に確率モードへ切り替え\nファームウェアバージョン v4.1"
         }
       ],
       "manualUrl": "https://github.com/environscape/Midi2CV/tree/master/Midi2CV_v4.2"
@@ -122,18 +145,22 @@
       "name": "Convergence",
       "subtitle": "数字效果器",
       "subtitle_en": "Digital Effects Processor",
+      "subtitle_jp": "デジタルエフェクター",
       "description": "多模式数字效果器，包含23种效果模式，支持时钟同步延迟效果",
       "description_en": "Multi-mode digital effects processor with 23 effect modes, supporting clock-synced delay effects",
+      "description_jp": "23種類のエフェクトモードを備えたマルチモードデジタルエフェクター。クロック同期ディレイエフェクトに対応します",
       "image": "src/Convergence.webp",
       "category": "digital",
       "isNew": true,
       "specs": "6 HP Eurorack模块\n38mm深度\n立体声输入和输出\n基于SpinFV1引擎\n23种效果模式\n支持时钟同步延迟效果\n\n+12v:100ma\n-12v:10ma\n+5v:0ma",
       "specs_en": "6 HP Eurorack module\n38mm depth\nStereo input and output\nBased on SpinFV1 engine\n23 effect modes\nSupports clock-synced delay effects\n\n+12v: 100ma\n-12v: 10ma\n+5v: 0ma",
+      "specs_jp": "6 HP Eurorackモジュール\n奥行き 38mm\nステレオ入出力\nSpinFV1エンジンを採用\n23種類のエフェクトモード\nクロック同期ディレイエフェクトに対応\n\n+12v: 100ma\n-12v: 10ma\n+5v: 0ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "多模式数字效果器\n包含23种效果模式\n支持时钟同步延迟效果\n立体声输入和输出",
-          "desc_en": "Multi-mode digital effects processor\nContains 23 effect modes\nSupports clock-synced delay effects\nStereo input and output"
+          "desc_en": "Multi-mode digital effects processor\nContains 23 effect modes\nSupports clock-synced delay effects\nStereo input and output",
+          "desc_jp": "マルチモードデジタルエフェクター\n23種類のエフェクトモードを搭載\nクロック同期ディレイエフェクトに対応\nステレオ入出力"
         }
       ],
       "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Convergence_manual.html"
@@ -143,28 +170,34 @@
       "name": "Quantizer",
       "subtitle": "量化器模块",
       "subtitle_en": "Touch Quantizer Module",
+      "subtitle_jp": "タッチクオンタイザーモジュール",
       "description": "触摸量化器模块，支持琶音器和触摸循环录制功能",
       "description_en": "Touch quantizer module with arpeggiator and touch loop recording functionality",
+      "description_jp": "アルペジエーターとタッチループ録音機能を備えたタッチクオンタイザーモジュール",
       "image": "src/Quantizer.jpg",
       "category": "digital",
       "isNew": true,
       "specs": "4 HP Eurorack模块\n42mm深度\n1xCV输入接口\n1xVOct输出接口\n1个模式切换按钮（量化模式/循环录制模式/琶音模式）\n12个LED指示灯\n\n+12v:80ma\n-12v:10ma\n+5v:0ma",
       "specs_en": "4 HP Eurorack module\n42mm depth\n1x CV input\n1x VOct output\n1x Mode Switch Button (switchable between Quantization Mode, Loop Recording Mode, Arpeggio Mode)\n12x LEDs (for displaying currently activated/triggered notes)\n\n+12v: 80ma\n-12v: 10ma\n+5v: 0ma",
+      "specs_jp": "4 HP Eurorackモジュール\n奥行き 42mm\n1x CV入力\n1x VOct出力\n1x モード切替ボタン(クオンタイズモード/ループ録音モード/アルペジオモードを切替)\n12x LED(現在アクティブ/トリガーされたノートを表示)\n\n+12v: 80ma\n-12v: 10ma\n+5v: 0ma",
       "features": [
         {
           "name": "量化模式",
           "desc": "触摸键盘布局，通过触摸触发音符和音阶",
-          "desc_en": "Touch keyboard layout; trigger notes and scales by pressing the touch points"
+          "desc_en": "Touch keyboard layout; trigger notes and scales by pressing the touch points",
+          "desc_jp": "タッチキーボードレイアウト。タッチポイントを押してノートとスケールをトリガーします"
         },
         {
           "name": "循环录制模式",
           "desc": "触摸开始录制，释放后循环播放录制的电压",
-          "desc_en": "Press a touch point to start recording and output the corresponding voltage in real time. When the touch is released for more than 0.3s, the voltage just recorded will be played back in a loop"
+          "desc_en": "Press a touch point to start recording and output the corresponding voltage in real time. When the touch is released for more than 0.3s, the voltage just recorded will be played back in a loop",
+          "desc_jp": "タッチポイントを押すと録音を開始し、対応する電圧をリアルタイムで出力します。タッチを0.3秒以上離すと、録音した電圧がループ再生されます"
         },
         {
           "name": "琶音模式",
           "desc": "接收时钟信号，交替输出触摸点对应的音高",
-          "desc_en": "Receives clock signals via the CV In interface and alternately outputs the pitch corresponding to the pressed touch points"
+          "desc_en": "Receives clock signals via the CV In interface and alternately outputs the pitch corresponding to the pressed touch points",
+          "desc_jp": "CV Inインターフェースでクロック信号を受信し、押されたタッチポイントに対応する音高を交互に出力します"
         }
       ],
       "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Quantizer_manual.html"
@@ -174,18 +207,22 @@
       "name": "CV2MIDI",
       "subtitle": "压控信号转迷笛信号",
       "subtitle_en": "CV to MIDI Converter",
+      "subtitle_jp": "CV信号→MIDI信号変換",
       "description": "CV信号转MIDI信号模块，支持可编辑映射，Eurorack模块合成器",
       "description_en": "CV to MIDI converter module with editable mapping, Eurorack modular synthesizer",
+      "description_jp": "編集可能なマッピングに対応したCV→MIDI変換モジュール。Eurorackモジュラーシンセサイザー用",
       "image": "src/CV2MIDI.jpg",
       "category": "digital",
       "isNew": true,
       "specs": "2HP Eurorack模块\n压控信号转MIDI信号\n支持可编辑映射\nMIDI输出接口\nCV输入接口\n\nWidth:2HP\nPower Header:10p/16p",
       "specs_en": "2HP Eurorack module\nCV to MIDI conversion\nSupports editable mapping\nMIDI output jack\nCV input jack\n\nWidth: 2HP\nPower Header: 10p/16p",
+      "specs_jp": "2HP Eurorackモジュール\nCV→MIDI変換\n編集可能なマッピングに対応\nMIDI出力ジャック\nCV入力ジャック\n\nWidth: 2HP\nPower Header: 10p/16p",
       "features": [
         {
           "name": "功能概述",
           "desc": "CV信号转MIDI信号模块\n支持可编辑映射\n将模拟控制信号转换为数字MIDI信号",
-          "desc_en": "CV to MIDI converter module\nSupports editable mapping\nConverts analog control signals to digital MIDI signals"
+          "desc_en": "CV to MIDI converter module\nSupports editable mapping\nConverts analog control signals to digital MIDI signals",
+          "desc_jp": "CV→MIDI変換モジュール\n編集可能なマッピングに対応\nアナログコントロール信号をデジタルMIDI信号へ変換"
         }
       ],
       "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/CV2MIDI.html"
@@ -195,18 +232,22 @@
       "name": "ADSR Envelope",
       "subtitle": "包络发生器",
       "subtitle_en": "Envelope Generator",
+      "subtitle_jp": "エンベロープジェネレーター",
       "description": "面板升级 电路升级 Led采用灯柱",
       "description_en": "Panel upgrade, circuit upgrade, LED with lamp post",
+      "description_jp": "パネルをアップグレード、回路をアップグレード、LEDはライトポスト仕様",
       "image": "src/ADSR_Envelope.jpg",
       "category": "analog",
       "isNew": true,
       "specs": "Width:2HP\nDepth:25mm\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "Width: 2HP\nDepth: 25mm\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "Width: 2HP\nDepth: 25mm\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "面板升级 电路升级 Led采用灯柱\n适合小型系统 简洁易用 质量可靠",
-          "desc_en": "Panel upgrade, circuit upgrade, LED with lamp post\nPerfect for small systems, simple and reliable"
+          "desc_en": "Panel upgrade, circuit upgrade, LED with lamp post\nPerfect for small systems, simple and reliable",
+          "desc_jp": "パネルと回路をアップグレード、LEDはライトポスト仕様\n小型システムに最適、シンプルで使いやすく信頼性の高い設計"
         }
       ],
       "manualUrl": "#"
@@ -216,18 +257,22 @@
       "name": "4CH-Mixer&Send",
       "subtitle": "带返送式混音器",
       "subtitle_en": "Mixing Console with Send",
+      "subtitle_jp": "センド付きミキシングコンソール",
       "description": "四路输入 立体声输出 耳机输出",
       "description_en": "Four-channel input, stereo output, headphone output",
+      "description_jp": "4チャンネル入力、ステレオ出力、ヘッドホン出力",
       "image": "src/4CH_Mixer_Send.webp",
       "category": "analog",
       "isNew": true,
       "specs": "4个输入通道\nI/II两路为立体声输入\nIII/IV两路为单声道输入\n默认将I/II/III通道发送至返效果器\n立体声发送和立体声返回接口\n输出接口支持耳机和立体声输出\n背部包含杜邦线3P(L/R/Gnd)跳线插口\n\nWidth:8HP\nDepth:28mm\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "4 input channels\nChannels I/II are stereo inputs\nChannels III/IV are mono inputs\nChannels I/II/III are sent to effects loop by default\nStereo send and stereo return jacks\nOutput supports headphones and stereo output\nIncludes 3P (L/R/Gnd) jumper header on the back\n\nWidth: 8HP\nDepth: 28mm\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "4入力チャンネル\nI/IIチャンネルはステレオ入力\nIII/IVチャンネルはモノラル入力\nI/II/IIIチャンネルはデフォルトでエフェクトループへ送信\nステレオセンド/ステレオリターンジャック\n出力はヘッドホンとステレオ出力に対応\n背面に3P(L/R/Gnd)ジャンパーヘッダーを装備\n\nWidth: 8HP\nDepth: 28mm\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "四路输入 立体声输出\nI/II两路为立体声输入\nIII/IV两路为单声道输入\n支持效果发送和返回\n输出接口支持耳机输出",
-          "desc_en": "Four-channel input, stereo output\nChannels I/II are stereo inputs\nChannels III/IV are mono inputs\nSupports effects send and return\nOutput supports headphone output"
+          "desc_en": "Four-channel input, stereo output\nChannels I/II are stereo inputs\nChannels III/IV are mono inputs\nSupports effects send and return\nOutput supports headphone output",
+          "desc_jp": "4チャンネル入力、ステレオ出力\nI/IIチャンネルはステレオ入力\nIII/IVチャンネルはモノラル入力\nエフェクトセンド/リターンに対応\n出力はヘッドホン出力に対応"
         }
       ],
       "manualUrl": "#"
@@ -237,18 +282,22 @@
       "name": "Buffer Mult",
       "subtitle": "有源缓冲器",
       "subtitle_en": "Active Buffer",
+      "subtitle_jp": "アクティブバッファー",
       "description": "二代新升级 3组1In2Out复制器",
       "description_en": "2nd generation upgrade, 3 sets of 1In2Out duplicators",
+      "description_jp": "第2世代へアップグレード。3組の1In2Out複製器",
       "image": "src/Buffer_Mult.jpg",
       "category": "analog",
       "isNew": true,
       "specs": "3组1In2Out复制器\n包含默认路由\n当In插口未接入跳线时 自动与上一个接口连通\n可切换为1In 6Out或1In 4Out & 1In 2Out或1In 2Out x3\n\nWidth:2HP\nDepth:35mm\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "3 sets of 1In2Out duplicators\nIncludes default routing\nWhen In jack has no patch cable, automatically connects to previous input\nSwitchable to 1In 6Out or 1In 4Out & 1In 2Out or 1In 2Out x3\n\nWidth: 2HP\nDepth: 35mm\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "3組の1In2Out複製器\nデフォルトルーティングを搭載\nInジャックにパッチケーブルがない場合、自動的に前の入力と接続\n1In 6Out、1In 4Out & 1In 2Out、1In 2Out x3に切替可能\n\nWidth: 2HP\nDepth: 35mm\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "二代新升级\n3组1In2Out复制器\n包含默认路由\n更灵活的控制复制方式\n通过跳线设计您的演奏手势",
-          "desc_en": "2nd generation upgrade\n3 sets of 1In2Out duplicators\nIncludes default routing\nMore flexible duplication control\nDesign your performance gestures through patching"
+          "desc_en": "2nd generation upgrade\n3 sets of 1In2Out duplicators\nIncludes default routing\nMore flexible duplication control\nDesign your performance gestures through patching",
+          "desc_jp": "第2世代へアップグレード\n3組の1In2Out複製器\nデフォルトルーティングを搭載\nより柔軟な複製コントロール\nパッチングで演奏ジェスチャーを設計"
         }
       ],
       "manualUrl": "#"
@@ -258,18 +307,22 @@
       "name": "MS-20 VCF",
       "subtitle": "压控滤波器",
       "subtitle_en": "Voltage-Controlled Filter",
+      "subtitle_jp": "電圧制御フィルター",
       "description": "经典的滤波器电路",
       "description_en": "Classic filter circuit",
+      "description_jp": "クラシックなフィルター回路",
       "image": "src/MS_20_VCF.webp",
       "category": "analog",
       "isNew": true,
       "specs": "基于Korg MS-20滤波器\n具有伏每八度功能(背面含电位器可调谐)\n具有增益过载旋钮 失真方式为非对称削波\n具有滤波模式渐变旋钮\n\nWidth:4HP\nDepth:28mm\nPower Header:10p\n+12v:10ma\n-12v:10ma",
       "specs_en": "Based on Korg MS-20 filter\nFeatures volts per octave (potentiometer adjustable on back panel)\nFeatures gain overload knob with asymmetric clipping distortion\nFeatures filter mode gradient knob\n\nWidth: 4HP\nDepth: 28mm\nPower Header: 10p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "Korg MS-20フィルターをベースに設計\nボルト/オクターブ機能を搭載(背面のポテンショメーターで調整可能)\nゲインオーバーロードノブを搭載、歪みは非対称クリッピング\nフィルターモード可変ノブを搭載\n\nWidth: 4HP\nDepth: 28mm\nPower Header: 10p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "经典的滤波器电路\n具有伏每八度功能\n具有增益过载旋钮\n失真方式为非对称削波\n具有滤波模式渐变旋钮",
-          "desc_en": "Classic filter circuit\nFeatures volts per octave\nFeatures gain overload knob\nAsymmetric clipping distortion\nFeatures filter mode gradient knob"
+          "desc_en": "Classic filter circuit\nFeatures volts per octave\nFeatures gain overload knob\nAsymmetric clipping distortion\nFeatures filter mode gradient knob",
+          "desc_jp": "クラシックなフィルター回路\nボルト/オクターブ機能を搭載\nゲインオーバーロードノブを搭載\n歪みは非対称クリッピング\nフィルターモード可変ノブを搭載"
         }
       ],
       "manualUrl": "#"
@@ -279,18 +332,22 @@
       "name": "RatioMixer",
       "subtitle": "声像模块",
       "subtitle_en": "Pan Module",
+      "subtitle_jp": "パンモジュール",
       "description": "控制信号混合模块，Eurorack模块合成器",
       "description_en": "Control signal mixing module, Eurorack modular synthesizer",
+      "description_jp": "コントロール信号ミキシングモジュール。Eurorackモジュラーシンセサイザー用",
       "image": "src/RatioMixer.webp",
       "category": "analog",
       "isNew": true,
       "specs": "控制信号混合模块\n声像调节功能\n多输入信号混合\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "Control signal mixing module\nPan control function\nMulti-input signal mixing\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "コントロール信号ミキシングモジュール\nパン調整機能\nマルチ入力信号のミキシング\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "控制信号混合模块\n支持声像调节\n多输入信号混合\n简洁的2HP设计",
-          "desc_en": "Control signal mixing module\nSupports pan control\nMulti-input signal mixing\nCompact 2HP design"
+          "desc_en": "Control signal mixing module\nSupports pan control\nMulti-input signal mixing\nCompact 2HP design",
+          "desc_jp": "コントロール信号ミキシングモジュール\nパン調整に対応\nマルチ入力信号のミキシング\nコンパクトな2HP設計"
         }
       ],
       "manualUrl": "#"
@@ -300,18 +357,22 @@
       "name": "4CH-Mixer",
       "subtitle": "混音器",
       "subtitle_en": "Mixer",
+      "subtitle_jp": "ミキサー",
       "description": "四路输入混音器，Eurorack模块合成器",
       "description_en": "Four-channel input mixer, Eurorack modular synthesizer",
+      "description_jp": "4チャンネル入力ミキサー。Eurorackモジュラーシンセサイザー用",
       "image": "src/4CH_Mixer.webp",
       "category": "analog",
       "isNew": true,
       "specs": "4个输入通道\n立体声输出\n简洁的2HP设计\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "4 input channels\nStereo output\nCompact 2HP design\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "4入力チャンネル\nステレオ出力\nコンパクトな2HP設計\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "四路输入混音器\n立体声输出\n简洁的2HP设计\n适合小型系统",
-          "desc_en": "Four-channel input mixer\nStereo output\nCompact 2HP design\nPerfect for small systems"
+          "desc_en": "Four-channel input mixer\nStereo output\nCompact 2HP design\nPerfect for small systems",
+          "desc_jp": "4チャンネル入力ミキサー\nステレオ出力\nコンパクトな2HP設計\n小型システムに最適"
         }
       ],
       "manualUrl": "#"
@@ -321,18 +382,22 @@
       "name": "VFAM",
       "subtitle": "MOOG DFAM专用同步器",
       "subtitle_en": "MOOG DFAM Sync Adapter",
+      "subtitle_jp": "MOOG DFAM専用シンクアダプター",
       "description": "Valentine from another mother，MOOG DFAM专用同步器模块",
       "description_en": "Valentine from another mother, MOOG DFAM dedicated sync module",
+      "description_jp": "Valentine from another mother。MOOG DFAM専用のシンクモジュール",
       "image": "src/VFAM.webp",
       "category": "digital",
       "isNew": true,
       "specs": "MOOG DFAM专用同步器\n时钟同步功能\n触发信号处理\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "MOOG DFAM dedicated sync adapter\nClock sync function\nTrigger signal processing\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "MOOG DFAM専用シンクアダプター\nクロック同期機能\nトリガー信号処理\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "MOOG DFAM专用同步器\n时钟同步功能\n触发信号处理\n实现多设备同步演奏",
-          "desc_en": "MOOG DFAM dedicated sync adapter\nClock sync function\nTrigger signal processing\nAchieve multi-device synchronized performance"
+          "desc_en": "MOOG DFAM dedicated sync adapter\nClock sync function\nTrigger signal processing\nAchieve multi-device synchronized performance",
+          "desc_jp": "MOOG DFAM専用シンクアダプター\nクロック同期機能\nトリガー信号処理\n複数デバイスの同期演奏を実現"
         }
       ],
       "manualUrl": "#"
@@ -342,28 +407,34 @@
       "name": "S&H LFO",
       "subtitle": "采样保持+低频振荡器",
       "subtitle_en": "Sample & Hold + LFO",
+      "subtitle_jp": "サンプル&ホールド + LFO",
       "description": "采样保持+低频振荡器+噪音发生器，模块合成器 Eurorack",
       "description_en": "Sample & Hold + Low Frequency Oscillator + Noise Generator, Eurorack modular synthesizer",
+      "description_jp": "サンプル&ホールド + 低周波発振器 + ノイズジェネレーター。Eurorackモジュラーシンセサイザー",
       "image": "src/S_H_LFO.jpg",
       "category": "analog",
       "isNew": true,
       "specs": "采样保持功能\n低频振荡器\n噪音发生器\n多种波形输出\n\nWidth:4HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "Sample & Hold function\nLow Frequency Oscillator\nNoise Generator\nMultiple waveform outputs\n\nWidth: 4HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "サンプル&ホールド機能\n低周波発振器(LFO)\nノイズジェネレーター\n複数波形の出力\n\nWidth: 4HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "采样保持",
           "desc": "采样输入信号并保持输出",
-          "desc_en": "Sample input signal and hold output"
+          "desc_en": "Sample input signal and hold output",
+          "desc_jp": "入力信号をサンプリングして出力を保持します"
         },
         {
           "name": "低频振荡器",
           "desc": "多种波形的低频振荡输出",
-          "desc_en": "Multiple waveform low frequency oscillation output"
+          "desc_en": "Multiple waveform low frequency oscillation output",
+          "desc_jp": "複数波形の低周波発振出力"
         },
         {
           "name": "噪音发生器",
           "desc": "白噪音和粉红噪音输出",
-          "desc_en": "White noise and pink noise output"
+          "desc_en": "White noise and pink noise output",
+          "desc_jp": "ホワイトノイズとピンクノイズの出力"
         }
       ],
       "manualUrl": "#"
@@ -373,18 +444,22 @@
       "name": "VCA-2CH",
       "subtitle": "双通道压控放大器",
       "subtitle_en": "Dual Channel VCA",
+      "subtitle_jp": "2チャンネルVCA",
       "description": "双通道压控放大器，Eurorack模块合成器",
       "description_en": "Dual channel voltage-controlled amplifier, Eurorack modular synthesizer",
+      "description_jp": "2チャンネル電圧制御アンプ。Eurorackモジュラーシンセサイザー用",
       "image": "src/VCA_2CH.jpg",
       "category": "analog",
       "isNew": true,
       "specs": "双通道压控放大器\n独立增益控制\nCV控制输入\n\nWidth:2HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "Dual channel voltage-controlled amplifier\nIndependent gain control\nCV control input\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "2チャンネル電圧制御アンプ(VCA)\n独立したゲインコントロール\nCVコントロール入力\n\nWidth: 2HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "功能概述",
           "desc": "双通道压控放大器\n独立增益控制\nCV控制输入\n适合信号放大和调制",
-          "desc_en": "Dual channel voltage-controlled amplifier\nIndependent gain control\nCV control input\nPerfect for signal amplification and modulation"
+          "desc_en": "Dual channel voltage-controlled amplifier\nIndependent gain control\nCV control input\nPerfect for signal amplification and modulation",
+          "desc_jp": "2チャンネル電圧制御アンプ\n独立したゲインコントロール\nCVコントロール入力\n信号の増幅とモジュレーションに最適"
         }
       ],
       "manualUrl": "#"
@@ -394,28 +469,34 @@
       "name": "RandomSkip",
       "subtitle": "概率/门信号发生器",
       "subtitle_en": "Probability/Gate Generator",
+      "subtitle_jp": "確率/ゲート信号ジェネレーター",
       "description": "四通道概率/门信号/创意节奏发生器，紧凑版 Eurorack",
       "description_en": "Four-channel probability/gate signal/creative rhythm generator, compact Eurorack",
+      "description_jp": "4チャンネルの確率/ゲート信号/クリエイティブリズムジェネレーター。コンパクトなEurorack",
       "image": "src/RandomSkip.jpg",
       "category": "digital",
       "isNew": true,
       "specs": "四通道概率触发\n门信号生成\n创意节奏模式\n紧凑设计\n\nWidth:4HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "Four-channel probability trigger\nGate signal generation\nCreative rhythm patterns\nCompact design\n\nWidth: 4HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
+      "specs_jp": "4チャンネル確率トリガー\nゲート信号生成\nクリエイティブなリズムパターン\nコンパクト設計\n\nWidth: 4HP\nPower Header: 10p/16p\n+12v: 10ma\n-12v: 10ma",
       "features": [
         {
           "name": "概率触发",
           "desc": "四通道独立概率触发控制",
-          "desc_en": "Four-channel independent probability trigger control"
+          "desc_en": "Four-channel independent probability trigger control",
+          "desc_jp": "4チャンネル独立の確率トリガーコントロール"
         },
         {
           "name": "门信号生成",
           "desc": "多种门信号模式",
-          "desc_en": "Multiple gate signal modes"
+          "desc_en": "Multiple gate signal modes",
+          "desc_jp": "複数のゲート信号モード"
         },
         {
           "name": "创意节奏",
           "desc": "生成创意节奏模式",
-          "desc_en": "Generate creative rhythm patterns"
+          "desc_en": "Generate creative rhythm patterns",
+          "desc_jp": "クリエイティブなリズムパターンを生成"
         }
       ],
       "manualUrl": "#"
@@ -425,18 +506,22 @@
       "name": "Modulus8+4",
       "subtitle": "Mult Mode Sequencer;Matrix Sequencer",
       "subtitle_en": "Mult Mode Sequencer;Matrix Sequencer",
+      "subtitle_jp": "Mult Mode Sequencer;Matrix Sequencer",
       "description": "Mult Mode Sequencer;Matrix Sequencer",
       "description_en": "Mult Mode Sequencer;Matrix Sequencer",
+      "description_jp": "Mult Mode Sequencer;Matrix Sequencer",
       "image": "src/Modulus.png",
       "category": "analog",
       "isNew": true,
       "specs": "Width:12HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "specs_en": "Width:12HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
+      "specs_jp": "Width:12HP\nPower Header:10p/16p\n+12v:10ma\n-12v:10ma",
       "features": [
         {
           "name": "Mult Mode Sequencer;Matrix Sequencer",
           "desc": "Modulus8+4 是一款 Eurorack 格式双轨音序器模块，集成两条独立的CV音序轨道：\n- 轨道1: 8个步进，轨道2: 4个步进\n- 4个Trig输入，2个CV输出\n\n支持3种工作模式：\n- next/rst mode: 常规音序，可复位\n- next/direct mode: 可修改步进方向\n- matrix mode: 可四个方向遍历4x3矩阵\n\n功能特点：\n- 包含长度旋钮以及切割组合模式\n- 每个步进旋钮拧到最大时，下次触发将随机输出\n- 自带音阶量化、根音选择，十余种音阶可供快速切换\n- 输出范围7个八度",
-          "desc_en": "Modulus8+4 is a Eurorack format dual-track sequencer module that integrates two independent CV sequencer tracks:\n- Track 1: 8 steps, Track 2: 4 steps\n- 4 Trig inputs, 2 CV outputs\n\nSupports 3 working modes:\n- next/rst mode: Regular sequencer with reset\n- next/direct mode: Adjustable step direction\n- matrix mode: Traverse a 4x3 matrix in four directions\n\nFeatures:\n- Length knob and cutting combination mode\n- Each step control knob at max outputs random level on next trigger\n- Built-in scale quantization and root note selection, over ten scales for quick switching\n- 7-octave output range"
+          "desc_en": "Modulus8+4 is a Eurorack format dual-track sequencer module that integrates two independent CV sequencer tracks:\n- Track 1: 8 steps, Track 2: 4 steps\n- 4 Trig inputs, 2 CV outputs\n\nSupports 3 working modes:\n- next/rst mode: Regular sequencer with reset\n- next/direct mode: Adjustable step direction\n- matrix mode: Traverse a 4x3 matrix in four directions\n\nFeatures:\n- Length knob and cutting combination mode\n- Each step control knob at max outputs random level on next trigger\n- Built-in scale quantization and root note selection, over ten scales for quick switching\n- 7-octave output range",
+          "desc_jp": "Modulus8+4は、2本の独立したCVシーケンストラックを統合したEurorackフォーマットのデュアルトラックシーケンサーです:\n- トラック1: 8ステップ、トラック2: 4ステップ\n- 4つのTrig入力、2つのCV出力\n\n3つの動作モードに対応:\n- next/rst mode: リセット可能な通常のシーケンサー\n- next/direct mode: ステップ方向を変更可能\n- matrix mode: 4x3マトリックスを4方向に走査\n\n機能:\n- レングスノブとカットコンビネーションモード\n- 各ステップノブを最大まで回すと、次回のトリガーでランダムレベルを出力\n- スケールクオンタイズとルート音選択を内蔵、10種類以上のスケールを素早く切り替え可能\n- 出力レンジ7オクターブ"
         }
       ],
       "manualUrl": "https://environscape.github.io/CodingInspire/support/manual/Modulus84_manual.html"
@@ -447,18 +532,21 @@
       "id": "all",
       "name": "全部产品",
       "name_en": "All Products",
+      "name_jp": "すべての製品",
       "icon": "grid"
     },
     {
       "id": "digital",
       "name": "数字模块",
       "name_en": "Digital Modules",
+      "name_jp": "デジタルモジュール",
       "icon": "cpu"
     },
     {
       "id": "analog",
       "name": "模拟模块",
       "name_en": "Analog Modules",
+      "name_jp": "アナログモジュール",
       "icon": "waveform"
     }
   ]

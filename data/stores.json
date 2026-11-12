@@ -1,22 +1,26 @@
 {
   "stores": [
-       {
+    {
       "id": "perfectcircuit",
       "name": "完美电路商店",
       "name_en": "Perfect Circuit",
+      "name_jp": "Perfect Circuit",
       "url": "https://www.perfectcircuit.com/coding-inspire-modular",
       "logo": "https://www.perfectcircuit.com/static/version1789394590/frontend/Aware/default/en_US/images/logo.svg",
       "region": "全球",
-      "region_en": "Global"
+      "region_en": "Global",
+      "region_jp": "グローバル"
     },
     {
       "id": "taobao",
       "name": "淘宝店铺",
       "name_en": "Taobao Store",
+      "name_jp": "Taobaoストア",
       "url": "https://m.tb.cn/h.SQfZFM67ZAOsRs2",
       "logo": "https://cdn.simpleicons.org/taobao",
       "region": "中国",
-      "region_en": "China"
+      "region_en": "China",
+      "region_jp": "中国"
     }
   ]
 }
