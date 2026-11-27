@@ -70,7 +70,7 @@ html, body {
   color: var(--text-muted);
   font-size: 11px;
   text-decoration: none;
-  margin-right: 24px;
+  margin-right: 10px;
   padding-left: 12px;
   border-left: 1px solid var(--border);
   transition: color .15s ease, transform .15s ease;
@@ -78,6 +78,12 @@ html, body {
 .topbar .brand-sub:hover {
   color: var(--accent);
   transform: scale(1.06);
+}
+.topbar .brand-slogan {
+  font-size: 10.5px;
+  color: #b7bec8;
+  letter-spacing: .2px;
+  white-space: nowrap;
 }
 .serial-group { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .preset-group { display: flex; align-items: center; gap: 10px; margin-left: auto; }

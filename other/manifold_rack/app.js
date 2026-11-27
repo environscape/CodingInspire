@@ -15,6 +15,7 @@ const I18N = {
     gen: '随机生成预设', init: '初始化预设', clear: '清除所有线缆',
     preset: '预设', exportJson: '导出配置', importJson: '导入配置', undo: '撤销修改',
     inputs: '输入', outputs: '输出',
+    slogan: 'Manifold 虚拟机架与预设同步工作台',
     tips: '推荐使用 Chrome / Edge 浏览器',
     ok: '确定', cancel: '取消',
     confirmImport: '导入配置会覆盖当前页面的所有预设设置，是否继续？',
@@ -58,6 +59,7 @@ const I18N = {
     gen: 'Randomize', init: 'Init Preset', clear: 'Clear Wires',
     preset: 'Preset', exportJson: 'Export Config', importJson: 'Import Config', undo: 'Undo Changes',
     inputs: 'Inputs', outputs: 'Outputs',
+    slogan: 'Virtual Rack & Preset Sync for Manifold',
     tips: 'Tips: use Chrome / Edge',
     ok: 'OK', cancel: 'Cancel',
     confirmImport: 'Importing a config will overwrite all presets on this page. Continue?',
@@ -311,6 +313,7 @@ const App = {
         <div>
           <span class="brand">Manifold Rack</span>
           <a class="brand-sub" href="../../index.html">by Coding Inspire</a>
+          <span class="brand-slogan">{{ L.slogan }}</span>
         </div>
 
         <div class="serial-group">
