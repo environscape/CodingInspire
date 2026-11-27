@@ -5,6 +5,68 @@ const { createApp, ref, reactive, computed, watch, onMounted, h } = Vue;
 const MI = window.ManifoldInfo;
 
 // ============================================================
+// 多语言 (中/英), 参照官网语言切换的交互方式
+// ============================================================
+const I18N = {
+  zh: {
+    langName: '中文',
+    connect: '连接串口', disconnect: '断开',
+    fetch: '拉取预设', upload: '上传当前预设',
+    gen: '随机生成预设', init: '初始化预设', clear: '清除所有线缆',
+    preset: '预设', exportJson: '导出JSON', importJson: '导入JSON',
+    inputs: '输入', outputs: '输出',
+    toSwitched: (n) => `已切换到 ${n}`,
+    toRestored: '已恢复本地保存的预设',
+    toInitDone: '已初始化预设: #1 = TIMER, 其余模块为空',
+    toGenDone: '已随机生成预设',
+    toCleared: '已清除所有线缆, 恢复默认输出',
+    toNoSerial: '当前浏览器不支持 Web Serial API（需 Chrome/Edge）',
+    toConnected: '串口已连接',
+    toConnectFail: (m) => '连接失败: ' + m,
+    toDisconnected: '串口已断开',
+    toSynced: (n) => `同步完成！共 ${n} 组预设`,
+    toRequested: '已请求模块导出预设，请在固件 preset 界面查看',
+    toUploaded: (n) => `已上传 ${n}`,
+    toImported: (n) => `已导入 ${n} 组预设`,
+    toImportFail: (m) => '导入失败: ' + m,
+    toUnplugged: '已断开连线',
+    toOutToIn: '只能把输出接到输入上',
+    toNoPhysDirect: '物理输入不能直接连到物理输出',
+    toTakeover: (a, n, b) => `模块${a} → Out${n} 已断开, 模块${b} 接管`,
+    toRouted: (a, f, s) => `模块${a} ${f} ← ${s}`,
+    toOut: (a, n) => `模块${a} → Out${n}`
+  },
+  en: {
+    langName: 'English',
+    connect: 'Connect', disconnect: 'Disconnect',
+    fetch: 'Pull Presets', upload: 'Upload Preset',
+    gen: 'Randomize', init: 'Init Preset', clear: 'Clear Wires',
+    preset: 'Preset', exportJson: 'Export JSON', importJson: 'Import JSON',
+    inputs: 'Inputs', outputs: 'Outputs',
+    toSwitched: (n) => `Switched to ${n}`,
+    toRestored: 'Restored presets saved locally',
+    toInitDone: 'Preset initialized: #1 = TIMER, others empty',
+    toGenDone: 'Preset randomized',
+    toCleared: 'All wires cleared, default outputs restored',
+    toNoSerial: 'Web Serial not supported (use Chrome/Edge)',
+    toConnected: 'Serial connected',
+    toConnectFail: (m) => 'Connection failed: ' + m,
+    toDisconnected: 'Serial disconnected',
+    toSynced: (n) => `Sync complete! ${n} presets`,
+    toRequested: 'Export requested — keep the module on the PRESET screen',
+    toUploaded: (n) => `Uploaded ${n}`,
+    toImported: (n) => `Imported ${n} presets`,
+    toImportFail: (m) => 'Import failed: ' + m,
+    toUnplugged: 'Wire removed',
+    toOutToIn: 'Outputs can only connect to inputs',
+    toNoPhysDirect: 'Physical input cannot connect to physical output',
+    toTakeover: (a, n, b) => `Module ${a} → Out${n} disconnected, module ${b} took over`,
+    toRouted: (a, f, s) => `Module ${a} ${f} ← ${s}`,
+    toOut: (a, n) => `Module ${a} → Out${n}`
+  }
+};
+
+// ============================================================
 // Mock 数据 (和 Python module_viewer.py 里一致)
 // ============================================================
 function createMockPresets() {
@@ -113,10 +175,15 @@ const ModuleCard = {
   emits: ['update:module', 'port-mousedown', 'port-mouseup'],
   template: `
     <div class="module-card" :class="{ empty: module.type === 0 }">
-      <span class="mod-num">#{{ index + 1 }}</span>
-      <select class="mod-type" :value="module.type" @change="update('type', +$event.target.value)">
-        <option v-for="(info, tid) in MI.MODULE_TYPES" :key="tid" :value="tid">{{ info.name }}</option>
-      </select>
+      <div class="mod-head">
+        <span class="mod-num">#{{ index + 1 }}</span>
+        <select class="mod-type" :value="module.type" @change="update('type', +$event.target.value)">
+          <option v-for="tid in MI.TYPE_ORDER" :key="tid" :value="tid">{{ MI.MODULE_TYPES[tid].name }}</option>
+        </select>
+        <svg class="mx-preview" viewBox="0 0 16 8" preserveAspectRatio="none" aria-hidden="true">
+          <rect v-for="(c, i) in matrixCells" :key="i" :x="c.x" :y="c.y" width="1" height="1" />
+        </svg>
+      </div>
 
       <!-- row 1: 3 个参数旋钮 (大) —— 空模块保留占位, 不塌陷布局 -->
       <div class="knob-row param-row" :class="{ 'knobs-hidden': module.type === 0 }">
@@ -178,7 +245,18 @@ const ModuleCard = {
     </div>
   `,
   computed: {
-    typeInfo() { return this.MI.MODULE_TYPES[this.module.type] || this.MI.MODULE_TYPES[0]; }
+    typeInfo() { return this.MI.MODULE_TYPES[this.module.type] || this.MI.MODULE_TYPES[0]; },
+    // 8x16 缩略矩阵 → 实心格子坐标 (SVG rect)
+    matrixCells() {
+      const m = this.typeInfo.matrix || [];
+      const cells = [];
+      for (let y = 0; y < m.length; y++) {
+        for (let x = 0; x < m[y].length; x++) {
+          if (m[y][x]) cells.push({ x, y });
+        }
+      }
+      return cells;
+    }
   },
   data() {
     return { MI: window.ManifoldInfo, dragging: false, startY: 0, startVal: 0 };
@@ -221,32 +299,43 @@ const App = {
       <header class="topbar">
         <div>
           <span class="brand">Manifold Rack</span>
-          <span class="brand-sub">by Coding Inspire</span>
+          <a class="brand-sub" href="../../index.html">by Coding Inspire</a>
         </div>
 
         <div class="serial-group">
-          <button :disabled="isConnected" @click="requestPort">连接串口</button>
-          <button :disabled="!isConnected" @click="disconnectPort">断开</button>
-          <button class="success" :disabled="!isConnected" @click="fetchPresets">拉取预设</button>
-          <button class="primary" :disabled="!isConnected" @click="uploadCurrent">上传当前预设</button>
+          <button :disabled="isConnected" @click="requestPort">{{ L.connect }}</button>
+          <button :disabled="!isConnected" @click="disconnectPort">{{ L.disconnect }}</button>
+          <button class="success" :disabled="!isConnected" @click="fetchPresets">{{ L.fetch }}</button>
+          <button class="primary" :disabled="!isConnected" @click="uploadCurrent">{{ L.upload }}</button>
+        </div>
+
+        <!-- 语言切换 (样式参照官网 lang-switcher) -->
+        <div class="lang-switcher" @mouseleave="langMenu = false">
+          <button class="lang-toggle" @click="langMenu = !langMenu" :title="L.langName">
+            {{ L.langName }} ▾
+          </button>
+          <div class="lang-menu" :class="{ active: langMenu }">
+            <button type="button" :class="{ active: lang === 'zh' }" @click="setLang('zh')">中文</button>
+            <button type="button" :class="{ active: lang === 'en' }" @click="setLang('en')">English</button>
+          </div>
         </div>
       </header>
 
       <!-- 面板上方快捷操作 -->
       <div class="toolbar">
-        <button @click="genPreset">随机生成预设</button>
-        <button @click="initPreset">初始化预设</button>
-        <button @click="clearAllWires">清除所有线缆</button>
+        <button @click="genPreset">{{ L.gen }}</button>
+        <button @click="initPreset">{{ L.init }}</button>
+        <button @click="clearAllWires">{{ L.clear }}</button>
 
         <div class="preset-group">
-          <span class="label">预设</span>
+          <span class="label">{{ L.preset }}</span>
           <select v-model="currentPresetIndex">
             <option v-for="(p, i) in presets" :key="i" :value="i">
               {{ p.factory_name }}
             </option>
           </select>
-          <button @click="exportJSON">导出JSON</button>
-          <button @click="importJSON = true">导入JSON</button>
+          <button @click="exportJSON">{{ L.exportJson }}</button>
+          <button @click="importJSON = true">{{ L.importJson }}</button>
         </div>
       </div>
 
@@ -254,7 +343,7 @@ const App = {
       <main class="main">
         <!-- 左面板: 物理输入 -->
         <div class="side-panel left">
-          <div class="panel-title">Inputs</div>
+          <div class="panel-title">{{ L.inputs }}</div>
           <div v-for="inp in MI.PHYSICAL_INPUTS" :key="inp.id"
                class="phys-port source"
                :class="{ hl: hoverRelated.ports.includes('phys-in-' + inp.id) }"
@@ -291,7 +380,7 @@ const App = {
             </div>
             <div class="label">{{ outp.label }}</div>
           </div>
-          <div class="panel-title">Outputs</div>
+          <div class="panel-title">{{ L.outputs }}</div>
         </div>
       </main>
 
@@ -328,10 +417,13 @@ const App = {
       hoverWire: null,      // 当前悬停的导线 key
       wirePull: null,       // 正在"拔出"的导线 { key, x0, y0, pulling }
       toast: { msg: '', type: '' },
-      importJSON: false
+      importJSON: false,
+      lang: localStorage.getItem('manifold_lang') || 'zh',
+      langMenu: false
     };
   },
   computed: {
+    L() { return I18N[this.lang] || I18N.zh; },
     currentPresetData() {
       const p = this.presets[this.currentPresetIndex];
       return p ? p.data : [];
@@ -380,7 +472,7 @@ const App = {
   watch: {
     wireDefs() { this.rebuildWires(); },
     currentPresetIndex() {
-      this.showToast(`已切换到 ${this.presets[this.currentPresetIndex]?.factory_name}`);
+      this.showToast(this.L.toSwitched(this.presets[this.currentPresetIndex]?.factory_name));
       this.rebuildWires();
     }
   },
@@ -393,7 +485,7 @@ const App = {
         if (obj.presets && obj.presets.length) {
           this.presets = obj.presets;
           this.currentPresetIndex = obj.currentPresetIndex || 0;
-          this.showToast('已恢复本地保存的预设');
+          this.showToast(this.L.toRestored);
         }
       } catch (e) { console.warn('localStorage restore failed', e); }
     }
@@ -424,6 +516,13 @@ const App = {
     this.endDrag();
   },
   methods: {
+    // ==== 语言切换 ====
+    setLang(lang) {
+      this.lang = lang;
+      this.langMenu = false;
+      localStorage.setItem('manifold_lang', lang);
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    },
     // ==== 模块数据更新 ====
     updateModule(index, newModule) {
       const preset = this.presets[this.currentPresetIndex];
@@ -455,7 +554,7 @@ const App = {
       });
       this.saveLocal();
       this.rebuildWires();
-      this.showToast('已初始化预设: #1 = TIMER, 其余模块为空');
+      this.showToast(this.L.toInitDone);
     },
     // 随机生成预设 —— 对应固件 genModularPreset()
     // 类型 1..N (不含空模块), 参数/衰减随机, 路由 0..13 (13→CV1), 输出为默认六个
@@ -484,7 +583,7 @@ const App = {
       });
       this.saveLocal();
       this.rebuildWires();
-      this.showToast('已随机生成预设');
+      this.showToast(this.L.toGenDone);
     },
     // 清除所有线缆, 恢复默认状态: #1/#3/#5/#7/#9/#11 → Out1~Out6
     clearAllWires() {
@@ -497,21 +596,21 @@ const App = {
       });
       this.saveLocal();
       this.rebuildWires();
-      this.showToast('已清除所有线缆, 恢复默认输出');
+      this.showToast(this.L.toCleared);
     },
 
     // ==== 串口 ====
     async requestPort() {
-      if (!navigator.serial) { this.showToast('当前浏览器不支持 Web Serial API（需 Chrome/Edge）', 'error'); return; }
+      if (!navigator.serial) { this.showToast(this.L.toNoSerial, 'error'); return; }
       try {
         const port = await navigator.serial.requestPort();
         await port.open({ baudRate: 115200 });
         this.serialPort = port;
         this.isConnected = true;
-        this.showToast('串口已连接');
+        this.showToast(this.L.toConnected);
         // 启动接收循环
         this.readLoop();
-      } catch (e) { this.showToast('连接失败: ' + e.message, 'error'); }
+      } catch (e) { this.showToast(this.L.toConnectFail(e.message), 'error'); }
     },
     async disconnectPort() {
       if (this.serialPort) {
@@ -519,7 +618,7 @@ const App = {
         this.serialPort = null;
       }
       this.isConnected = false;
-      this.showToast('串口已断开');
+      this.showToast(this.L.toDisconnected);
     },
     async readLoop() {
       if (!this.serialPort) return;
@@ -547,7 +646,7 @@ const App = {
       if (rest === 'done') {
         this.presets.sort((a, b) => a.factory_name.localeCompare(b.factory_name));
         this.currentPresetIndex = 0;
-        this.showToast(`同步完成！共 ${this.presets.length} 组预设`);
+        this.showToast(this.L.toSynced(this.presets.length));
         return;
       }
       const eq2 = rest.indexOf('=');
@@ -574,7 +673,7 @@ const App = {
       if (!this.isConnected) return;
       this.presets = []; // 清空旧数据
       await this.sendLine('ManifoldSync=GET');
-      this.showToast('已请求模块导出预设，请在固件 preset 界面查看');
+      this.showToast(this.L.toRequested);
     },
     async uploadCurrent() {
       if (!this.isConnected) return;
@@ -588,7 +687,7 @@ const App = {
       const id = idMatch ? parseInt(idMatch[1]) : this.currentPresetIndex + 1;
       await this.sendLine(`ManifoldSync=${id}=${jsonStr}`);
       await this.sendLine('ManifoldSync=done');
-      this.showToast(`已上传 ${preset.factory_name}`, 'success');
+      this.showToast(this.L.toUploaded(preset.factory_name), 'success');
     },
 
     // ==== JSON 导入导出 ====
@@ -611,10 +710,10 @@ const App = {
             const obj = JSON.parse(reader.result);
             if (obj.presets) {
               this.presets = obj.presets;
-              this.showToast(`已导入 ${obj.presets.length} 组预设`, 'success');
+              this.showToast(this.L.toImported(obj.presets.length), 'success');
               this.saveLocal();
             }
-          } catch (err) { this.showToast('导入失败: ' + err.message, 'error'); }
+          } catch (err) { this.showToast(this.L.toImportFail(err.message), 'error'); }
         };
         reader.readAsText(f);
       };
@@ -805,7 +904,7 @@ const App = {
       this.hoverWire = null;
       this.saveLocal();
       this.rebuildWires();
-      this.showToast('已断开连线');
+      this.showToast(this.L.toUnplugged);
     },
 
     // ==== 悬停高亮 ====
@@ -945,7 +1044,7 @@ const App = {
     // 连接两端 (顺序无关)
     tryConnect(startEp, endEp) {
       if (!this.isValidPair(startEp, endEp)) {
-        this.showToast('只能把输出接到输入上', 'warn');
+        this.showToast(this.L.toOutToIn, 'warn');
         return;
       }
       const preset = this.presets[this.currentPresetIndex];
@@ -969,14 +1068,14 @@ const App = {
         const field = inEp.portId === 'r1' ? 'router1' : 'router2';
         preset.data[inEp.moduleIndex][field] = routerId;
         this.saveLocal();
-        this.showToast(`模块${inEp.moduleIndex + 1} ${field} ← ${MI.ROUTER_IDS[routerId]}`);
+        this.showToast(this.L.toRouted(inEp.moduleIndex + 1, field, MI.ROUTER_IDS[routerId]));
         return;
       }
 
       // 情况 B: 目标端是物理输出 Out1-6 (只能来自模块输出)
       if (String(inEp.portId).startsWith('phys-out-')) {
         if (outEp.portId !== 'out' || outEp.moduleIndex == null) {
-          this.showToast('物理输入不能直接连到物理输出', 'warn');
+          this.showToast(this.L.toNoPhysDirect, 'warn');
           return;
         }
         const outIndex = parseInt(inEp.portId.replace('phys-out-', ''), 10);
@@ -991,9 +1090,9 @@ const App = {
         preset.data[modIdx].output = outIndex;
         this.saveLocal();
         if (freed >= 0) {
-          this.showToast(`模块${freed + 1} → Out${outIndex} 已断开, 模块${modIdx + 1} 接管`, 'warn');
+          this.showToast(this.L.toTakeover(freed + 1, outIndex, modIdx + 1), 'warn');
         } else {
-          this.showToast(`模块${modIdx + 1} → Out${outIndex}`);
+          this.showToast(this.L.toOut(modIdx + 1, outIndex));
         }
       }
     },

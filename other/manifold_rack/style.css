@@ -59,20 +59,91 @@ html, body {
   box-shadow: var(--shadow);
 }
 .topbar .brand {
-  font-weight: 800;
-  font-size: 16px;
+  font-weight: 300;
+  font-size: 20px;
+  font-style: italic;
   color: var(--brand-accent);
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
 }
 .topbar .brand-sub {
+  display: inline-block;
   color: var(--text-muted);
   font-size: 11px;
+  text-decoration: none;
   margin-right: 24px;
   padding-left: 12px;
   border-left: 1px solid var(--border);
+  transition: color .15s ease, transform .15s ease;
 }
-.serial-group { display: flex; align-items: center; gap: 8px; }
+.topbar .brand-sub:hover {
+  color: var(--accent);
+  transform: scale(1.06);
+}
+.serial-group { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .preset-group { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
+/* 语言切换 (参照官网 .lang-switcher / .lang-toggle / .lang-menu) */
+.lang-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.lang-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 5px 13px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+.lang-toggle:hover {
+  color: var(--text);
+  border-color: #ff6b35;
+  background: rgba(255, 107, 53, 0.05);
+}
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 120px;
+  padding: 5px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1002;
+}
+.lang-menu.active { display: flex; }
+.lang-menu button {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 7px 11px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.lang-menu button:hover {
+  background: rgba(255, 107, 53, 0.08);
+  color: var(--text);
+}
+.lang-menu button.active {
+  color: #ff6b35;
+  font-weight: 600;
+}
 .preset-group .label { color: var(--text-dim); font-size: 12px; font-weight: 500; }
 
 select, input[type="number"], button {
@@ -219,22 +290,40 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
 /* 空模块: 旋钮隐藏但保留占位, 避免端口被顶上去导致布局跳动 */
 .knobs-hidden { visibility: hidden; pointer-events: none; }
 
+/* 卡片头: 序号 + 类型下拉 + 8x16 缩略矩阵 */
+.mod-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 .module-card .mod-num {
-  position: absolute;
-  top: 5px;
-  right: 8px;
-  font-size: 10px;
+  flex: 0 0 auto;
+  font-size: 9px;
   color: var(--text-muted);
   font-weight: 700;
   font-family: 'Consolas', monospace;
 }
 
 .module-card select.mod-type {
-  width: 100%;
-  font-size: 11px;
-  padding: 4px 6px;
+  flex: 0 0 auto;
+  width: 66px;
+  font-size: 10px;
+  padding: 4px 2px 4px 4px;
   background: var(--bg-panel);
 }
+
+/* 8x16 缩略矩阵 (参考固件 DisplayMatrix) */
+.mx-preview {
+  flex: 0 0 auto;
+  margin-left: auto;
+  width: 40px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: #fff;
+}
+.mx-preview rect { fill: #ff6b35; }
+.module-card.empty .mx-preview rect { fill: #d0d5dd; }
 
 /* 端口圆点 */
 .ports-row {
