@@ -13,7 +13,7 @@ const I18N = {
     connect: '连接串口', disconnect: '断开',
     fetch: '拉取预设', upload: '上传全部预设至模块',
     gen: '随机生成预设', init: '初始化预设', clear: '清除所有线缆',
-    preset: '预设', exportJson: '导出配置', importJson: '导入配置',
+    preset: '预设', exportJson: '导出配置', importJson: '导入配置', undo: '撤销修改',
     inputs: '输入', outputs: '输出',
     ok: '确定', cancel: '取消',
     confirmImport: '导入配置会覆盖当前页面的所有预设设置，是否继续？',
@@ -23,6 +23,7 @@ const I18N = {
     toRestored: '已恢复本地保存的预设',
     toInitDone: '已初始化预设: #1 = TIMER, 其余模块为空',
     toGenDone: '已随机生成预设',
+    toUndone: (n) => `已撤销修改, 「${n}」已还原`,
     toCleared: '已清除所有线缆, 恢复默认输出',
     toNoSerial: '当前浏览器不支持 Web Serial API（需 Chrome/Edge）',
     toConnected: '串口已连接',
@@ -45,7 +46,7 @@ const I18N = {
     connect: 'Connect', disconnect: 'Disconnect',
     fetch: 'Pull Presets', upload: 'Upload All Presets to Module',
     gen: 'Randomize', init: 'Init Preset', clear: 'Clear Wires',
-    preset: 'Preset', exportJson: 'Export Config', importJson: 'Import Config',
+    preset: 'Preset', exportJson: 'Export Config', importJson: 'Import Config', undo: 'Undo Changes',
     inputs: 'Inputs', outputs: 'Outputs',
     ok: 'OK', cancel: 'Cancel',
     confirmImport: 'Importing a config will overwrite all presets on this page. Continue?',
@@ -55,6 +56,7 @@ const I18N = {
     toRestored: 'Restored presets saved locally',
     toInitDone: 'Preset initialized: #1 = TIMER, others empty',
     toGenDone: 'Preset randomized',
+    toUndone: (n) => `Changes reverted, "${n}" restored`,
     toCleared: 'All wires cleared, default outputs restored',
     toNoSerial: 'Web Serial not supported (use Chrome/Edge)',
     toConnected: 'Serial connected',
@@ -323,6 +325,7 @@ const App = {
               {{ p.factory_name }}{{ dirty[i] ? ' *' : '' }}
             </option>
           </select>
+          <button :disabled="!dirty[currentPresetIndex]" @click="undoCurrent">{{ L.undo }}</button>
           <button @click="exportJSON">{{ L.exportJson }}</button>
           <button @click="importJSON">{{ L.importJson }}</button>
         </div>
@@ -406,7 +409,9 @@ const App = {
     return {
       MI: window.ManifoldInfo,
       presets: createDefaultPresets(),
-      dirty: Array(16).fill(false),   // 每组预设是否有未上传的修改
+      // 每组预设的"基准快照" (与模块/初始状态一致的序列化数据), 用于判断 *
+      baseline: [],
+      dirty: Array(16).fill(false),   // 每组预设是否与基准快照不同
       currentPresetIndex: 0,
       isConnected: false,
       serialPort: null,
@@ -422,6 +427,10 @@ const App = {
       lang: localStorage.getItem('manifold_lang') || 'zh',
       langMenu: false
     };
+  },
+  created() {
+    // 初始 16 组默认预设 = 基准, 无星号
+    this.resetBaseline();
   },
   computed: {
     L() { return I18N[this.lang] || I18N.zh; },
@@ -485,9 +494,10 @@ const App = {
         const obj = JSON.parse(saved);
         if (obj.v === 2 && obj.presets && obj.presets.length) {
           this.presets = obj.presets;
-          this.dirty = Array.isArray(obj.dirty) && obj.dirty.length === obj.presets.length
-            ? obj.dirty
-            : Array(obj.presets.length).fill(false);
+          this.baseline = Array.isArray(obj.baseline) && obj.baseline.length === obj.presets.length
+            ? obj.baseline
+            : obj.presets.map(p => JSON.stringify(p.data));
+          this.dirty = this.presets.map((p, i) => JSON.stringify(p.data) !== this.baseline[i]);
           this.currentPresetIndex = obj.currentPresetIndex || 0;
           this.showToast(this.L.toRestored);
         } else {
@@ -536,20 +546,36 @@ const App = {
       preset.data[index] = { ...newModule };
       this.saveLocal();
     },
-    saveLocal(markDirty = true) {
-      if (markDirty) {
-        // 任意修改都让当前预设带上 "未上传" 标记
-        if (this.dirty.length !== this.presets.length) {
-          this.dirty = Array(this.presets.length).fill(false);
-        }
-        this.dirty[this.currentPresetIndex] = true;
-      }
+    // 与基准快照比对, 刷新某组预设的 * 标记 (不依赖手动标记, 改回原样会自动消星)
+    refreshDirty(index = this.currentPresetIndex) {
+      const preset = this.presets[index];
+      if (!preset || typeof this.baseline[index] !== 'string') return;
+      this.dirty[index] = JSON.stringify(preset.data) !== this.baseline[index];
+    },
+    // 把当前 16 组预设整体记为基准 (初始 / 导入 / 拉取 / 上传成功后)
+    resetBaseline() {
+      this.baseline = this.presets.map(p => JSON.stringify(p.data));
+      this.dirty = this.presets.map(() => false);
+    },
+    saveLocal() {
+      this.refreshDirty();
       localStorage.setItem('manifold_presets', JSON.stringify({
         v: 2,
         presets: this.presets,
+        baseline: this.baseline,
         dirty: this.dirty,
         currentPresetIndex: this.currentPresetIndex
       }));
+    },
+    // 撤销当前预设的所有修改, 回到基准状态
+    undoCurrent() {
+      const idx = this.currentPresetIndex;
+      const preset = this.presets[idx];
+      if (!preset || typeof this.baseline[idx] !== 'string') return;
+      preset.data = JSON.parse(this.baseline[idx]);
+      this.rebuildWires();
+      this.saveLocal();
+      this.showToast(this.L.toUndone(preset.factory_name));
     },
     // 二次确认弹窗 (返回 Promise<boolean>)
     askConfirm(message) {
@@ -674,9 +700,9 @@ const App = {
       if (rest === 'done') {
         this.presets.sort((a, b) => a.factory_name.localeCompare(b.factory_name));
         this.currentPresetIndex = 0;
-        // 刚从模块拉下来的数据 = 与模块一致, 全部清除未上传标记
-        this.dirty = Array(this.presets.length).fill(false);
-        this.saveLocal(false);
+        // 刚从模块拉下来的数据 = 与模块一致, 重建基准
+        this.resetBaseline();
+        this.saveLocal();
         this.rebuildWires();
         this.showToast(this.L.toSynced(this.presets.length));
         return;
@@ -706,6 +732,7 @@ const App = {
       if (!(await this.askConfirm(this.L.confirmFetch))) return;
       this.presets = []; // 清空旧数据
       this.dirty = [];
+      this.baseline = [];
       await this.sendLine('ManifoldSync=GET');
       this.showToast(this.L.toRequested);
     },
@@ -725,9 +752,9 @@ const App = {
         await this.sleep(80);
       }
       await this.sendLine('ManifoldSync=done');
-      // 已与模块一致, 清除全部未上传标记
-      this.dirty = Array(this.presets.length).fill(false);
-      this.saveLocal(false);
+      // 已与模块一致, 重建基准
+      this.resetBaseline();
+      this.saveLocal();
       this.showToast(this.L.toUploaded(this.presets.length), 'success');
     },
     sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); },
@@ -756,10 +783,10 @@ const App = {
             const obj = JSON.parse(reader.result);
             if (obj.presets) {
               this.presets = obj.presets;
-              this.dirty = Array(obj.presets.length).fill(false);
               this.currentPresetIndex = 0;
+              this.resetBaseline();
               this.rebuildWires();
-              this.saveLocal(false);
+              this.saveLocal();
               this.showToast(this.L.toImported(obj.presets.length), 'success');
             }
           } catch (err) { this.showToast(this.L.toImportFail(err.message), 'error'); }
