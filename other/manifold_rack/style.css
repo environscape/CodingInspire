@@ -1,0 +1,520 @@
+/* ============================================================
+   Manifold Rack - Light Theme (match Coding Inspire site)
+   主色: #ffffff 白底 | 强调: #ff6b35 橙色
+   ============================================================ */
+
+:root {
+  --bg: #ffffff;
+  --bg-panel: #fafafa;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fdfdfd;
+  --border: #e8e8e8;
+  --border-accent: #ff6b35;
+  --text: #1a1a1a;
+  --text-dim: #666666;
+  --text-muted: #999999;
+  --accent: #ff6b35;
+  --accent-hover: #ff8c5a;
+  --success: #22c55e;
+  --warn: #f59e0b;
+  --error: #ef4444;
+  --knob-bg: #f0f0f0;
+  --knob-ring: #d4d4d4;
+  --port: #c4c4c4;
+  --port-hover: #ff6b35;
+  --port-in: #6b7280;           /* 输入口: 深灰蓝 — 克制 */
+  --port-out: #ff6b35;          /* 输出口: 品牌橙 */
+  --wire: #ff6b35;              /* 模块↔模块连线: 品牌橙 */
+  --wire-phys: #b4bac3;         /* 连到 Gate/CV/Out 的线: 灰色 */
+  --radius: 8px;
+  --radius-sm: 4px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.08);
+  --brand-accent: #1f2328;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== 顶栏 ===== */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+.topbar .brand {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--brand-accent);
+  letter-spacing: -0.3px;
+}
+.topbar .brand-sub {
+  color: var(--text-muted);
+  font-size: 11px;
+  margin-right: 24px;
+  padding-left: 12px;
+  border-left: 1px solid var(--border);
+}
+.serial-group { display: flex; align-items: center; gap: 8px; }
+.preset-group { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.preset-group .label { color: var(--text-dim); font-size: 12px; font-weight: 500; }
+
+select, input[type="number"], button {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  font-family: inherit;
+}
+select:hover, button:hover { border-color: var(--accent); }
+select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,107,53,0.15); }
+
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+button.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+button.success {
+  background: #6b7280;
+  border-color: #6b7280;
+  color: #fff;
+}
+button.success:hover { background: #4b5563; border-color: #4b5563; }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ===== 主体 —— 三列, side-panel 与 module-grid 同高 ===== */
+/* 面板上方快捷操作条 */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 16px 32px 0;
+  background: #fff;
+}
+.main {
+  display: flex;
+  padding: 28px 32px;
+  gap: 20px;
+  overflow-x: auto;
+  background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+  align-items: stretch;
+}
+/* module-grid 决定高度, side-panel 自动跟随 stretch */
+.main .module-grid { align-self: flex-start; }
+
+/* ===== 左右面板 —— flex column, 6 phys-port 均匀分布 ===== */
+.side-panel {
+  width: 84px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+}
+.side-panel .panel-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+  flex-shrink: 0;
+  margin-bottom: 10px;
+}
+.side-panel.right .panel-title { margin-top: auto; margin-bottom: 0; padding-top: 10px; }
+/* 让 6 个 phys-port 均匀吃掉剩余高度, 每行对齐一个模块卡片行 */
+.side-panel .phys-port { flex: 1 1 0; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+.phys-port {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.phys-port:active { cursor: grabbing; }
+.phys-port .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--knob-ring);
+  transition: transform 0.15s, box-shadow 0.15s;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+.phys-port.source .dot { background: #fff; border-color: var(--port-in); }
+.phys-port.target .dot { background: #fff; border-color: var(--port-out); }
+.phys-port:hover .dot { transform: scale(1.25); box-shadow: 0 0 0 3px rgba(255,107,53,0.15); }
+.phys-port .label {
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-top: 3px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+/* ===== 模块网格 —— 6列 × 2行 ===== */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 148px);
+  grid-template-rows: repeat(2, auto);
+  gap: 12px;
+  align-content: start;
+  justify-content: start;
+}
+
+.module-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 8px 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: var(--shadow);
+}
+.module-card:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 4px 14px rgba(255,107,53,0.1);
+  transform: translateY(-1px);
+}
+.module-card.empty { opacity: 0.35; }
+/* 空模块: 旋钮隐藏但保留占位, 避免端口被顶上去导致布局跳动 */
+.knobs-hidden { visibility: hidden; pointer-events: none; }
+
+.module-card .mod-num {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-family: 'Consolas', monospace;
+}
+
+.module-card select.mod-type {
+  width: 100%;
+  font-size: 11px;
+  padding: 4px 6px;
+  background: var(--bg-panel);
+}
+
+/* 端口圆点 */
+.ports-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+/* 输出端口外框: 圆角正方形, 仅比圆点大一圈 */
+.out-frame {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--port-out);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #fff;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.out-frame:hover { box-shadow: 0 0 0 3px rgba(255,107,53,0.15); transform: scale(1.1); }
+
+/* ===== 悬停关联高亮: 同一条链路的所有端口 + 连线一起放大 ===== */
+.port-col.hl .port-dot,
+.phys-port.hl .dot {
+  transform: scale(1.35);
+  box-shadow: 0 0 0 3px rgba(255,107,53,0.18);
+}
+.port-col.hl .out-frame { transform: scale(1.15); }
+.port-col.hl .port-label,
+.phys-port.hl .label { color: var(--text); }
+.wire-layer path.wire.hl {
+  stroke-width: 4.5;
+  opacity: 1;
+  filter: drop-shadow(0 0 3px rgba(255,107,53,0.35));
+}
+
+/* ===== 悬停导线: 变红并加粗, 提示可拖掉 ===== */
+.wire-layer path.wire.hover {
+  stroke: #e5484d;
+  stroke-width: 4.5;
+  filter: drop-shadow(0 0 4px rgba(229,72,77,0.45));
+}
+/* 正在拔出: 红色虚线 */
+.wire-layer path.wire.pulling {
+  stroke: #e5484d;
+  stroke-width: 4;
+  stroke-dasharray: 7 5;
+  filter: none;
+}
+/* out-frame 里的圆点和 in 端口圆点完全一样大 */
+.out-frame .port-dot,
+.out-frame .dot {
+  width: 14px; height: 14px;
+  border-width: 3px;
+  border-radius: 50%;
+  border-color: var(--port-out);
+  background: #fff;
+  margin: 0;
+}
+.port-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--port);
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* 所有输入端口: 统一灰色 */
+.port-dot.input { border-color: var(--port-in); background: #fff; }
+/* 所有输出端口: 品牌橙 */
+.port-dot.output { border-color: var(--port-out); background: #fff; }
+.port-dot:hover { transform: scale(1.25); box-shadow: 0 0 0 3px rgba(255,107,53,0.15); }
+.port-dot.dragging { transform: scale(1.3); box-shadow: 0 0 0 4px rgba(255,107,53,0.2); }
+.port-dot.drop-target { border-color: var(--success) !important; background: #dcfce7 !important; box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
+.port-dot.drop-invalid { border-color: var(--error) !important; background: #fee2e2 !important; }
+
+/* 旋钮区 —— 三列严格对齐 */
+.knob-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  justify-items: center;
+  align-items: center;
+}
+.knob-row.atten-row { margin-top: 2px; }
+
+.knob {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+}
+.knob .knob-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--knob-bg);
+  border: 2px solid var(--knob-ring);
+  position: relative;
+  cursor: ns-resize;
+  user-select: none;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.06);
+}
+.knob .knob-pointer {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform-origin: 50% 14px;
+  width: 2px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 1px;
+  pointer-events: none;
+}
+/* 衰减旋钮 —— 更小, 更轻 */
+.knob.atten .knob-circle {
+  width: 22px;
+  height: 22px;
+  border-width: 2px;
+  background: #f5f5f5;
+}
+.knob.atten .knob-pointer {
+  height: 9px;
+  transform-origin: 50% 9px;
+  background: var(--warn);
+}
+.knob.active .knob-circle { border-color: var(--accent); }
+.knob .knob-label {
+  font-size: 8px;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1;
+  max-width: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.knob.atten .knob-label { font-size: 7px; }
+.knob .knob-value {
+  font-size: 9px;
+  color: var(--text-muted);
+  font-family: 'Consolas', 'Monaco', monospace;
+  background: var(--bg-panel);
+  padding: 0 3px;
+  border-radius: 3px;
+}
+.knob.atten .knob-value { font-size: 8px; }
+
+/* 输出端口在第三列的占位 */
+.port-out-slot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4px;
+}
+
+/* 端口行 —— 三列 grid, 三个端口齐高 */
+.ports-row.inputs-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  justify-items: center;
+  align-items: end;
+  padding: 4px 0 2px;
+}
+.port-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  touch-action: none;      /* 拖拽时不要触发滚动/缩放手势 */
+  user-select: none;
+}
+.port-col[data-port-role] { cursor: grab; }
+.port-col[data-port-role]:active { cursor: grabbing; }
+/* 固定高度的端口槽: 保证 r1 / r2 / out 的圆点中心在同一水平线上 */
+.port-body {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.port-label {
+  font-size: 7px;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 10px;
+  height: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+/* 输出端口的 OUT label 稍微换色区分 */
+.ports-row.inputs-row .port-col:last-child .port-label {
+  color: var(--port-out);
+}
+
+/* output 下拉 */
+.output-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border);
+}
+.output-row .out-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.output-row select {
+  font-size: 10px;
+  padding: 2px 4px;
+  max-width: 64px;
+}
+
+/* ===== SVG 连线层 ===== */
+.wire-layer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+}
+.wire-layer path {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  /* 关键: 连线层绝不能拦截鼠标, 否则拖拽时 elementFromPoint 会命中线缆而不是端口 */
+  pointer-events: none;
+  transition: stroke-width 0.15s, filter 0.15s;
+  opacity: 0.85;
+}
+.wire-layer path:hover { stroke-width: 4; opacity: 1; }
+/* 静态连线: 模块→模块 = 品牌橙; 连到物理输入/输出的 = 灰色 */
+.wire-layer path.wire { stroke: var(--wire); }
+.wire-layer path.wire.phys { stroke: var(--wire-phys); }
+/* 拖拽预览: 颜色由模板 stroke 属性决定 (合法=绿 / 非法=橙) */
+.wire-layer path.drag-preview {
+  stroke-dasharray: 6 4;
+  stroke-width: 2;
+  opacity: 0.9;
+}
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  box-shadow: var(--shadow-lg);
+  z-index: 200;
+  font-size: 13px;
+  animation: slideIn 0.3s ease;
+}
+.toast.success { border-color: var(--success); }
+.toast.error { border-color: var(--error); }
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #fafafa; }
+::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #c4c4c4; }
