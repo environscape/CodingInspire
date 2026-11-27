@@ -15,10 +15,21 @@ const I18N = {
     gen: '随机生成预设', init: '初始化预设', clear: '清除所有线缆',
     preset: '预设', exportJson: '导出配置', importJson: '导入配置', undo: '撤销修改',
     inputs: '输入', outputs: '输出',
+    tips: '推荐使用 Chrome / Edge 浏览器',
     ok: '确定', cancel: '取消',
     confirmImport: '导入配置会覆盖当前页面的所有预设设置，是否继续？',
-    confirmFetch: '拉取模块配置会覆盖当前页面上的 16 组预设，是否继续？',
-    confirmUpload: '上传配置会用当前页面上的 16 组预设覆盖模块内的全部预设，是否继续？',
+    // 串口同步的分步引导
+    connectGuide: '即将打开浏览器串口选择器。\n请选择 Manifold 模块对应的 USB 串口（通常显示为 USB Serial Device / COMx），并确保没有其他标签页或软件占用该串口。',
+    connectedGuide: '串口已连接。\n请确认 Manifold 模块已停留在 PRESET 界面 —— 模块只在该界面响应同步命令。',
+    fetchGuide: '拉取会用模块内的 16 组预设覆盖当前页面。\n请先确认：① 模块停留在 PRESET 界面 ② 串口连接正常。',
+    fetchWaiting: '正在等待模块响应…\n请确认模块停留在 PRESET 界面。',
+    fetchProgress: (n) => `正在接收模块预设… ${n}/16\n请勿操作模块。`,
+    fetchTimeout: '未收到模块响应。\n请检查：\n① 模块是否停留在 PRESET 界面\n② 串口是否选对、未被其他程序占用\n\n确认后可重新点击「拉取预设」。',
+    uploadGuide: '上传会用当前页面的 16 组预设覆盖模块内的全部预设。\n请先确认：① 模块停留在 PRESET 界面 ② 上传过程中不要断电或拔线。',
+    uploadProgress: (n) => `正在写入模块… ${n}/16\n请勿断电或拔线。`,
+    uploadDone: '上传完成：16 组预设已写入模块。\n请在 Manifold 模块上重新加载一次预设（Load Preset），即可体验最新修改。',
+    btnContinue: '继续选择',
+    btnStart: '开始',
     toSwitched: (n) => `已切换到 ${n}`,
     toRestored: '已恢复本地保存的预设',
     toInitDone: '已初始化预设: #1 = TIMER, 其余模块为空',
@@ -30,7 +41,6 @@ const I18N = {
     toConnectFail: (m) => '连接失败: ' + m,
     toDisconnected: '串口已断开',
     toSynced: (n) => `同步完成！共 ${n} 组预设`,
-    toRequested: '已请求模块导出预设，请在固件 preset 界面查看',
     toUploaded: (n) => `已上传 ${n} 组预设至模块`,
     toImported: (n) => `已导入 ${n} 组预设`,
     toImportFail: (m) => '导入失败: ' + m,
@@ -48,10 +58,21 @@ const I18N = {
     gen: 'Randomize', init: 'Init Preset', clear: 'Clear Wires',
     preset: 'Preset', exportJson: 'Export Config', importJson: 'Import Config', undo: 'Undo Changes',
     inputs: 'Inputs', outputs: 'Outputs',
+    tips: 'Tips: use Chrome / Edge',
     ok: 'OK', cancel: 'Cancel',
     confirmImport: 'Importing a config will overwrite all presets on this page. Continue?',
-    confirmFetch: 'Pulling from the module will overwrite all 16 presets on this page. Continue?',
-    confirmUpload: 'Uploading will overwrite ALL presets in the module with the 16 presets on this page. Continue?',
+    // 串口同步的分步引导
+    connectGuide: 'The browser serial port picker will open.\nChoose the USB serial port of your Manifold module (usually "USB Serial Device" / COMx) and make sure no other tab or app is using it.',
+    connectedGuide: 'Serial connected.\nMake sure the Manifold module is on the PRESET screen — the module only responds to sync commands there.',
+    fetchGuide: 'Pulling will overwrite this page with the 16 presets stored in the module.\nPlease confirm: (1) the module stays on the PRESET screen, (2) the serial connection is fine.',
+    fetchWaiting: 'Waiting for the module…\nKeep the module on the PRESET screen.',
+    fetchProgress: (n) => `Receiving presets… ${n}/16\nDo not operate the module.`,
+    fetchTimeout: 'No response from the module.\nPlease check:\n1) the module is on the PRESET screen\n2) the correct serial port is selected and not used by another app\n\nThen click "Pull Presets" again.',
+    uploadGuide: 'Uploading will overwrite ALL presets in the module with the 16 presets on this page.\nPlease confirm: (1) the module stays on the PRESET screen, (2) do not power off or unplug during upload.',
+    uploadProgress: (n) => `Writing to the module… ${n}/16\nDo not power off or unplug.`,
+    uploadDone: 'Upload complete: 16 presets written to the Manifold module.\nReload a preset (Load Preset) on the module to hear the changes.',
+    btnContinue: 'Continue',
+    btnStart: 'Start',
     toSwitched: (n) => `Switched to ${n}`,
     toRestored: 'Restored presets saved locally',
     toInitDone: 'Preset initialized: #1 = TIMER, others empty',
@@ -63,7 +84,6 @@ const I18N = {
     toConnectFail: (m) => 'Connection failed: ' + m,
     toDisconnected: 'Serial disconnected',
     toSynced: (n) => `Sync complete! ${n} presets`,
-    toRequested: 'Export requested — keep the module on the PRESET screen',
     toUploaded: (n) => `Uploaded ${n} presets to the module`,
     toImported: (n) => `Imported ${n} presets`,
     toImportFail: (m) => 'Import failed: ' + m,
@@ -318,6 +338,8 @@ const App = {
         <button @click="initPreset">{{ L.init }}</button>
         <button @click="clearAllWires">{{ L.clear }}</button>
 
+        <span class="tips" :title="L.tips">ⓘ {{ L.tips }}</span>
+
         <div class="preset-group">
           <span class="label">{{ L.preset }}</span>
           <select v-model="currentPresetIndex">
@@ -390,14 +412,22 @@ const App = {
               :stroke="dragPreview.valid ? '#6b7280' : '#ff6b35'" />
       </svg>
 
-      <!-- 二次确认弹窗 -->
+      <!-- 二次确认 / 步骤引导弹窗 -->
       <div v-if="confirmState" class="confirm-mask" @click.self="resolveConfirm(false)">
         <div class="confirm-box">
           <p class="confirm-msg">{{ confirmState.message }}</p>
           <div class="confirm-actions">
-            <button @click="resolveConfirm(false)">{{ L.cancel }}</button>
-            <button class="primary" @click="resolveConfirm(true)">{{ L.ok }}</button>
+            <button v-if="confirmState.showCancel" @click="resolveConfirm(false)">{{ L.cancel }}</button>
+            <button class="primary" @click="resolveConfirm(true)">{{ confirmState.okText || L.ok }}</button>
           </div>
+        </div>
+      </div>
+
+      <!-- 同步进度弹窗 (无按钮, 超时后自动切换为提示) -->
+      <div v-if="progressState" class="confirm-mask">
+        <div class="confirm-box">
+          <p class="confirm-msg">{{ progressState.message }}</p>
+          <div class="progress-bar"><span :style="{ width: progressState.percent + '%' }"></span></div>
         </div>
       </div>
 
@@ -423,7 +453,8 @@ const App = {
       hoverWire: null,      // 当前悬停的导线 key
       wirePull: null,       // 正在"拔出"的导线 { key, x0, y0, pulling }
       toast: { msg: '', type: '' },
-      confirmState: null,   // { message } | null
+      confirmState: null,   // { message, showCancel, okText } | null
+      progressState: null,  // { message, percent } | null
       lang: localStorage.getItem('manifold_lang') || 'zh',
       langMenu: false
     };
@@ -529,6 +560,7 @@ const App = {
   beforeUnmount() {
     window.removeEventListener('resize', this._onViewportChange);
     window.removeEventListener('scroll', this._onViewportChange, true);
+    this.clearFetchTimeout();
     this.endDrag();
   },
   methods: {
@@ -577,18 +609,47 @@ const App = {
       this.saveLocal();
       this.showToast(this.L.toUndone(preset.factory_name));
     },
-    // 二次确认弹窗 (返回 Promise<boolean>)
-    askConfirm(message) {
+    // 二次确认 / 步骤引导弹窗 (返回 Promise<boolean>)
+    askConfirm(message, opts = {}) {
       return new Promise(resolve => {
         this._confirmResolve = resolve;
-        this.confirmState = { message };
+        this.confirmState = {
+          message,
+          showCancel: opts.showCancel !== false,
+          okText: opts.okText
+        };
       });
+    },
+    // 单按钮提示框
+    openInfo(message, okText) {
+      return this.askConfirm(message, { showCancel: false, okText });
     },
     resolveConfirm(result) {
       const resolve = this._confirmResolve;
       this._confirmResolve = null;
       this.confirmState = null;
       if (resolve) resolve(result);
+    },
+    showProgress(message, percent = 0) {
+      this.progressState = { message, percent };
+    },
+    updateProgress(message, percent) {
+      if (this.progressState) this.progressState = { message, percent };
+    },
+    hideProgress() {
+      this.progressState = null;
+    },
+    // 拉取超时监控: 超时后关闭进度并提示排查步骤
+    armFetchTimeout() {
+      this.clearFetchTimeout();
+      this._fetchTimer = setTimeout(() => {
+        this._fetchTimer = null;
+        this.hideProgress();
+        this.openInfo(this.L.fetchTimeout);
+      }, 10000);
+    },
+    clearFetchTimeout() {
+      if (this._fetchTimer) { clearTimeout(this._fetchTimer); this._fetchTimer = null; }
     },
     // 初始化预设: 除 #1 = TIMER 外, 其余模块全部清空, 无任何接线
     initPreset() {
@@ -656,6 +717,8 @@ const App = {
     // ==== 串口 ====
     async requestPort() {
       if (!navigator.serial) { this.showToast(this.L.toNoSerial, 'error'); return; }
+      // 第一步引导: 选端口前先说明选哪个、别被占用
+      if (!(await this.askConfirm(this.L.connectGuide, { okText: this.L.btnContinue }))) return;
       try {
         const port = await navigator.serial.requestPort();
         await port.open({ baudRate: 115200 });
@@ -664,6 +727,8 @@ const App = {
         this.showToast(this.L.toConnected);
         // 启动接收循环
         this.readLoop();
+        // 第二步引导: 提醒模块要停在 PRESET 界面
+        this.openInfo(this.L.connectedGuide);
       } catch (e) { this.showToast(this.L.toConnectFail(e.message), 'error'); }
     },
     async disconnectPort() {
@@ -672,6 +737,8 @@ const App = {
         this.serialPort = null;
       }
       this.isConnected = false;
+      this.clearFetchTimeout();
+      this.hideProgress();
       this.showToast(this.L.toDisconnected);
     },
     async readLoop() {
@@ -698,6 +765,8 @@ const App = {
       if (!line.startsWith('ManifoldHelper=')) return;
       const rest = line.slice('ManifoldHelper='.length);
       if (rest === 'done') {
+        this.clearFetchTimeout();
+        this.hideProgress();
         this.presets.sort((a, b) => a.factory_name.localeCompare(b.factory_name));
         this.currentPresetIndex = 0;
         // 刚从模块拉下来的数据 = 与模块一致, 重建基准
@@ -719,6 +788,11 @@ const App = {
         const existing = this.presets.findIndex(p => p.factory_name === obj.factory_name);
         if (existing >= 0) this.presets.splice(existing, 1, obj);
         else this.presets.push(obj);
+        // 进度弹窗: 收到一组就更新一次, 并重置超时监控
+        if (this.progressState) {
+          this.updateProgress(this.L.fetchProgress(this.presets.length), Math.min(100, Math.round(this.presets.length / 16 * 100)));
+          this.armFetchTimeout();
+        }
       } catch (e) { console.warn('JSON parse failed', e); }
     },
     async sendLine(line) {
@@ -729,18 +803,21 @@ const App = {
     },
     async fetchPresets() {
       if (!this.isConnected) return;
-      if (!(await this.askConfirm(this.L.confirmFetch))) return;
+      if (!(await this.askConfirm(this.L.fetchGuide, { okText: this.L.btnStart }))) return;
       this.presets = []; // 清空旧数据
       this.dirty = [];
       this.baseline = [];
+      this.showProgress(this.L.fetchWaiting, 0);
       await this.sendLine('ManifoldSync=GET');
-      this.showToast(this.L.toRequested);
+      this.armFetchTimeout();
     },
     // 上传: 16 组预设整体覆盖模块 (逐条发送, 每组之间留出固件写 EEPROM 的时间)
     async uploadCurrent() {
       if (!this.isConnected || !this.presets.length) return;
-      if (!(await this.askConfirm(this.L.confirmUpload))) return;
-      for (let i = 0; i < this.presets.length; i++) {
+      if (!(await this.askConfirm(this.L.uploadGuide, { okText: this.L.btnStart }))) return;
+      const total = this.presets.length;
+      this.showProgress(this.L.uploadProgress(0), 0);
+      for (let i = 0; i < total; i++) {
         const preset = this.presets[i];
         const idMatch = preset.factory_name.match(/(\d+)/);
         const id = idMatch ? parseInt(idMatch[1]) : i + 1;
@@ -749,13 +826,17 @@ const App = {
           data: preset.data
         });
         await this.sendLine(`ManifoldSync=${id}=${jsonStr}`);
+        this.updateProgress(this.L.uploadProgress(i + 1), Math.round((i + 1) / total * 100));
         await this.sleep(80);
       }
       await this.sendLine('ManifoldSync=done');
+      this.hideProgress();
       // 已与模块一致, 重建基准
       this.resetBaseline();
       this.saveLocal();
       this.showToast(this.L.toUploaded(this.presets.length), 'success');
+      // 完成引导: 提示在模块上重新加载预设
+      this.openInfo(this.L.uploadDone);
     },
     sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); },
 

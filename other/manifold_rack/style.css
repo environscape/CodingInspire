@@ -201,6 +201,17 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
   padding: 16px 32px 0;
   background: #fff;
 }
+/* 使用提示: 放在「清除所有线缆」之后, 空间不足时省略并保留 title */
+.toolbar .tips {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-muted);
+  margin-left: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
 .main {
   display: flex;
   padding: 28px 32px;
@@ -645,6 +656,19 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
 .confirm-actions button {
   min-width: 72px;
   cursor: pointer;
+}
+/* 同步进度条 */
+.progress-bar {
+  height: 4px;
+  background: #f0f0f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.2s ease;
 }
 
 /* ===== Scrollbar ===== */
