@@ -10,8 +10,8 @@ const MI = window.ManifoldInfo;
 const I18N = {
   zh: {
     langName: '中文',
-    connect: '连接串口', disconnect: '断开',
-    fetch: '拉取预设', upload: '上传全部预设至模块',
+    connect: '连接模块(串口)', disconnect: '断开模块',
+    fetch: '获取模块预设', upload: '上传全部预设至模块',
     gen: '随机生成预设', init: '初始化预设', clear: '清除所有线缆',
     preset: '预设', exportJson: '导出配置', importJson: '导入配置', undo: '撤销修改',
     inputs: '输入', outputs: '输出',
@@ -19,12 +19,12 @@ const I18N = {
     ok: '确定', cancel: '取消',
     confirmImport: '导入配置会覆盖当前页面的所有预设设置，是否继续？',
     // 串口同步的分步引导
-    connectGuide: '即将打开浏览器串口选择器。\n请选择 Manifold 模块对应的 USB 串口（通常显示为 USB Serial Device / COMx），并确保没有其他标签页或软件占用该串口。',
+    connectGuide: '请先将模块背部的 USB Type-C 接口通过数据线连接到电脑的 USB 接口上，然后点击“<b class="hl">继续选择</b>”，选择 Manifold 模块对应的 USB 串口（通常显示为 USB Serial Device / COMx），并确保没有其他标签页或软件占用该串口。',
     connectedGuide: '串口已连接。\n请确认 Manifold 模块已停留在 PRESET 界面 —— 模块只在该界面响应同步命令。',
-    fetchGuide: '拉取会用模块内的 16 组预设覆盖当前页面。\n请先确认：① 模块停留在 PRESET 界面 ② 串口连接正常。',
+    fetchGuide: '获取会用模块内的 16 组预设覆盖当前页面。\n请先确认：① 模块停留在 PRESET 界面 ② 串口连接正常。',
     fetchWaiting: '正在等待模块响应…\n请确认模块停留在 PRESET 界面。',
     fetchProgress: (n) => `正在接收模块预设… ${n}/16\n请勿操作模块。`,
-    fetchTimeout: '未收到模块响应。\n请检查：\n① 模块是否停留在 PRESET 界面\n② 串口是否选对、未被其他程序占用\n\n确认后可重新点击「拉取预设」。',
+    fetchTimeout: '未收到模块响应。\n请检查：\n① 模块是否停留在 PRESET 界面\n② 串口是否选对、未被其他程序占用\n\n确认后可重新点击「获取模块预设」。',
     uploadGuide: '上传会用当前页面的 16 组预设覆盖模块内的全部预设。\n请先确认：① 模块停留在 PRESET 界面 ② 上传过程中不要断电或拔线。',
     uploadProgress: (n) => `正在写入模块… ${n}/16\n请勿断电或拔线。`,
     uploadDone: '上传完成：16 组预设已写入模块。\n请在 Manifold 模块上重新加载一次预设（Load Preset），即可体验最新修改。',
@@ -53,8 +53,8 @@ const I18N = {
   },
   en: {
     langName: 'English',
-    connect: 'Connect', disconnect: 'Disconnect',
-    fetch: 'Pull Presets', upload: 'Upload All Presets to Module',
+    connect: 'Connect Eurorack (Serial)', disconnect: 'Disconnect Eurorack',
+    fetch: 'Get Eurorack Presets', upload: 'Upload All Presets to Eurorack',
     gen: 'Randomize', init: 'Init Preset', clear: 'Clear Wires',
     preset: 'Preset', exportJson: 'Export Config', importJson: 'Import Config', undo: 'Undo Changes',
     inputs: 'Inputs', outputs: 'Outputs',
@@ -62,15 +62,15 @@ const I18N = {
     ok: 'OK', cancel: 'Cancel',
     confirmImport: 'Importing a config will overwrite all presets on this page. Continue?',
     // 串口同步的分步引导
-    connectGuide: 'The browser serial port picker will open.\nChoose the USB serial port of your Manifold module (usually "USB Serial Device" / COMx) and make sure no other tab or app is using it.',
-    connectedGuide: 'Serial connected.\nMake sure the Manifold module is on the PRESET screen — the module only responds to sync commands there.',
-    fetchGuide: 'Pulling will overwrite this page with the 16 presets stored in the module.\nPlease confirm: (1) the module stays on the PRESET screen, (2) the serial connection is fine.',
-    fetchWaiting: 'Waiting for the module…\nKeep the module on the PRESET screen.',
-    fetchProgress: (n) => `Receiving presets… ${n}/16\nDo not operate the module.`,
-    fetchTimeout: 'No response from the module.\nPlease check:\n1) the module is on the PRESET screen\n2) the correct serial port is selected and not used by another app\n\nThen click "Pull Presets" again.',
-    uploadGuide: 'Uploading will overwrite ALL presets in the module with the 16 presets on this page.\nPlease confirm: (1) the module stays on the PRESET screen, (2) do not power off or unplug during upload.',
-    uploadProgress: (n) => `Writing to the module… ${n}/16\nDo not power off or unplug.`,
-    uploadDone: 'Upload complete: 16 presets written to the Manifold module.\nReload a preset (Load Preset) on the module to hear the changes.',
+    connectGuide: 'First connect the rear USB Type-C port of the Eurorack to your computer with a data cable, then click "<b class="hl">Continue</b>" and choose the USB serial port of the Manifold Eurorack (usually "USB Serial Device" / COMx). Make sure no other tab or app is using it.',
+    connectedGuide: 'Serial connected.\nMake sure the Manifold Eurorack is on the PRESET screen — it only responds to sync commands there.',
+    fetchGuide: 'Fetching will overwrite this page with the 16 presets stored in the Eurorack.\nPlease confirm: (1) the Eurorack stays on the PRESET screen, (2) the serial connection is fine.',
+    fetchWaiting: 'Waiting for the Eurorack…\nKeep the Eurorack on the PRESET screen.',
+    fetchProgress: (n) => `Receiving presets… ${n}/16\nDo not operate the Eurorack.`,
+    fetchTimeout: 'No response from the Eurorack.\nPlease check:\n1) the Eurorack is on the PRESET screen\n2) the correct serial port is selected and not used by another app\n\nThen click "Get Eurorack Presets" again.',
+    uploadGuide: 'Uploading will overwrite ALL presets in the Eurorack with the 16 presets on this page.\nPlease confirm: (1) the Eurorack stays on the PRESET screen, (2) do not power off or unplug during upload.',
+    uploadProgress: (n) => `Writing to the Eurorack… ${n}/16\nDo not power off or unplug.`,
+    uploadDone: 'Upload complete: 16 presets written to the Manifold Eurorack.\nReload a preset (Load Preset) on the Eurorack to hear the changes.',
     btnContinue: 'Continue',
     btnStart: 'Start',
     toSwitched: (n) => `Switched to ${n}`,
@@ -84,15 +84,15 @@ const I18N = {
     toConnectFail: (m) => 'Connection failed: ' + m,
     toDisconnected: 'Serial disconnected',
     toSynced: (n) => `Sync complete! ${n} presets`,
-    toUploaded: (n) => `Uploaded ${n} presets to the module`,
+    toUploaded: (n) => `Uploaded ${n} presets to the Eurorack`,
     toImported: (n) => `Imported ${n} presets`,
     toImportFail: (m) => 'Import failed: ' + m,
     toUnplugged: 'Wire removed',
     toOutToIn: 'Outputs can only connect to inputs',
     toNoPhysDirect: 'Physical input cannot connect to physical output',
-    toTakeover: (a, n, b) => `Module ${a} → Out${n} disconnected, module ${b} took over`,
-    toRouted: (a, f, s) => `Module ${a} ${f} ← ${s}`,
-    toOut: (a, n) => `Module ${a} → Out${n}`
+    toTakeover: (a, n, b) => `Eurorack #${a} → Out${n} disconnected, Eurorack #${b} took over`,
+    toRouted: (a, f, s) => `Eurorack #${a} ${f} ← ${s}`,
+    toOut: (a, n) => `Eurorack #${a} → Out${n}`
   }
 };
 
@@ -248,7 +248,7 @@ const ModuleCard = {
               <div class="port-dot output"
                    :data-port-type="'out'"
                    :data-port-id="'out'"
-                   title="module output"></div>
+                   title="Eurorack output"></div>
             </div>
           </div>
         </div>
@@ -415,7 +415,7 @@ const App = {
       <!-- 二次确认 / 步骤引导弹窗 -->
       <div v-if="confirmState" class="confirm-mask" @click.self="resolveConfirm(false)">
         <div class="confirm-box">
-          <p class="confirm-msg">{{ confirmState.message }}</p>
+          <p class="confirm-msg" v-html="confirmState.message"></p>
           <div class="confirm-actions">
             <button v-if="confirmState.showCancel" @click="resolveConfirm(false)">{{ L.cancel }}</button>
             <button class="primary" @click="resolveConfirm(true)">{{ confirmState.okText || L.ok }}</button>

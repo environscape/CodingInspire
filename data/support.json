@@ -191,9 +191,9 @@
         "title": "Manifold Rack 同步助手",
         "title_en": "Manifold Rack Sync Helper",
         "title_jp": "Manifold Rack 同期ヘルパー",
-        "description": "网页版 Manifold 预设编辑器：可视化调整 12 个模块的类型、参数与连线，一键与模块串口双向同步预设，支持导入/导出配置。需 Chrome 或 Edge 浏览器，且 Manifold 固件版本不低于 v1.2。",
-        "description_en": "Web-based Manifold preset editor: tweak the 12 modules' types, parameters and patch routing, sync presets to/from the module over serial in both directions, and import/export configs. Requires Chrome or Edge, with Manifold firmware v1.2 or later.",
-        "description_jp": "Web 版 Manifold プリセットエディター：12 個のモジュールのタイプ・パラメータ・パッチ接続を視覚的に編集し、シリアル経由でプリセットを双方向同期、設定のインポート／エクスポートにも対応。Chrome または Edge、および Manifold ファームウェア v1.2 以上が必要です。",
+        "description": "在线版 Manifold 预设编辑器：可视化调整 12 个模块的类型、参数与连线，一键与模块串口双向同步预设，支持导入/导出配置。需 Chrome 或 Edge 浏览器，且 Manifold 固件版本不低于 v1.2。",
+        "description_en": "Online Manifold preset editor: tweak the types, parameters and patch routing of the 12 module slots, sync presets with the Eurorack over serial in both directions, and import/export configs. Requires Chrome or Edge, with Manifold firmware v1.2 or later.",
+        "description_jp": "オンライン版 Manifold プリセットエディター：12 個のモジュールのタイプ・パラメータ・パッチ接続を視覚的に編集し、シリアル経由でプリセットを双方向同期、設定のインポート／エクスポートにも対応。Chrome または Edge、および Manifold ファームウェア v1.2 以上が必要です。",
         "url": "other/manifold_rack/index.html",
         "isExternal": true
       },

@@ -648,6 +648,10 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
   margin-bottom: 18px;
   white-space: pre-wrap;
 }
+.confirm-msg .hl {
+  color: var(--error);
+  font-weight: 600;
+}
 .confirm-actions {
   display: flex;
   justify-content: flex-end;
