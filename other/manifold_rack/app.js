@@ -11,10 +11,14 @@ const I18N = {
   zh: {
     langName: '中文',
     connect: '连接串口', disconnect: '断开',
-    fetch: '拉取预设', upload: '上传当前预设',
+    fetch: '拉取预设', upload: '上传全部预设至模块',
     gen: '随机生成预设', init: '初始化预设', clear: '清除所有线缆',
-    preset: '预设', exportJson: '导出JSON', importJson: '导入JSON',
+    preset: '预设', exportJson: '导出配置', importJson: '导入配置',
     inputs: '输入', outputs: '输出',
+    ok: '确定', cancel: '取消',
+    confirmImport: '导入配置会覆盖当前页面的所有预设设置，是否继续？',
+    confirmFetch: '拉取模块配置会覆盖当前页面上的 16 组预设，是否继续？',
+    confirmUpload: '上传配置会用当前页面上的 16 组预设覆盖模块内的全部预设，是否继续？',
     toSwitched: (n) => `已切换到 ${n}`,
     toRestored: '已恢复本地保存的预设',
     toInitDone: '已初始化预设: #1 = TIMER, 其余模块为空',
@@ -26,7 +30,7 @@ const I18N = {
     toDisconnected: '串口已断开',
     toSynced: (n) => `同步完成！共 ${n} 组预设`,
     toRequested: '已请求模块导出预设，请在固件 preset 界面查看',
-    toUploaded: (n) => `已上传 ${n}`,
+    toUploaded: (n) => `已上传 ${n} 组预设至模块`,
     toImported: (n) => `已导入 ${n} 组预设`,
     toImportFail: (m) => '导入失败: ' + m,
     toUnplugged: '已断开连线',
@@ -39,10 +43,14 @@ const I18N = {
   en: {
     langName: 'English',
     connect: 'Connect', disconnect: 'Disconnect',
-    fetch: 'Pull Presets', upload: 'Upload Preset',
+    fetch: 'Pull Presets', upload: 'Upload All Presets to Module',
     gen: 'Randomize', init: 'Init Preset', clear: 'Clear Wires',
-    preset: 'Preset', exportJson: 'Export JSON', importJson: 'Import JSON',
+    preset: 'Preset', exportJson: 'Export Config', importJson: 'Import Config',
     inputs: 'Inputs', outputs: 'Outputs',
+    ok: 'OK', cancel: 'Cancel',
+    confirmImport: 'Importing a config will overwrite all presets on this page. Continue?',
+    confirmFetch: 'Pulling from the module will overwrite all 16 presets on this page. Continue?',
+    confirmUpload: 'Uploading will overwrite ALL presets in the module with the 16 presets on this page. Continue?',
     toSwitched: (n) => `Switched to ${n}`,
     toRestored: 'Restored presets saved locally',
     toInitDone: 'Preset initialized: #1 = TIMER, others empty',
@@ -54,7 +62,7 @@ const I18N = {
     toDisconnected: 'Serial disconnected',
     toSynced: (n) => `Sync complete! ${n} presets`,
     toRequested: 'Export requested — keep the module on the PRESET screen',
-    toUploaded: (n) => `Uploaded ${n}`,
+    toUploaded: (n) => `Uploaded ${n} presets to the module`,
     toImported: (n) => `Imported ${n} presets`,
     toImportFail: (m) => 'Import failed: ' + m,
     toUnplugged: 'Wire removed',
@@ -67,46 +75,27 @@ const I18N = {
 };
 
 // ============================================================
-// Mock 数据 (和 Python module_viewer.py 里一致)
+// 未连接模块时的默认预设: 16 组全部为「初始化预设」状态
+// (#1 = TIMER, 其余为空, 仅保留 #1/#3/#5/#7/#9/#11 → Out1~Out6 的默认输出)
 // ============================================================
-function createMockPresets() {
-  const sample = {
-    "factory_name": "preset_01",
-    "data": []
-  };
-  for (let i = 0; i < 12; i++) {
-    sample.data.push({
-      num: i, type: 1,
-      param1: Math.floor(Math.random() * 4095),
-      param2: Math.floor(Math.random() * 4095),
-      param3: Math.floor(Math.random() * 4095),
-      atten1: Math.floor(Math.random() * 4095),
-      atten2: Math.floor(Math.random() * 4095),
-      router1: i === 0 ? 12 : i - 1,
-      router2: i === 0 ? 15 : i + 11,
-      output: [1,2,3,4,5,6,0,0,0,0,0,0][i]
-    });
-  }
-  const presets = [sample];
-  for (let p = 2; p <= 16; p++) {
+function createDefaultPresets() {
+  const presets = [];
+  for (let p = 1; p <= 16; p++) {
     const factoryName = p < 10 ? `preset_0${p}` : `preset_${p}`;
     const data = [];
     for (let i = 0; i < 12; i++) {
-      const t = (i + p) % 17;
       data.push({
-        num: i, type: t,
-        param1: Math.floor(Math.random() * 4095),
-        param2: Math.floor(Math.random() * 4095),
-        param3: Math.floor(Math.random() * 4095),
-        atten1: Math.floor(Math.random() * 4095),
-        atten2: Math.floor(Math.random() * 4095),
+        num: i,
+        type: i === 0 ? 17 : 0,   // #1 = TIMER, 其余为 ---
+        param1: 0, param2: 0, param3: 0,
+        atten1: 0, atten2: 0,
         router1: 18, router2: 18,
-        output: 0
+        output: i % 2 === 0 ? (i / 2 + 1) : 0
       });
     }
     presets.push({ factory_name: factoryName, data });
   }
-  return presets.sort((a, b) => a.factory_name.localeCompare(b.factory_name));
+  return presets;
 }
 
 // ============================================================
@@ -331,11 +320,11 @@ const App = {
           <span class="label">{{ L.preset }}</span>
           <select v-model="currentPresetIndex">
             <option v-for="(p, i) in presets" :key="i" :value="i">
-              {{ p.factory_name }}
+              {{ p.factory_name }}{{ dirty[i] ? ' *' : '' }}
             </option>
           </select>
           <button @click="exportJSON">{{ L.exportJson }}</button>
-          <button @click="importJSON = true">{{ L.importJson }}</button>
+          <button @click="importJSON">{{ L.importJson }}</button>
         </div>
       </div>
 
@@ -398,6 +387,17 @@ const App = {
               :stroke="dragPreview.valid ? '#6b7280' : '#ff6b35'" />
       </svg>
 
+      <!-- 二次确认弹窗 -->
+      <div v-if="confirmState" class="confirm-mask" @click.self="resolveConfirm(false)">
+        <div class="confirm-box">
+          <p class="confirm-msg">{{ confirmState.message }}</p>
+          <div class="confirm-actions">
+            <button @click="resolveConfirm(false)">{{ L.cancel }}</button>
+            <button class="primary" @click="resolveConfirm(true)">{{ L.ok }}</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Toast -->
       <div v-if="toast.msg" class="toast" :class="toast.type">{{ toast.msg }}</div>
     </div>
@@ -405,7 +405,8 @@ const App = {
   data() {
     return {
       MI: window.ManifoldInfo,
-      presets: createMockPresets(),
+      presets: createDefaultPresets(),
+      dirty: Array(16).fill(false),   // 每组预设是否有未上传的修改
       currentPresetIndex: 0,
       isConnected: false,
       serialPort: null,
@@ -417,7 +418,7 @@ const App = {
       hoverWire: null,      // 当前悬停的导线 key
       wirePull: null,       // 正在"拔出"的导线 { key, x0, y0, pulling }
       toast: { msg: '', type: '' },
-      importJSON: false,
+      confirmState: null,   // { message } | null
       lang: localStorage.getItem('manifold_lang') || 'zh',
       langMenu: false
     };
@@ -477,15 +478,20 @@ const App = {
     }
   },
   mounted() {
-    // localStorage 恢复
+    // localStorage 恢复 (v: 2 起才有效, 旧的随机 mock 数据直接丢弃)
     const saved = localStorage.getItem('manifold_presets');
     if (saved) {
       try {
         const obj = JSON.parse(saved);
-        if (obj.presets && obj.presets.length) {
+        if (obj.v === 2 && obj.presets && obj.presets.length) {
           this.presets = obj.presets;
+          this.dirty = Array.isArray(obj.dirty) && obj.dirty.length === obj.presets.length
+            ? obj.dirty
+            : Array(obj.presets.length).fill(false);
           this.currentPresetIndex = obj.currentPresetIndex || 0;
           this.showToast(this.L.toRestored);
+        } else {
+          localStorage.removeItem('manifold_presets');
         }
       } catch (e) { console.warn('localStorage restore failed', e); }
     }
@@ -530,11 +536,33 @@ const App = {
       preset.data[index] = { ...newModule };
       this.saveLocal();
     },
-    saveLocal() {
+    saveLocal(markDirty = true) {
+      if (markDirty) {
+        // 任意修改都让当前预设带上 "未上传" 标记
+        if (this.dirty.length !== this.presets.length) {
+          this.dirty = Array(this.presets.length).fill(false);
+        }
+        this.dirty[this.currentPresetIndex] = true;
+      }
       localStorage.setItem('manifold_presets', JSON.stringify({
+        v: 2,
         presets: this.presets,
+        dirty: this.dirty,
         currentPresetIndex: this.currentPresetIndex
       }));
+    },
+    // 二次确认弹窗 (返回 Promise<boolean>)
+    askConfirm(message) {
+      return new Promise(resolve => {
+        this._confirmResolve = resolve;
+        this.confirmState = { message };
+      });
+    },
+    resolveConfirm(result) {
+      const resolve = this._confirmResolve;
+      this._confirmResolve = null;
+      this.confirmState = null;
+      if (resolve) resolve(result);
     },
     // 初始化预设: 除 #1 = TIMER 外, 其余模块全部清空, 无任何接线
     initPreset() {
@@ -646,6 +674,10 @@ const App = {
       if (rest === 'done') {
         this.presets.sort((a, b) => a.factory_name.localeCompare(b.factory_name));
         this.currentPresetIndex = 0;
+        // 刚从模块拉下来的数据 = 与模块一致, 全部清除未上传标记
+        this.dirty = Array(this.presets.length).fill(false);
+        this.saveLocal(false);
+        this.rebuildWires();
         this.showToast(this.L.toSynced(this.presets.length));
         return;
       }
@@ -671,35 +703,49 @@ const App = {
     },
     async fetchPresets() {
       if (!this.isConnected) return;
+      if (!(await this.askConfirm(this.L.confirmFetch))) return;
       this.presets = []; // 清空旧数据
+      this.dirty = [];
       await this.sendLine('ManifoldSync=GET');
       this.showToast(this.L.toRequested);
     },
+    // 上传: 16 组预设整体覆盖模块 (逐条发送, 每组之间留出固件写 EEPROM 的时间)
     async uploadCurrent() {
-      if (!this.isConnected) return;
-      const preset = this.presets[this.currentPresetIndex];
-      if (!preset) return;
-      const jsonStr = JSON.stringify({
-        factory_name: preset.factory_name,
-        data: preset.data
-      });
-      const idMatch = preset.factory_name.match(/(\d+)/);
-      const id = idMatch ? parseInt(idMatch[1]) : this.currentPresetIndex + 1;
-      await this.sendLine(`ManifoldSync=${id}=${jsonStr}`);
+      if (!this.isConnected || !this.presets.length) return;
+      if (!(await this.askConfirm(this.L.confirmUpload))) return;
+      for (let i = 0; i < this.presets.length; i++) {
+        const preset = this.presets[i];
+        const idMatch = preset.factory_name.match(/(\d+)/);
+        const id = idMatch ? parseInt(idMatch[1]) : i + 1;
+        const jsonStr = JSON.stringify({
+          factory_name: preset.factory_name,
+          data: preset.data
+        });
+        await this.sendLine(`ManifoldSync=${id}=${jsonStr}`);
+        await this.sleep(80);
+      }
       await this.sendLine('ManifoldSync=done');
-      this.showToast(this.L.toUploaded(preset.factory_name), 'success');
+      // 已与模块一致, 清除全部未上传标记
+      this.dirty = Array(this.presets.length).fill(false);
+      this.saveLocal(false);
+      this.showToast(this.L.toUploaded(this.presets.length), 'success');
     },
+    sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); },
 
-    // ==== JSON 导入导出 ====
+    // ==== 配置导入导出 ====
     exportJSON() {
+      const d = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      const stamp = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}${pad(d.getHours())}${pad(d.getMinutes())}`;
       const blob = new Blob([JSON.stringify({ presets: this.presets }, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url; a.download = 'manifold_presets.json';
+      a.href = url; a.download = `manifold_preset_${stamp}.json`;
       a.click();
       URL.revokeObjectURL(url);
     },
-    importJSON() {
+    async importJSON() {
+      if (!(await this.askConfirm(this.L.confirmImport))) return;
       const input = document.createElement('input');
       input.type = 'file'; input.accept = '.json';
       input.onchange = (e) => {
@@ -710,8 +756,11 @@ const App = {
             const obj = JSON.parse(reader.result);
             if (obj.presets) {
               this.presets = obj.presets;
+              this.dirty = Array(obj.presets.length).fill(false);
+              this.currentPresetIndex = 0;
+              this.rebuildWires();
+              this.saveLocal(false);
               this.showToast(this.L.toImported(obj.presets.length), 'success');
-              this.saveLocal();
             }
           } catch (err) { this.showToast(this.L.toImportFail(err.message), 'error'); }
         };
