@@ -196,6 +196,17 @@
         "description_jp": "CV2MIDI マッピング設定ツール",
         "fileType": "zip",
         "url": "support/tools/CV2MIDIHelper_v1.0.zip"
+      },
+      {
+        "id": "3",
+        "title": "Manifold Rack 同步助手",
+        "title_en": "Manifold Rack Sync Helper",
+        "title_jp": "Manifold Rack 同期ヘルパー",
+        "description": "网页版 Manifold 预设编辑器：可视化调整 12 个模块的类型、参数与连线，一键与模块串口双向同步预设，支持导入/导出 JSON。需 Chrome 或 Edge 浏览器并停留在模块的 PRESET 界面。",
+        "description_en": "Web-based Manifold preset editor: tweak the 12 modules' types, parameters and patch routing, sync presets to/from the module over serial in both directions, and import/export JSON. Requires Chrome or Edge with the module staying on the PRESET screen.",
+        "description_jp": "Web 版 Manifold プリセットエディター：12 個のモジュールのタイプ・パラメータ・パッチ接続を視覚的に編集し、シリアル経由でプリセットを双方向同期、JSON のインポート／エクスポートにも対応。Chrome または Edge が必要で、モジュールは PRESET 画面のままにしてください。",
+        "url": "other/manifold_rack/index.html",
+        "isExternal": true
       }
     ],
     "guides": [

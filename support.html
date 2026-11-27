@@ -1154,6 +1154,7 @@ nav.scrolled {
                 view_manual: 'View Manual',
                 download_firmware: 'Download Firmware',
                 download_tool: 'Download Tool',
+                open_tool: 'Open Tool',
                 read_guide: 'Read Guide',
                 visit_link: 'Visit Link',
                 loading: 'Loading...',
@@ -1172,6 +1173,7 @@ nav.scrolled {
                 view_manual: 'マニュアルを見る',
                 download_firmware: 'ファームウェアをダウンロード',
                 download_tool: 'ツールをダウンロード',
+                open_tool: 'ツールを開く',
                 read_guide: 'ガイドを読む',
                 visit_link: 'リンクを開く',
                 loading: '読み込み中...',
@@ -1190,6 +1192,7 @@ nav.scrolled {
                 view_manual: '查看手册',
                 download_firmware: '下载固件',
                 download_tool: '下载工具',
+                open_tool: '打开工具',
                 read_guide: '阅读指南',
                 visit_link: '访问链接',
                 loading: '加载中...',
@@ -1434,16 +1437,22 @@ nav.scrolled {
                 `;
             }).join('');
 
-            const toolsHtml = support.tools.map(item => `
-                <div class="support-card">
-                    <h4>${tField(item, 'title')}</h4>
-                    <p>${tField(item, 'description')}</p>
-                    <div class="meta">
-                        <span>${t.format_label} ${item.fileType.toUpperCase()}</span>
+            const toolsHtml = support.tools.map(item => {
+                const isDownload = !item.isExternal;
+                const targetAttr = isDownload ? 'download' : 'target="_blank"';
+                const btnText = isDownload ? t.download_tool : t.open_tool;
+                const metaHtml = item.fileType
+                    ? `<div class="meta"><span>${t.format_label} ${tField(item, 'fileType').toUpperCase()}</span></div>`
+                    : '';
+                return `
+                    <div class="support-card">
+                        <h4>${tField(item, 'title')}</h4>
+                        <p>${tField(item, 'description')}</p>
+                        ${metaHtml}
+                        <a href="${item.url}" ${targetAttr}>${btnText}</a>
                     </div>
-                    <a href="${item.url}" download>${t.download_tool}</a>
-                </div>
-            `).join('');
+                `;
+            }).join('');
 
             const guidesHtml = support.guides.map(item => {
                 const targetAttr = item.isExternal ? 'target="_blank"' : '';
